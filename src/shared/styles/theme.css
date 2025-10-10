@@ -1,0 +1,27 @@
+@import 'tailwindcss';
+
+@theme {
+  /* color variables */
+  --color-orange: #ff9346;
+  --color-blue: #4284fe;
+  --color-white: #f7faff;
+  --color-gray: #a7a8a9;
+  --color-navyblack: #1b2634;
+}
+
+/* PC typography */
+@utility head1-sb-42 {
+  @apply text-5xl font-semibold;
+}
+
+@utility head2-sb-32 {
+  @apply text-4xl font-semibold;
+}
+
+@utility body1-md-28 {
+  @apply text-3xl font-medium;
+}
+
+@utility body2-md-24 {
+  @apply text-2xl font-medium;
+}
