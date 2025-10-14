@@ -34,7 +34,7 @@ const DefaultButton = ({ border = 'solid', children, isIcon = true, ...props }: 
   };
 
   return (
-    <button type="button" className={` ${baseClasses} ${sizeClasses} ${borderAndEffectClasses[border]} `} {...props}>
+    <button type="button" className={`${baseClasses} ${sizeClasses} ${borderAndEffectClasses[border]}`} {...props}>
       {children}
       {isIcon && <ArrowUpRight className={iconSizeClasses} />}
     </button>
