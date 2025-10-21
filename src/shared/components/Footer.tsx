@@ -9,7 +9,7 @@ export interface FooterProps {
   mode?: 'light' | 'dark';
 }
 
-const Footer = ({ mode = 'dark', ...props }: FooterProps) => {
+const Footer = ({ mode = 'light', ...props }: FooterProps) => {
   const navigate = useNavigate();
 
   // 기본 스타일 + 색상 모드
