@@ -27,7 +27,7 @@ const Footer = ({ mode = 'light', ...props }: FooterProps) => {
 
   // 반응형 타이틀 사이즈(모바일 기본, md: 태블릿, lg: 데스크톱)
   const titleClasses = [
-    'font-semibold font-text-[1rem] md:text-[1.5rem] lg:text-[1.75rem] whitespace-pre-line text-center', //
+    'font-semibold text-[1rem] md:text-[1.5rem] lg:text-[1.75rem] whitespace-pre-line text-center', //
     `${mode === 'light' ? 'text-navyblack' : 'text-white  '}`, // 색상 모드
   ].join(' ');
 
