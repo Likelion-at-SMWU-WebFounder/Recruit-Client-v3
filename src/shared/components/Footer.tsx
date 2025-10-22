@@ -51,14 +51,14 @@ const Footer = ({ mode = 'light', ...props }: FooterProps) => {
       <div className={`${titleClasses}`}>{FooterConstants.TITLE}</div>
       {/* Icon */}
       <div className={`${iconContainerClasses}`}>
-        <div className={`${iconItemClasses}`} onClick={() => navigate(`${ROUTER_URL.WEBFOUNDERS}`)}>
+        <button type="button" className={`${iconItemClasses}`} onClick={() => navigate(`${ROUTER_URL.WEBFOUNDERS}`)}>
           <FiGlobe className={`${iconSizeClasses}`} />
           <div className={iconTextClasses}>웹파운더즈</div>
-        </div>
-        <div className={`${iconItemClasses}`} onClick={() => window.open(GITHUB_URL, '_blank')}>
+        </button>
+        <button type="button" className={`${iconItemClasses}`} onClick={() => window.open(GITHUB_URL, '_blank')}>
           <FiGithub className={`${iconSizeClasses}`} />
           <div className={iconTextClasses}>깃허브</div>
-        </div>
+        </button>
       </div>
       {/* Copyright */}
       <div className={copyrightClasses}>{FooterConstants.COPYRIGHT}</div>
