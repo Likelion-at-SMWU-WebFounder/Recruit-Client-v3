@@ -36,7 +36,7 @@ const Footer = ({ mode = 'light', ...props }: FooterProps) => {
   const iconItemClasses = [
     'inline-flex flex-col justify-center items-center cursor-pointer', // 기본 설정
     'gap-[0.5rem]', // mobile
-    'md:gap-[1rem], lg:gap-[1rem]', // tablet, desktop
+    'md:gap-[1rem] lg:gap-[1rem]', // tablet, desktop
   ].join(' ');
   const iconTextClasses = 'font-semibold text-blue text-[0.875rem] md:text-[1rem] lg:text-[1rem]';
   const iconSizeClasses = 'text-blue w-[1.5rem] h-[1.5rem] md:w-[1.75rem] md:h-[1.75rem] lg:w-[2rem] lg:h-[2rem]';
