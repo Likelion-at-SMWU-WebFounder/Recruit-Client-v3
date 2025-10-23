@@ -26,6 +26,9 @@ export const useCarousel = () => {
     if (!emblaApi) return;
     onSelect();
     emblaApi.on('select', onSelect);
+    return () => {
+      emblaApi.off('select', onSelect);
+    };
   }, [emblaApi, onSelect]);
 
   // 인덱스로 스크롤 이동 함수 (버튼/도트 클릭 등으로 원하는 인덱스로 이동)
