@@ -1,0 +1,45 @@
+/* Embla Carousel 스타일링 */
+.embla {
+  overflow: hidden;
+  padding: 1rem 0;
+}
+
+.embla__container {
+  display: flex;
+}
+
+.embla__slide {
+  /* 슬라이드 너비를 100%로 설정하여 한 번에 하나의 슬라이드만 보이게 설정 */
+  /* 양 옆에 캐로셀 보이게 하고 싶은 경우 퍼센트 값 조절하여 설정*/
+  flex: 0 0 100%;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  padding: 0 0.625rem;
+}
+
+/* 페이지네이션 점 스타일링 */
+.embla__dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.38rem 0;
+  gap: 0.5rem;
+}
+
+.embla__dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--color-navyblack);
+  opacity: 0.4;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.embla__dot--selected {
+  background-color: var(--color-blue);
+  opacity: 1;
+}
