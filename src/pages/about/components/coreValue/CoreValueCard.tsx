@@ -1,12 +1,22 @@
+import valueCardImage1 from '@pages/about/assets/bg-card-grow.svg';
+import valueCardImage2 from '@pages/about/assets/bg-card-challenge.svg';
+import valueCardImage3 from '@pages/about/assets/bg-card-grit.svg';
+
 interface CoreValueCardProps {
   keyword: string;
   description: string;
   cardImage: string;
   highlightedWord: string;
 }
+
 const CoreValueCard = ({ keyword, description, cardImage, highlightedWord }: CoreValueCardProps) => {
-  // 카드 배경 이미지 경로 설정
-  const cardImagePath = `/src/pages/about/assets/${cardImage}`;
+  // 각 이미지를 import하고 매핑 객체 생성
+  const imageMap: Record<string, string> = {
+    'bg-card-grow.svg': valueCardImage1,
+    'bg-card-challenge.svg': valueCardImage2,
+    'bg-card-grit.svg': valueCardImage3,
+  };
+  const cardImagePath = imageMap[cardImage];
 
   // 하이라이트 되어 있는 단어를 추출하여 하이라이트 처리
   const renderTitle = () => {
