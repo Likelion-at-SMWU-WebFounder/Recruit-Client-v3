@@ -9,9 +9,9 @@ const CORE_VALUE_KEYWORDS = {
 
 // core value card의 keyword에서 하이라이트 되어 있는 단어
 const CORE_VALUE_HIGHLIGHTED_WORDS = {
-  HIGHLIGHED_WORD_1: 'Together',
-  HIGHLIGHED_WORD_2: 'Challenge',
-  HIGHLIGHED_WORD_3: 'Grit',
+  HIGHLIGHTED_WORD_1: 'Together',
+  HIGHLIGHTED_WORD_2: 'Challenge',
+  HIGHLIGHTED_WORD_3: 'Grit',
 };
 
 // core value card의 description
@@ -34,18 +34,18 @@ export const CORE_VALUE_DATA = [
     keyword: CORE_VALUE_KEYWORDS.KEYWORD_1,
     description: CORE_VALUE_DESCRIPTIONS.DESCRIPTION_1,
     image: CORE_VALUE_IMAGES.IMAGE_1,
-    highlightedWord: CORE_VALUE_HIGHLIGHTED_WORDS.HIGHLIGHED_WORD_1,
+    highlightedWord: CORE_VALUE_HIGHLIGHTED_WORDS.HIGHLIGHTED_WORD_1,
   },
   {
     keyword: CORE_VALUE_KEYWORDS.KEYWORD_2,
     description: CORE_VALUE_DESCRIPTIONS.DESCRIPTION_2,
     image: CORE_VALUE_IMAGES.IMAGE_2,
-    highlightedWord: CORE_VALUE_HIGHLIGHTED_WORDS.HIGHLIGHED_WORD_2,
+    highlightedWord: CORE_VALUE_HIGHLIGHTED_WORDS.HIGHLIGHTED_WORD_2,
   },
   {
     keyword: CORE_VALUE_KEYWORDS.KEYWORD_3,
     description: CORE_VALUE_DESCRIPTIONS.DESCRIPTION_3,
     image: CORE_VALUE_IMAGES.IMAGE_3,
-    highlightedWord: CORE_VALUE_HIGHLIGHTED_WORDS.HIGHLIGHED_WORD_3,
+    highlightedWord: CORE_VALUE_HIGHLIGHTED_WORDS.HIGHLIGHTED_WORD_3,
   },
 ];
