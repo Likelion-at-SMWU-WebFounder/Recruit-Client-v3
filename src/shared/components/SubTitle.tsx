@@ -23,8 +23,8 @@ const SubTitle = ({ mode = 'light', subTitle, subDescription, align = 'center', 
 
   // 서브 디스크립션 스타일 설정: 라이트 모드(light), 다크 모드(dark)
   const subDescriptionClass = {
-    light: 'text-navyblack text-[1.5rem] md:text-[2rem] lg:text[2.625rem]',
-    dark: 'text-white text-[1.5rem] md:text-[2rem] lg:text[2.625rem]',
+    light: 'text-navyblack text-[1.5rem] md:text-[2rem] lg:text-[2.625rem]',
+    dark: 'text-white text-[1.5rem] md:text-[2rem] lg:text-[2.625rem]',
   };
 
   return (
