@@ -3,7 +3,8 @@ import CoreValueCard from '@pages/about/components/coreValue/CoreValueCard';
 import { SUB_TITLE } from '@pages/about/constants/about';
 import { CORE_VALUE_DATA } from '@pages/about/constants/coreValue';
 import { useCarousel } from '@/shared/hooks/carousel/useEmblaCarousel';
-import '@pages/about/styles/Carousel.css';
+import Carousel from '@shared/components/Carousel';
+import '@pages/about/styles/carousel.css';
 
 const CoreValuesSection = () => {
   const { emblaRef, selectedIndex, scrollTo } = useCarousel();
@@ -14,31 +15,18 @@ const CoreValuesSection = () => {
 
       {/* 모바일: 캐러셀 */}
       <div className="md:hidden">
-        <div className="embla" ref={emblaRef}>
-          <div className="embla__container">
-            {CORE_VALUE_DATA.map((data) => (
-              <div key={data.keyword} className="embla__slide">
-                <CoreValueCard
-                  keyword={data.keyword}
-                  description={data.description}
-                  cardImage={data.image}
-                  highlightedWord={data.highlightedWord}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-        {/* 페이지네이션 점 */}
-        <div className="embla__dots">
-          {CORE_VALUE_DATA.map((_, index) => (
-            <button
-              key={index}
-              className={`embla__dot ${index === selectedIndex ? 'embla__dot--selected' : ''}`}
-              type="button"
-              onClick={() => scrollTo(index)}
-            />
+        <Carousel emblaRef={emblaRef} selectedIndex={selectedIndex} scrollTo={scrollTo} carouselData={CORE_VALUE_DATA}>
+          {CORE_VALUE_DATA.map((data) => (
+            <div key={data.keyword} className="embla__slide">
+              <CoreValueCard
+                keyword={data.keyword}
+                description={data.description}
+                cardImage={data.image}
+                highlightedWord={data.highlightedWord}
+              />
+            </div>
           ))}
-        </div>
+        </Carousel>
       </div>
 
       <div className="hidden md:mt-[6.25rem] md:flex md:justify-center lg:mt-[5rem]">
