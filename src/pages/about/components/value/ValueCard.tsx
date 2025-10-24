@@ -8,14 +8,14 @@ interface ValueCardProps {
   cardImage: string;
   highlightedWord: string;
 }
+// 각 이미지를 import하고 매핑 객체 생성
+const imageMap: Record<string, string> = {
+  'bg-card-grow.svg': valueCardImage1,
+  'bg-card-challenge.svg': valueCardImage2,
+  'bg-card-grit.svg': valueCardImage3,
+};
 
 const ValueCard = ({ keyword, description, cardImage, highlightedWord }: ValueCardProps) => {
-  // 각 이미지를 import하고 매핑 객체 생성
-  const imageMap: Record<string, string> = {
-    'bg-card-grow.svg': valueCardImage1,
-    'bg-card-challenge.svg': valueCardImage2,
-    'bg-card-grit.svg': valueCardImage3,
-  };
   const cardImagePath = imageMap[cardImage];
 
   // 하이라이트 되어 있는 단어를 추출하여 하이라이트 처리
