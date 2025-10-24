@@ -10,8 +10,10 @@ export const TITLE = {
 export const SUB_TITLE = {
   CORE_VALUE: 'core value',
   CORE_VALUE_DESCRIPTION: '우리가 믿는 가치',
+  OUR_IDENTITY: 'our identity',
+  OUR_IDENTITY_DESCRIPTION: '우리만의 정체성',
   OUR_PEOPLE: 'our people',
   OUR_PEOPLE_DESCRIPTION: '함께하고 싶은 사람',
   JOIN_US: 'join us',
-  JOIN_US_DESCRIPTION: '지원하기',
+  JOIN_US_DESCRIPTION: '지금 시작하기',
 };
