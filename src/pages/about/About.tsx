@@ -1,9 +1,9 @@
-import CoreValuesSection from './components/coreValue/CoreValuesSection';
+import ValuesSection from './components/values/ValuesSection';
 
 const About = () => {
   return (
     <div>
-      <CoreValuesSection />
+      <ValuesSection />
     </div>
   );
 };

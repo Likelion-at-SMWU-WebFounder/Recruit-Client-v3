@@ -1,12 +1,12 @@
 import SubTitle from '@shared/components/SubTitle';
-import CoreValueCard from '@pages/about/components/coreValue/CoreValueCard';
+import ValueCard from '@/pages/about/components/values/ValueCard';
 import { SUB_TITLE } from '@pages/about/constants/about';
-import { CORE_VALUE_DATA } from '@pages/about/constants/coreValue';
+import { VALUES_DATA } from '@/pages/about/constants/values';
 import { useCarousel } from '@/shared/hooks/carousel/useEmblaCarousel';
 import Carousel from '@shared/components/Carousel';
 import '@pages/about/styles/carousel.css';
 
-const CoreValuesSection = () => {
+const ValuesSection = () => {
   const { emblaRef, selectedIndex, scrollTo } = useCarousel();
 
   return (
@@ -15,10 +15,10 @@ const CoreValuesSection = () => {
 
       {/* 모바일: 캐러셀 */}
       <div className="md:hidden">
-        <Carousel emblaRef={emblaRef} selectedIndex={selectedIndex} scrollTo={scrollTo} carouselData={CORE_VALUE_DATA}>
-          {CORE_VALUE_DATA.map((data) => (
+        <Carousel emblaRef={emblaRef} selectedIndex={selectedIndex} scrollTo={scrollTo} carouselData={VALUES_DATA}>
+          {VALUES_DATA.map((data) => (
             <div key={data.keyword} className="embla__slide">
-              <CoreValueCard
+              <ValueCard
                 keyword={data.keyword}
                 description={data.description}
                 cardImage={data.image}
@@ -32,8 +32,8 @@ const CoreValuesSection = () => {
       <div className="hidden md:mt-[6.25rem] md:flex md:justify-center lg:mt-[5rem]">
         {/* 태블릿/데스크톱: 그리드 */}
         <div className="md:grid md:grid-cols-3 md:gap-[1rem] lg:gap-[1.5rem]">
-          {CORE_VALUE_DATA.map((data) => (
-            <CoreValueCard
+          {VALUES_DATA.map((data) => (
+            <ValueCard
               key={data.keyword}
               keyword={data.keyword}
               description={data.description}
@@ -47,4 +47,4 @@ const CoreValuesSection = () => {
   );
 };
 
-export default CoreValuesSection;
+export default ValuesSection;

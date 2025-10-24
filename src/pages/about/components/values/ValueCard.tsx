@@ -1,15 +1,15 @@
-import valueCardImage1 from '@pages/about/assets/bg-card-grow.svg';
-import valueCardImage2 from '@pages/about/assets/bg-card-challenge.svg';
-import valueCardImage3 from '@pages/about/assets/bg-card-grit.svg';
+import valueCardImage1 from '@pages/about/assets/values/bg-card-grow.svg';
+import valueCardImage2 from '@pages/about/assets/values/bg-card-challenge.svg';
+import valueCardImage3 from '@pages/about/assets/values/bg-card-grit.svg';
 
-interface CoreValueCardProps {
+interface ValueCardProps {
   keyword: string;
   description: string;
   cardImage: string;
   highlightedWord: string;
 }
 
-const CoreValueCard = ({ keyword, description, cardImage, highlightedWord }: CoreValueCardProps) => {
+const ValueCard = ({ keyword, description, cardImage, highlightedWord }: ValueCardProps) => {
   // 각 이미지를 import하고 매핑 객체 생성
   const imageMap: Record<string, string> = {
     'bg-card-grow.svg': valueCardImage1,
@@ -60,4 +60,4 @@ const CoreValueCard = ({ keyword, description, cardImage, highlightedWord }: Cor
   );
 };
 
-export default CoreValueCard;
+export default ValueCard;
