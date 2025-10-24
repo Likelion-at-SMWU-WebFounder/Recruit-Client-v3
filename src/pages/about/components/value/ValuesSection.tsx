@@ -1,5 +1,5 @@
 import SubTitle from '@shared/components/SubTitle';
-import ValueCard from '@/pages/about/components/values/ValueCard';
+import ValueCard from '@/pages/about/components/value/ValueCard';
 import { SUB_TITLE } from '@pages/about/constants/about';
 import { VALUES_DATA } from '@/pages/about/constants/values';
 import { useCarousel } from '@/shared/hooks/carousel/useEmblaCarousel';
@@ -11,7 +11,7 @@ const ValuesSection = () => {
 
   return (
     <section className="w-full max-w-[100vw] py-[6.25rem] md:pt-[12.56rem] md:pb-[15.5rem] lg:py-[10.25rem]">
-      <SubTitle subTitle={SUB_TITLE.CORE_VALUE} subDescription={SUB_TITLE.CORE_VALUE_DESCRIPTION} />
+      <SubTitle subTitle={SUB_TITLE.SUB_TITLE_1} subDescription={SUB_TITLE.SUB_DESCRIPTION_1} />
 
       {/* 모바일: 캐러셀 */}
       <div className="md:hidden">

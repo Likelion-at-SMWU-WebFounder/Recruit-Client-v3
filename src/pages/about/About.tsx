@@ -1,4 +1,4 @@
-import ValuesSection from './components/values/ValuesSection';
+import ValuesSection from './components/value/ValuesSection';
 
 const About = () => {
   return (
