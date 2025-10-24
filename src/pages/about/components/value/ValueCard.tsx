@@ -1,6 +1,6 @@
-import valueCardImage1 from '@pages/about/assets/values/bg-card-grow.svg';
-import valueCardImage2 from '@pages/about/assets/values/bg-card-challenge.svg';
-import valueCardImage3 from '@pages/about/assets/values/bg-card-grit.svg';
+import valueCardImage1 from '@pages/about/assets/value/bg-card-grow.svg';
+import valueCardImage2 from '@pages/about/assets/value/bg-card-challenge.svg';
+import valueCardImage3 from '@pages/about/assets/value/bg-card-grit.svg';
 
 interface ValueCardProps {
   keyword: string;
