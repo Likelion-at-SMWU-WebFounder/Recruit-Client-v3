@@ -12,7 +12,7 @@ const SubTitle = ({ mode = 'light', subTitle, subDescription, align = 'center', 
   // 정렬 스타일 설정: 가운데 정렬(center), 왼쪽 정렬(left)
   const alignClass = {
     center: 'items-center',
-    left: 'items-start',
+    left: 'items-start justify-start flex-shrink-0',
   };
 
   // 서브 타이틀 스타일 설정: 라이트 모드(light), 다크 모드(dark)
