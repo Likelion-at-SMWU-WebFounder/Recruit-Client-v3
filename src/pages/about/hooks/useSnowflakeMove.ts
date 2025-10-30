@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 /**
  * 특정 카드(openId)에 맞춰 '눈송이' 장식의 세로 위치를 부드럽게 추적하는 훅
@@ -12,8 +12,11 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
  */
 
 export function useSnowflakeMove(openId: number | null, cardsContainerRef: React.RefObject<HTMLDivElement | null>) {
-  // 데스크톱/태블릿 판별: 첫 렌더 시점의 window.innerWidth만 사용(리사이즈 반영 X)
-  const isDesktopOrTablet = useMemo(() => typeof window !== 'undefined' && window.innerWidth >= 768, []);
+  // 데스크톱/태블릿 판별: matchMedia를 통해 동적으로 관리
+  const [isDesktopOrTablet, setIsDesktopOrTablet] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth >= 768;
+  });
 
   // 각 카드 DOM을 보관하는 레코드: { [cardId]: HTMLDivElement | null }
   const cardRefs = useRef<Record<number, HTMLDivElement | null>>({});
@@ -26,6 +29,43 @@ export function useSnowflakeMove(openId: number | null, cardsContainerRef: React
 
   // 눈송이의 top 위치를 업데이트하는 루프를 관리하는 ref(requestAnimationFrame id를 보관해서 언마운트 시 취소하기 위함)
   const rafIdRef = useRef<number | null>(null);
+
+  /**
+   * matchMedia를 통한 뷰포트 변화 감지
+   */
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const mediaQuery = window.matchMedia('(min-width: 768px)');
+
+    const handleMediaChange = (e: MediaQueryListEvent | MediaQueryList) => {
+      setIsDesktopOrTablet(e.matches);
+
+      // 모바일로 전환 시 눈송이 위치 초기화
+      if (!e.matches) {
+        snowflakeTopRef.current = 0;
+        setSnowflakeTop(0);
+      }
+    };
+
+    // 초기 설정
+    handleMediaChange(mediaQuery);
+
+    // 리스너 등록 (브라우저 호환성 고려)
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', handleMediaChange);
+    } else {
+      mediaQuery.addListener(handleMediaChange);
+    }
+
+    return () => {
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener('change', handleMediaChange);
+      } else {
+        mediaQuery.removeListener(handleMediaChange);
+      }
+    };
+  }, []);
 
   /**
    * 눈송이의 top 위치를 갱신하는 함수
@@ -62,7 +102,16 @@ export function useSnowflakeMove(openId: number | null, cardsContainerRef: React
    * - 언마운트 시 requestAnimationFrame 정리
    */
   useEffect(() => {
-    if (!isDesktopOrTablet) return;
+    if (!isDesktopOrTablet) {
+      // 모바일 모드: RAF 루프 정리
+      if (rafIdRef.current) {
+        cancelAnimationFrame(rafIdRef.current);
+        rafIdRef.current = null;
+      }
+      return;
+    }
+
+    // 데스크톱/태블릿 모드: RAF 루프 시작
     let mounted = true;
     const loop = () => {
       if (!mounted) return;
@@ -71,10 +120,14 @@ export function useSnowflakeMove(openId: number | null, cardsContainerRef: React
     };
     // requestAnimationFrame 루프 시작
     rafIdRef.current = window.requestAnimationFrame(loop);
+
     // 언마운트 또는 의존성 변경 시 requestAnimationFrame 정리(취소)
     return () => {
       mounted = false;
-      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
+      if (rafIdRef.current) {
+        cancelAnimationFrame(rafIdRef.current);
+        rafIdRef.current = null;
+      }
     };
   }, [isDesktopOrTablet, updateSnowflakePosition]);
 
