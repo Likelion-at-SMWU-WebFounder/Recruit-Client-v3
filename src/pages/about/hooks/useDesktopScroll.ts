@@ -20,49 +20,89 @@ export function useDesktopScroll(
   const progressObjRef = useRef({ value: 0 });
 
   useEffect(() => {
-    // 데스크톱 전용: 뷰포트가 데스크톱이 아니면 초기화/해제
-    const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 768;
-    if (!isDesktop) {
+    if (typeof window === 'undefined') return;
+
+    // 데스크톱 모드 판별: matchMedia를 통해 동적으로 관리 (모바일이었다가 데스크톱으로 전환 시 새로 생성)
+    const mediaQuery = window.matchMedia('(min-width: 768px)');
+
+    // ScrollTrigger 생성 함수
+    const createScrollTrigger = () => {
+      if (!sectionRef.current || !cardsContainerRef.current) return;
+
+      // 기존 ScrollTrigger가 있다면 제거
       if (scrollTriggerRef.current) {
         scrollTriggerRef.current.kill();
         scrollTriggerRef.current = null;
       }
-      return;
+
+      const section = sectionRef.current;
+
+      const scrollTrigger = ScrollTrigger.create({
+        trigger: section,
+        start: 'top 10%',
+        end: `+=${(totalCards + 1) * 200}%`,
+        pin: true,
+        scrub: 1,
+        onUpdate: (self) => {
+          if (isClickScrollingRef.current) return;
+
+          const N = totalCards;
+          const centered = Math.round(self.progress * N - 0.5);
+          const cardIndex = Math.max(0, Math.min(centered, N - 1));
+
+          if (cardIndex !== animatedProgressRef.current) {
+            animatedProgressRef.current = cardIndex;
+            const newOpenId = getIdByIndex(cardIndex);
+            setOpenId(newOpenId);
+          }
+        },
+      });
+
+      scrollTriggerRef.current = scrollTrigger;
+    };
+
+    // ScrollTrigger 제거 및 상태 초기화 함수
+    const destroyScrollTrigger = () => {
+      if (scrollTriggerRef.current) {
+        scrollTriggerRef.current.kill();
+        scrollTriggerRef.current = null;
+      }
+      gsap.killTweensOf(window);
+      gsap.killTweensOf(progressObjRef.current);
+      animatedProgressRef.current = 0;
+      isClickScrollingRef.current = false;
+    };
+
+    // 미디어 쿼리 변화 핸들러
+    const handleMediaChange = (e: MediaQueryListEvent | MediaQueryList) => {
+      if (e.matches) {
+        // 데스크톱 모드: ScrollTrigger 생성
+        createScrollTrigger();
+      } else {
+        // 모바일 모드: ScrollTrigger 제거 및 초기화
+        destroyScrollTrigger();
+      }
+    };
+
+    // 초기 설정
+    handleMediaChange(mediaQuery);
+
+    // 리스너 등록 (브라우저 호환성 고려)
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', handleMediaChange);
+    } else {
+      // 구형 브라우저 지원
+      mediaQuery.addListener(handleMediaChange);
     }
 
-    if (!sectionRef.current || !cardsContainerRef.current) return;
-
-    const section = sectionRef.current;
-    const progressObj = progressObjRef.current;
-
-    const scrollTrigger = ScrollTrigger.create({
-      trigger: section,
-      start: 'top 10%',
-      end: `+=${(totalCards + 1) * 200}%`,
-      pin: true,
-      scrub: 1,
-      onUpdate: (self) => {
-        if (isClickScrollingRef.current) return;
-
-        const N = totalCards;
-        const centered = Math.round(self.progress * N - 0.5);
-        const cardIndex = Math.max(0, Math.min(centered, N - 1));
-
-        if (cardIndex !== animatedProgressRef.current) {
-          animatedProgressRef.current = cardIndex;
-          const newOpenId = getIdByIndex(cardIndex);
-          setOpenId(newOpenId);
-        }
-      },
-    });
-
-    scrollTriggerRef.current = scrollTrigger;
-
     return () => {
-      scrollTrigger.kill();
-      gsap.killTweensOf(progressObj);
-      animatedProgressRef.current = 0;
-      scrollTriggerRef.current = null;
+      // 클린업
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener('change', handleMediaChange);
+      } else {
+        mediaQuery.removeListener(handleMediaChange);
+      }
+      destroyScrollTrigger();
     };
   }, [totalCards, getIdByIndex, setOpenId]);
 
