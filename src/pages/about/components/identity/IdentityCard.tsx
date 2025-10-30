@@ -46,7 +46,7 @@ const IdentityCard = ({
         <div className="overflow-hidden">
           <div className={`${DESCRIPTION_TEXT_CLASSES} flex flex-col gap-[1.81rem] md:gap-[2rem] lg:gap-[2.69rem]`}>
             <div>{description1}</div>
-            <div className={isAdditionalInfo ? 'opacity-60' : undefined}>{description2}</div>
+            <div className={isAdditionalInfo ? 'opacity-60' : ''}>{description2}</div>
           </div>
         </div>
       </div>
