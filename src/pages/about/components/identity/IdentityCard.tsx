@@ -25,10 +25,19 @@ const IdentityCard = ({
 }: IdentityCardProps) => {
   return (
     <div
+      role="button"
+      tabIndex={0}
+      aria-expanded={isOpen}
       className={`${CARD_CLASSES} ${isOpen ? OPEN_CARD_CLASSES : CLOSED_CARD_CLASSES} flex cursor-pointer flex-col ${
         isOpen ? 'gap-[1.69rem] md:gap-[3.12rem]' : 'gap-0'
       } transition-colors duration-300`}
-      onClick={onClick}>
+      onClick={onClick}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          onClick?.();
+        }
+      }}>
       <div className={IDENTITY_TEXT_CLASSES}>{identity}</div>
       <div
         className={`${
