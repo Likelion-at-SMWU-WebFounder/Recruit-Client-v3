@@ -1,0 +1,106 @@
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+type GetIdByIndex = (index: number) => number | null;
+
+export function useDesktopScroll(
+  totalCards: number,
+  getIdByIndex: GetIdByIndex,
+  setOpenId: (id: number | null) => void
+) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const cardsContainerRef = useRef<HTMLDivElement>(null);
+  const animatedProgressRef = useRef(0);
+  const scrollTriggerRef = useRef<ScrollTrigger | null>(null);
+  const isClickScrollingRef = useRef(false);
+  const progressObjRef = useRef({ value: 0 });
+
+  useEffect(() => {
+    // 데스크톱 전용: 뷰포트가 데스크톱이 아니면 초기화/해제
+    const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 768;
+    if (!isDesktop) {
+      if (scrollTriggerRef.current) {
+        scrollTriggerRef.current.kill();
+        scrollTriggerRef.current = null;
+      }
+      return;
+    }
+
+    if (!sectionRef.current || !cardsContainerRef.current) return;
+
+    const section = sectionRef.current;
+    const progressObj = progressObjRef.current;
+
+    const scrollTrigger = ScrollTrigger.create({
+      trigger: section,
+      start: 'top 10%',
+      end: `+=${(totalCards + 1) * 200}%`,
+      pin: true,
+      scrub: 1,
+      onUpdate: (self) => {
+        if (isClickScrollingRef.current) return;
+
+        const N = totalCards;
+        const centered = Math.round(self.progress * N - 0.5);
+        const cardIndex = Math.max(0, Math.min(centered, N - 1));
+
+        if (cardIndex !== animatedProgressRef.current) {
+          animatedProgressRef.current = cardIndex;
+          const newOpenId = getIdByIndex(cardIndex);
+          setOpenId(newOpenId);
+        }
+      },
+    });
+
+    scrollTriggerRef.current = scrollTrigger;
+
+    return () => {
+      scrollTrigger.kill();
+      gsap.killTweensOf(progressObj);
+      animatedProgressRef.current = 0;
+      scrollTriggerRef.current = null;
+    };
+  }, [totalCards, getIdByIndex, setOpenId]);
+
+  const scrollToCard = (cardIndex: number) => {
+    if (!scrollTriggerRef.current) return;
+
+    // 모든 기존 애니메이션 즉시 중단
+    gsap.killTweensOf(window);
+    gsap.killTweensOf(progressObjRef.current);
+    isClickScrollingRef.current = true;
+
+    // 상태 즉시 업데이트
+    animatedProgressRef.current = cardIndex;
+
+    // 다음 프레임에서 스크롤 시작
+    requestAnimationFrame(() => {
+      const N = totalCards;
+      const progress = (cardIndex + 0.5) / N;
+      const scrollTrigger = scrollTriggerRef.current!;
+      const scrollPosition = scrollTrigger.start + (scrollTrigger.end - scrollTrigger.start) * progress;
+
+      gsap.to(window, {
+        scrollTo: { y: scrollPosition, autoKill: false },
+        duration: 0.8,
+        ease: 'power2.inOut',
+        onComplete: () => {
+          requestAnimationFrame(() => {
+            // 목표 진행도의 중앙 스냅 기준으로 인덱스 확정
+            const finalIndex = Math.max(0, Math.min(Math.round(progress * N - 0.5), N - 1));
+            const finalId = getIdByIndex(finalIndex);
+            animatedProgressRef.current = finalIndex;
+            setOpenId(finalId);
+            isClickScrollingRef.current = false;
+          });
+        },
+      });
+    });
+  };
+
+  return { sectionRef, cardsContainerRef, animatedProgressRef, scrollToCard } as const;
+}
