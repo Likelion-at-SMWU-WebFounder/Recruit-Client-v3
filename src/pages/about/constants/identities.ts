@@ -22,5 +22,6 @@ export const IDENTITIES_DATA = [
     description1:
       '운영진은 활동을 통해 세미나 자료 제작, 멘토링,\n연합 프로그램 기획 및 진행 등을 직접 경험합니다.\n물론, 운영진 개발 프로젝트에도 참여할 수 있습니다.',
     description2: '* 아기사자만 운영진으로 전환할 수 있으며,\n외부 공개 모집은 진행하지 않습니다.',
+    isAdditionalInfo: true, // 부연 설명(투명도 60%로 표시) 여부
   },
 ];

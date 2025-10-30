@@ -60,6 +60,7 @@ const IdentitiesSection = () => {
                 identity={identity.identity}
                 description1={identity.description1}
                 description2={identity.description2}
+                isAdditionalInfo={identity.isAdditionalInfo}
                 isOpen={openId === identity.id}
                 onClick={() => handleCardClick(identity.id)}
               />
@@ -92,6 +93,7 @@ const IdentitiesSection = () => {
               identity={identity.identity}
               description1={identity.description1}
               description2={identity.description2}
+              isAdditionalInfo={identity.isAdditionalInfo}
               isOpen={openId === identity.id}
               onClick={() => handleCardClick(identity.id)}
             />

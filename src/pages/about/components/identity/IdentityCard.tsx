@@ -4,9 +4,10 @@ interface IdentityCardProps {
   description2: string;
   isOpen: boolean;
   onClick?: () => void;
+  isAdditionalInfo?: boolean;
 }
 
-const OPEN_CARD_CLASSES = 'bg-blue text-white md:whitespace-pre-line';
+const OPEN_CARD_CLASSES = 'bg-blue text-white/90 md:whitespace-pre-line';
 const CLOSED_CARD_CLASSES = 'bg-white text-navyblack md:whitespace-pre-line shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)]';
 const CARD_CLASSES =
   'w-[21.125rem] md:w-[30rem] lg:w-[40rem] rounded-[0.75rem] px-[2.25rem] py-[1.75rem] md:rounded-[1.25rem] md:px-[2rem] md:py-[2.5rem] lg:px-[3rem]';
@@ -14,7 +15,14 @@ const IDENTITY_TEXT_CLASSES = 'text-[1.25rem] font-[700] md:text-[1.5rem] lg:tex
 const DESCRIPTION_TEXT_CLASSES =
   'text-[1rem] font-[500] md:text-[1.125rem] lg:text-[1.5rem] leading-[1.8rem] md:leading-[2.025rem] lg:leading-[2.7rem]';
 
-const IdentityCard = ({ identity, description1, description2, isOpen, onClick }: IdentityCardProps) => {
+const IdentityCard = ({
+  identity,
+  description1,
+  description2,
+  isOpen,
+  onClick,
+  isAdditionalInfo,
+}: IdentityCardProps) => {
   return (
     <div
       className={`${CARD_CLASSES} ${isOpen ? OPEN_CARD_CLASSES : CLOSED_CARD_CLASSES} flex cursor-pointer flex-col ${
@@ -29,7 +37,7 @@ const IdentityCard = ({ identity, description1, description2, isOpen, onClick }:
         <div className="overflow-hidden">
           <div className={`${DESCRIPTION_TEXT_CLASSES} flex flex-col gap-[1.81rem] md:gap-[2rem] lg:gap-[2.69rem]`}>
             <div>{description1}</div>
-            <div>{description2}</div>
+            <div className={isAdditionalInfo ? 'opacity-60' : undefined}>{description2}</div>
           </div>
         </div>
       </div>
