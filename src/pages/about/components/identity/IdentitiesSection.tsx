@@ -1,10 +1,16 @@
+import { useCallback, useState } from 'react';
+
 import SubTitle from '@shared/components/SubTitle';
 import { SUB_TITLE } from '@pages/about/constants/about';
 import { IDENTITIES_DATA } from '@pages/about/constants/identities';
 import IdentityCard from '@pages/about/components/identity/IdentityCard';
-import { useCallback, useState } from 'react';
+
 import { useDesktopScroll } from '@/pages/about/hooks/useDesktopScroll';
 import { useMobileScroll } from '@/pages/about/hooks/useMobileScroll';
+import { useSnowflakeMove } from '@/pages/about/hooks/useSnowflakeMove';
+
+import { WiSnowflakeCold } from 'react-icons/wi';
+import '@pages/about/styles/snowflake.css';
 
 const IdentitiesSection = () => {
   const [openId, setOpenId] = useState<number | null>(IDENTITIES_DATA[0]?.id ?? null);
@@ -16,6 +22,8 @@ const IdentitiesSection = () => {
     cardsContainerRef,
     scrollToCard: desktopScrollToCard,
   } = useDesktopScroll(totalCards, getIdByIndex, setOpenId);
+
+  const { cardRefs, snowflakeTop, isDesktopOrTablet } = useSnowflakeMove(openId, cardsContainerRef);
   const { sectionRef: mobileSectionRef, scrollToCard: mobileScrollToCard } = useMobileScroll(
     totalCards,
     getIdByIndex,
@@ -25,7 +33,7 @@ const IdentitiesSection = () => {
   const handleCardClick = (id: number) => {
     const cardIndex = IDENTITIES_DATA.findIndex((item) => item.id === id);
     if (cardIndex !== -1) {
-      // 뷰포트에 따라 적절한 스크롤 함수 호출 (cardId도 함께 전달)
+      // 뷰포트에 따라 적절한 스크롤 함수 호출
       if (window.innerWidth >= 768) {
         desktopScrollToCard(cardIndex);
       } else {
@@ -41,17 +49,34 @@ const IdentitiesSection = () => {
         ref={desktopSectionRef}
         className="hidden w-full max-w-[100vw] md:flex md:justify-between md:px-[6.25rem] md:py-[11.88rem] lg:px-[18.44rem] lg:py-[4rem]">
         <SubTitle subTitle={SUB_TITLE.SUB_TITLE_2} subDescription={SUB_TITLE.SUB_DESCRIPTION_2} align="left" />
-        <div ref={cardsContainerRef} className="md:flex md:flex-col md:gap-[1.25rem] lg:gap-[1.5rem]">
+        <div ref={cardsContainerRef} className="relative md:flex md:flex-col md:gap-[1.25rem] lg:gap-[1.5rem]">
           {IDENTITIES_DATA.map((identity) => (
-            <IdentityCard
+            <div
               key={identity.id}
-              identity={identity.identity}
-              description1={identity.description1}
-              description2={identity.description2}
-              isOpen={openId === identity.id}
-              onClick={() => handleCardClick(identity.id)}
-            />
+              ref={(el) => {
+                cardRefs.current[identity.id] = el;
+              }}>
+              <IdentityCard
+                identity={identity.identity}
+                description1={identity.description1}
+                description2={identity.description2}
+                isOpen={openId === identity.id}
+                onClick={() => handleCardClick(identity.id)}
+              />
+            </div>
           ))}
+
+          {/* 눈송이 아이콘 */}
+          {isDesktopOrTablet && openId != null ? (
+            <div
+              className="text-blue pointer-events-none absolute hidden transition-[top] duration-300 ease-out md:-left-[3.56rem] md:block lg:-left-[3.75rem]"
+              style={{ top: `${snowflakeTop}px` }}
+              aria-hidden>
+              <div className="snowflake-move">
+                <WiSnowflakeCold size={36} />
+              </div>
+            </div>
+          ) : null}
         </div>
       </section>
 
