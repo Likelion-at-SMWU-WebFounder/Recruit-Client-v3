@@ -29,7 +29,7 @@ export const PEOPLE_DATA = [
   {
     id: 4,
     icon: architectureIcon,
-    keyword: '함께하고 싶은 사람',
+    keyword: '생각을 설계로 실현하는 사람',
     description:
       '작은 불편에 끊임없이 질문을 던지고,\n내 시선으로 *해답을 기획하고 디자인해*\n스스로 서비스를 만들고 싶은 사람을 기다립니다.',
   },
