@@ -4,7 +4,7 @@ import SubTitle from '@shared/components/SubTitle';
 import { SUB_TITLE } from '@pages/about/constants/about';
 import { PEOPLE_DATA } from '@pages/about/constants/people';
 import PeopleCard from '@pages/about/components/people/PeopleCard';
-import ArrowButton from '@/pages/about/components/people/ArrowButton';
+import ArrowButton from '@/shared/components/button/ArrowButton';
 import { useDesktopScroll } from '@pages/about/hooks/useDesktopScroll';
 import { useMobileScroll } from '@pages/about/hooks/useMobileScroll';
 import useXPositionDrag from '@pages/about/hooks/useXPositionDrag';
@@ -43,7 +43,7 @@ const PeopleDesktopSection = () => {
         {/* 다음 카드로 넘기는 화살표 버튼 영역 (데스크톱) */}
         {!isLastCard && (
           <div className="absolute inset-y-0 right-80 flex items-center justify-end px-[0.5rem]">
-            <ArrowButton onArrowBtnClick={scrollToNextCard} />
+            <ArrowButton iconColor="gray" onArrowBtnClick={scrollToNextCard} />
           </div>
         )}
       </div>
