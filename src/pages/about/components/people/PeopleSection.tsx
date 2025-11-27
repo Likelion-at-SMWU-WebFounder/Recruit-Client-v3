@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import SubTitle from '@shared/components/SubTitle';
 import { SUB_TITLE } from '@pages/about/constants/about';
@@ -7,101 +7,13 @@ import PeopleCard from '@pages/about/components/people/PeopleCard';
 import ArrowButton from '@/pages/about/components/people/ArrowButton';
 import { useDesktopScroll } from '@pages/about/hooks/useDesktopScroll';
 import { useMobileScroll } from '@pages/about/hooks/useMobileScroll';
+import useXPositionDrag from '@pages/about/hooks/useXPositionDrag';
 
 const DESKTOP_CAROUSEL_PADDING_LEFT = 2; // rem
 const DESKTOP_CAROUSEL_TRAILING_SPACE_WIDTH = 17; // rem
 
-const usePeopleDesktopCarousel = () => {
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const [isLastCard, setIsLastCard] = useState(false);
-
-  const getXPositionScroll = useCallback(() => {
-    const container = carouselRef.current;
-    if (!container) return null;
-
-    const firstCard = container.querySelector('[data-card="true"]') as HTMLElement | null;
-    if (!firstCard) return null;
-
-    const style = window.getComputedStyle(container);
-    const gap = parseFloat(style.columnGap || style.gap || '0') || 0;
-    const paddingLeft = parseFloat(style.paddingLeft || '0') || 0;
-    const cardWidth = firstCard.getBoundingClientRect().width;
-
-    const effectiveWidth = cardWidth + gap + paddingLeft;
-    if (effectiveWidth <= 0) return null;
-
-    return {
-      container,
-      gap,
-      paddingLeft,
-      cardWidth,
-      effectiveWidth,
-    };
-  }, []);
-
-  const evaluateIsLastCard = useCallback(() => {
-    const metrics = getXPositionScroll();
-    if (!metrics) {
-      setIsLastCard(false);
-      return;
-    }
-
-    const { container, effectiveWidth } = metrics;
-
-    const rawIndex = container.scrollLeft / effectiveWidth;
-    const index = Math.round(rawIndex);
-
-    const lastId = PEOPLE_DATA[PEOPLE_DATA.length - 1]?.id;
-    const currentId = PEOPLE_DATA[index]?.id ?? null;
-    const isLast = currentId !== null && lastId !== undefined && currentId === lastId;
-
-    setIsLastCard(isLast);
-  }, [getXPositionScroll]);
-
-  const scrollToNextCard = useCallback(() => {
-    const metrics = getXPositionScroll();
-    if (!metrics) return;
-
-    const { container, cardWidth, gap, paddingLeft } = metrics;
-
-    container.scrollBy({
-      left: cardWidth + gap + paddingLeft,
-      behavior: 'smooth',
-    });
-  }, [getXPositionScroll]);
-
-  useEffect(() => {
-    const metrics = getXPositionScroll();
-    const container = metrics?.container;
-
-    if (!container) {
-      setIsLastCard(false);
-      return;
-    }
-
-    const handleScroll = () => {
-      evaluateIsLastCard();
-    };
-
-    // 초기 상태 계산
-    evaluateIsLastCard();
-
-    container.addEventListener('scroll', handleScroll);
-
-    return () => {
-      container.removeEventListener('scroll', handleScroll);
-    };
-  }, [evaluateIsLastCard, getXPositionScroll]);
-
-  return {
-    carouselRef,
-    scrollToNextCard,
-    isLastCard,
-  };
-};
-
 const PeopleDesktopSection = () => {
-  const { carouselRef, scrollToNextCard, isLastCard } = usePeopleDesktopCarousel();
+  const { carouselRef, scrollToNextCard, isLastCard } = useXPositionDrag();
 
   return (
     <section className="hidden w-full max-w-[100vw] flex-col gap-[2rem] overflow-hidden px-[1.25rem] lg:flex lg:flex-row lg:gap-[20rem] lg:py-[11.625rem] lg:pr-0 lg:pl-[18.5rem]">
