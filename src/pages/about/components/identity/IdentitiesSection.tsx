@@ -5,9 +5,9 @@ import { SUB_TITLE } from '@pages/about/constants/about';
 import { IDENTITIES_DATA } from '@pages/about/constants/identities';
 import IdentityCard from '@pages/about/components/identity/IdentityCard';
 
-import { useDesktopScroll } from '@/pages/about/hooks/useDesktopScroll';
-import { useMobileScroll } from '@/pages/about/hooks/useMobileScroll';
-import { useSnowflakeMove } from '@/pages/about/hooks/useSnowflakeMove';
+import useDesktopScroll from '@pages/about/hooks/useDesktopScroll';
+import useMobileScroll from '@pages/about/hooks/useMobileScroll';
+import useSnowflakeMove from '@pages/about/hooks/useSnowflakeMove';
 
 import { WiSnowflakeCold } from 'react-icons/wi';
 import '@pages/about/styles/snowflake.css';
