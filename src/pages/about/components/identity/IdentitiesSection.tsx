@@ -12,6 +12,11 @@ import { useSnowflakeMove } from '@/pages/about/hooks/useSnowflakeMove';
 import { WiSnowflakeCold } from 'react-icons/wi';
 import '@pages/about/styles/snowflake.css';
 
+const DESKTOP_TABLET_SECTION_CLASS =
+  'hidden w-full max-w-[100vw] md:flex md:justify-between md:px-[6.25rem] md:py-[11.88rem] lg:px-[18.44rem] lg:py-[4rem]';
+const MOBILE_SECTION_CLASS =
+  'relative flex w-full max-w-[100vw] flex-col items-center justify-center gap-[3.38rem] py-[3.12rem] md:hidden';
+
 const IdentitiesSection = () => {
   const [openId, setOpenId] = useState<number | null>(IDENTITIES_DATA[0]?.id ?? null);
   const totalCards = IDENTITIES_DATA.length;
@@ -45,9 +50,7 @@ const IdentitiesSection = () => {
   return (
     <>
       {/* 태블릿/데스크톱: 카드 */}
-      <section
-        ref={desktopSectionRef}
-        className="hidden w-full max-w-[100vw] md:flex md:justify-between md:px-[6.25rem] md:py-[11.88rem] lg:px-[18.44rem] lg:py-[4rem]">
+      <section ref={desktopSectionRef} className={DESKTOP_TABLET_SECTION_CLASS}>
         <SubTitle subTitle={SUB_TITLE.SUB_TITLE_2} subDescription={SUB_TITLE.SUB_DESCRIPTION_2} align="left" />
         <div ref={cardsContainerRef} className="relative md:flex md:flex-col md:gap-[1.25rem] lg:gap-[1.5rem]">
           {IDENTITIES_DATA.map((identity) => (
@@ -82,9 +85,7 @@ const IdentitiesSection = () => {
       </section>
 
       {/* 모바일: 카드 */}
-      <section
-        ref={mobileSectionRef}
-        className="relative flex w-full max-w-[100vw] flex-col items-center justify-center gap-[3.38rem] py-[3.12rem] md:hidden">
+      <section ref={mobileSectionRef} className={MOBILE_SECTION_CLASS}>
         <SubTitle subTitle={SUB_TITLE.SUB_TITLE_2} subDescription={SUB_TITLE.SUB_DESCRIPTION_2} />
         <div className="flex flex-col gap-[1rem]">
           {IDENTITIES_DATA.map((identity) => (
