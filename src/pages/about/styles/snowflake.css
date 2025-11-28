@@ -1,0 +1,16 @@
+@layer components {
+  .snowflake-move {
+    animation: snowflakeMove 1.6s ease-in-out infinite;
+    will-change: transform;
+  }
+}
+
+@keyframes snowflakeMove {
+  0%,
+  100% {
+    transform: translateY(-50%);
+  }
+  50% {
+    transform: translateY(calc(-50% - 8px));
+  }
+}
