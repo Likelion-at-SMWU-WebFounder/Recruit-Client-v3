@@ -14,6 +14,7 @@ import '@pages/about/styles/index.css';
 const DESKTOP_CAROUSEL_PADDING_LEFT = 2; // rem
 const DESKTOP_CAROUSEL_TRAILING_SPACE_WIDTH = 17; // rem
 
+// 데스크탑 x축 캐러셀 컴포넌트
 const PeopleDesktopSection = () => {
   const { carouselRef, scrollToNextCard, isLastCard } = useXPositionDrag();
 
@@ -53,6 +54,7 @@ const PeopleDesktopSection = () => {
   );
 };
 
+// 태블릿/모바일 카드 아코디언 props 타입
 interface PeopleAccordionSectionProps {
   mode: 'tablet' | 'mobile';
   openId: number | null;
@@ -61,6 +63,7 @@ interface PeopleAccordionSectionProps {
   cardsContainerRef?: React.RefObject<HTMLDivElement | null>;
 }
 
+// 태블릿/모바일 카드 아코디언 컴포넌트
 const PeopleAccordionSection = ({
   mode,
   openId,
@@ -104,6 +107,7 @@ const PeopleAccordionSection = ({
   );
 };
 
+// 화면 렌더링 컴포넌트(PeopleSection) - 반응형 적용
 const PeopleSection = () => {
   const [openId, setOpenId] = useState<number | null>(PEOPLE_DATA[0]?.id ?? null);
   const totalCards = PEOPLE_DATA.length;
