@@ -28,7 +28,6 @@ export const MENU_ITEMS = {
   },
 } as const;
 
-// (순서가 중요한 경우)
 export const MENU_ORDER = [
   MENU_ITEMS.HOME,
   MENU_ITEMS.ABOUT,
