@@ -18,7 +18,7 @@ const PeopleDesktopSection = () => {
   const { carouselRef, scrollToNextCard, isLastCard } = useXPositionDrag();
 
   return (
-    <section className="hidden w-full max-w-[100vw] flex-col gap-[2rem] overflow-hidden px-[1.25rem] lg:flex lg:flex-row lg:gap-[20rem] lg:py-[11.625rem] lg:pr-0 lg:pl-[18.5rem]">
+    <section className="hidden w-full max-w-[100vw] lg:flex lg:flex-row lg:gap-[21.31rem] lg:py-[11.625rem] lg:pl-[18.5rem]">
       <div className="py-[2rem]">
         <SubTitle subTitle={SUB_TITLE.SUB_TITLE_3} subDescription={SUB_TITLE.SUB_DESCRIPTION_3} align="left" />
       </div>
