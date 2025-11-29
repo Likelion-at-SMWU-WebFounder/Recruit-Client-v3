@@ -11,7 +11,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
  *  - isDesktopOrTablet: 데스크톱/태블릿 여부 (width >= 768)
  */
 
-export function useSnowflakeMove(openId: number | null, cardsContainerRef: React.RefObject<HTMLDivElement | null>) {
+const useSnowflakeMove = (openId: number | null, cardsContainerRef: React.RefObject<HTMLDivElement | null>) => {
   // 데스크톱/태블릿 판별: matchMedia를 통해 동적으로 관리
   const [isDesktopOrTablet, setIsDesktopOrTablet] = useState<boolean>(() => {
     if (typeof window === 'undefined') return false;
@@ -133,4 +133,6 @@ export function useSnowflakeMove(openId: number | null, cardsContainerRef: React
 
   // 카드 DOM 참조 레코드, 눈송이의 top 위치, 데스크톱/태블릿 여부를 반환
   return { cardRefs, snowflakeTop, isDesktopOrTablet } as const;
-}
+};
+
+export default useSnowflakeMove;

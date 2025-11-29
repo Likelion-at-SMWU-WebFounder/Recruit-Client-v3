@@ -7,11 +7,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 type GetIdByIndex = (index: number) => number | null;
 
-export function useDesktopScroll(
-  totalCards: number,
-  getIdByIndex: GetIdByIndex,
-  setOpenId: (id: number | null) => void
-) {
+const useDesktopScroll = (totalCards: number, getIdByIndex: GetIdByIndex, setOpenId: (id: number | null) => void) => {
   const sectionRef = useRef<HTMLElement>(null);
   const cardsContainerRef = useRef<HTMLDivElement>(null);
   const animatedProgressRef = useRef(0);
@@ -143,4 +139,6 @@ export function useDesktopScroll(
   };
 
   return { sectionRef, cardsContainerRef, animatedProgressRef, scrollToCard } as const;
-}
+};
+
+export default useDesktopScroll;

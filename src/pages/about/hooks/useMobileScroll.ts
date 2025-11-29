@@ -7,11 +7,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 type GetIdByIndex = (index: number) => number | null;
 
-export function useMobileScroll(
-  totalCards: number,
-  getIdByIndex: GetIdByIndex,
-  setOpenId: (id: number | null) => void
-) {
+const useMobileScroll = (totalCards: number, getIdByIndex: GetIdByIndex, setOpenId: (id: number | null) => void) => {
   const sectionRef = useRef<HTMLElement>(null);
   const animatedProgressRef = useRef(0);
   const scrollTriggerRef = useRef<ScrollTrigger | null>(null);
@@ -143,4 +139,6 @@ export function useMobileScroll(
   };
 
   return { sectionRef, animatedProgressRef, scrollToCard } as const;
-}
+};
+
+export default useMobileScroll;
