@@ -14,7 +14,7 @@ const OrbitSectionRenderer = ({
   className: string;
 }) => {
   return (
-    <div className={`relative w-full overflow-hidden bg-white ${className}`}>
+    <div className={`overflow-hidden bg-white ${className}`}>
       {list.map((conf, i) => (
         <OrbitingCircles key={i} radius={conf.radius} reverse={conf.reverse} lineTransparency={conf.lineTransparency}>
           {conf.icons?.map((color: string, idx: number) => (
@@ -29,7 +29,7 @@ const OrbitSectionRenderer = ({
 // 최종 오빗 섹션 컴포넌트 - 반응형 설정
 const OrbitSection = () => {
   return (
-    <>
+    <div className="relative w-full">
       {/* Desktop */}
       <div className="hidden lg:block">
         <OrbitSectionRenderer list={ORBIT_CONFIG.desktop} className="h-screen" />
@@ -48,7 +48,7 @@ const OrbitSection = () => {
       {/* Overlay Components */}
       <BlurLayer />
       <OrbitTextBox />
-    </>
+    </div>
   );
 };
 
