@@ -11,7 +11,7 @@ export interface DefaultButtonProps {
   onClick?: () => void;
 }
 
-const DefaultButton = ({ border = 'solid', children, isIcon = true, ...props }: DefaultButtonProps) => {
+const DefaultButton = ({ border = 'solid', children, isIcon = true, onClick, ...props }: DefaultButtonProps) => {
   // 기본 스타일
   const baseClasses =
     'bg-white text-blue hover:bg-blue hover:text-white inline-flex justify-center items-center gap-2.5 overflow-hidden cursor-pointer';
@@ -34,7 +34,11 @@ const DefaultButton = ({ border = 'solid', children, isIcon = true, ...props }: 
   };
 
   return (
-    <button type="button" className={`${baseClasses} ${sizeClasses} ${borderAndEffectClasses[border]}`} {...props}>
+    <button
+      type="button"
+      className={`${baseClasses} ${sizeClasses} ${borderAndEffectClasses[border]}`}
+      onClick={onClick}
+      {...props}>
       {children}
       {isIcon && <ArrowUpRight className={iconSizeClasses} />}
     </button>
