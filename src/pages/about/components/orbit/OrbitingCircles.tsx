@@ -10,7 +10,6 @@ export interface OrbitingCirclesProps extends React.HTMLAttributes<HTMLDivElemen
   delay?: number;
   radius?: number;
   path?: boolean;
-  iconSize?: number;
   speed?: number;
   lineTransparency?: string;
 }
@@ -56,7 +55,7 @@ export const OrbitingCircles = ({
               } as React.CSSProperties
             }
             className={cn(
-              `animate-orbit absolute top-1/2 left-1/2 flex size-[0.7rem] transform-gpu items-center justify-center rounded-full md:size-[1.25rem]`,
+              `animate-orbit absolute top-1/2 left-1/2 flex transform-gpu items-center justify-center rounded-full text-[0.7rem] md:text-[1.25rem]`,
               { '[animation-direction:reverse]': reverse },
               className
             )}

@@ -1,5 +1,3 @@
-import { FaCircle } from 'react-icons/fa6';
-
 import { OrbitingCircles } from './OrbitingCircles';
 import BlurLayer from './BlurLayer';
 import OrbitTextBox from './OrbitTextBox';
@@ -18,7 +16,9 @@ const OrbitSectionRenderer = ({
       {list.map((conf, i) => (
         <OrbitingCircles key={i} radius={conf.radius} reverse={conf.reverse} lineTransparency={conf.lineTransparency}>
           {conf.icons?.map((color: string, idx: number) => (
-            <FaCircle key={idx} className={color === 'blue' ? 'text-blue' : 'text-orange'} />
+            <span key={idx} className={`${color === 'blue' ? 'text-blue' : 'text-orange'}`}>
+              ●
+            </span>
           ))}
         </OrbitingCircles>
       ))}
