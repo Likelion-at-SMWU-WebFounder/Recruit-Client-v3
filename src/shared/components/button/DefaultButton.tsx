@@ -14,7 +14,7 @@ export interface DefaultButtonProps {
 const DefaultButton = ({ border = 'solid', children, isIcon = true, onClick, ...props }: DefaultButtonProps) => {
   // 기본 스타일
   const baseClasses =
-    'bg-white text-blue hover:bg-blue hover:text-white inline-flex justify-center items-center gap-2.5 overflow-hidden cursor-pointer';
+    'bg-blue text-white lg:bg-white lg:text-blue lg:hover:bg-blue lg:hover:text-white inline-flex justify-center items-center gap-2.5 overflow-hidden cursor-pointer';
 
   // 반응형 버튼 사이즈(모바일 기본, md: 태블릿, lg: 데스크톱)
   const sizeClasses = [
