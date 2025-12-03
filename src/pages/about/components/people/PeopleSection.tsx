@@ -74,7 +74,7 @@ const PeopleAccordionSection = ({
   const isTablet = mode === 'tablet';
 
   const sectionClassName = isTablet
-    ? 'hidden w-full max-w-[100vw] flex-col items-center gap-[11.25rem] overflow-hidden px-[2rem] pb-[11.875rem] md:flex lg:hidden'
+    ? 'hidden w-full max-w-[100vw] flex-col items-center gap-[11.25rem] overflow-hidden px-[4rem] pb-[11.875rem] md:flex lg:hidden'
     : 'w-full max-w-[100vw] space-y-[3.38rem] overflow-hidden py-[5rem] md:hidden';
 
   const wrapperClassName = isTablet ? 'w-full space-y-[1.5rem]' : 'flex flex-col items-center gap-[1rem]';
