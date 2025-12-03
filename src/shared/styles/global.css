@@ -206,7 +206,7 @@
 
 @layer components {
   .hero-bg {
-    background-image: url('/assets/about/hero/bg-desktop.png');
+    background-image: url('/assets/about/hero/bg-desktop.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -214,13 +214,13 @@
 
   @media (max-width: 1023px) {
     .hero-bg {
-      background-image: url('/assets/about/hero/bg-tablet.png');
+      background-image: url('/assets/about/hero/bg-tablet.webp');
     }
   }
 
   @media (max-width: 767px) {
     .hero-bg {
-      background-image: url('/assets/about/hero/bg-mobile.png');
+      background-image: url('/assets/about/hero/bg-mobile.webp');
     }
   }
 }
