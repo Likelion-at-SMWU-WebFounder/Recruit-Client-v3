@@ -32,12 +32,12 @@ const OrbitSection = () => {
     <div className="relative w-full overflow-hidden">
       {/* Desktop */}
       <div className="hidden lg:block">
-        <OrbitSectionRenderer list={ORBIT_CONFIG.desktop} className="h-screen" />
+        <OrbitSectionRenderer list={ORBIT_CONFIG.desktop} className="h-[100dvh]" />
       </div>
 
       {/* Tablet */}
       <div className="hidden md:block lg:hidden">
-        <OrbitSectionRenderer list={ORBIT_CONFIG.tablet} className="h-screen" />
+        <OrbitSectionRenderer list={ORBIT_CONFIG.tablet} className="h-[100dvh]" />
       </div>
 
       {/* Mobile */}
