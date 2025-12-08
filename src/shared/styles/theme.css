@@ -7,6 +7,9 @@
   --color-white: #f7faff;
   --color-gray: #a7a8a9;
   --color-navyblack: #1b2634;
+
+  /* font families */
+  --font-family-GMarketSans: 'GMarketSans', sans-serif;
 }
 
 /* PC typography */
