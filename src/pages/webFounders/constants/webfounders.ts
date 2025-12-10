@@ -13,6 +13,7 @@ export const WEBFOUNDERS_PLAN_DESIGN = [
     no: '12기',
     part: '프론트엔드',
     image: WEBFOUNDERS_IMAGE_PATH + '/KangJuEun.webp',
+    responsibilities: '기획디자인 파트 담당',
     instagram: '',
     email: '',
     github: '',
@@ -23,6 +24,7 @@ export const WEBFOUNDERS_PLAN_DESIGN = [
     no: '12기',
     part: '기획디자인',
     image: WEBFOUNDERS_IMAGE_PATH + '/KimBoMi.webp',
+    responsibilities: '기획디자인 파트 담당',
     instagram: '',
     email: '',
     github: '',
@@ -34,12 +36,14 @@ export const WEBFOUNDERS_PLAN_DESIGN = [
     no: '12기',
     part: '기획디자인',
     image: WEBFOUNDERS_IMAGE_PATH + '/ParkWooHyun.webp',
+    responsibilities: '기획디자인 파트 담당',
     instagram: '',
     email: '',
     github: '',
   },
 ];
 
+// 웹파운더즈: 프론트엔드 멤버
 export const WEBFOUNDERS_FRONTEND = [
   {
     id: 1,
@@ -47,6 +51,7 @@ export const WEBFOUNDERS_FRONTEND = [
     no: '12기',
     part: '프론트엔드',
     image: WEBFOUNDERS_IMAGE_PATH + '/SeongYunJung.webp',
+    responsibilities: '프론트엔드 파트 담당',
     instagram: '',
     email: '',
     github: '',
@@ -57,6 +62,7 @@ export const WEBFOUNDERS_FRONTEND = [
     no: '12기',
     part: '프론트엔드',
     image: WEBFOUNDERS_IMAGE_PATH + '/YouDongEun.webp',
+    responsibilities: '프론트엔드 파트 담당',
     instagram: '',
     email: '',
     github: '',
@@ -67,12 +73,14 @@ export const WEBFOUNDERS_FRONTEND = [
     no: '12기',
     part: '프론트엔드',
     image: WEBFOUNDERS_IMAGE_PATH + '/LeeHyeonJeong.webp',
+    responsibilities: '프론트엔드 파트 담당',
     instagram: '',
     email: '',
     github: '',
   },
 ];
 
+// 웹파운더즈: 백엔드 멤버
 export const WEBFOUNDERS_BACKEND = [
   {
     id: 1,
@@ -80,6 +88,7 @@ export const WEBFOUNDERS_BACKEND = [
     no: '12기',
     part: '백엔드',
     image: WEBFOUNDERS_IMAGE_PATH + '/KyungMinSeo.webp',
+    responsibilities: '백엔드 파트 담당',
   },
   {
     id: 2,
@@ -87,6 +96,7 @@ export const WEBFOUNDERS_BACKEND = [
     no: '12기',
     part: '백엔드',
     image: WEBFOUNDERS_IMAGE_PATH + '/SeoMunJi.webp',
+    responsibilities: '백엔드 파트 담당',
     instagram: '',
     email: '',
     github: '',
@@ -97,6 +107,7 @@ export const WEBFOUNDERS_BACKEND = [
     no: '12기',
     part: '백엔드',
     image: WEBFOUNDERS_IMAGE_PATH + '/YuChaeMin.webp',
+    responsibilities: '백엔드 파트 담당',
     instagram: '',
     email: '',
     github: '',
@@ -107,6 +118,7 @@ export const WEBFOUNDERS_BACKEND = [
     no: '12기',
     part: '백엔드',
     image: WEBFOUNDERS_IMAGE_PATH + '/JungJiYoon.webp',
+    responsibilities: '백엔드 파트 담당',
     instagram: '',
     email: '',
     github: '',
@@ -117,6 +129,7 @@ export const WEBFOUNDERS_BACKEND = [
     no: '12기',
     part: '백엔드',
     image: WEBFOUNDERS_IMAGE_PATH + '/HongSangHee.webp',
+    responsibilities: '백엔드 파트 담당',
     instagram: '',
     email: '',
     github: '',
