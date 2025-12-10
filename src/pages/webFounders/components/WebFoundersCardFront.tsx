@@ -21,7 +21,7 @@ const WebFoundersCardFront = ({ name, no, part, image, onFlip }: WebFoundersCard
 
         {/* 이름, 기수, 파트 + flip card 버튼 */}
         <div className="relative flex w-full items-center justify-between">
-          <div className="space-y-[0.28rem]">
+          <div className="md:space-y-[0.31rem]">
             <div className="text-[1.125rem] leading-[140%] font-bold md:text-[1.75rem]">{name}</div>
             <div className="text-[0.75rem] leading-[140%] font-medium md:text-[1.25rem]">
               {no} · {part}
@@ -31,7 +31,7 @@ const WebFoundersCardFront = ({ name, no, part, image, onFlip }: WebFoundersCard
           <button
             onClick={onFlip}
             className="hover:bg-navyblack text-navyblack flex cursor-pointer items-center justify-center rounded-[0.625rem] bg-white p-[0.375rem] transition duration-300 ease-in-out hover:text-white md:rounded-[1.1rem] md:p-[0.5rem] lg:rounded-[1.25rem] lg:p-[0.625rem]">
-            <BiPlus className="size-6 md:size-8" />
+            <BiPlus className="size-5 md:size-8" />
           </button>
         </div>
       </div>
