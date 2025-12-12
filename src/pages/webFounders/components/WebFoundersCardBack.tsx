@@ -14,9 +14,9 @@ interface Props {
 
 const WebFoundersCardBack = ({ name, no, part, image, responsibilities, onFlipBack }: Props) => {
   const ICONS = [
-    <AiFillInstagram className="size-4 text-white md:size-6" key="insta" />,
-    <IoMail className="size-4 text-white md:size-6" key="mail" />,
-    <AiFillGithub className="size-4 text-white md:size-6" key="github" />,
+    <AiFillInstagram className="size-4 md:size-6" key="insta" />,
+    <IoMail className="size-4 md:size-6" key="mail" />,
+    <AiFillGithub className="size-4 md:size-6" key="github" />,
   ];
 
   return (
@@ -68,7 +68,7 @@ export default WebFoundersCardBack;
 
 const IconButton = ({ children, onClick }: { children: ReactNode; onClick: () => void }) => (
   <button
-    className="flex h-[1.5rem] w-[1.5rem] cursor-pointer items-center justify-center rounded-lg border border-white md:h-[2.5rem] md:w-[2.5rem] md:rounded-2xl"
+    className="hover:text-navyblack flex h-[1.5rem] w-[1.5rem] cursor-pointer items-center justify-center rounded-lg border border-white transition duration-300 ease-in-out hover:bg-white md:h-[2.5rem] md:w-[2.5rem] md:rounded-2xl"
     onClick={onClick}>
     {children}
   </button>
