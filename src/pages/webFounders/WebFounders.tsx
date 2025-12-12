@@ -10,7 +10,7 @@ import Title from '@shared/components/Title';
 
 const WebFounders = () => {
   return (
-    <div className="space-y-[4.69rem] px-[1rem] py-[8.44rem] md:space-y-[6.44rem] lg:space-y-[11.63rem] lg:px-[10rem] lg:py-[8.13rem]">
+    <div className="founders-bg space-y-[4.69rem] px-[1rem] py-[8.44rem] md:space-y-[6.44rem] lg:space-y-[11.63rem] lg:px-[10rem] lg:py-[8.13rem]">
       <div className="">
         <Title title={WEBFOUNDERS_TITLE} description={WEBFOUNDERS_SUBTITLE} />
       </div>

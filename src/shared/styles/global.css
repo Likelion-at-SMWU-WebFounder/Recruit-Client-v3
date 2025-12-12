@@ -230,3 +230,22 @@
     }
   }
 }
+
+@layer components {
+  .founders-bg {
+    background-image: url('/assets/webfounders/background-image/Founders-desktop.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  @media (max-width: 1024px) {
+    .founders-bg {
+      background-image: url('/assets/webfounders/background-image/Founders-tablet.webp');
+    }
+  }
+  @media (max-width: 768px) {
+    .founders-bg {
+      background-image: url('/assets/webfounders/background-image/Founders-mobile.webp');
+    }
+  }
+}
