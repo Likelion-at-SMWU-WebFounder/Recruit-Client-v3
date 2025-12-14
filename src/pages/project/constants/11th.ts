@@ -112,7 +112,7 @@ export const eleventhProjectsData = [
     googleDriveUrl: 'https://drive.google.com/file/d/1FqGGZH48UDZCuqTL-cX2CS11zwhxbIIn/view?usp=share_link',
     gitOrgUrl: 'https://github.com/Coffee-ing',
     gitBeUrl: 'https://github.com/Coffee-ing/Server',
-    gitFeUrl: '',
+    gitFeUrl: null,
     no: '11기',
     category: '4호선톤',
     techStack: 'Django, Android(Kotlin)',
