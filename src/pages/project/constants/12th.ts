@@ -268,6 +268,7 @@ export const twelfthProjectsData = [
     gitFeUrl: 'https://github.com/4LineThon/Frontend',
     no: '12기',
     category: '4호선톤',
+    techStack: 'Django, React(JavaScript)',
     award: null,
   },
   {
