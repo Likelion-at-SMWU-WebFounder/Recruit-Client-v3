@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Title from '@shared/components/Title';
 import FilterBar from '@pages/project/components/list/filter/FilterBar';
 import ProjectGrid from '@pages/project/components/list/ProjectGrid';
-import { PROJECT_TITLE, PROJECT_SUBTITLE } from '@pages/project/constants';
+import { PROJECT_TITLE, PROJECT_SUBTITLE, PROJECT_FILTER_OPTIONS } from '@pages/project/constants';
 
 const PROJECT_STYLES = {
   container: {
@@ -21,7 +21,7 @@ const PROJECT_STYLES = {
 } as const;
 
 const Project = () => {
-  const [filter, setFilter] = useState('전체');
+  const [filter, setFilter] = useState(PROJECT_FILTER_OPTIONS[0].name);
   const containerClassName = [
     PROJECT_STYLES.container.base,
     PROJECT_STYLES.container.tablet,
