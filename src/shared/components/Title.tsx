@@ -10,7 +10,7 @@ const Title = ({ isIcon, title, description }: TitleProps) => {
   return (
     <div className="space-y-[0.56rem]">
       <div className="flex items-center gap-[0.56rem]">
-        {isIcon && <WiSnowflakeCold className="text-blue" />}
+        {isIcon && <WiSnowflakeCold className="text-blue size-10 md:size-14 lg:size-16" />}
         <div className="text-navyblack font-[GMarketSans] text-[1.5rem] leading-[170%] font-bold md:text-[2rem] lg:text-[2.625rem]">
           {title}
         </div>
