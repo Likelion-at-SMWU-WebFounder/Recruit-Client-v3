@@ -1,6 +1,6 @@
 import SubTitle from '@shared/components/SubTitle';
 import ValueCard from '@/pages/about/components/value/ValueCard';
-import { SUB_TITLE } from '@pages/about/constants/about';
+import { SUB_TITLE } from '@pages/about/constants/index';
 import { VALUES_DATA } from '@/pages/about/constants/values';
 import { useCarousel } from '@/shared/hooks/carousel/useEmblaCarousel';
 import Carousel from '@shared/components/Carousel';
