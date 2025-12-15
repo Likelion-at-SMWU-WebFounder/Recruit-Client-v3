@@ -1,7 +1,5 @@
 import { useState } from 'react';
-
 import FilterButton from '@pages/project/components/list/filter/FilterButton';
-
 import { PROJECT_FILTER_OPTIONS } from '@pages/project/constants';
 import { MdOutlineMoreHoriz } from 'react-icons/md';
 
@@ -12,12 +10,12 @@ interface FilterBarProps {
 
 const FILTER_BAR_STYLES = {
   container: {
-    base: 'flex w-full justify-start gap-[0.75rem] overflow-x-auto py-[1.75rem]',
+    base: 'flex w-full justify-start gap-[0.75rem] overflow-x-auto py-[1.75rem] pr-[0.38rem] scrollbar-hidden',
     tablet: 'md:max-w-[100rem] md:gap-[1rem] md:py-[3rem]',
     desktop: 'lg:gap-[1.25rem]',
   },
   moreButton: {
-    base: 'text-gray flex aspect-square h-[2.75rem] w-[2.75rem] flex-shrink-0 cursor-pointer items-center justify-center rounded-full border-[2px] border-transparent bg-white p-[0.5rem]',
+    base: 'text-gray inline-flex aspect-square h-[2.75rem] w-[2.75rem] flex-shrink-0 cursor-pointer items-center justify-center rounded-full md:border-[2px] md:border-transparent bg-white p-[0.5rem]',
     hover: 'hover:border-blue hover:text-blue transition-all duration-300 ease-out hover:border-[2px]',
     tablet: 'md:h-[3.125rem] md:w-[3.125rem] md:p-[0.75rem]',
     desktop: 'lg:h-[4.375rem] lg:w-[4.375rem]',

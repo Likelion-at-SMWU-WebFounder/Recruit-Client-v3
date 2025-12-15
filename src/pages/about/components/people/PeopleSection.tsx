@@ -9,8 +9,6 @@ import useDesktopScroll from '@pages/about/hooks/useDesktopScroll';
 import useMobileScroll from '@pages/about/hooks/useMobileScroll';
 import useXPositionDrag from '@pages/about/hooks/useXPositionDrag';
 
-import '@pages/about/styles/index.css';
-
 const DESKTOP_CAROUSEL_PADDING_LEFT = 2; // rem
 const DESKTOP_CAROUSEL_TRAILING_SPACE_WIDTH = 17; // rem
 

@@ -10,7 +10,7 @@ const FilterButton = ({ children, onClick, active }: FilterButtonProps) => {
   return (
     <button
       type="button"
-      className={`${!active ? hoverClasses : ''} flex-shrink-0 cursor-pointer rounded-full border-[2px] border-transparent px-[1.25rem] py-[0.5rem] text-[1rem] leading-[170%] md:px-[2rem] md:text-[1.25rem] lg:px-[2.25rem] lg:text-[2rem] ${active ? activeClasses : inactiveClasses}`}
+      className={`${!active ? hoverClasses : ''} flex-shrink-0 cursor-pointer rounded-full px-[1.25rem] py-[0.5rem] text-[1rem] leading-[170%] md:inline-flex md:items-center md:justify-center md:border-[2px] md:border-transparent md:px-[2rem] md:text-[1.25rem] lg:px-[2.25rem] lg:text-[2rem] ${active ? activeClasses : inactiveClasses}`}
       onClick={onClick}>
       {children}
     </button>
