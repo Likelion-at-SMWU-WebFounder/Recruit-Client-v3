@@ -17,8 +17,8 @@ const FILTER_BAR_STYLES = {
     desktop: 'lg:gap-[1.25rem]',
   },
   moreButton: {
-    base: 'text-gray flex aspect-square h-[2.75rem] w-[2.75rem] flex-shrink-0 cursor-pointer items-center justify-center rounded-full border-[1.5px] border-transparent bg-white p-[0.5rem]',
-    hover: 'hover:border-blue hover:text-blue transition-all duration-300 ease-in-out',
+    base: 'text-gray flex aspect-square h-[2.75rem] w-[2.75rem] flex-shrink-0 cursor-pointer items-center justify-center rounded-full border-[2px] border-transparent bg-white p-[0.5rem]',
+    hover: 'hover:border-blue hover:text-blue transition-all duration-300 ease-out hover:border-[2px]',
     tablet: 'md:h-[3.125rem] md:w-[3.125rem] md:p-[0.75rem]',
     desktop: 'lg:h-[4.375rem] lg:w-[4.375rem]',
   },
