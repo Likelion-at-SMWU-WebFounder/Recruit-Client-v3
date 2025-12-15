@@ -54,7 +54,11 @@ const FilterBar = ({ value, onChange }: FilterBarProps) => {
 
       {/* 더보기 버튼 (10기, 9기) */}
       {hasMoreOptions && !showMore && (
-        <button type="button" onClick={() => setShowMore(true)} className={moreButtonClassName}>
+        <button
+          type="button"
+          onClick={() => setShowMore(true)}
+          className={moreButtonClassName}
+          aria-label="프로젝트 기수 더보기">
           <MdOutlineMoreHoriz className="size-6 lg:size-7" />
         </button>
       )}
