@@ -1,10 +1,11 @@
 import WebFoundersSection from '@pages/webFounders/components/WebFoundersSection';
-import { WEBFOUNDERS_TITLE, WEBFOUNDERS_SUBTITLE } from '@pages/webFounders/constants/index';
 import {
+  WEBFOUNDERS_TITLE,
+  WEBFOUNDERS_SUBTITLE,
   WEBFOUNDERS_PLAN_DESIGN,
   WEBFOUNDERS_FRONTEND,
   WEBFOUNDERS_BACKEND,
-} from '@pages/webFounders/constants/webfounders';
+} from '@pages/webFounders/constants/index';
 import Title from '@shared/components/Title';
 
 const WebFounders = () => {
