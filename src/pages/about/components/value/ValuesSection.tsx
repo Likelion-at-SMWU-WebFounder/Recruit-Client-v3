@@ -18,12 +18,7 @@ const ValuesSection = () => {
         <Carousel emblaRef={emblaRef} selectedIndex={selectedIndex} scrollTo={scrollTo} carouselData={VALUES_DATA}>
           {VALUES_DATA.map((data) => (
             <div key={data.keyword} className="embla__slide">
-              <ValueCard
-                keyword={data.keyword}
-                description={data.description}
-                cardImage={data.image}
-                highlightedWord={data.highlightedWord}
-              />
+              <ValueCard keyword={data.keyword} description={data.description} cardImage={data.image} />
             </div>
           ))}
         </Carousel>
@@ -38,7 +33,6 @@ const ValuesSection = () => {
               keyword={data.keyword}
               description={data.description}
               cardImage={data.image}
-              highlightedWord={data.highlightedWord}
             />
           ))}
         </div>
