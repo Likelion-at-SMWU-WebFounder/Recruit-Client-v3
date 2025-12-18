@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 
 import SubTitle from '@shared/components/SubTitle';
-import { SUB_TITLE } from '@pages/about/constants/about';
+import { SUB_TITLE } from '@pages/about/constants/index';
 import { IDENTITIES_DATA } from '@pages/about/constants/identities';
 import IdentityCard from '@pages/about/components/identity/IdentityCard';
 

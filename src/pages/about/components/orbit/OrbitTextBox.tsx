@@ -1,4 +1,4 @@
-import { TITLE } from '@pages/about/constants/about';
+import { TITLE } from '@pages/about/constants/index';
 
 const OrbitTextBox = () => {
   return (

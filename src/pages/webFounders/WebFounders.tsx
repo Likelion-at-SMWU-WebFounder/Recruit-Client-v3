@@ -5,7 +5,7 @@ import {
   WEBFOUNDERS_PLAN_DESIGN,
   WEBFOUNDERS_FRONTEND,
   WEBFOUNDERS_BACKEND,
-} from '@pages/webFounders/constants/webfounders';
+} from '@pages/webFounders/constants/index';
 import Title from '@shared/components/Title';
 
 const WebFounders = () => {
