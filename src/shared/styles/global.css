@@ -206,6 +206,7 @@
   height: 0;
 }
 
+/* about 페이지 orbit 애니메이션 설정 */
 @theme inline {
   --animate-orbit: orbit calc(var(--duration) * 1s) linear infinite;
 
@@ -221,6 +222,7 @@
   }
 }
 
+/* about 페이지 hero section 배경 이미지 설정 */
 @layer components {
   .hero-bg {
     background-image: url('/assets/about/hero/bg-desktop.webp');
@@ -242,6 +244,7 @@
   }
 }
 
+/* webfounders 페이지 배경 이미지 설정 */
 @layer components {
   .founders-bg {
     background-image: url('/assets/webfounders/background-image/Founders-desktop.webp');
@@ -257,6 +260,35 @@
   @media (max-width: 768px) {
     .founders-bg {
       background-image: url('/assets/webfounders/background-image/Founders-mobile.webp');
+    }
+  }
+}
+
+/* Loading 애니메이션 설정 */
+@layer components {
+  .loading-dot {
+    animation: loading-bounce 0.7s ease-in-out infinite;
+  }
+
+  .loading-dot:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+
+  .loading-dot:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  @keyframes loading-bounce {
+    0%,
+    80%,
+    100% {
+      transform: translateY(0);
+      opacity: 0.5;
+    }
+
+    40% {
+      transform: translateY(-6px);
+      opacity: 1;
     }
   }
 }
