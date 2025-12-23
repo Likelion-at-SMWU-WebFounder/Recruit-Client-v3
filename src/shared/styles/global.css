@@ -222,48 +222,6 @@
   }
 }
 
-/* about 페이지 hero section 배경 이미지 설정 */
-@layer components {
-  .hero-bg {
-    background-image: url('/assets/about/hero/bg-desktop.webp');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-
-  @media (max-width: 1024px) {
-    .hero-bg {
-      background-image: url('/assets/about/hero/bg-tablet.webp');
-    }
-  }
-
-  @media (max-width: 768px) {
-    .hero-bg {
-      background-image: url('/assets/about/hero/bg-mobile.webp');
-    }
-  }
-}
-
-/* webfounders 페이지 배경 이미지 설정 */
-@layer components {
-  .founders-bg {
-    background-image: url('/assets/webfounders/background-image/Founders-desktop.webp');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  @media (max-width: 1024px) {
-    .founders-bg {
-      background-image: url('/assets/webfounders/background-image/Founders-tablet.webp');
-    }
-  }
-  @media (max-width: 768px) {
-    .founders-bg {
-      background-image: url('/assets/webfounders/background-image/Founders-mobile.webp');
-    }
-  }
-}
-
 /* Loading 애니메이션 설정 */
 @layer components {
   .loading-dot {
