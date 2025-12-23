@@ -2,6 +2,7 @@ export const ROUTER_URL = {
   HOME: '/',
   ABOUT: '/about',
   PROJECT: '/project',
+  PROJECT_DETAIL: '/project/:projectId',
   APPLY: '/apply',
   ACTIVITY: '/activity',
   WEBFOUNDERS: '/webfounders',
