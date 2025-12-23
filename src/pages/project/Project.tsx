@@ -6,9 +6,9 @@ import { PROJECT_TITLE, PROJECT_SUBTITLE, PROJECT_FILTER_OPTIONS } from '@pages/
 
 const PROJECT_STYLES = {
   container: {
-    base: 'flex flex-col items-center gap-[2.75rem] px-[1rem] pt-[10rem]',
-    tablet: 'md:gap-[1.7rem] md:pt-[12.62rem]',
-    desktop: 'lg:gap-[11.44rem] lg:pt-[16.25rem]',
+    base: 'flex flex-col items-center gap-[2.75rem] px-[1rem] pt-[10rem] pb-[7.5rem]',
+    tablet: 'md:gap-[1.7rem] md:pt-[12.62rem] md:pb-[5rem]',
+    desktop: 'lg:gap-[11.44rem] lg:pt-[16.25rem] lg:pb-[7.5rem]',
   },
   titleWrapper: {
     base: 'flex w-full flex-col items-start',
