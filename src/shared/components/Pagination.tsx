@@ -1,4 +1,4 @@
-import { FaCaretRight } from 'react-icons/fa6';
+import { FaCaretLeft, FaCaretRight } from 'react-icons/fa6';
 
 interface PaginationProps {
   currentPage: number;
@@ -22,7 +22,20 @@ const PAGINATION_STYLES = {
 } as const;
 
 const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) => {
+  const VISIBLE_COUNT = 5;
+  const isPrevDisabled = currentPage <= 1;
   const isNextDisabled = currentPage >= totalPages;
+
+  const chunkIndex = Math.floor((currentPage - 1) / VISIBLE_COUNT);
+  const startPage = chunkIndex * VISIBLE_COUNT + 1;
+  const endPage = Math.min(totalPages, startPage + VISIBLE_COUNT - 1);
+  const pages = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+
+  const handlePrev = () => {
+    if (!isPrevDisabled) {
+      onPageChange(currentPage - 1);
+    }
+  };
 
   const handleNext = () => {
     if (!isNextDisabled) {
@@ -36,7 +49,11 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
     return [base, state].join(' ');
   };
 
-  const arrowButtonClassName = isNextDisabled
+  const prevArrowClassName = isPrevDisabled
+    ? PAGINATION_STYLES.arrowButton.disabled
+    : PAGINATION_STYLES.arrowButton.enabled;
+
+  const nextArrowClassName = isNextDisabled
     ? PAGINATION_STYLES.arrowButton.disabled
     : PAGINATION_STYLES.arrowButton.enabled;
 
@@ -44,7 +61,15 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
 
   return (
     <div className={containerClassName}>
-      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+      <button
+        type="button"
+        onClick={handlePrev}
+        disabled={isPrevDisabled}
+        className={prevArrowClassName}
+        aria-label="이전 페이지로 이동">
+        <FaCaretLeft className="md:size-5 lg:size-7" />
+      </button>
+      {pages.map((page) => (
         <button
           key={page}
           type="button"
@@ -59,7 +84,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
         type="button"
         onClick={handleNext}
         disabled={isNextDisabled}
-        className={arrowButtonClassName}
+        className={nextArrowClassName}
         aria-label="다음 페이지로 이동">
         <FaCaretRight className="md:size-5 lg:size-7" />
       </button>
