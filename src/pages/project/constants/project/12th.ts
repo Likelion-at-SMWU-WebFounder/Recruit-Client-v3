@@ -5,7 +5,7 @@ export const twelfthProjectsData = [
     id: '1200',
     thumbnail: `${TWELFTH_PROJECT_IMAGE_PATH}/voyage.png`,
     title: 'VOYAGE',
-    teamMember: '박우현(PM) 성윤정(FE) 장유빈(FE) 정지윤(BE) 유채민(BE)',
+    teamMember: '박우현(PM)\n성윤정(FE), 장유빈(FE)\n정지윤(BE), 유채민(BE)',
     summary: '현대인 심리 건강 개선을 위한 중장년층과 청년층의 세대통합 멘토링 서비스',
     description:
       '현대인의 심리적 건강을 위해 중장년층의 자기효능감과 청년층의 자기확신감 증대를 목표로 기획된 서비스로, 중장년층과 청년층이 서로의 멘토이자 멘티가 되어 도움을 주는 서비스. 멘토는 멘티의 고민에 해답을 제시하고, 채팅을 통한 멘토링을 진행할 수 있으며, 커뮤니티 칼럼 작성 및 스크랩이 가능하다. 한편, 멘티는 한 줄 고민 작성, 관심 멘토 설정, 자동 멘토 매칭 및 멘토링에 참여하는 등 고민을 해결하는 데에 도움을 얻을 수 있다.',
@@ -22,7 +22,7 @@ export const twelfthProjectsData = [
     id: '1201',
     thumbnail: `${TWELFTH_PROJECT_IMAGE_PATH}/bbangutbbangood.png`,
     title: '빵긋빵굿',
-    teamMember: '김보미(PM) 강주은(FE) 최현서(FE) 이효림(BE) 홍상희(BE)',
+    teamMember: '김보미(PM)\n강주은(FE), 최현서(FE)\n이효림(BE), 홍상희(BE)',
     summary: '웰니스 빵 정보(상품 및 레시피)를 제공하는 서비스',
     description:
       '‘빵돌이’, ‘빵순이의 일상’과 같은 키워드처럼 다이어트나 건강을 생각하는 사람들 사이에서도 빵을 포기하지 못하는 소비자들을 위해 건강빵을 통해 맛있게 먹으면서도 건강을 관리할 수 있는 플랫폼을 만들고자 기획한 서비스 (빵 유형 테스트, 웰니스 빵, 레시피, 기록 등)',
@@ -39,7 +39,7 @@ export const twelfthProjectsData = [
     id: '1202',
     thumbnail: `${TWELFTH_PROJECT_IMAGE_PATH}/hancare.png`,
     title: '한케어',
-    teamMember: '오시은(PM) 유동은(FE) 이현정(FE) 경민서(BE) 서문지(BE)',
+    teamMember: '오시은(PM)\n유동은(FE), 이현정(FE)\n경민서(BE), 서문지(BE)',
     summary: '한의학 기반 맞춤형 건강관리 서비스',
     description:
       '한의학/한의원 정보 및 식습관 기반 건강관리 서비스를 제공하여 현대인의 신체적 건강 문제를 해결하기 위해 기획. 한의원 찾기나 한의학 관련 칼럼 제공, 또는 캘린더에 한의원 예약 기록이나 일정을 관리할 수 있는 서비스를 제공한다. ',
@@ -152,7 +152,7 @@ export const twelfthProjectsData = [
     id: '1208',
     thumbnail: `${TWELFTH_PROJECT_IMAGE_PATH}/planpal.png`,
     title: '플랜팔',
-    teamMember: '박우현(PM), 경민서(BE) 외 4명',
+    teamMember: '박우현(PM)\n경민서(BE) 외 4명',
     summary: '혼자 그리고 함께 체계적으로 관리하는 일정',
     description: `오늘날 협업의 필요성은 점차 커지고 있습니다. 개인의 일정관리만큼이나 중요한 것은 서로의 일정을 공유, 조율하여 계획을 함께 실현하는 능력입니다. PlanPal은 이러한 협업 시대에 맞춰 탄생한 캘린더 서비스로, 친구, 가족, 동료와 함께 일정과 약속을 보다 간편하게 관리할 수 있는 솔루션을 제공합니다.
 
@@ -213,7 +213,7 @@ export const twelfthProjectsData = [
     id: '1211',
     thumbnail: `${TWELFTH_PROJECT_IMAGE_PATH}/moatravel.png`,
     title: 'MOA(모아)',
-    teamMember: '서문지(BE), 성윤정(FE) 외 3명',
+    teamMember: '성윤정(FE)\n서문지(BE) 외 3명',
     summary: '👭함께 떠날 여행 메이트를 모아주는 여행 동행 서비스',
     description: `여행을 계획 중인 사용자가 자신의 여행 스타일을 진단하여 유사한 여행 스타일을 가진 사람들과 동행할 수 있도록 매칭해주는 플랫폼
 
@@ -275,7 +275,7 @@ export const twelfthProjectsData = [
     id: '1214',
     thumbnail: `${TWELFTH_PROJECT_IMAGE_PATH}/yourstory.png`,
     title: '당신의 이야기',
-    teamMember: '오시은(PM) 강주은(FE) 성윤정(FE) 이효림(BE) 정지윤(BE)',
+    teamMember: '오시은(PM)\n강주은(FE), 성윤정(FE)\n이효림(BE), 정지윤(BE)',
     summary: '이타적 자서전을 통해 세대를 연결하는 사회적 가치 창출 공공 웹서비스',
     description: `봉사자와 사회복지 센터 간 연계로 홀몸 어르신 말벗 활동과 동시에 이타적 자서전 대필 봉사 활동 웹서비스를 통한 봉사 프로그램 구축 및 시스템화
 
@@ -293,7 +293,7 @@ export const twelfthProjectsData = [
     id: '1215',
     thumbnail: `${TWELFTH_PROJECT_IMAGE_PATH}/imfine.png`,
     title: '아임파인',
-    teamMember: '박우현(PM) 최현서(FE) 이현정(FE) 경민서(BE) 유채민(BE)',
+    teamMember: '박우현(PM)\n최현서(FE), 이현정(FE)\n경민서(BE), 유채민(BE)',
     summary: '어린이 금융교육 플랫폼',
     description: `
 아이들이 건강하고 올바른 경제관념을 가질 수 있도록 금융 경제 상식을 교육하고 더 나아가 아이들이 현명한 소비자이자 생산자로 성장하여 경제적인 사회 구성원이 될 수 있도록 지원하고자 합니다.
@@ -312,7 +312,7 @@ export const twelfthProjectsData = [
     id: '1216',
     thumbnail: `${TWELFTH_PROJECT_IMAGE_PATH}/erumi.png`,
     title: '이루미',
-    teamMember: '김보미(PM) 유동은(FE) 장유빈(FE) 서문지(BE) 홍상희(BE)',
+    teamMember: '김보미(PM)\n유동은(FE), 장유빈(FE)\n서문지(BE), 홍상희(BE)',
     summary: '나라는 꿈을 이뤄가는 공간: 버킷리스트 아카이브 서비스',
     description: `카테고리 별 장기적인 버킷리스트를 작성하고 관리하고 싶은 사용자, 또는 자기 개발과 꿈을 이루고 싶은 사용자 등을 주요 타겟으로 한 버킷리스트 아카이브 서비스
 

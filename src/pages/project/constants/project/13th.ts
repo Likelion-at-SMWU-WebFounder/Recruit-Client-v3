@@ -5,7 +5,7 @@ export const thirteenthProjectsData = [
     id: '1300',
     thumbnail: `${THIRTEENTH_PROJECT_IMAGE_PATH}/neonnaekkeoGYM.png`,
     title: '넌내꺼짐',
-    teamMember: '하지민(PM) 박소연(FE) 이승채(FE) 안성민(BE) 이혜지(BE)',
+    teamMember: '하지민(PM)\n박소연(FE), 이승채(FE)\n안성민(BE), 이혜지(BE)',
     summary: '기구 앞 눈치싸움에서 벗어나는 가장 똑똑한 방법',
     description:
       '헬스장 및 기구별 혼잡도와 개인 운동 루틴을 고려해, AI가 효율적인 기구 사용 순서를 자동으로 배정하여 운동 흐름이 끊기지 않도록 돕는 헬스장 배정 서비스입니다.',
@@ -22,7 +22,7 @@ export const thirteenthProjectsData = [
     id: '1301',
     thumbnail: `${THIRTEENTH_PROJECT_IMAGE_PATH}/balpyoHAI.png`,
     title: '발표HAI',
-    teamMember: '김은지(PM) 이채빈(FE) 정교은(FE) 김보민(BE)',
+    teamMember: '김은지(PM)\n이채빈(FE), 정교은(FE)\n김보민(BE)',
     summary: '발표가 두려운 순간, 당신만을 위한 AI 발표 튜터',
     description:
       '발표HAI는 발표가 두려운 학생을 위한 AI 발표 튜터링 서비스입니다. 발표 유형별 맞춤 분석과 실시간 피드백으로 제공하여 발표 흐름과 전달력을 개선에 도움을 줍니다.',
@@ -39,7 +39,7 @@ export const thirteenthProjectsData = [
     id: '1302',
     thumbnail: `${THIRTEENTH_PROJECT_IMAGE_PATH}/wearther.png`,
     title: 'WEARTHER',
-    teamMember: '김민서(PM) 박세은(FE) 이연서(FE) 이경은(BE) 최서아(BE)',
+    teamMember: '김민서(PM)\n박세은(FE), 이연서(FE)\n이경은(BE), 최서아(BE)',
     summary: '나만의 날씨 기반 코디네이터',
     description:
       '실제 내 옷장의 아이템을 기반으로 유저의 취향/상황과 현재 날씨에 맞게 코디를 추천해주는 AI 코디네이터 서비스',
@@ -56,7 +56,7 @@ export const thirteenthProjectsData = [
     id: '1303',
     thumbnail: `${THIRTEENTH_PROJECT_IMAGE_PATH}/spotal.png`,
     title: 'Spotal',
-    teamMember: '하지민(PM) 박세은(FE) 이연서(FE) 김보민(BE) 안성민(BE) 최서아(BE)',
+    teamMember: '하지민(PM)\n박세은(FE), 이연서(FE)\n김보민(BE), 안성민(BE)\n최서아(BE)',
     summary: '가게의 흔적과 기억을 연결하는 동네의 감성 기록장',
     description:
       '재개발로 사라진 동네 가게와 그에 얽힌 기억을 기록하고,\n사용자의 감성을 기준으로 유사한 새로운 공간을 연결해주는 AI 기반 장소 아카이빙 서비스입니다.\n잊힌 공간의 이야기를 보존하며, 단골과 동네 상권을 다시 이어줍니다.',
@@ -73,7 +73,7 @@ export const thirteenthProjectsData = [
     id: '1304',
     thumbnail: `${THIRTEENTH_PROJECT_IMAGE_PATH}/gorugoru.png`,
     title: 'GoruGoru',
-    teamMember: '김은지(PM) 박소연(FE) 정교은(FE) 이경은(BE) 이혜지(BE)',
+    teamMember: '김은지(PM)\n박소연(FE), 정교은(FE)\n이경은(BE), 이혜지(BE)',
     summary: '외국인 여행객과 상인을 이어주는 다국어 전통시장 탐방 플랫폼',
     description:
       '언어와 정보의 장벽으로 접근이 어려웠던 전통시장을 외국인 여행객이 쉽게 이해하고 탐방할 수 있도록 돕는 서비스입니다.\n상점 정보와 코스 추천을 통해 이용 맥락을 직관적으로 제공해 전통시장 이용 경험을 확장하고, 여행객과 상인 간의 자연스러운 교류를 만들어냅니다.',
@@ -90,7 +90,7 @@ export const thirteenthProjectsData = [
     id: '1305',
     thumbnail: `${THIRTEENTH_PROJECT_IMAGE_PATH}/tumblerin.png`,
     title: '텀블러인',
-    teamMember: '김민서(PM) 이승채(FE) 이채빈(FE) 서문지(BE) 이현정(BE) 홍상희(BE)',
+    teamMember: '김민서(PM)\n이승채(FE), 이채빈(FE)\n서문지(BE), 이현정(BE), 홍상희(BE)',
     summary: '함께 만드는 우리 동네 텀블러 문화',
     description:
       '텀블러인은 우리 동네 카페와 함께 텀블러 이용 문화를 확산하는 친환경 서비스입니다. 텀블러 혜택 카페 정보와 맞춤형 추천을 제공하고, 텀블러 인증을 통해 스탬프·포인트 적립과 할인 혜택을 받을 수 있도록 합니다.',
@@ -107,7 +107,7 @@ export const thirteenthProjectsData = [
     id: '1306',
     thumbnail: `${THIRTEENTH_PROJECT_IMAGE_PATH}/ExpertOfOrdering.png`,
     title: '주문의 달인',
-    teamMember: '김민서(PM) 이승채(FE) 이연서(FE) 김보민(BE) 최서아(BE)',
+    teamMember: '김민서(PM)\n이승채(FE), 이연서(FE)\n김보민(BE), 최서아(BE)',
     summary: '실버 세대를 위한 키오스크 주문 연습 시뮬레이션',
     description:
       '키오스크 주문에 어려움을 겪는 분들을 위해, 집에서도 실제 키오스크 환경을 그대로 체험하며 연습할 수 있도록 돕는 자가 시뮬레이션 서비스입니다. 난이도 설정을 통해 간단한 주문부터 다양한 옵션 선택이 필요한 상황까지 단계적으로 반복 학습할 수 있습니다.',
@@ -124,7 +124,7 @@ export const thirteenthProjectsData = [
     id: '1307',
     thumbnail: `${THIRTEENTH_PROJECT_IMAGE_PATH}/careLink.png`,
     title: 'CareLink',
-    teamMember: '김은지(PM) 박소연(FE) 이채빈(FE) 안성민(BE) 이경은(BE)',
+    teamMember: '김은지(PM)\n박소연(FE), 이채빈(FE)\n안성민(BE), 이경은(BE)',
     summary: '건강과 일상을 챙기는 새로운 치매 관리 플랫폼',
     description:
       '치매 관리가 일상 속에서 자연스럽게 이루어지도록 설계된 플랫폼입니다.\n복약·일정 관리, 음성 기반 체크인, 인지훈련 콘텐츠를 제공하고 보호자에게는 상태 요약을 전달해 지속 가능한 관리 구조를 만듭니다.',
@@ -141,7 +141,7 @@ export const thirteenthProjectsData = [
     id: '1308',
     thumbnail: `${THIRTEENTH_PROJECT_IMAGE_PATH}/slowflow.png`,
     title: 'SlowFlow',
-    teamMember: '하지민(PM) 박세은(FE) 정교은(FE) 이혜지(BE)',
+    teamMember: '하지민(PM)\n박세은(FE), 정교은(FE)\n이혜지(BE)',
     summary: '완벽하지 않아도 괜찮은 저속노화 관리법',
     description:
       "단순한 식단을 넘어 생활 습관 전반의 노화 속도를 측정합니다. 오늘 쌓인 채움(노화 방지)과 부담(가속 요인) 점수를 기록하고, AI의 분석을 통해 더 느리고 건강하게 늙어가는 '저속노화 라이프'를 설계해 보세요.",
