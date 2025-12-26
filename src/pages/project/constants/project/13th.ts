@@ -169,7 +169,7 @@ export const thirteenthProjectsData = [
     teamMember: '김보민(BE) 외 5명',
     summary: '숨겨진 집중력의 불을 켜주는 아동교육 서비스',
     description:
-      'ADHD 아동의 집중력 향상을 목표로 하는 아동 교육 서비스입니다. 인지력 샹항을 위한 뿅뿅 아기별 게임과 충동 조절을 위한 꼬마 교통지킴이 게임으로 구성되어 있습니다.',
+      'ADHD 아동의 집중력 향상을 목표로 하는 아동 교육 서비스입니다. 인지력 향상을 위한 뿅뿅 아기별 게임과 충동 조절을 위한 꼬마 교통지킴이 게임으로 구성되어 있습니다.',
     googleDriveUrl: 'https://drive.google.com/file/d/1vReoGD0CVAdn-5DrXiJqvtp-JWjawom6/view?usp=sharing',
     gitOrgUrl: 'https://github.com/kkambbaki',
     gitBeUrl: 'https://github.com/kkambbaki/backend',
