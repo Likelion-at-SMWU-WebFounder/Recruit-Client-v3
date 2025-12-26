@@ -47,10 +47,9 @@ const ProjectCarousel = ({ thumbnail, images }: ProjectCarouselProps) => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    pauseOnHover: false,
-    pauseOnFocus: false,
+    pauseOnHover: true,
+    pauseOnFocus: true,
     arrows: true,
-    prevArrow: undefined,
     nextArrow: <NextArrow />,
   };
 
