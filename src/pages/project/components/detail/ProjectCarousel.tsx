@@ -2,15 +2,42 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '@pages/project/styles/carousel.css';
+import ArrowButton from '@shared/components/button/ArrowButton';
 
 interface ProjectCarouselProps {
   thumbnail: string;
   images?: string[];
 }
 
+interface ArrowProps {
+  className?: string;
+  style?: React.CSSProperties;
+  onClick?: () => void;
+}
+
 const ProjectCarousel = ({ thumbnail, images }: ProjectCarouselProps) => {
   // thumbnail을 맨 앞에 두고, images가 있으면 뒤에 추가
   const carouselImages = images && images.length > 0 ? [thumbnail, ...images] : [thumbnail];
+
+  // 다음 화살표 컴포넌트
+  const NextArrow = ({ style, onClick }: ArrowProps) => {
+    return (
+      <div
+        className="project-carousel-custom-arrow"
+        style={{
+          ...style,
+          display: 'block',
+          right: '2rem',
+          zIndex: 1,
+          position: 'absolute',
+          top: '50%',
+          transform: 'translateY(-50%)',
+        }}
+        onClick={onClick}>
+        <ArrowButton iconColor="gray" onArrowBtnClick={onClick || (() => {})} />
+      </div>
+    );
+  };
 
   const settings = {
     dots: carouselImages.length > 1,
@@ -22,7 +49,9 @@ const ProjectCarousel = ({ thumbnail, images }: ProjectCarouselProps) => {
     autoplaySpeed: 3000,
     pauseOnHover: false,
     pauseOnFocus: false,
-    arrows: false,
+    arrows: true,
+    prevArrow: undefined,
+    nextArrow: <NextArrow />,
   };
 
   return (

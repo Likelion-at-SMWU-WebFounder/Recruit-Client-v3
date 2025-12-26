@@ -1,6 +1,18 @@
 /* React Slick Carousel 스타일링 */
 .project-carousel {
   padding: 2rem 0;
+  position: relative;
+}
+
+/* 기본 slick 화살표 숨김 */
+.project-carousel .slick-prev,
+.project-carousel .slick-next {
+  display: none !important;
+}
+
+/* 커스텀 화살표 기본적으로 숨김 (모바일/태블릿) */
+.project-carousel .project-carousel-custom-arrow {
+  display: none !important;
 }
 
 .project-carousel .slick-slide {
@@ -117,5 +129,16 @@
 @media (min-width: 1024px) {
   .project-carousel img {
     border-radius: 1.25rem !important;
+  }
+
+  /* 데스크탑에서만 커스텀 화살표 표시, hover 시 보임 */
+  .project-carousel .project-carousel-custom-arrow {
+    display: block !important;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .project-carousel:hover .project-carousel-custom-arrow {
+    opacity: 1 !important;
   }
 }
