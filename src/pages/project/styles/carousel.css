@@ -1,6 +1,6 @@
 /* React Slick Carousel 스타일링 */
 .project-carousel {
-  padding: 2rem 0;
+  /* padding: 2rem 0; */
   position: relative;
 }
 
@@ -19,7 +19,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 0.625rem;
+  /* padding: 0 0.625rem; */
 }
 
 .project-carousel .slick-slide > div {
