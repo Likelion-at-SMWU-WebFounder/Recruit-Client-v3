@@ -114,7 +114,7 @@ const ProjectOverview = ({
   const hasAnyLink = !!(googleDriveUrl || gitFeUrl || gitBeUrl || gitOrgUrl);
 
   return (
-    <section className="w-full md:px-[0.8rem] lg:px-[1rem]">
+    <section className="w-full md:h-[23.25rem] md:px-[0.8rem] lg:h-[30.25rem] lg:px-[1rem]">
       <div className={OVERVIEW_STYLES.grid}>
         <InfoRow label={PROJECT_INFO_LABELS.category} value={category} />
         <InfoRow label={PROJECT_INFO_LABELS.no} value={no} />
