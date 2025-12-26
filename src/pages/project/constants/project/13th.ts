@@ -1,9 +1,17 @@
-const THIRTEENTH_PROJECT_IMAGE_PATH = import.meta.env.VITE_IMAGE_PATH + '/project/13th';
+const THIRTEENTH_PROJECT_IMAGE_PATH = import.meta.env.VITE_LOCAL_IMAGE_PATH + '/project/13th';
 
 export const thirteenthProjectsData = [
   {
     id: '1300',
     thumbnail: `${THIRTEENTH_PROJECT_IMAGE_PATH}/neonnaekkeoGYM.png`,
+    images: [
+      `${THIRTEENTH_PROJECT_IMAGE_PATH}/neonnaekkeoGYM/neonnaekkeoGYM1.png`,
+      `${THIRTEENTH_PROJECT_IMAGE_PATH}/neonnaekkeoGYM/neonnaekkeoGYM2.png`,
+      `${THIRTEENTH_PROJECT_IMAGE_PATH}/neonnaekkeoGYM/neonnaekkeoGYM3.png`,
+      `${THIRTEENTH_PROJECT_IMAGE_PATH}/neonnaekkeoGYM/neonnaekkeoGYM4.png`,
+      `${THIRTEENTH_PROJECT_IMAGE_PATH}/neonnaekkeoGYM/neonnaekkeoGYM5.png`,
+      `${THIRTEENTH_PROJECT_IMAGE_PATH}/neonnaekkeoGYM/neonnaekkeoGYM6.png`,
+    ],
     title: '넌내꺼짐',
     teamMember: '하지민(PM)\n박소연(FE), 이승채(FE)\n안성민(BE), 이혜지(BE)',
     summary: '기구 앞 눈치싸움에서 벗어나는 가장 똑똑한 방법',
