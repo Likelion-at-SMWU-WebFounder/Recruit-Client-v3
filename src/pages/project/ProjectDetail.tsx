@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import DetailContainer from '@pages/project/components/detail/DetailContainer';
@@ -5,6 +6,7 @@ import ProjectCarousel from '@pages/project/components/detail/ProjectCarousel';
 import ProjectOverview from '@pages/project/components/detail/ProjectOverview';
 import ProjectMember from '@pages/project/components/detail/ProjectMember';
 import ProjectDescription from '@/pages/project/components/detail/ProjectDescription';
+import NextProjectButton from '@pages/project/components/detail/NextProjectButton';
 import { allProjectsData } from '@pages/project/constants/project/allProjectData';
 import { PROJECT_DETAIL_TITLES } from '@pages/project/constants/detail';
 
@@ -15,6 +17,10 @@ interface ProjectWithImages {
 const ProjectDetail = () => {
   const { projectId } = useParams();
   const project = allProjectsData.find((project) => project.id === projectId);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   if (!project) {
     return null;
@@ -61,7 +67,7 @@ const ProjectDetail = () => {
   };
 
   return (
-    <div className="flex w-full justify-center px-[1rem] py-[3rem] md:px-[4rem] lg:px-[10rem]">
+    <div className="flex w-full justify-center px-[1rem] pt-[9.75rem] pb-[7.5rem] md:px-[4rem] md:pt-[13rem] md:pb-[5.62rem] lg:px-[10rem] lg:pt-[14.5rem] lg:pb-[1.5rem]">
       <div className="w-full">
         {/* 헤더 */}
         <header className="mb-[2.5rem] flex flex-col gap-[0.25rem] md:mb-[3.5rem] lg:mb-[4.5rem] lg:gap-[0.5rem]">
@@ -99,6 +105,13 @@ const ProjectDetail = () => {
           {renderTeamMembersSection()}
           {renderServiceSection()}
         </div>
+
+        {/* 다음 프로젝트 보기 버튼 */}
+        {projectId && (
+          <div className="hidden justify-end md:mt-[5.62rem] md:flex lg:mt-[4.62rem]">
+            <NextProjectButton currentProjectId={projectId} />
+          </div>
+        )}
       </div>
     </div>
   );
