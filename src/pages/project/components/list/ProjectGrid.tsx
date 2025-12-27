@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import ProjectCard from '@pages/project/components/list/ProjectCard';
 import Loading from '@pages/project/components/list/Loading';
 import Pagination from '@shared/components/Pagination';
-import { allProjectsData } from '@pages/project/constants/allProjectData';
+import { allProjectsData } from '@pages/project/constants/project/allProjectData';
 
 interface ProjectGridProps {
   filter: string;
