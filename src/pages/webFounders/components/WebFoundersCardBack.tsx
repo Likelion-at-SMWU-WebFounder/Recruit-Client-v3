@@ -39,17 +39,17 @@ const CARD_BACK_STYLES = {
     tablet: 'md:mt-[0.94rem] md:mb-[1.25rem]',
     desktop: 'lg:mt-[1.56rem] lg:mb-[1.41rem]',
   }, // 이름, 기수, 파트 컨테이너 스타일
-  name: {
+  nameText: {
     base: 'leading-[140%] font-bold',
     mobile: 'text-[1.125rem]',
     tablet: 'md:text-[1.75rem]',
   }, // 이름 스타일
-  noPart: {
+  noPartText: {
     base: 'leading-[140%] font-medium',
     mobile: 'text-[0.75rem]',
     tablet: 'md:text-[1.25rem]',
   }, // 기수, 파트 스타일
-  responsibilities: {
+  responsibilitiesText: {
     base: 'leading-[140%] font-medium whitespace-pre-line text-white/70',
     mobile: 'text-[0.75rem]',
     tablet: 'md:text-[1rem]',
@@ -129,9 +129,9 @@ const WebFoundersCardBack = ({ founder, onFlipBack }: WebFoundersCardBackProps) 
   const containerClassName = combineStyles(CARD_BACK_STYLES.container);
   const profileImageClassName = combineStyles(CARD_BACK_STYLES.profileImage);
   const nameInfoWrapperClassName = combineStyles(CARD_BACK_STYLES.nameInfoWrapper);
-  const nameClassName = combineStyles(CARD_BACK_STYLES.name);
-  const noPartClassName = combineStyles(CARD_BACK_STYLES.noPart);
-  const responsibilitiesClassName = combineStyles(CARD_BACK_STYLES.responsibilities);
+  const nameTextClassName = combineStyles(CARD_BACK_STYLES.nameText);
+  const noPartTextClassName = combineStyles(CARD_BACK_STYLES.noPartText);
+  const responsibilitiesTextClassName = combineStyles(CARD_BACK_STYLES.responsibilitiesText);
   const footerClassName = CARD_BACK_STYLES.footer.base;
   const socialLinksContainerClassName = combineStyles(CARD_BACK_STYLES.socialLinksContainer);
   const flipBackButtonClassName = combineStyles(CARD_BACK_STYLES.flipBackButton);
@@ -145,14 +145,14 @@ const WebFoundersCardBack = ({ founder, onFlipBack }: WebFoundersCardBackProps) 
 
         {/* 이름, 기수, 파트 */}
         <div className={nameInfoWrapperClassName}>
-          <span className={nameClassName}>{name}</span>
-          <span className={noPartClassName}>
+          <span className={nameTextClassName}>{name}</span>
+          <span className={noPartTextClassName}>
             {no} · {part}
           </span>
         </div>
 
         {/* 담당 파트 설명 */}
-        <div className={responsibilitiesClassName}>{responsibilities}</div>
+        <div className={responsibilitiesTextClassName}>{responsibilities}</div>
       </header>
 
       <footer className={footerClassName}>
