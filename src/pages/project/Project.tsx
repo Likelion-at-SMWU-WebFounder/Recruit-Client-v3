@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Title from '@shared/components/Title';
 import FilterBar from '@shared/components/filter/FilterBar';
 import ProjectGrid from '@pages/project/components/list/ProjectGrid';
 import { combineStyles } from '@shared/utils/combineStyles';
+import useResponsiveBackgroundImage from '@shared/hooks/useResponsiveBackgroundImage';
 import {
   PROJECT_TITLE,
   PROJECT_SUBTITLE,
@@ -26,22 +27,8 @@ const PROJECT_STYLES = {
   },
 } as const;
 
-const getWidth = () => (typeof window !== 'undefined' ? window.innerWidth : 1440);
-const getProjectImage = (width: number) => {
-  if (width <= 768) return PROJECT_BACKGROUND_IMAGES_PATH.mobile;
-  if (width <= 1024) return PROJECT_BACKGROUND_IMAGES_PATH.tablet;
-  return PROJECT_BACKGROUND_IMAGES_PATH.desktop;
-};
-
 const Project = () => {
-  const [backgroundImage, setBackgroundImage] = useState(() => `url(${getProjectImage(getWidth())})`);
-
-  useEffect(() => {
-    const handleResize = () => setBackgroundImage(`url(${getProjectImage(getWidth())})`);
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  const backgroundImage = useResponsiveBackgroundImage(PROJECT_BACKGROUND_IMAGES_PATH);
 
   const [filter, setFilter] = useState(PROJECT_FILTER_OPTIONS[0].filterValue);
   const containerClassName = combineStyles(PROJECT_STYLES.container);
