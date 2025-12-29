@@ -50,7 +50,7 @@ const CARD_BACK_STYLES = {
     tablet: 'md:text-[1.25rem]',
   }, // 기수, 파트 스타일
   responsibilitiesText: {
-    base: 'leading-[140%] font-medium whitespace-pre-line text-white/70',
+    base: 'leading-[140%] font-medium whitespace-pre-line text-white/70 break-keep',
     mobile: 'text-[0.75rem]',
     tablet: 'md:text-[1rem]',
     desktop: 'lg:text-[1.25rem]',
