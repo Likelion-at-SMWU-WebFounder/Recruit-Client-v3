@@ -3,21 +3,21 @@ import { WEBFOUNDERS_1TH, WEBFOUNDERS_2TH, WEBFOUNDERS_3TH } from '@pages/webFou
 
 /**
  * 파트별로 멤버를 필터링하는 유틸 함수
- * @param foundersByPart - 파트별로 그룹화된 멤버 객체
+ * @param foundersByGeneration - 기수별로 그룹화된 멤버 객체
  * @param part - 필터링할 파트명 ('기획디자인', '프론트엔드', '백엔드')
  * @returns 해당 파트의 멤버 배열
  */
 export const getFoundersByPart = (
-  foundersByPart: { PLAN_DESIGN: FounderType[]; FRONTEND: FounderType[]; BACKEND: FounderType[] },
+  foundersByGeneration: { PLAN_DESIGN: FounderType[]; FRONTEND: FounderType[]; BACKEND: FounderType[] },
   part: string
 ): FounderType[] => {
   switch (part) {
     case '기획디자인':
-      return foundersByPart.PLAN_DESIGN;
+      return foundersByGeneration.PLAN_DESIGN;
     case '프론트엔드':
-      return foundersByPart.FRONTEND;
+      return foundersByGeneration.FRONTEND;
     case '백엔드':
-      return foundersByPart.BACKEND;
+      return foundersByGeneration.BACKEND;
     default:
       return [];
   }
@@ -26,7 +26,7 @@ export const getFoundersByPart = (
 /**
  * 기수별로 멤버를 필터링하는 유틸 함수
  * @param filterValue - 필터 값 ('3기', '2기', '1기')
- * @returns 해당 기수의 파트별로 그룹화된 멤버 객체
+ * @returns 해당 기수의 멤버 그룹화 객체
  */
 export const getFoundersByGeneration = (
   filterValue: string
