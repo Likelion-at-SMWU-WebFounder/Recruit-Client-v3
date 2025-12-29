@@ -4,7 +4,7 @@ import { BiPlus } from 'react-icons/bi';
 import { AiFillInstagram, AiFillGithub, AiFillLinkedin } from 'react-icons/ai';
 import { IoMail } from 'react-icons/io5';
 import { RiNotionFill } from 'react-icons/ri';
-import IconButton from './IconButton';
+import SocialLinkButton from './SocialLinkButton';
 import { normalizeUrl } from '@pages/webFounders/utils';
 import { combineStyles } from '@shared/utils/combineStyles';
 
@@ -159,7 +159,7 @@ const WebFoundersCardBack = ({ founder, onFlipBack }: WebFoundersCardBackProps) 
         {/* 아이콘 버튼 영역 */}
         <div className={socialLinksContainerClassName}>
           {socialLinks.map((link, idx) => (
-            <IconButton
+            <SocialLinkButton
               key={idx}
               onClick={() => {
                 if (link.url) {
@@ -168,7 +168,7 @@ const WebFoundersCardBack = ({ founder, onFlipBack }: WebFoundersCardBackProps) 
               }}
               aria-label={link.label}>
               {link.icon}
-            </IconButton>
+            </SocialLinkButton>
           ))}
         </div>
 
