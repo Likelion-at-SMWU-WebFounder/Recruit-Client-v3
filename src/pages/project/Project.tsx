@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Title from '@shared/components/Title';
-import FilterBar from '@pages/project/components/list/filter/FilterBar';
+import FilterBar from '@shared/components/filter/FilterBar';
 import ProjectGrid from '@pages/project/components/list/ProjectGrid';
 import { combineStyles } from '@shared/utils/combineStyles';
 import {
@@ -43,7 +43,7 @@ const Project = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const [filter, setFilter] = useState(PROJECT_FILTER_OPTIONS[0].name);
+  const [filter, setFilter] = useState(PROJECT_FILTER_OPTIONS[0].filterValue);
   const containerClassName = combineStyles(PROJECT_STYLES.container);
   const titleWrapperClassName = combineStyles(PROJECT_STYLES.titleWrapper);
   const contentWrapperClassName = combineStyles(PROJECT_STYLES.contentWrapper);
@@ -56,7 +56,7 @@ const Project = () => {
         <Title title={PROJECT_TITLE} description={PROJECT_SUBTITLE} isIcon={true} />
       </div>
       <div className={contentWrapperClassName}>
-        <FilterBar value={filter} onChange={setFilter} />
+        <FilterBar value={filter} onChange={setFilter} options={PROJECT_FILTER_OPTIONS} mode="project" />
         <ProjectGrid filter={filter} />
       </div>
     </div>
