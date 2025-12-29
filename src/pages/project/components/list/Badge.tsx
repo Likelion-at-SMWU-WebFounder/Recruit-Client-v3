@@ -1,3 +1,5 @@
+import { combineStyles } from '@shared/utils/combineStyles';
+
 interface BadgeProps {
   children: React.ReactNode;
 }
@@ -11,7 +13,7 @@ const BADGE_STYLES = {
 } as const;
 
 const Badge = ({ children }: BadgeProps) => {
-  const badgeClassName = [BADGE_STYLES.base, BADGE_STYLES.mobile, BADGE_STYLES.tablet, BADGE_STYLES.desktop].join(' ');
+  const badgeClassName = combineStyles(BADGE_STYLES);
 
   return <span className={badgeClassName}>{children}</span>;
 };

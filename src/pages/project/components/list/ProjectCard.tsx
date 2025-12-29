@@ -1,4 +1,5 @@
 import Badge from '@pages/project/components/list/Badge';
+import { combineStyles } from '@shared/utils/combineStyles';
 
 interface ProjectCardProps {
   thumbnail: string;
@@ -60,39 +61,15 @@ const CARD_STYLES = {
 } as const;
 
 const ProjectCard = ({ thumbnail, title, summary, no, category, onClick }: ProjectCardProps) => {
-  const containerClassName = [
-    CARD_STYLES.container.base,
-    CARD_STYLES.container.mobile,
-    CARD_STYLES.container.tablet,
-    CARD_STYLES.container.desktop,
-  ].join(' ');
-
-  const thumbnailWrapperClassName = [
-    CARD_STYLES.thumbnailWrapper.base,
-    CARD_STYLES.thumbnailWrapper.mobile,
-    CARD_STYLES.thumbnailWrapper.tablet,
-    CARD_STYLES.thumbnailWrapper.desktop,
-  ].join(' ');
-
-  const thumbnailClassName = [
-    CARD_STYLES.thumbnail.base,
-    CARD_STYLES.thumbnail.mobile,
-    CARD_STYLES.thumbnail.tablet,
-  ].join(' ');
-
-  const thumbnailOverlayClassName = [
-    CARD_STYLES.thumbnailOverlay.base,
-    CARD_STYLES.thumbnailOverlay.mobile,
-    CARD_STYLES.thumbnailOverlay.tablet,
-  ].join(' ');
-
-  const contentClassName = [CARD_STYLES.content.base, CARD_STYLES.content.tablet].join(' ');
-  const textSectionClassName = [CARD_STYLES.textSection.base, CARD_STYLES.textSection.tablet].join(' ');
-  const titleClassName = [CARD_STYLES.title.base, CARD_STYLES.title.tablet, CARD_STYLES.title.desktop].join(' ');
-  const summaryClassName = [CARD_STYLES.summary.base, CARD_STYLES.summary.tablet, CARD_STYLES.summary.desktop].join(
-    ' '
-  );
-  const badgeContainerClassName = [CARD_STYLES.badgeContainer.base, CARD_STYLES.badgeContainer.tablet].join(' ');
+  const containerClassName = combineStyles(CARD_STYLES.container);
+  const thumbnailWrapperClassName = combineStyles(CARD_STYLES.thumbnailWrapper);
+  const thumbnailClassName = combineStyles(CARD_STYLES.thumbnail);
+  const thumbnailOverlayClassName = combineStyles(CARD_STYLES.thumbnailOverlay);
+  const contentClassName = combineStyles(CARD_STYLES.content);
+  const textSectionClassName = combineStyles(CARD_STYLES.textSection);
+  const titleClassName = combineStyles(CARD_STYLES.title);
+  const summaryClassName = combineStyles(CARD_STYLES.summary);
+  const badgeContainerClassName = combineStyles(CARD_STYLES.badgeContainer);
 
   return (
     <div onClick={onClick} className={containerClassName}>

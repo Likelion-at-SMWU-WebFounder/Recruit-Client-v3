@@ -1,6 +1,7 @@
 import { useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { combineStyles } from '@shared/utils/combineStyles';
 import { allProjectsData } from '@pages/project/constants/project/allProjectData';
 
 const SCROLL_TO_TOP_OPTIONS = { top: 0, behavior: 'smooth' as const } as const;
@@ -52,36 +53,10 @@ const NextProjectButton = ({ currentProjectId }: NextProjectButtonProps) => {
   }, [navigate, nextProject]);
 
   // 스타일 클래스명 조합
-  const buttonClassName = useMemo(
-    () => [NEXT_PROJECT_BUTTON_STYLES.button.base, NEXT_PROJECT_BUTTON_STYLES.button.tablet].join(' '),
-    []
-  );
-
-  const thumbnailWrapperClassName = useMemo(
-    () =>
-      [NEXT_PROJECT_BUTTON_STYLES.thumbnailWrapper.base, NEXT_PROJECT_BUTTON_STYLES.thumbnailWrapper.tablet].join(' '),
-    []
-  );
-
-  const thumbnailSizeClassName = useMemo(
-    () =>
-      [
-        NEXT_PROJECT_BUTTON_STYLES.thumbnailSize.base,
-        NEXT_PROJECT_BUTTON_STYLES.thumbnailSize.tablet,
-        NEXT_PROJECT_BUTTON_STYLES.thumbnailSize.desktop,
-      ].join(' '),
-    []
-  );
-
-  const textClassName = useMemo(
-    () =>
-      [
-        NEXT_PROJECT_BUTTON_STYLES.text.base,
-        NEXT_PROJECT_BUTTON_STYLES.text.tablet,
-        NEXT_PROJECT_BUTTON_STYLES.text.desktop,
-      ].join(' '),
-    []
-  );
+  const buttonClassName = useMemo(() => combineStyles(NEXT_PROJECT_BUTTON_STYLES.button), []);
+  const thumbnailWrapperClassName = useMemo(() => combineStyles(NEXT_PROJECT_BUTTON_STYLES.thumbnailWrapper), []);
+  const thumbnailSizeClassName = useMemo(() => combineStyles(NEXT_PROJECT_BUTTON_STYLES.thumbnailSize), []);
+  const textClassName = useMemo(() => combineStyles(NEXT_PROJECT_BUTTON_STYLES.text), []);
 
   // 다음 프로젝트가 없으면 렌더링하지 않음
   if (!nextProject) {

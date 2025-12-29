@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import FilterButton from '@pages/project/components/list/filter/FilterButton';
 import { PROJECT_FILTER_OPTIONS } from '@pages/project/constants';
+import { combineStyles } from '@shared/utils/combineStyles';
 import { MdOutlineMoreHoriz } from 'react-icons/md';
 
 interface FilterBarProps {
@@ -30,18 +31,15 @@ const FilterBar = ({ value, onChange }: FilterBarProps) => {
 
   const hasMoreOptions = PROJECT_FILTER_OPTIONS.length > 4;
 
-  const containerClassName = [
-    FILTER_BAR_STYLES.container.base,
-    FILTER_BAR_STYLES.container.tablet,
-    FILTER_BAR_STYLES.container.desktop,
-  ].join(' ');
-
+  const containerClassName = combineStyles(FILTER_BAR_STYLES.container);
   const moreButtonClassName = [
     FILTER_BAR_STYLES.moreButton.base,
     FILTER_BAR_STYLES.moreButton.hover,
     FILTER_BAR_STYLES.moreButton.tablet,
     FILTER_BAR_STYLES.moreButton.desktop,
-  ].join(' ');
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <div className={containerClassName}>
