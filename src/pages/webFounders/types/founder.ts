@@ -18,9 +18,3 @@ export interface FoundersByPartType {
   part: string;
   members: FounderType[];
 }
-
-// 웹파운더즈 기수별 필터 옵션 타입
-export interface WebFoundersFilterOptionsType {
-  id: number;
-  name: string;
-}
