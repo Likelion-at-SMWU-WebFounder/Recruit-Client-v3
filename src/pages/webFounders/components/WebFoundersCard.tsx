@@ -2,7 +2,6 @@ import { useState } from 'react';
 import WebFoundersCardFront from './WebFoundersCardFront';
 import WebFoundersCardBack from './WebFoundersCardBack';
 import type { FounderType } from '@/pages/webFounders/types/founder';
-import { WEBFOUNDERS_3TH } from '@pages/webFounders/constants/member';
 import { combineStyles } from '@shared/utils/combineStyles';
 
 interface WebFoundersCardProps {
@@ -30,8 +29,8 @@ const WEBFOUNDERS_CARD_STYLES = {
 const WebFoundersCard = ({ founder }: WebFoundersCardProps) => {
   const [isFlipped, setIsFlipped] = useState(false);
   // WEBFOUNDERS_3TH (12기)만 뒷면(flip) 버튼이 있음
-  const all3thFounders = [...WEBFOUNDERS_3TH.PLAN_DESIGN, ...WEBFOUNDERS_3TH.FRONTEND, ...WEBFOUNDERS_3TH.BACKEND];
-  const hasBackCard = all3thFounders.some((f) => f.id === founder.id);
+  // founder.no가 '12기'인지 확인하여 flip 버튼 표시 여부 결정
+  const hasBackCard = founder.no === '12기';
 
   if (!hasBackCard) {
     // WEBFOUNDERS_1TH (10기), WEBFOUNDERS_2TH (11기)는 앞면만 있음
