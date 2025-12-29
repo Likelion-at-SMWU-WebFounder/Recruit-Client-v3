@@ -31,7 +31,6 @@ const useResponsiveBackgroundImage = (imagePaths: ResponsiveImagePaths): string 
       setBackgroundImage(`url(${getImagePath(getWidth())})`);
     };
 
-    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [imagePaths.mobile, imagePaths.tablet, imagePaths.desktop]);
