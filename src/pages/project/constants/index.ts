@@ -1,3 +1,5 @@
+import type { FilterOptionType } from '@shared/types/filter';
+
 const PROJECT_IMAGES_PATH = import.meta.env.VITE_LOCAL_IMAGE_PATH + '/project';
 
 // 프로젝트 타이틀, 서브타이틀
@@ -15,26 +17,26 @@ export const PROJECT_BACKGROUND_IMAGES_PATH = {
 export const PROJECT_FILTER_OPTIONS = [
   {
     id: 1,
-    name: '전체',
+    filterValue: '전체',
   },
   {
     id: 2,
-    name: '13기',
+    filterValue: '13기',
   },
   {
     id: 3,
-    name: '12기',
+    filterValue: '12기',
   },
   {
     id: 4,
-    name: '11기',
+    filterValue: '11기',
   },
   {
     id: 5,
-    name: '10기',
+    filterValue: '10기',
   },
   {
     id: 6,
-    name: '9기',
+    filterValue: '9기',
   },
-];
+] as FilterOptionType[];

@@ -1,4 +1,4 @@
-import type { WebFoundersFilterOptionsType } from '@/pages/webFounders/types/founder';
+import type { FilterOptionType } from '@shared/types/filter';
 
 // 웹파운더즈 타이틀, 서브타이틀
 export const WEBFOUNDERS_TITLE = 'Web Founders';
@@ -8,14 +8,14 @@ export const WEBFOUNDERS_SUBTITLE = '숙명여자대학교 멋사 홈페이지 �
 export const WEBFOUNDERS_FILTER_OPTIONS = [
   {
     id: 1,
-    name: '3기',
+    filterValue: '3기',
   },
   {
     id: 2,
-    name: '2기',
+    filterValue: '2기',
   },
   {
     id: 3,
-    name: '1기',
+    filterValue: '1기',
   },
-] as WebFoundersFilterOptionsType[];
+] as FilterOptionType[];
