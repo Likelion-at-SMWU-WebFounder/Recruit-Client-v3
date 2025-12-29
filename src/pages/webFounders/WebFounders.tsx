@@ -41,13 +41,13 @@ const WebFounders = () => {
   const backgroundImage = useResponsiveBackgroundImage(WEBFOUNDERS_BACKGROUND_IMAGES_PATH);
   const [selectedFilter, setSelectedFilter] = useState<string>(WEBFOUNDERS_FILTER_OPTIONS[0].filterValue); // 기본값: '3기'
 
-  // 필터에 따라 멤버 필터링 (파트별로 그룹화된 객체)
-  const foundersByPart = getFoundersByGeneration(selectedFilter);
+  // 필터에 따라 멤버 필터링 (기수별로 멤버 그룹화)
+  const foundersByGeneration = getFoundersByGeneration(selectedFilter);
 
-  // 파트별로 멤버 데이터 그룹화
-  const planDesignFounders = getFoundersByPart(foundersByPart, '기획디자인');
-  const frontendFounders = getFoundersByPart(foundersByPart, '프론트엔드');
-  const backendFounders = getFoundersByPart(foundersByPart, '백엔드');
+  // 파트별로 멤버 필터링
+  const planDesignFounders = getFoundersByPart(foundersByGeneration, '기획디자인');
+  const frontendFounders = getFoundersByPart(foundersByGeneration, '프론트엔드');
+  const backendFounders = getFoundersByPart(foundersByGeneration, '백엔드'); // 백엔드 파트 멤버 필터링
 
   // 스타일 클래스명
   const containerClassName = combineStyles(WEBFOUNDERS_STYLES.container);
