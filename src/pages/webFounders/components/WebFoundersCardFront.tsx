@@ -78,7 +78,7 @@ const WebFoundersCardFront = ({ name, no, part, image, onFlip }: WebFoundersCard
           </div>
 
           {hasFlipButton && (
-            <button onClick={onFlip} className={flipButtonClassName}>
+            <button type="button" onClick={onFlip} className={flipButtonClassName}>
               <BiPlus className={flipIconClassName} />
             </button>
           )}
