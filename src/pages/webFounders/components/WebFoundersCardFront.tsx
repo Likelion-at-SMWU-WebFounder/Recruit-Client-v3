@@ -1,4 +1,4 @@
-import WebFoundersCardOverlay from '@pages/webFounders/components/WebFoundersCardOverlay';
+import BlurOverlay from '@/pages/webFounders/components/BlurOverlay';
 
 import { BiPlus } from 'react-icons/bi';
 
@@ -17,7 +17,7 @@ const WebFoundersCardFront = ({ name, no, part, image, onFlip }: WebFoundersCard
       style={{ backgroundImage: `url(${image})` }}>
       <div className="relative flex h-[6.125rem] items-end justify-between px-[0.88rem] py-[0.46rem] md:h-[10.2rem] md:px-[1.62rem] md:py-[1.05rem] lg:h-[11.5rem] lg:px-[2rem] lg:py-[1.62rem]">
         {/* 오버레이 */}
-        <WebFoundersCardOverlay />
+        <BlurOverlay />
 
         {/* 이름, 기수, 파트 + flip card 버튼 */}
         <div className="relative flex w-full items-center justify-between">
