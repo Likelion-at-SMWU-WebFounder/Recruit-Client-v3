@@ -29,7 +29,9 @@ export interface CompletionConditionTypes {
 export interface ScheduleTypes {
   id: string;
   dateRange: string;
+  dateRangeMobile?: string;
   label: string;
+  labelDesktop?: string;
   status: 'upcoming' | 'current' | 'completed';
 }
 
