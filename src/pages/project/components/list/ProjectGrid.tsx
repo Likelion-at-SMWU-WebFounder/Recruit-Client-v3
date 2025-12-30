@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import ProjectCard from '@pages/project/components/list/ProjectCard';
 import Loading from '@pages/project/components/list/Loading';
@@ -34,15 +34,39 @@ const GRID_STYLES = {
 
 const ProjectGrid = ({ filter }: ProjectGridProps) => {
   const navigate = useNavigate();
-  const [currentPage, setCurrentPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
   const [visibleCount, setVisibleCount] = useState(MOBILE_LOAD_COUNT);
   const [isLoading, setIsLoading] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
 
+  // URL에서 page 파라미터 읽기 (모바일이 아닐 때만 사용)
+  const pageFromUrl = searchParams.get('page');
+  const currentPage = useMemo(() => {
+    // 모바일에서는 페이지네이션을 사용하지 않으므로 항상 1 반환
+    if (isMobile) return 1;
+    const page = pageFromUrl ? parseInt(pageFromUrl, 10) : 1;
+    return isNaN(page) || page < 1 ? 1 : page;
+  }, [pageFromUrl, isMobile]);
+
+  const handlePageChange = useCallback(
+    (page: number) => {
+      const newSearchParams = new URLSearchParams(searchParams);
+      if (page === 1) {
+        // 페이지가 1이면 파라미터에서 제거
+        newSearchParams.delete('page');
+      } else {
+        newSearchParams.set('page', page.toString());
+      }
+      setSearchParams(newSearchParams);
+    },
+    [searchParams, setSearchParams]
+  );
+
   const handleClick = useCallback(
     (projectId: string) => {
-      navigate(`${ROUTER_URL.PROJECT_DETAIL.replace(':projectId', projectId)}`);
+      // 상세 페이지로 이동 (쿼리 파라미터는 전달하지 않지만, 브라우저 히스토리로 복원 가능)
+      navigate(ROUTER_URL.PROJECT_DETAIL.replace(':projectId', projectId));
     },
     [navigate]
   );
@@ -88,9 +112,8 @@ const ProjectGrid = ({ filter }: ProjectGridProps) => {
     };
   }, []);
 
-  // 필터가 변경되면 초기 상태로 리셋
+  // 필터가 변경되면 초기 상태로 리셋 (페이지는 URL에서 관리되므로 필터 변경 시 URL이 업데이트됨)
   useEffect(() => {
-    setCurrentPage(1);
     setVisibleCount(MOBILE_LOAD_COUNT);
     setIsLoading(false);
   }, [filter]);
@@ -128,6 +151,15 @@ const ProjectGrid = ({ filter }: ProjectGridProps) => {
 
   const totalPages = useMemo(() => Math.ceil(filteredProjects.length / pageSize), [filteredProjects.length, pageSize]);
 
+  // 현재 페이지가 총 페이지 수를 초과하는 경우 1페이지로 리셋
+  useEffect(() => {
+    if (!isMobile && currentPage > totalPages && totalPages > 0) {
+      const newSearchParams = new URLSearchParams(searchParams);
+      newSearchParams.delete('page');
+      setSearchParams(newSearchParams, { replace: true });
+    }
+  }, [currentPage, totalPages, isMobile, searchParams, setSearchParams]);
+
   const currentProjects = useMemo(
     () =>
       isMobile
@@ -161,7 +193,7 @@ const ProjectGrid = ({ filter }: ProjectGridProps) => {
         })}
       </div>
       {!isMobile && totalPages > 1 && (
-        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
+        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       )}
       {isLoading && <Loading />}
     </div>

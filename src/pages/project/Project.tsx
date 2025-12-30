@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Title from '@shared/components/Title';
 import FilterBar from '@shared/components/filter/FilterBar';
 import ProjectGrid from '@pages/project/components/list/ProjectGrid';
@@ -29,8 +30,35 @@ const PROJECT_STYLES = {
 
 const Project = () => {
   const backgroundImage = useResponsiveBackgroundImage(PROJECT_BACKGROUND_IMAGES_PATH);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const [filter, setFilter] = useState(PROJECT_FILTER_OPTIONS[0].filterValue);
+  const filterFromUrl = searchParams.get('filter');
+  const defaultFilter = PROJECT_FILTER_OPTIONS[0].filterValue;
+  const filter = useMemo(() => {
+    // URL에 filter가 있고, 유효한 필터 옵션인 경우에만 사용
+    if (filterFromUrl && PROJECT_FILTER_OPTIONS.some((option) => option.filterValue === filterFromUrl)) {
+      return filterFromUrl;
+    }
+    return defaultFilter;
+  }, [filterFromUrl, defaultFilter]);
+
+  const handleFilterChange = (newFilter: string) => {
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.set('filter', newFilter);
+    // 필터가 변경되면 페이지를 1로 리셋 (페이지가 1이면 파라미터에서 제거)
+    newSearchParams.delete('page');
+    setSearchParams(newSearchParams);
+  };
+
+  // 초기 렌더링 시 필터가 없으면 기본값으로 설정
+  useEffect(() => {
+    if (!filterFromUrl) {
+      const newSearchParams = new URLSearchParams(searchParams);
+      newSearchParams.set('filter', defaultFilter);
+      setSearchParams(newSearchParams, { replace: true });
+    }
+  }, [filterFromUrl, defaultFilter, searchParams, setSearchParams]);
+
   const containerClassName = combineStyles(PROJECT_STYLES.container);
   const titleWrapperClassName = combineStyles(PROJECT_STYLES.titleWrapper);
   const contentWrapperClassName = combineStyles(PROJECT_STYLES.contentWrapper);
@@ -43,7 +71,7 @@ const Project = () => {
         <Title title={PROJECT_TITLE} description={PROJECT_SUBTITLE} isIcon={true} />
       </div>
       <div className={contentWrapperClassName}>
-        <FilterBar value={filter} onChange={setFilter} options={PROJECT_FILTER_OPTIONS} mode="project" />
+        <FilterBar value={filter} onChange={handleFilterChange} options={PROJECT_FILTER_OPTIONS} mode="project" />
         <ProjectGrid filter={filter} />
       </div>
     </div>
