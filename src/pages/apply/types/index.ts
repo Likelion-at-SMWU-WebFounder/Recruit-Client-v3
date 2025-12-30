@@ -1,3 +1,12 @@
+// 모집 파트 타입
+export interface RecruitPartTypes {
+  id: string;
+  title: string;
+  skills: string;
+  description: string;
+  cta: string;
+}
+
 // 모집 안내 탭 타입
 export interface RecruitInfoTabTypes {
   id: string;
