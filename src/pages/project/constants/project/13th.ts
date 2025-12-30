@@ -432,7 +432,7 @@ export const thirteenthProjectsData = [
     no: '13기',
     category: '중앙해커톤',
     techStack: 'Django, React(JavaScript)',
-    award: '어흥콘 인기상',
+    award: null,
   },
   {
     id: '1318',
@@ -456,7 +456,7 @@ export const thirteenthProjectsData = [
     no: '13기',
     category: '중앙해커톤',
     techStack: 'Django, React(JavaScript)',
-    award: '어흥콘 대상',
+    award: null,
   },
   {
     id: '1319',
@@ -478,7 +478,7 @@ export const thirteenthProjectsData = [
     no: '13기',
     category: '중앙해커톤',
     techStack: 'Spring Boot, React(JavaScript)',
-    award: '어흥콘 프로그래머스 인기상',
+    award: null,
   },
   {
     id: '1320',
