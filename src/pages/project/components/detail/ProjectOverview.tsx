@@ -1,4 +1,5 @@
-import { PROJECT_INFO_LABELS, PROJECT_INFO_ICONS_PATHS } from '@pages/project/constants/detail';
+import DetailContainer from '@pages/project/components/detail/DetailContainer';
+import { PROJECT_INFO_LABELS, PROJECT_INFO_ICONS_PATHS, PROJECT_DETAIL_TITLES } from '@pages/project/constants/detail';
 
 // 개요 컴포넌트 타입
 interface ProjectOverviewProps {
@@ -114,29 +115,31 @@ const ProjectOverview = ({
   const hasAnyLink = !!(googleDriveUrl || gitFeUrl || gitBeUrl || gitOrgUrl);
 
   return (
-    <section className="w-full pb-[0.6rem] md:h-[23.25rem] md:px-[0.8rem] lg:h-[30.25rem] lg:px-[1rem]">
-      <div className={OVERVIEW_STYLES.grid}>
-        <InfoRow label={PROJECT_INFO_LABELS.category} value={category} />
-        <InfoRow label={PROJECT_INFO_LABELS.no} value={no} />
-        <InfoRow label={PROJECT_INFO_LABELS.techStack} value={techStack} />
-        <InfoRow label={PROJECT_INFO_LABELS.award} value={award} />
-        <InfoRow
-          label={PROJECT_INFO_LABELS.link}
-          value={
-            hasAnyLink ? (
-              <LinkIcons
-                googleDriveUrl={googleDriveUrl}
-                gitOrgUrl={gitOrgUrl}
-                gitFeUrl={gitFeUrl}
-                gitBeUrl={gitBeUrl}
-              />
-            ) : (
-              '-'
-            )
-          }
-        />
+    <DetailContainer title={PROJECT_DETAIL_TITLES.overview} mobileOnlyToggle>
+      <div className="w-full pb-[0.6rem] md:h-[23.25rem] md:px-[0.8rem] lg:h-[30.25rem] lg:px-[1rem]">
+        <div className={OVERVIEW_STYLES.grid}>
+          <InfoRow label={PROJECT_INFO_LABELS.category} value={category} />
+          <InfoRow label={PROJECT_INFO_LABELS.no} value={no} />
+          <InfoRow label={PROJECT_INFO_LABELS.techStack} value={techStack} />
+          <InfoRow label={PROJECT_INFO_LABELS.award} value={award} />
+          <InfoRow
+            label={PROJECT_INFO_LABELS.link}
+            value={
+              hasAnyLink ? (
+                <LinkIcons
+                  googleDriveUrl={googleDriveUrl}
+                  gitOrgUrl={gitOrgUrl}
+                  gitFeUrl={gitFeUrl}
+                  gitBeUrl={gitBeUrl}
+                />
+              ) : (
+                '-'
+              )
+            }
+          />
+        </div>
       </div>
-    </section>
+    </DetailContainer>
   );
 };
 

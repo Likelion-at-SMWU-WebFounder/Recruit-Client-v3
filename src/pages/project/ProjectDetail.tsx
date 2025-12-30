@@ -1,14 +1,12 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import DetailContainer from '@pages/project/components/detail/DetailContainer';
 import ProjectCarousel from '@pages/project/components/detail/ProjectCarousel';
 import ProjectOverview from '@pages/project/components/detail/ProjectOverview';
 import ProjectMember from '@pages/project/components/detail/ProjectMember';
 import ProjectDescription from '@/pages/project/components/detail/ProjectDescription';
 import NextProjectButton from '@pages/project/components/detail/NextProjectButton';
 import { allProjectsData } from '@pages/project/constants/project/allProjectData';
-import { PROJECT_DETAIL_TITLES } from '@pages/project/constants/detail';
 
 interface ProjectWithImages {
   images?: string[];
@@ -27,36 +25,6 @@ const ProjectDetail = () => {
   }
 
   const members = project.teamMember?.split('\n') || [];
-
-  // 개요 섹션 렌더링
-  const renderOverviewSection = () => (
-    <DetailContainer title={PROJECT_DETAIL_TITLES.overview} mobileOnlyToggle>
-      <ProjectOverview
-        category={project.category}
-        no={project.no}
-        techStack={project.techStack}
-        award={project.award}
-        googleDriveUrl={project.googleDriveUrl}
-        gitFeUrl={project.gitFeUrl}
-        gitBeUrl={project.gitBeUrl}
-        gitOrgUrl={project.gitOrgUrl}
-      />
-    </DetailContainer>
-  );
-
-  // 팀원 섹션 렌더링
-  const renderTeamMembersSection = () => (
-    <DetailContainer title={PROJECT_DETAIL_TITLES.teamMembers}>
-      <ProjectMember members={members} />
-    </DetailContainer>
-  );
-
-  // 서비스 설명 섹션 렌더링
-  const renderServiceSection = () => (
-    <DetailContainer title={PROJECT_DETAIL_TITLES.service} mode="light" mobileOnlyToggle>
-      <ProjectDescription description={project.description || '-'} />
-    </DetailContainer>
-  );
 
   // 캐러셀 렌더링
   const renderCarousel = () => {
@@ -86,29 +54,58 @@ const ProjectDetail = () => {
         {/* 태블릿: 캐러셀 아래 2열(1:1) */}
         <div className="hidden md:grid md:grid-cols-2 md:gap-[1rem] lg:hidden">
           <div className="flex flex-col gap-[1rem]">
-            {renderOverviewSection()}
-            {renderTeamMembersSection()}
+            <ProjectOverview
+              category={project.category}
+              no={project.no}
+              techStack={project.techStack}
+              award={project.award}
+              googleDriveUrl={project.googleDriveUrl}
+              gitFeUrl={project.gitFeUrl}
+              gitBeUrl={project.gitBeUrl}
+              gitOrgUrl={project.gitOrgUrl}
+            />
+            <ProjectMember members={members} />
           </div>
-          <div className="flex flex-col">{renderServiceSection()}</div>
+          <div className="flex flex-col">
+            <ProjectDescription description={project.description || '-'} />
+          </div>
         </div>
 
         {/* 데스크탑: 2열(1:2 비율) */}
         <div className="hidden lg:grid lg:grid-cols-3 lg:gap-[3.75rem]">
           <div className="flex flex-col gap-[2.12rem] lg:col-span-1">
-            {renderOverviewSection()}
-            {renderTeamMembersSection()}
+            <ProjectOverview
+              category={project.category}
+              no={project.no}
+              techStack={project.techStack}
+              award={project.award}
+              googleDriveUrl={project.googleDriveUrl}
+              gitFeUrl={project.gitFeUrl}
+              gitBeUrl={project.gitBeUrl}
+              gitOrgUrl={project.gitOrgUrl}
+            />
+            <ProjectMember members={members} />
           </div>
           <div className="flex flex-col gap-[2.75rem] lg:col-span-2">
             {renderCarousel()}
-            {renderServiceSection()}
+            <ProjectDescription description={project.description || '-'} />
           </div>
         </div>
 
         {/* 모바일: 세로 배치 */}
         <div className="space-y-[1rem] md:hidden">
-          {renderOverviewSection()}
-          {renderTeamMembersSection()}
-          {renderServiceSection()}
+          <ProjectOverview
+            category={project.category}
+            no={project.no}
+            techStack={project.techStack}
+            award={project.award}
+            googleDriveUrl={project.googleDriveUrl}
+            gitFeUrl={project.gitFeUrl}
+            gitBeUrl={project.gitBeUrl}
+            gitOrgUrl={project.gitOrgUrl}
+          />
+          <ProjectMember members={members} />
+          <ProjectDescription description={project.description || '-'} />
         </div>
 
         {/* 다음 프로젝트 보기 버튼 */}
