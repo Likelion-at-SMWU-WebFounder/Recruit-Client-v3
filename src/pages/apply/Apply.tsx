@@ -1,4 +1,5 @@
 import CompletionConditionSection from './components/CompletionConditionSection';
+import FAQSection from './components/FAQSection';
 import HeroSection from './components/HeroSection';
 import RecruitInfoSection from './components/RecruitInfoSection';
 import RecruitPartSection from './components/RecruitPartSection';
@@ -12,6 +13,7 @@ const Apply = () => {
       <RecruitInfoSection />
       <CompletionConditionSection />
       <ScheduleSection />
+      <FAQSection />
     </main>
   );
 };
