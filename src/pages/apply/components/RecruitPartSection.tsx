@@ -30,7 +30,7 @@ const RecruitPartSection = () => {
       <div className="flex w-full flex-col items-center">
         {/* 글씨 박스 */}
         <div className="mb-10 flex min-w-[17.1875rem] flex-col items-center gap-[1rem] lg:mb-16">
-          <span className="text-center text-[0.875rem] leading-[140%] font-semibold text-[#1B2634] uppercase md:text-[1rem] lg:text-[1.25rem]">
+          <span className="text-center text-[0.875rem] leading-[140%] font-semibold text-[#1B2634] uppercase opacity-50 md:text-[1rem] lg:text-[1.25rem]">
             13기 아기사자
           </span>
           <h2 className="text-center text-[1.5rem] leading-[140%] font-semibold text-[#1B2634] md:text-[2rem] lg:text-[2.625rem]">
