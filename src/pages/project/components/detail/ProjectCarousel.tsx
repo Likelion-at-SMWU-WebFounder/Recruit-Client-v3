@@ -5,8 +5,7 @@ import '@pages/project/styles/carousel.css';
 import ArrowButton from '@shared/components/button/ArrowButton';
 
 interface ProjectCarouselProps {
-  thumbnail: string;
-  images?: string[];
+  images: string[];
 }
 
 interface ArrowProps {
@@ -15,9 +14,8 @@ interface ArrowProps {
   onClick?: () => void;
 }
 
-const ProjectCarousel = ({ thumbnail, images }: ProjectCarouselProps) => {
-  // thumbnail을 맨 앞에 두고, images가 있으면 뒤에 추가
-  const carouselImages = images && images.length > 0 ? [thumbnail, ...images] : [thumbnail];
+const ProjectCarousel = ({ images }: ProjectCarouselProps) => {
+  const carouselImages = images;
 
   // 다음 화살표 컴포넌트
   const NextArrow = ({ style, onClick }: ArrowProps) => {
