@@ -126,7 +126,7 @@ export const SCHEDULES: ScheduleTypes[] = [
   },
   {
     id: 's2',
-    dateRange: '02.24(월)',
+    dateRange: '02.25(화)',
     label: '서류 발표',
     status: 'upcoming',
   },
@@ -138,14 +138,14 @@ export const SCHEDULES: ScheduleTypes[] = [
   },
   {
     id: 's4',
-    dateRange: '03.05(수)',
+    dateRange: '03.02(일)',
     label: '최종 합격자 발표',
     status: 'upcoming',
   },
   {
     id: 's5',
-    dateRange: '미정(예정)',
-    label: '수료 OT',
+    dateRange: '03.08(금)',
+    label: '숙멋 OT',
     status: 'upcoming',
   },
 ];
