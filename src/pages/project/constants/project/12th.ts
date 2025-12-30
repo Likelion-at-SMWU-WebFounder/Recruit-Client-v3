@@ -1,9 +1,9 @@
-const TWELFTH_PROJECT_IMAGE_PATH = import.meta.env.VITE_IMAGE_PATH + '/project/12th';
+const TWELFTH_PROJECT_IMAGE_PATH = import.meta.env.VITE_LOCAL_IMAGE_PATH + '/project/12th';
 
 export const twelfthProjectsData = [
   {
     id: '1200',
-    thumbnail: `${TWELFTH_PROJECT_IMAGE_PATH}/voyage.png`,
+    images: [`${TWELFTH_PROJECT_IMAGE_PATH}/hackathon/voyage.png`],
     title: 'VOYAGE',
     teamMember: '박우현(PM)\n성윤정(FE), 장유빈(FE)\n정지윤(BE), 유채민(BE)',
     summary: '현대인 심리 건강 개선을 위한 중장년층과 청년층의 세대통합 멘토링 서비스',
@@ -20,7 +20,7 @@ export const twelfthProjectsData = [
   },
   {
     id: '1201',
-    thumbnail: `${TWELFTH_PROJECT_IMAGE_PATH}/bbangutbbangood.png`,
+    images: [`${TWELFTH_PROJECT_IMAGE_PATH}/hackathon/bbangutbbangood.png`],
     title: '빵긋빵굿',
     teamMember: '김보미(PM)\n강주은(FE), 최현서(FE)\n이효림(BE), 홍상희(BE)',
     summary: '웰니스 빵 정보(상품 및 레시피)를 제공하는 서비스',
@@ -37,7 +37,7 @@ export const twelfthProjectsData = [
   },
   {
     id: '1202',
-    thumbnail: `${TWELFTH_PROJECT_IMAGE_PATH}/hancare.png`,
+    images: [`${TWELFTH_PROJECT_IMAGE_PATH}/hackathon/hancare.png`],
     title: '한케어',
     teamMember: '오시은(PM)\n유동은(FE), 이현정(FE)\n경민서(BE), 서문지(BE)',
     summary: '한의학 기반 맞춤형 건강관리 서비스',
@@ -54,7 +54,7 @@ export const twelfthProjectsData = [
   },
   {
     id: '1203',
-    thumbnail: `${TWELFTH_PROJECT_IMAGE_PATH}/prog.png`,
+    images: [`${TWELFTH_PROJECT_IMAGE_PATH}/4linethon/prog.png`],
     title: 'P-ROG',
     teamMember: '이현정(FE) 외 5명',
     summary: '평가가 아닌 성장의 기회, 대학생 프로젝트를 위한 피드백 플랫폼',
@@ -72,7 +72,7 @@ export const twelfthProjectsData = [
   },
   {
     id: '1204',
-    thumbnail: `${TWELFTH_PROJECT_IMAGE_PATH}/tostar.png`,
+    images: [`${TWELFTH_PROJECT_IMAGE_PATH}/4linethon/tostar.png`],
     title: '별이에게',
     teamMember: '김보미(PM) 외 5명',
     summary: '펫로스 증후군을 겪는 반려인들을 위한 따뜻한 위로의 공간',
@@ -94,7 +94,7 @@ export const twelfthProjectsData = [
   },
   {
     id: '1205',
-    thumbnail: `${TWELFTH_PROJECT_IMAGE_PATH}/decemo.png`,
+    images: [`${TWELFTH_PROJECT_IMAGE_PATH}/4linethon/decemo.png`],
     title: 'DECEMO',
     teamMember: '강주은(FE) 외 5명',
     summary: '한 해의 마지막, 12월 한 달간 추억을 소중하게 기록할 수 있는 회고 서비스',
@@ -112,7 +112,7 @@ export const twelfthProjectsData = [
   },
   {
     id: '1206',
-    thumbnail: `${TWELFTH_PROJECT_IMAGE_PATH}/joinus.png`,
+    images: [`${TWELFTH_PROJECT_IMAGE_PATH}/4linethon/joinus.png`],
     title: '조인어스',
     teamMember: '유동은(FE) 외 5명',
     summary: '공유를 통해 환경보호를 실천하고자 하는 서비스',
@@ -130,7 +130,7 @@ export const twelfthProjectsData = [
   },
   {
     id: '1207',
-    thumbnail: `${TWELFTH_PROJECT_IMAGE_PATH}/2gather.png`,
+    images: [`${TWELFTH_PROJECT_IMAGE_PATH}/4linethon/2gather.png`],
     title: '2GATHER',
     teamMember: '최현서(FE) 외 5명',
     summary: 'AI 기반 타임라인 마케팅 전략 제안 플랫폼',
@@ -150,7 +150,7 @@ export const twelfthProjectsData = [
   },
   {
     id: '1208',
-    thumbnail: `${TWELFTH_PROJECT_IMAGE_PATH}/planpal.png`,
+    images: [`${TWELFTH_PROJECT_IMAGE_PATH}/4linethon/planpal.png`],
     title: '플랜팔',
     teamMember: '박우현(PM)\n경민서(BE) 외 4명',
     summary: '혼자 그리고 함께 체계적으로 관리하는 일정',
@@ -168,7 +168,7 @@ export const twelfthProjectsData = [
   },
   {
     id: '1209',
-    thumbnail: `${TWELFTH_PROJECT_IMAGE_PATH}/nugu.png`,
+    images: [`${TWELFTH_PROJECT_IMAGE_PATH}/4linethon/nugu.png`],
     title: '누구 (NUGU)',
     teamMember: '유채민(BE), 정지윤(BE) 외 4명',
     summary: '함께 만들어가는 트렌디한 자기소개 서비스',
@@ -194,7 +194,7 @@ export const twelfthProjectsData = [
   },
   {
     id: '1210',
-    thumbnail: `${TWELFTH_PROJECT_IMAGE_PATH}/line4thonservice.png`,
+    images: [`${TWELFTH_PROJECT_IMAGE_PATH}/4linethon/line4thonservice.png`],
     title: '4호선톤 사이트',
     teamMember: '홍상희(BE) 외 5명',
     summary: '멋쟁이들을 위한 4호선톤 축제',
@@ -211,7 +211,7 @@ export const twelfthProjectsData = [
   },
   {
     id: '1211',
-    thumbnail: `${TWELFTH_PROJECT_IMAGE_PATH}/moatravel.png`,
+    images: [`${TWELFTH_PROJECT_IMAGE_PATH}/4linethon/moatravel.png`],
     title: 'MOA(모아)',
     teamMember: '성윤정(FE)\n서문지(BE) 외 3명',
     summary: '👭함께 떠날 여행 메이트를 모아주는 여행 동행 서비스',
@@ -229,7 +229,7 @@ export const twelfthProjectsData = [
   },
   {
     id: '1212',
-    thumbnail: `${TWELFTH_PROJECT_IMAGE_PATH}/pyeonshulleng.png`,
+    images: [`${TWELFTH_PROJECT_IMAGE_PATH}/4linethon/pyeonshulleng.png`],
     title: '편슐랭',
     teamMember: '이효림(BE) 외 5명',
     summary: '편의점 꿀조합 모음 서비스',
@@ -247,7 +247,7 @@ export const twelfthProjectsData = [
   },
   {
     id: '1213',
-    thumbnail: `${TWELFTH_PROJECT_IMAGE_PATH}/timi.png`,
+    images: [`${TWELFTH_PROJECT_IMAGE_PATH}/4linethon/timi.png`],
     title: 'Timi',
     teamMember: '장유빈(FE) 외 4명',
     summary: '가장 간편한 그룹 시간 조율 서비스',
@@ -273,7 +273,7 @@ export const twelfthProjectsData = [
   },
   {
     id: '1214',
-    thumbnail: `${TWELFTH_PROJECT_IMAGE_PATH}/yourstory.png`,
+    images: [`${TWELFTH_PROJECT_IMAGE_PATH}/finalproject/yourstory.png`],
     title: '당신의 이야기',
     teamMember: '오시은(PM)\n강주은(FE), 성윤정(FE)\n이효림(BE), 정지윤(BE)',
     summary: '이타적 자서전을 통해 세대를 연결하는 사회적 가치 창출 공공 웹서비스',
@@ -291,7 +291,7 @@ export const twelfthProjectsData = [
   },
   {
     id: '1215',
-    thumbnail: `${TWELFTH_PROJECT_IMAGE_PATH}/imfine.png`,
+    images: [`${TWELFTH_PROJECT_IMAGE_PATH}/finalproject/imfine.png`],
     title: '아임파인',
     teamMember: '박우현(PM)\n최현서(FE), 이현정(FE)\n경민서(BE), 유채민(BE)',
     summary: '어린이 금융교육 플랫폼',
@@ -310,7 +310,7 @@ export const twelfthProjectsData = [
   },
   {
     id: '1216',
-    thumbnail: `${TWELFTH_PROJECT_IMAGE_PATH}/erumi.png`,
+    images: [`${TWELFTH_PROJECT_IMAGE_PATH}/finalproject/erumi.png`],
     title: '이루미',
     teamMember: '김보미(PM)\n유동은(FE), 장유빈(FE)\n서문지(BE), 홍상희(BE)',
     summary: '나라는 꿈을 이뤄가는 공간: 버킷리스트 아카이브 서비스',

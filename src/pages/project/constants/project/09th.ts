@@ -1,9 +1,9 @@
-const NINTH_PROJECT_IMAGE_PATH = import.meta.env.VITE_IMAGE_PATH + '/project/09th';
+const NINTH_PROJECT_IMAGE_PATH = import.meta.env.VITE_LOCAL_IMAGE_PATH + '/project/09th';
 
 export const ninthProjectsData = [
   {
     id: '900',
-    thumbnail: `${NINTH_PROJECT_IMAGE_PATH}/meetwizard.svg`,
+    images: [`${NINTH_PROJECT_IMAGE_PATH}/hackathon/meetwizard.svg`],
     title: 'Meet Wizard',
     teamMember: '김소은 문다연 박혜준 장한빛',
     summary: '한 번의 클릭으로 약속 정하기',
@@ -20,7 +20,7 @@ export const ninthProjectsData = [
   },
   {
     id: '901',
-    thumbnail: `${NINTH_PROJECT_IMAGE_PATH}/oneeat.svg`,
+    images: [`${NINTH_PROJECT_IMAGE_PATH}/hackathon/oneeat.svg`],
     title: '일인분',
     teamMember: '김정운 이민정 박경나 이연수',
     summary: '나의 냉장고에 있는 재료들로 할 수 있는 요리 레시피를 알려주는 서비스',
@@ -38,7 +38,7 @@ export const ninthProjectsData = [
   },
   {
     id: '902',
-    thumbnail: `${NINTH_PROJECT_IMAGE_PATH}/fm.svg`,
+    images: [`${NINTH_PROJECT_IMAGE_PATH}/hackathon/fm.svg`],
     title: 'FM (Find Medical)',
     teamMember: '강연우 김서영 안현주 황서경',
     summary: '간단한 증상 체크를 통해 발병 가능한 암 확인 및 정보를 제공하는 서비스',
@@ -55,7 +55,7 @@ export const ninthProjectsData = [
   },
   {
     id: '903',
-    thumbnail: `${NINTH_PROJECT_IMAGE_PATH}/roadmap.svg`,
+    images: [`${NINTH_PROJECT_IMAGE_PATH}/hackathon/roadmap.svg`],
     title: 'RoadMap',
     teamMember: '김유진 노은성 오예림 조원아',
     summary: '개발정보확인 & 포트폴리오 관리',

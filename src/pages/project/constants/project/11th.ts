@@ -1,9 +1,9 @@
-const ELEVENTH_PROJECT_IMAGE_PATH = import.meta.env.VITE_IMAGE_PATH + '/project/11th';
+const ELEVENTH_PROJECT_IMAGE_PATH = import.meta.env.VITE_LOCAL_IMAGE_PATH + '/project/11th';
 
 export const eleventhProjectsData = [
   {
     id: '1100',
-    thumbnail: `${ELEVENTH_PROJECT_IMAGE_PATH}/bridge.png`,
+    images: [`${ELEVENTH_PROJECT_IMAGE_PATH}/hackathon/bridge.png`],
     title: 'Bridge',
     teamMember: '서연경(PM)\n손민재(FE), 이예지(FE)\n문유진(BE), 이예린(BE)',
     summary: '발달장애인을 위한 지원서비스 통합신청 웹사이트',
@@ -20,7 +20,7 @@ export const eleventhProjectsData = [
   },
   {
     id: '1101',
-    thumbnail: `${ELEVENTH_PROJECT_IMAGE_PATH}/draw.png`,
+    images: [`${ELEVENTH_PROJECT_IMAGE_PATH}/hackathon/draw.png`],
     title: 'D:raw',
     teamMember: '박연빈(PM)\n강주은(FE), 박상아(FE)\n이서현(BE), 윤서희(BE)',
     summary: '디지털 이용에 어려움을 겪는 시각장애인 및 고령층에게 디지털 안내사를 무료로 매칭해주는 자원봉사 플랫폼',
@@ -37,7 +37,7 @@ export const eleventhProjectsData = [
   },
   {
     id: '1102',
-    thumbnail: `${ELEVENTH_PROJECT_IMAGE_PATH}/banzak.png`,
+    images: [`${ELEVENTH_PROJECT_IMAGE_PATH}/hackathon/banzak.png`],
     title: '반짝',
     teamMember: '한다인(PM)\n이선아(FE), 조성하(FE)\n김원희(BE), 이예나(BE)',
     summary: '유기동물 입양 서비스',
@@ -54,7 +54,7 @@ export const eleventhProjectsData = [
   },
   {
     id: '1103',
-    thumbnail: `${ELEVENTH_PROJECT_IMAGE_PATH}/awards.png`,
+    images: [`${ELEVENTH_PROJECT_IMAGE_PATH}/4linethon/awards.png`],
     title: '올해의 마이 어워즈',
     teamMember: '강주은(FE), 조성하(FE) 외 4명',
     summary: '연말을 맞이하며 혼자, 연인과, 친구들과 함께 할 수 있는 소소한 콘텐츠',
@@ -80,7 +80,7 @@ export const eleventhProjectsData = [
   },
   {
     id: '1104',
-    thumbnail: `${ELEVENTH_PROJECT_IMAGE_PATH}/farewell.png`,
+    images: [`${ELEVENTH_PROJECT_IMAGE_PATH}/4linethon/farewell.png`],
     title: 'Farewell, 2023',
     teamMember: '이예지(FE), 박상아(FE) 외 4명',
     summary: '한 해 회고 서비스',
@@ -104,7 +104,7 @@ export const eleventhProjectsData = [
   },
   {
     id: '1105',
-    thumbnail: `${ELEVENTH_PROJECT_IMAGE_PATH}/coffeeing.png`,
+    images: [`${ELEVENTH_PROJECT_IMAGE_PATH}/4linethon/coffeeing.png`],
     title: 'Coffeeing',
     teamMember: '소희수(PM), 서연경(PM)\n이예린(BE), 윤서희(BE) 외 2명',
     summary: '‘커핑’ 모임 매칭 서비스',
@@ -120,7 +120,7 @@ export const eleventhProjectsData = [
   },
   {
     id: '1106',
-    thumbnail: `${ELEVENTH_PROJECT_IMAGE_PATH}/photo.png`,
+    images: [`${ELEVENTH_PROJECT_IMAGE_PATH}/4linethon/photo.png`],
     title: '포토꾸러미',
     teamMember: '김원희(BE), 문유진(BE) 외 3명',
     summary: '너와 나만의 추억 사진, 포토꾸러미',
@@ -144,7 +144,7 @@ export const eleventhProjectsData = [
   },
   {
     id: '1107',
-    thumbnail: `${ELEVENTH_PROJECT_IMAGE_PATH}/mbting.png`,
+    images: [`${ELEVENTH_PROJECT_IMAGE_PATH}/4linethon/mbting.png`],
     title: 'MBTING',
     teamMember: '박연빈(PM), 한다인(PM) 외 4명',
     summary: '개발자 협업 MBTI 소개팅 모바일 웹 서비스',
@@ -174,7 +174,7 @@ export const eleventhProjectsData = [
   },
   {
     id: '1108',
-    thumbnail: `${ELEVENTH_PROJECT_IMAGE_PATH}/whiskeylikey.png`,
+    images: [`${ELEVENTH_PROJECT_IMAGE_PATH}/4linethon/whiskeylikey.png`],
     title: 'Whiskey Likey',
     teamMember: '손민재(FE), 이선아(FE) 외 4명',
     summary: '나에게 맞는 위스키 추천 테스트',
@@ -200,7 +200,7 @@ export const eleventhProjectsData = [
   },
   {
     id: '1109',
-    thumbnail: `${ELEVENTH_PROJECT_IMAGE_PATH}/songyeechallenge.png`,
+    images: [`${ELEVENTH_PROJECT_IMAGE_PATH}/finalproject/songyeechallenge.png`],
     title: '송이의 숲',
     teamMember: '박연빈(PM), 서연경(PM), 한다인(PM)\n강주은(FE), 이예지(FE), 조성하(FE)\n문유진(BE), 이서현(BE)',
     summary: '숙명 눈송이만을 위한 챌린지 쉐어 플랫폼',
@@ -224,7 +224,7 @@ export const eleventhProjectsData = [
   },
   {
     id: '1110',
-    thumbnail: `${ELEVENTH_PROJECT_IMAGE_PATH}/sendmyheart.png`,
+    images: [`${ELEVENTH_PROJECT_IMAGE_PATH}/finalproject/sendmyheart.png`],
     title: '전하기(SendMyHeart)',
     teamMember: '박연빈(PM), 서연경(PM), 한다인(PM)\n박상아(FE), 이선아(FE)\n김원희(BE), 윤서희(BE), 이예린(BE)',
     summary: '내 주변 소중한 사람들에게 안부 전하는 서비스',

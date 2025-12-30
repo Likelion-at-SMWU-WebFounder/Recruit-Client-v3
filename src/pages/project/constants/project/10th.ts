@@ -1,9 +1,9 @@
-const TENTH_PROJECT_IMAGE_PATH = import.meta.env.VITE_IMAGE_PATH + '/project/10th';
+const TENTH_PROJECT_IMAGE_PATH = import.meta.env.VITE_LOCAL_IMAGE_PATH + '/project/10th';
 
 export const tenthProjectsData = [
   {
     id: '1000',
-    thumbnail: `${TENTH_PROJECT_IMAGE_PATH}/myhealing.png`,
+    images: [`${TENTH_PROJECT_IMAGE_PATH}/hackathon/myhealing.png`],
     title: '마이힐링 (MY Healing)',
     teamMember: '양지원(PM)\n김수민(FE), 양은수(FE)\n조은비(BE), 최예진(BE)',
     summary: '나만의 힐링 플레이스 공유 사이트',
@@ -20,7 +20,7 @@ export const tenthProjectsData = [
   },
   {
     id: '1001',
-    thumbnail: `${TENTH_PROJECT_IMAGE_PATH}/rememb.png`,
+    images: [`${TENTH_PROJECT_IMAGE_PATH}/hackathon/rememb.png`],
     title: 'rememB',
     teamMember: '고두영(FE), 나유진(FE)\n박소윤(BE), 이수민(BE)',
     summary: '한 번 뿐인 생일을 더욱 특별하게, 마음을 전하는 rememB',
@@ -44,7 +44,7 @@ export const tenthProjectsData = [
   },
   {
     id: '1002',
-    thumbnail: `${TENTH_PROJECT_IMAGE_PATH}/otr.png`,
+    images: [`${TENTH_PROJECT_IMAGE_PATH}/hackathon/otr.png`],
     title: 'Otr.',
     teamMember: '김희원(PM)\n배지윤(FE), 소희수(FE)\n김지수(BE), 임아현(BE)',
     summary: '유서 작성 및 문답을 통한 디지털 임종 체험 서비스 Otr.',
