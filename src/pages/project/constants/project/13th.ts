@@ -97,8 +97,8 @@ export const thirteenthProjectsData = [
     gitFeUrl: null,
     no: '13기',
     category: '여기톤',
-    techStack: 'Django, Python, JavaScript',
-    award: 'O',
+    techStack: 'Django, HTML, CSS, JavaScript',
+    award: '최우수상',
   },
   {
     id: '1304',
@@ -120,7 +120,7 @@ export const thirteenthProjectsData = [
     gitFeUrl: null,
     no: '13기',
     category: '여기톤',
-    techStack: 'Django, Python, JavaScript',
+    techStack: 'Django, HTML, CSS, JavaScript',
     award: null,
   },
   {
@@ -145,7 +145,7 @@ export const thirteenthProjectsData = [
     gitFeUrl: null,
     no: '13기',
     category: '여기톤',
-    techStack: 'Django, Python, JavaScript',
+    techStack: 'Django, HTML, CSS, JavaScript',
     award: null,
   },
   {
@@ -169,7 +169,7 @@ export const thirteenthProjectsData = [
     gitFeUrl: null,
     no: '13기',
     category: '여기톤',
-    techStack: 'Django, Python, JavaScript',
+    techStack: 'Django, HTML, CSS, JavaScript',
     award: null,
   },
   {
@@ -193,7 +193,7 @@ export const thirteenthProjectsData = [
     gitFeUrl: null,
     no: '13기',
     category: '여기톤',
-    techStack: 'Django, Python, JavaScript',
+    techStack: 'Django, HTML, CSS, JavaScript',
     award: null,
   },
   {
@@ -217,8 +217,8 @@ export const thirteenthProjectsData = [
     gitFeUrl: null,
     no: '13기',
     category: '여기톤',
-    techStack: 'Django, Python, JavaScript',
-    award: 'O',
+    techStack: 'Django, HTML, CSS, JavaScript',
+    award: '우수상',
   },
   {
     id: '1309',
@@ -241,8 +241,8 @@ export const thirteenthProjectsData = [
     gitFeUrl: null,
     no: '13기',
     category: '여기톤',
-    techStack: 'Django, Python, JavaScript',
-    award: 'O',
+    techStack: 'Django, HTML, CSS, JavaScript',
+    award: '특별상',
   },
   {
     id: '1310',
@@ -265,7 +265,7 @@ export const thirteenthProjectsData = [
     gitFeUrl: null,
     no: '13기',
     category: '여기톤',
-    techStack: 'Django, JavaScript',
+    techStack: 'Django, HTML, CSS, JavaScript',
     award: null,
   },
   {
@@ -289,7 +289,7 @@ export const thirteenthProjectsData = [
     gitFeUrl: null,
     no: '13기',
     category: '여기톤',
-    techStack: 'Django, Python, JavaScript',
+    techStack: 'Django, HTML, CSS, JavaScript',
     award: null,
   },
   {
@@ -313,7 +313,7 @@ export const thirteenthProjectsData = [
     gitFeUrl: null,
     no: '13기',
     category: '여기톤',
-    techStack: 'Django, Python, JavaScript',
+    techStack: 'Django, HTML, CSS, JavaScript',
     award: null,
   },
   {
@@ -337,7 +337,7 @@ export const thirteenthProjectsData = [
     gitFeUrl: null,
     no: '13기',
     category: '여기톤',
-    techStack: 'Django, Python, JavaScript',
+    techStack: 'Django, HTML, CSS, JavaScript',
     award: null,
   },
   {
@@ -361,7 +361,7 @@ export const thirteenthProjectsData = [
     gitFeUrl: null,
     no: '13기',
     category: '여기톤',
-    techStack: 'Django, Python, JavaScript',
+    techStack: 'Django, HTML, CSS, JavaScript',
     award: null,
   },
   {
@@ -384,7 +384,7 @@ export const thirteenthProjectsData = [
     gitFeUrl: null,
     no: '13기',
     category: '여기톤',
-    techStack: 'Django, Python, JavaScript',
+    techStack: 'Django, HTML, CSS, JavaScript',
     award: null,
   },
   {
@@ -408,7 +408,7 @@ export const thirteenthProjectsData = [
     gitFeUrl: null,
     no: '13기',
     category: '여기톤',
-    techStack: 'Django, JavaScript',
+    techStack: 'Django, HTML, CSS, JavaScript',
     award: null,
   },
   {
@@ -432,7 +432,7 @@ export const thirteenthProjectsData = [
     no: '13기',
     category: '중앙해커톤',
     techStack: 'Django, React(JavaScript)',
-    award: null,
+    award: '어흥콘 인기상',
   },
   {
     id: '1318',
@@ -456,7 +456,7 @@ export const thirteenthProjectsData = [
     no: '13기',
     category: '중앙해커톤',
     techStack: 'Django, React(JavaScript)',
-    award: null,
+    award: '어흥콘 대상',
   },
   {
     id: '1319',
@@ -478,7 +478,7 @@ export const thirteenthProjectsData = [
     no: '13기',
     category: '중앙해커톤',
     techStack: 'Spring Boot, React(JavaScript)',
-    award: null,
+    award: '어흥콘 프로그래머스 인기상',
   },
   {
     id: '1320',
@@ -527,7 +527,7 @@ export const thirteenthProjectsData = [
     no: '13기',
     category: '4호선톤',
     techStack: 'Spring Boot, React(JavaScript)',
-    award: null,
+    award: '우수상',
   },
   {
     id: '1322',
@@ -600,7 +600,7 @@ export const thirteenthProjectsData = [
     no: '13기',
     category: '4호선톤',
     techStack: 'Spring Boot, React(JavaScript)',
-    award: null,
+    award: '특별상',
   },
   {
     id: '1325',
