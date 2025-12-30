@@ -87,7 +87,7 @@ const CompletionConditionSection = () => {
         alt=""
         className={`absolute object-contain ${isMobile ? 'opacity-30' : 'opacity-30'} ${
           index === 0
-            ? '-right-[30%] -bottom-[50%] h-[140%] w-auto rotate-[31.047deg] md:-right-[25%] md:-bottom-[45%] md:h-[130%] lg:-right-[35%] lg:-bottom-[60%] lg:h-[170%]'
+            ? '-right-[30%] -bottom-[50%] h-[140%] w-auto md:-right-[25%] md:-bottom-[45%] md:h-[130%] lg:-right-[35%] lg:-bottom-[60%] lg:h-[170%]'
             : '-right-[25%] -bottom-[45%] h-[130%] w-auto md:-right-[20%] md:-bottom-[40%] md:h-[120%] lg:-right-[30%] lg:-bottom-[55%] lg:h-[160%]'
         }`}
       />
@@ -202,7 +202,7 @@ const CompletionConditionSection = () => {
                       alt=""
                       className={`absolute object-contain ${
                         index === 0
-                          ? '-right-[25%] -bottom-[45%] h-[130%] w-auto rotate-[31.047deg] lg:-right-[35%] lg:-bottom-[60%] lg:h-[170%]'
+                          ? '-right-[25%] -bottom-[45%] h-[130%] w-auto lg:-right-[35%] lg:-bottom-[60%] lg:h-[170%]'
                           : '-right-[20%] -bottom-[40%] h-[120%] w-auto lg:-right-[30%] lg:-bottom-[55%] lg:h-[160%]'
                       }`}
                     />
