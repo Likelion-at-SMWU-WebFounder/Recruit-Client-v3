@@ -1,4 +1,5 @@
 import type {
+  RecruitPartTypes,
   RecruitInfoTabTypes,
   QualificationTypes,
   ActivityTypes,
@@ -24,6 +25,33 @@ export const SECTION_TITLES = {
   SCHEDULE: '모집 일정',
   FAQ: 'FAQ',
 };
+
+// 모집 파트
+export const RECRUIT_PARTS: RecruitPartTypes[] = [
+  {
+    id: 'design',
+    title: '기획·디자인',
+    skills: 'Figma, UI/UX, 데이터분석',
+    description: '사용자 경험 중심의 서비스를 기획하고, UI/UX를 고려하여 WEB을 디자인하는 법을 배웁니다.',
+    cta: '서비스를 설계하고, 디자인하는 것에 관심이 있다면 기획·디자인 파트에 지원하세요!',
+  },
+  {
+    id: 'frontend',
+    title: '프론트엔드',
+    skills: 'JavaScript, React',
+    description:
+      '사용자 인터페이스(UI)와 사용자 경험(UX)에 초점을 두며, WEB과 사용자가 직접적으로 맞닿아 있는 인터페이스를 구축합니다.',
+    cta: '사용자가 직접 사용하는 화면을 개발해보고 싶다면 프론트엔드 파트에 지원하세요!',
+  },
+  {
+    id: 'backend',
+    title: '백엔드',
+    skills: 'Django, Spring',
+    description:
+      '서버와 데이터베이스를 중심으로, 눈에 보이지 않는 데이터를 효율적으로 관리하고 다양한 기능들을 구현합니다.',
+    cta: '화면에는 드러나지 않지만 웹사이트의 핵심적인 역할을 담당하고 싶다면, 백엔드 파트에 지원하세요!',
+  },
+];
 
 // 모집 안내 탭
 export const RECRUIT_INFO_TABS: RecruitInfoTabTypes[] = [
