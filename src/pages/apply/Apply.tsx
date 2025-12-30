@@ -1,3 +1,4 @@
+import CompletionConditionSection from './components/CompletionConditionSection';
 import HeroSection from './components/HeroSection';
 import RecruitInfoSection from './components/RecruitInfoSection';
 import RecruitPartSection from './components/RecruitPartSection';
@@ -8,6 +9,7 @@ const Apply = () => {
       <HeroSection />
       <RecruitPartSection />
       <RecruitInfoSection />
+      <CompletionConditionSection />
     </main>
   );
 };
