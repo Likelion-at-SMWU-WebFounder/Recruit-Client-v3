@@ -106,7 +106,7 @@ const RecruitInfoSection = () => {
           </h2>
         </div>
 
-        {/* 모바일: 가로 레이아웃 (펼쳐진 카드 + 회전된 카드들) */}
+        {/* 모바일: 가로 레이아웃 */}
         <div className="flex h-[28.0625rem] w-[22.5625rem] flex-row items-start justify-center gap-2 md:hidden">
           {RECRUIT_INFO_TABS.map((tab) => {
             const isActive = activeTab === tab.id;
@@ -121,7 +121,7 @@ const RecruitInfoSection = () => {
                 <div className="w-full">{renderContent(tab.id)}</div>
               </button>
             ) : (
-              /* 안 펼쳐진 카드 - 90도 회전 */
+              /* 안 펼쳐진 카드 */
               <div key={tab.id} className="relative h-[19.875rem] w-[2.75rem]">
                 <button
                   onClick={() => setActiveTab(tab.id)}
