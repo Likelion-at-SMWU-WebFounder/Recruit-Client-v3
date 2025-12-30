@@ -4,7 +4,7 @@ import decoBlue from '../assets/deco-blue.png';
 
 const HeroSection = () => {
   const handleApplyClick = () => {
-    // 지원 폼 페이지로 이동은 추후 구현
+    // 지원 폼 페이지로 이동
     console.log('지원하기 클릭');
   };
 
