@@ -46,6 +46,12 @@ const NextProjectButton = ({ currentProjectId }: NextProjectButtonProps) => {
     return isValidIndex ? allProjectsData[currentIndex + 1] : null;
   }, [currentProjectId]);
 
+  const nextProjectThumbnail = useMemo(() => {
+    if (!nextProject) return '';
+    const projectWithImages = nextProject as typeof nextProject & { images?: string[] };
+    return projectWithImages.images?.[0] || '';
+  }, [nextProject]);
+
   // 클릭 핸들러
   const handleClick = useCallback(() => {
     if (!nextProject) return;
@@ -71,7 +77,7 @@ const NextProjectButton = ({ currentProjectId }: NextProjectButtonProps) => {
         <div className={thumbnailWrapperClassName}>
           <div className={thumbnailSizeClassName}>
             <img
-              src={nextProject.thumbnail}
+              src={nextProjectThumbnail}
               alt={`${nextProject.title} 프로젝트 썸네일`}
               className={NEXT_PROJECT_BUTTON_STYLES.thumbnailImage}
               loading="lazy"

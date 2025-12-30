@@ -26,7 +26,6 @@ const ProjectDetail = () => {
     return null;
   }
 
-  const projectImages = (project as ProjectWithImages)?.images;
   const members = project.teamMember?.split('\n') || [];
 
   // 개요 섹션 렌더링
@@ -61,9 +60,11 @@ const ProjectDetail = () => {
 
   // 캐러셀 렌더링
   const renderCarousel = () => {
-    if (!project.thumbnail) return null;
+    const projectWithImages = project as ProjectWithImages;
+    const carouselImages = projectWithImages.images || [];
+    if (carouselImages.length === 0) return null;
 
-    return <ProjectCarousel thumbnail={project.thumbnail} images={projectImages} />;
+    return <ProjectCarousel images={carouselImages} />;
   };
 
   return (
@@ -76,7 +77,11 @@ const ProjectDetail = () => {
         </header>
 
         {/* 태블릿, 모바일: 캐러셀을 맨 위에 배치 */}
-        {project.thumbnail && <div className="mb-[3.5rem] md:mb-[4rem] lg:hidden">{renderCarousel()}</div>}
+        {(() => {
+          const projectWithImages = project as ProjectWithImages;
+          const hasImages = (projectWithImages.images?.length ?? 0) > 0;
+          return hasImages && <div className="mb-[3.5rem] md:mb-[4rem] lg:hidden">{renderCarousel()}</div>;
+        })()}
 
         {/* 태블릿: 캐러셀 아래 2열(1:1) */}
         <div className="hidden md:grid md:grid-cols-2 md:gap-[1rem] lg:hidden">

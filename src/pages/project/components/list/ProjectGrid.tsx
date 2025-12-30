@@ -142,19 +142,23 @@ const ProjectGrid = ({ filter }: ProjectGridProps) => {
   return (
     <div className={containerClassName}>
       <div className={gridClassName}>
-        {currentProjects.map((project) => (
-          <ProjectCard
-            key={project.id}
-            thumbnail={project.thumbnail}
-            title={project.title}
-            summary={project.summary}
-            no={project.no}
-            category={project.category}
-            onClick={() => {
-              handleClick(project.id);
-            }}
-          />
-        ))}
+        {currentProjects.map((project) => {
+          const projectWithImages = project as typeof project & { images?: string[] };
+          const thumbnail = projectWithImages.images?.[0] || '';
+          return (
+            <ProjectCard
+              key={project.id}
+              thumbnail={thumbnail}
+              title={project.title}
+              summary={project.summary}
+              no={project.no}
+              category={project.category}
+              onClick={() => {
+                handleClick(project.id);
+              }}
+            />
+          );
+        })}
       </div>
       {!isMobile && totalPages > 1 && (
         <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
