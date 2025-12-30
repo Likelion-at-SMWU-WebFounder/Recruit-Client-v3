@@ -1,9 +1,6 @@
 import type {
   RecruitPartTypes,
   RecruitInfoTabTypes,
-  QualificationTypes,
-  ActivityTypes,
-  BonusPointTypes,
   CompletionConditionTypes,
   ScheduleTypes,
   FAQTypes,
@@ -61,61 +58,31 @@ export const RECRUIT_INFO_TABS: RecruitInfoTabTypes[] = [
 ];
 
 // 지원 자격
-export const QUALIFICATIONS: QualificationTypes[] = [
-  {
-    id: 'q1',
-    content:
-      '2025년도 1학기 숙명여자대학교에 재학/휴학중인 자 (졸업유예자 제외) 중 정규학기에 참여 가능한 자로서, 아직 선발 완료가 되지 않은 자',
-  },
-  {
-    id: 'q2',
-    content: '매주 수요일 정기 세션 참여 및 출석 체크 참여 가능한 자',
-  },
-  {
-    id: 'q3',
-    content: '프로젝트 진행이 가능한 자',
-  },
-  {
-    id: 'q4',
-    content: '활동에 대한 열정과 책임감을 갖고, 활동 기간 동안 적극 참여 가능한 자',
-  },
+export const QUALIFICATIONS: string[] = [
+  '25년도 기준 숙명여자대학교\n재학생·휴학생·자대 편입생·졸업 유예자\n(졸업생, 타대생 참여 불가)',
+  '1년간 재학·휴학·졸업 유예 상태 유지 가능자',
+  '지원서 양식 준수자',
+  '멋쟁이사자처럼 공식 행사 및\n정기 세션 참여 가능자',
 ];
 
 // 활동 안내
-export const ACTIVITIES: ActivityTypes[] = [
-  {
-    id: 'a1',
-    content: '매주 수요일 18:30~21:00 정기 세션 진행',
-  },
-  {
-    id: 'a2',
-    content: '파트별 스터디 및 프로젝트 진행',
-  },
-  {
-    id: 'a3',
-    content: '해커톤, 아이디어톤 등 각종 대회 참여 기회',
-  },
-  {
-    id: 'a4',
-    content: '다양한 네트워킹 행사 참여',
-  },
-];
+export const ACTIVITY_INFO = {
+  sessionTitle: '정기 세션 활동 기간 및 시간',
+  sessionPeriod: '03~12월',
+  sessionTime: '매주 화요일 19:00~21:00',
+  feeTitle: '활동비',
+  feeAmount: '4만원',
+  feeNote: '(장소 대관비가 별도로 발생할 수 있음)',
+};
 
 // 서류 가산점
-export const BONUS_POINTS: BonusPointTypes[] = [
-  {
-    id: 'b1',
-    content: '관련 프로젝트 경험이 있는 경우',
-  },
-  {
-    id: 'b2',
-    content: '포트폴리오 또는 GitHub 제출',
-  },
-  {
-    id: 'b3',
-    content: '관련 분야 자격증 보유',
-  },
-];
+export const BONUS_INFO = {
+  courseTitle: '수강 범위',
+  courseLink: '프로그래머스 파이썬 입문 강의',
+  courseNote: '파트 1~8, 10~11 수강시 가산점 부여',
+  verifyTitle: '인증 방법',
+  verifyMethod: '홈페이지 지원서의\n파일업로드를 통해 수강 인증 가능',
+};
 
 // 수료 조건
 export const COMPLETION_CONDITIONS: CompletionConditionTypes[] = [
