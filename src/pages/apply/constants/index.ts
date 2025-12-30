@@ -1,10 +1,4 @@
-import type {
-  RecruitPartTypes,
-  RecruitInfoTabTypes,
-  CompletionConditionTypes,
-  ScheduleTypes,
-  FAQTypes,
-} from '../types/index';
+import type { RecruitPartTypes, RecruitInfoTabTypes, ScheduleTypes, FAQTypes } from '../types/index';
 
 // Hero Section
 export const HERO_CONTENT = {
@@ -85,41 +79,39 @@ export const BONUS_INFO = {
 };
 
 // 수료 조건
-export const COMPLETION_CONDITIONS: CompletionConditionTypes[] = [
+export const COMPLETION_CONDITIONS = [
   {
-    id: 'c1',
+    id: 'attendance',
     title: '출결 및 과제 제출',
     items: [
       {
-        id: 'c1-1',
         number: '01',
-        title: '진행된 세션 중 80% 출석',
-        description: '정기 세션 출석률 80% 이상 유지',
+        title: '상벌점 제도 운영',
+        details: [
+          '상벌점 포함 0점 이상 시 수료 가능',
+          '정기 세션 지각 및 결석 시 벌점 부여',
+          '과제 지각 제출 및 미제출 시 벌점 부여',
+          '퀴즈 정답 및 우수 과제 선정 시 상점 부여',
+        ],
       },
       {
-        id: 'c1-2',
         number: '02',
-        title: '과제 제출',
-        description: '세션별 과제 및 프로젝트 과제 제출',
+        title: '제명 조건',
+        details: ['벌점 0점 미만으로 내려가는 즉시 제명', '무단 결석 3회 이상 시 제명', '중도 탈퇴 시 제명'],
       },
     ],
   },
   {
-    id: 'c2',
+    id: 'event',
     title: '필수 행사 참여',
     items: [
-      {
-        id: 'c2-1',
-        number: '01',
-        title: '해커톤 참여',
-        description: '학기 중 진행되는 해커톤 필수 참여',
-      },
-      {
-        id: 'c2-2',
-        number: '02',
-        title: '데모데이 참여',
-        description: '프로젝트 발표 및 데모데이 참여',
-      },
+      { number: '01', title: '숙명여대 멋사 OT', date: '(03.08 19:00)' },
+      { number: '02', title: '멋사 중앙 OT', date: '(03.21 19:00)' },
+      { number: '03', title: '중앙 아이디어톤', date: '(6월 중 진행)' },
+      { number: '04', title: '중앙 해커톤', date: '(8월 중순 진행)' },
+      { number: '05', title: '연합 해커톤: 여기톤', date: '(7월 중 진행)' },
+      { number: '06', title: '연합 해커톤: 4호선톤', date: '(11월 중 진행)' },
+      { number: '07', title: '파이널 프로젝트', date: '(11월 중 진행)' },
     ],
   },
 ];
