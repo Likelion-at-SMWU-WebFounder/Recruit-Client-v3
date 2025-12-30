@@ -1,4 +1,4 @@
-const WebFoundersCardOverlay = () => {
+const BlurOverlay = () => {
   return (
     <>
       {/* 블러 레이어 */}
@@ -26,4 +26,4 @@ const WebFoundersCardOverlay = () => {
   );
 };
 
-export default WebFoundersCardOverlay;
+export default BlurOverlay;

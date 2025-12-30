@@ -1,25 +1,8 @@
-import { useEffect, useState } from 'react';
-import { TITLE } from '@pages/about/constants/index';
-
-// About 페이지 배경 이미지 설정
-const getWidth = () => (typeof window !== 'undefined' ? window.innerWidth : 1440);
-const getHeroImage = (base: string, width: number) => {
-  if (width <= 768) return `${base}/about/background-image/hero-mobile.webp`;
-  if (width <= 1024) return `${base}/about/background-image/hero-tablet.webp`;
-  return `${base}/about/background-image/hero-desktop.webp`;
-};
+import { TITLE, HERO_BACKGROUND_IMAGES_PATH } from '@pages/about/constants/index';
+import useResponsiveBackgroundImage from '@shared/hooks/useResponsiveBackgroundImage';
 
 const HeroSection = () => {
-  const IMAGE_BASE_PATH = import.meta.env.VITE_IMAGE_PATH;
-  const [backgroundImage, setBackgroundImage] = useState(() => `url(${getHeroImage(IMAGE_BASE_PATH, getWidth())})`);
-
-  // 배경 이미지 설정 (반응형)
-  useEffect(() => {
-    const handleResize = () => setBackgroundImage(`url(${getHeroImage(IMAGE_BASE_PATH, getWidth())})`);
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [IMAGE_BASE_PATH]);
+  const backgroundImage = useResponsiveBackgroundImage(HERO_BACKGROUND_IMAGES_PATH);
 
   return (
     <div

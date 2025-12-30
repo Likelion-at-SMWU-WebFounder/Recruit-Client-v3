@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import ProjectCard from '@pages/project/components/list/ProjectCard';
 import Loading from '@pages/project/components/list/Loading';
 import Pagination from '@shared/components/Pagination';
+import { combineStyles } from '@shared/utils/combineStyles';
+import { ROUTER_URL } from '@shared/constants/url';
 import { allProjectsData } from '@pages/project/constants/project/allProjectData';
 
 interface ProjectGridProps {
@@ -40,7 +42,7 @@ const ProjectGrid = ({ filter }: ProjectGridProps) => {
 
   const handleClick = useCallback(
     (projectId: string) => {
-      navigate(`/project/${projectId}`);
+      navigate(`${ROUTER_URL.PROJECT_DETAIL.replace(':projectId', projectId)}`);
     },
     [navigate]
   );
@@ -134,15 +136,8 @@ const ProjectGrid = ({ filter }: ProjectGridProps) => {
     [filteredProjects, currentPage, isMobile, pageSize, visibleCount]
   );
 
-  const containerClassName = useMemo(
-    () => [GRID_STYLES.container.base, GRID_STYLES.container.tablet, GRID_STYLES.container.desktop].join(' '),
-    []
-  );
-
-  const gridClassName = useMemo(
-    () => [GRID_STYLES.grid.base, GRID_STYLES.grid.tablet, GRID_STYLES.grid.desktop].join(' '),
-    []
-  );
+  const containerClassName = useMemo(() => combineStyles(GRID_STYLES.container), []);
+  const gridClassName = useMemo(() => combineStyles(GRID_STYLES.grid), []);
 
   return (
     <div className={containerClassName}>

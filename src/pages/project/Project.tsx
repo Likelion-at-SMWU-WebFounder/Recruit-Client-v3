@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Title from '@shared/components/Title';
-import FilterBar from '@pages/project/components/list/filter/FilterBar';
+import FilterBar from '@shared/components/filter/FilterBar';
 import ProjectGrid from '@pages/project/components/list/ProjectGrid';
+import { combineStyles } from '@shared/utils/combineStyles';
+import useResponsiveBackgroundImage from '@shared/hooks/useResponsiveBackgroundImage';
 import {
   PROJECT_TITLE,
   PROJECT_SUBTITLE,
@@ -25,31 +27,13 @@ const PROJECT_STYLES = {
   },
 } as const;
 
-const getWidth = () => (typeof window !== 'undefined' ? window.innerWidth : 1440);
-const getProjectImage = (width: number) => {
-  if (width <= 768) return PROJECT_BACKGROUND_IMAGES_PATH.mobile;
-  if (width <= 1024) return PROJECT_BACKGROUND_IMAGES_PATH.tablet;
-  return PROJECT_BACKGROUND_IMAGES_PATH.desktop;
-};
-
 const Project = () => {
-  const [backgroundImage, setBackgroundImage] = useState(() => `url(${getProjectImage(getWidth())})`);
+  const backgroundImage = useResponsiveBackgroundImage(PROJECT_BACKGROUND_IMAGES_PATH);
 
-  useEffect(() => {
-    const handleResize = () => setBackgroundImage(`url(${getProjectImage(getWidth())})`);
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const [filter, setFilter] = useState(PROJECT_FILTER_OPTIONS[0].name);
-  const containerClassName = [
-    PROJECT_STYLES.container.base,
-    PROJECT_STYLES.container.tablet,
-    PROJECT_STYLES.container.desktop,
-  ].join(' ');
-  const titleWrapperClassName = [PROJECT_STYLES.titleWrapper.base, PROJECT_STYLES.titleWrapper.tablet].join(' ');
-  const contentWrapperClassName = [PROJECT_STYLES.contentWrapper.base, PROJECT_STYLES.contentWrapper.tablet].join(' ');
+  const [filter, setFilter] = useState(PROJECT_FILTER_OPTIONS[0].filterValue);
+  const containerClassName = combineStyles(PROJECT_STYLES.container);
+  const titleWrapperClassName = combineStyles(PROJECT_STYLES.titleWrapper);
+  const contentWrapperClassName = combineStyles(PROJECT_STYLES.contentWrapper);
 
   return (
     <div
@@ -59,7 +43,7 @@ const Project = () => {
         <Title title={PROJECT_TITLE} description={PROJECT_SUBTITLE} isIcon={true} />
       </div>
       <div className={contentWrapperClassName}>
-        <FilterBar value={filter} onChange={setFilter} />
+        <FilterBar value={filter} onChange={setFilter} options={PROJECT_FILTER_OPTIONS} mode="project" />
         <ProjectGrid filter={filter} />
       </div>
     </div>
