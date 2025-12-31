@@ -21,14 +21,14 @@ const About = () => {
   return (
     <>
       <div className="scrollbar-hidden h-[100dvh] max-h-[100dvh] w-full snap-y snap-mandatory overflow-y-scroll">
-        <div className="h-[100dvh] snap-start">
+        <div id="hero-section" className="relative h-[100dvh] snap-start overflow-hidden">
           <HeroSection />
         </div>
-        <div className="h-[100dvh] snap-start">
+        <div id="orbit-section" className="relative h-[100dvh] snap-start overflow-hidden">
           <OrbitSection />
         </div>
       </div>
-      <div className="lg:space-y-[1.25rem]">
+      <div id="values-section" className="lg:space-y-[1.25rem]">
         <ValuesSection />
         <IdentitiesSection />
         <PeopleSection />
