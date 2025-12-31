@@ -1,4 +1,4 @@
-const ELEVENTH_PROJECT_IMAGE_PATH = import.meta.env.VITE_LOCAL_IMAGE_PATH + '/project/11th';
+const ELEVENTH_PROJECT_IMAGE_PATH = import.meta.env.VITE_IMAGE_PATH + '/project/11th';
 
 export const eleventhProjectsData = [
   {
