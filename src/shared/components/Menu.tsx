@@ -7,17 +7,17 @@ import { BsArrowUpRightCircleFill } from 'react-icons/bs'; // 지원하기 옆 �
 import { RiKakaoTalkFill, RiInstagramFill } from 'react-icons/ri';
 
 export interface MenuProps {
-  menuMode?: 'light' | 'dark';
+  mode?: 'light' | 'dark';
 }
 
-const Menu = ({ menuMode = 'light', ...props }: MenuProps) => {
+const Menu = ({ mode = 'light', ...props }: MenuProps) => {
   // 메뉴 모드에 따른 글, 아이콘 색상 설정
-  const menuModeColor = menuMode === 'light' ? 'navyblack' : 'white';
+  const menuModeColor = mode === 'light' ? 'navyblack' : 'white';
 
   // 기본 스타일 + 색상 모드
   const baseClasses = [
     'w-screen flex flex-row justify-between items-center',
-    `${menuMode === 'light' ? 'text-navyblack' : 'text-white'}`,
+    `${mode === 'light' ? 'text-navyblack' : 'text-white'}`,
   ].join(' ');
 
   // 반응형 padding, gap 스타일 (모바일 기본, md: 태블릿, lg: 데스크톱)
@@ -42,7 +42,7 @@ const Menu = ({ menuMode = 'light', ...props }: MenuProps) => {
     <div className={`${baseClasses} ${responsiveClasses} `} {...props}>
       {/* Logo */}
       <div className={`${logoClasses}`}>
-        <img src={menuMode === 'light' ? smwu_lion_logo_dark : smwu_lion_logo_light} alt="SMWU Like Lion " />
+        <img src={mode === 'light' ? smwu_lion_logo_dark : smwu_lion_logo_light} alt="SMWU Like Lion " />
       </div>
       {/* MENU */}
       {MENU_ORDER.map((item) => (
