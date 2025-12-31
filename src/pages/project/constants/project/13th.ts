@@ -1,4 +1,4 @@
-const THIRTEENTH_PROJECT_IMAGE_PATH = import.meta.env.VITE_LOCAL_IMAGE_PATH + '/project/13th';
+const THIRTEENTH_PROJECT_IMAGE_PATH = import.meta.env.VITE_IMAGE_PATH + '/project/13th';
 
 export const thirteenthProjectsData = [
   {

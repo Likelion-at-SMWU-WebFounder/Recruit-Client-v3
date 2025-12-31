@@ -1,6 +1,6 @@
 import type { FilterOptionType } from '@shared/types/filter';
 
-const PROJECT_IMAGES_PATH = import.meta.env.VITE_LOCAL_IMAGE_PATH + '/project';
+const PROJECT_IMAGES_PATH = import.meta.env.VITE_IMAGE_PATH + '/project';
 
 // 프로젝트 타이틀, 서브타이틀
 export const PROJECT_TITLE = 'PROJECT';
