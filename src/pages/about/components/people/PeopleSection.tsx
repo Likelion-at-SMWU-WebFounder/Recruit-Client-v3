@@ -1,15 +1,13 @@
 import { useCallback, useState } from 'react';
 
 import SubTitle from '@shared/components/SubTitle';
-import { SUB_TITLE } from '@pages/about/constants/about';
+import { SUB_TITLE } from '@pages/about/constants/index';
 import { PEOPLE_DATA } from '@pages/about/constants/people';
 import PeopleCard from '@pages/about/components/people/PeopleCard';
 import ArrowButton from '@shared/components/button/ArrowButton';
 import useDesktopScroll from '@pages/about/hooks/useDesktopScroll';
 import useMobileScroll from '@pages/about/hooks/useMobileScroll';
 import useXPositionDrag from '@pages/about/hooks/useXPositionDrag';
-
-import '@pages/about/styles/index.css';
 
 const DESKTOP_CAROUSEL_PADDING_LEFT = 2; // rem
 const DESKTOP_CAROUSEL_TRAILING_SPACE_WIDTH = 17; // rem

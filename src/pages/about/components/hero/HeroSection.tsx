@@ -1,8 +1,13 @@
-import { TITLE } from '@pages/about/constants/about';
+import { TITLE, HERO_BACKGROUND_IMAGES_PATH } from '@pages/about/constants/index';
+import useResponsiveBackgroundImage from '@shared/hooks/useResponsiveBackgroundImage';
 
 const HeroSection = () => {
+  const backgroundImage = useResponsiveBackgroundImage(HERO_BACKGROUND_IMAGES_PATH);
+
   return (
-    <div className="hero-bg flex h-[100dvh] w-full max-w-[100vw] flex-col items-center justify-center gap-[0.56rem]">
+    <div
+      className="flex h-[100dvh] w-full max-w-[100vw] flex-col items-center justify-center gap-[0.56rem] bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage }}>
       <div className="text-[1.125rem] leading-[117%] font-semibold tracking-[-0.01125rem] text-white/75 md:text-[2rem] md:tracking-[-0.02rem]">
         {TITLE.TITLE_1}
       </div>

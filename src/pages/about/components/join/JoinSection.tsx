@@ -1,6 +1,6 @@
 import SubTitle from '@shared/components/SubTitle';
 import DefaultButton from '@shared/components/button/DefaultButton';
-import { SUB_TITLE } from '@pages/about/constants/about';
+import { SUB_TITLE } from '@pages/about/constants/index';
 import joinImage from '@pages/about/assets/join/join-image.png';
 import { ROUTER_URL } from '@shared/constants/url';
 import { useNavigate } from 'react-router-dom';
