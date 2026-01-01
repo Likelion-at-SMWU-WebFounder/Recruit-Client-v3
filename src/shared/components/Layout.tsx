@@ -8,7 +8,7 @@ export interface LayoutProps {
   children: ReactNode;
 }
 
-const Layout = ({ menuMode = 'light', footerMode = 'light', children }: LayoutProps) => {
+const Layout = ({ menuMode, footerMode, children }: LayoutProps) => {
   return (
     <div className="relative flex min-h-screen flex-col">
       <Menu mode={menuMode} />
