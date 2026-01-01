@@ -16,7 +16,8 @@ const Menu = ({ mode = 'light', ...props }: MenuProps) => {
 
   // 기본 스타일 + 색상 모드
   const baseClasses = [
-    'w-screen flex flex-row justify-between items-center',
+    'fixed top-0 left-0 w-screen flex flex-row justify-between items-center z-50',
+    'backdrop-blur-md bg-white/10 dark:bg-black/80',
     `${mode === 'light' ? 'text-navyblack' : 'text-white'}`,
   ].join(' ');
 
