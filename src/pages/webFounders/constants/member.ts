@@ -1,6 +1,6 @@
 import type { FounderType } from '@/pages/webFounders/types/founder';
 
-const WEBFOUNDERS_IMAGE_PATH = import.meta.env.VITE_LOCAL_IMAGE_PATH + '/webfounders/members';
+const WEBFOUNDERS_IMAGE_PATH = import.meta.env.VITE_IMAGE_PATH + '/webfounders/members';
 
 // 3기 웹파운더즈 멤버
 export const WEBFOUNDERS_3TH = {
@@ -207,7 +207,7 @@ export const WEBFOUNDERS_1TH = {
       name: '소희수',
       no: '10기',
       part: '기획디자인',
-      image: WEBFOUNDERS_IMAGE_PATH + '/1th/SohHeesu.webp',
+      image: WEBFOUNDERS_IMAGE_PATH + '/1th/SohHeeSu.webp',
     },
   ] as FounderType[],
 

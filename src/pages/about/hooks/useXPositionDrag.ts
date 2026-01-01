@@ -53,10 +53,31 @@ const useXPositionDrag = () => {
     const metrics = getXPositionScroll();
     if (!metrics) return;
 
-    const { container, cardWidth, gap, paddingLeft } = metrics;
+    const { container, effectiveWidth } = metrics;
 
-    container.scrollBy({
-      left: cardWidth + gap + paddingLeft,
+    // 현재 스크롤 위치에서 다음 카드의 인덱스 계산
+    const rawIndex = container.scrollLeft / effectiveWidth;
+    const currentIndex = Math.round(rawIndex);
+    const nextIndex = currentIndex + 1;
+
+    // 다음 카드가 존재하는지 확인
+    if (nextIndex >= PEOPLE_DATA.length) return;
+
+    // 다음 카드 요소 찾기
+    const cards = container.querySelectorAll('[data-card="true"]');
+    const nextCard = cards[nextIndex] as HTMLElement | null;
+
+    if (!nextCard) return;
+
+    // scrollPaddingLeft를 고려한 다음 카드의 정확한 위치 계산
+    const style = window.getComputedStyle(container);
+    const scrollPaddingLeft = parseFloat(style.scrollPaddingLeft || '0') || 0;
+
+    // 카드의 offsetLeft에서 scrollPaddingLeft를 빼서 정확한 snap 위치 계산
+    const targetScrollLeft = nextCard.offsetLeft - scrollPaddingLeft;
+
+    container.scrollTo({
+      left: targetScrollLeft,
       behavior: 'smooth',
     });
   }, [getXPositionScroll]);

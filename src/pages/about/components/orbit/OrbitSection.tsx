@@ -1,9 +1,9 @@
-import { FaCircle } from 'react-icons/fa6';
-
+import ArrowButton from '@shared/components/button/ArrowButton';
 import { OrbitingCircles } from './OrbitingCircles';
 import BlurLayer from './BlurLayer';
 import OrbitTextBox from './OrbitTextBox';
 import { ORBIT_CONFIG } from '@pages/about/constants/orbit';
+import { FaCircle } from 'react-icons/fa6';
 
 // 오빗 섹션 렌더링 컴포넌트
 const OrbitSectionRenderer = ({
@@ -28,6 +28,13 @@ const OrbitSectionRenderer = ({
 
 // 최종 오빗 섹션 컴포넌트 - 반응형 설정
 const OrbitSection = () => {
+  const handleScrollDown = () => {
+    const valuesSection = document.getElementById('values-section');
+    if (valuesSection) {
+      valuesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="relative w-full overflow-hidden">
       {/* Desktop */}
@@ -48,6 +55,9 @@ const OrbitSection = () => {
       {/* Overlay Components */}
       <BlurLayer />
       <OrbitTextBox />
+      <div className="animate-bounce-arrow absolute bottom-[2rem] left-1/2 z-50 md:hidden">
+        <ArrowButton iconColor="blue" onArrowBtnClick={handleScrollDown} direction="down" />
+      </div>
     </div>
   );
 };
