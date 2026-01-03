@@ -15,7 +15,7 @@ const Menu = ({ mode = 'light', ...props }: MenuProps) => {
   const menuItemColor = isLightMode ? 'navyblack' : 'white';
 
   const baseClasses = [
-    'fixed top-0 left-0 w-full inline-flex justify-between items-center z-100',
+    'fixed top-0 left-0 w-full inline-flex justify-between items-center z-[100]',
     'backdrop-blur-md shadow-xl shadow-black/10',
     `${isLightMode ? 'text-navyblack' : 'text-white'}`,
   ].join(' ');
@@ -36,7 +36,7 @@ const Menu = ({ mode = 'light', ...props }: MenuProps) => {
   const iconItemClasses = 'cursor-pointer md:h-[1.42rem] md:w-[1.42rem] lg:h-[2rem] lg:w-[2rem]';
 
   const mobileMenuContainerClasses =
-    'fixed top-0 left-0 h-screen w-full inline-flex flex-col justify-left items-start z-200 bg-white md:hidden';
+    'fixed top-0 left-0 h-screen w-full inline-flex flex-col justify-left items-start z-[200] bg-white md:hidden';
   const mobileMenuListClasses = 'm-[2.5rem_1rem] inline-flex flex-col gap-[2rem] text-[1.5rem] font-medium';
   const mobileMenuItemClasses = 'text-[1.5rem] font-medium hover:underline underline-offset-8';
   const mobileIconContainerClasses = 'inline-flex gap-[1rem]';
