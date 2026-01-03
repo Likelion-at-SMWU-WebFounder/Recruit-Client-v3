@@ -1,81 +1,107 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MENU_ORDER } from '@shared/constants/menu';
-import smwu_lion_logo_dark from '@assets/icons/smwu_lion_logo_dark.svg';
-import smwu_lion_logo_light from '@assets/icons/smwu_lion_logo_white.svg';
 import { KAKAOTALK_URL, INSTAGRAM_URL } from '@shared/constants/url';
-import { BsArrowUpRightCircleFill } from 'react-icons/bs'; // 지원하기 옆 화살표
-import { RiKakaoTalkFill, RiInstagramFill } from 'react-icons/ri';
+import { logo, apply_arrow } from '@shared/constants/menu';
+import { RiMenuLine, RiCloseLine, RiKakaoTalkFill, RiInstagramFill } from 'react-icons/ri';
 
 export interface MenuProps {
   mode?: 'light' | 'dark';
 }
 
 const Menu = ({ mode = 'light', ...props }: MenuProps) => {
-  // 메뉴 모드에 따른 글, 아이콘 색상 설정
+  const [menuOpen, setMenuOpen] = useState(false);
   const isLightMode = mode === 'light';
   const menuItemColor = isLightMode ? 'navyblack' : 'white';
 
-  // 기본 스타일 + 색상 모드
   const baseClasses = [
-    'fixed top-0 left-0 w-screen inline-flex flex-row justify-between items-center z-50',
-    'backdrop-blur shadow-xl ',
+    'fixed top-0 left-0 w-full inline-flex justify-between items-center z-100',
+    'backdrop-blur-md shadow-xl shadow-black/10',
     `text-${menuItemColor}`,
-    `${isLightMode ? 'shadow-gray/5' : 'shadow-black/10'}`,
   ].join(' ');
 
-  // 반응형 padding, gap 스타일 (모바일 기본, md: 태블릿, lg: 데스크톱)
   const responsiveClasses = [
-    'p-[1rem] gap-[1.25rem]', // mobile
-    'md:gap-[2.5rem]', // tablet
-    'lg:gap-[3.06rem]', // desktop
+    'p-[0.625rem_1rem] h-[2.5rem]', // mobile
+    'md:p-[0.625rem_4rem] md:h-[4.625rem]', // tablet
+    'lg:p-[0.625rem_4rem] lg:h-[6.0625rem]', // desktop
   ].join(' ');
 
-  // 반응형 로고 사이즈
-  const logoClasses = 'h-[5rem], md:h-[5rem], lg:h-[5rem]';
+  const logoClasses = 'h-[24px] md:h-[2.625rem] lg:h-[3.675rem]';
 
-  // 반응형 메뉴 사이즈
-  const menuContainerClasses = 'w-[50%] inline-flex flex-row justify-between items-center';
-  const menuItemClasses = [
-    'font-semibold text-[1rem] md:text-[1.25rem] lg:text-[1.5rem]', // mobile, tablet, desktop
-    'hover:underline underline-offset-8', // hover 효과
-  ].join(' ');
+  const menuListClasses =
+    'hidden md:p-[0.625rem] md:inline-flex md:justify-center md:items-center md:gap-[2.5rem] lg:gap-[4rem]';
+  const menuItemClasses = 'md:text-[1rem] lg:text-[1.25rem] font-medium hover:underline underline-offset-8';
 
-  // 반응형 아이콘 컨테이너 사이즈
-  const iconContainerClasses = 'inline-flex flex-row justify-center items-right gap-[0.5rem] md:gap-[1rem]';
-  const iconItemClasses = [
-    'inline-flex flex-col justify-center items-center cursor-pointer', // 기본 설정
-    'h-[2rem] gap-[0.5rem]', // mobile
-    'md:h-[4rem] md:gap-[1rem] lg:gap-[1rem]', // tablet, desktop
-  ].join(' ');
+  const iconContainerClasses = 'hidden md:inline-flex md:justify-center md:items-right md:gap-[1rem]';
+  const iconItemClasses = 'cursor-pointer md:h-[1.42rem] md:w-[1.42rem] lg:h-[2rem] lg:w-[2rem]';
+
+  const mobileMenuContainerClasses =
+    'fixed top-0 left-0 h-screen w-full inline-flex flex-col justify-left items-start z-200 bg-white md:hidden';
+  const mobileMenuListClasses = 'm-[2.5rem_1rem] inline-flex flex-col gap-[2rem] text-[1.5rem] font-medium';
+  const mobileMenuItemClasses = 'text-[1.5rem] font-medium hover:underline underline-offset-8';
+  const mobileIconContainerClasses = 'inline-flex gap-[1rem]';
+  const mobileIconItemClasses = 'cursor-pointer h-[2rem] w-[2rem]';
 
   return (
     <div className={`${baseClasses} ${responsiveClasses}`} {...props}>
       {/* Logo */}
-      <img
-        className={logoClasses}
-        src={mode === 'light' ? smwu_lion_logo_dark : smwu_lion_logo_light}
-        alt="SMWU Like Lion"
-      />
-      {/* MENU */}
-      <div className={menuContainerClasses}>
+      <Link to="/">
+        <img className={logoClasses} src={isLightMode ? logo.dark : logo.light} alt="SMWU Like Lion" />
+      </Link>
+      {/* LIST */}
+      <div className={menuListClasses}>
         {MENU_ORDER.map((item) => (
           <span key={item.key} className={menuItemClasses}>
             <Link to={item.path}>
               {item.label}
-              {item.key === 'apply' && <BsArrowUpRightCircleFill className="ml-1 inline-block" />}
+              {item.key === 'apply' && (
+                <img
+                  className={`${iconItemClasses} inline-block pl-[0.3rem]`}
+                  src={isLightMode ? apply_arrow.dark : apply_arrow.light}
+                  alt=" "
+                />
+              )}
             </Link>
           </span>
         ))}
       </div>
-      {/* KAKAO, INSTAGRAM icon */}
+      {/* LINK */}
       <div className={iconContainerClasses}>
         <a href={KAKAOTALK_URL} target="_blank" rel="noreferrer">
-          <RiKakaoTalkFill className={`${iconItemClasses}`} color={menuItemColor} />
+          <RiKakaoTalkFill className={iconItemClasses} color={menuItemColor} />
         </a>
         <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">
-          <RiInstagramFill className={`${iconItemClasses}`} color={menuItemColor} />
+          <RiInstagramFill className={iconItemClasses} color={menuItemColor} />
         </a>
       </div>
+      {/* MOBILE MENU */}
+      <button className="cursor-pointer md:hidden" onClick={() => setMenuOpen(true)}>
+        <RiMenuLine className={iconItemClasses} color={menuItemColor} />
+      </button>
+      {menuOpen && (
+        <div className={mobileMenuContainerClasses}>
+          <button
+            className={`inline-flex ${responsiveClasses} w-full cursor-pointer justify-end`}
+            onClick={() => setMenuOpen(false)}>
+            <RiCloseLine className={iconItemClasses} color={menuItemColor} />
+          </button>
+          <div className={mobileMenuListClasses}>
+            {MENU_ORDER.map((item) => (
+              <span key={item.key} className={mobileMenuItemClasses}>
+                <Link to={item.path}>{item.label}</Link>
+              </span>
+            ))}
+            <div className={mobileIconContainerClasses}>
+              <a href={KAKAOTALK_URL} target="_blank" rel="noreferrer">
+                <RiKakaoTalkFill className={mobileIconItemClasses} color={menuItemColor} />
+              </a>
+              <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">
+                <RiInstagramFill className={mobileIconItemClasses} color={menuItemColor} />
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
