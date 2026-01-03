@@ -89,7 +89,9 @@ const Menu = ({ mode = 'light', ...props }: MenuProps) => {
           <div className={mobileMenuListClasses}>
             {MENU_ORDER.map((item) => (
               <span key={item.key} className={mobileMenuItemClasses}>
-                <Link to={item.path}>{item.label}</Link>
+                <Link to={item.path} onClick={() => setMenuOpen(false)}>
+                  {item.label}
+                </Link>
               </span>
             ))}
             <div className={mobileIconContainerClasses}>
