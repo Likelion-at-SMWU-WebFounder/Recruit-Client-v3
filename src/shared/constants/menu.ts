@@ -35,3 +35,15 @@ export const MENU_ORDER = [
   MENU_ITEMS.PROJECT,
   MENU_ITEMS.APPLY,
 ] as const;
+
+// 메뉴 컴포넌트에서 사용되는 이미지 경로
+const MENU_IMAGES_PATH = import.meta.env.VITE_IMAGE_PATH + '/menu';
+
+export const logo = {
+  dark: MENU_IMAGES_PATH + '/smwu_lion_logo_dark.svg',
+  light: MENU_IMAGES_PATH + '/smwu_lion_logo_light.svg',
+};
+export const apply_arrow = {
+  dark: MENU_IMAGES_PATH + '/arrow_dark.svg',
+  light: MENU_IMAGES_PATH + '/arrow_light.svg',
+};
