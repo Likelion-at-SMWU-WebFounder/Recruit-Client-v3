@@ -41,6 +41,7 @@ const Menu = ({ mode = 'light', ...props }: MenuProps) => {
   const mobileMenuItemClasses = 'text-[1.5rem] font-medium hover:underline underline-offset-8';
   const mobileIconContainerClasses = 'inline-flex gap-[1rem]';
   const mobileIconItemClasses = 'cursor-pointer h-[2rem] w-[2rem]';
+  const mobileIconColor = 'navyblack';
 
   return (
     <div className={`${baseClasses} ${responsiveClasses}`} {...props}>
@@ -93,10 +94,10 @@ const Menu = ({ mode = 'light', ...props }: MenuProps) => {
             ))}
             <div className={mobileIconContainerClasses}>
               <a href={KAKAOTALK_URL} target="_blank" rel="noreferrer">
-                <RiKakaoTalkFill className={mobileIconItemClasses} color={menuItemColor} />
+                <RiKakaoTalkFill className={mobileIconItemClasses} color={mobileIconColor} />
               </a>
               <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">
-                <RiInstagramFill className={mobileIconItemClasses} color={menuItemColor} />
+                <RiInstagramFill className={mobileIconItemClasses} color={mobileIconColor} />
               </a>
             </div>
           </div>
