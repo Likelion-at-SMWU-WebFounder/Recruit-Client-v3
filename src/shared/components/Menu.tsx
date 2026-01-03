@@ -17,7 +17,7 @@ const Menu = ({ mode = 'light', ...props }: MenuProps) => {
   const baseClasses = [
     'fixed top-0 left-0 w-full inline-flex justify-between items-center z-100',
     'backdrop-blur-md shadow-xl shadow-black/10',
-    `text-${menuItemColor}`,
+    `${isLightMode ? 'text-navyblack' : 'text-white'}`,
   ].join(' ');
 
   const responsiveClasses = [
