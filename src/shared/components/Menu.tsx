@@ -53,7 +53,7 @@ const MobileDrawer = ({ setDrawerOpen, mobileMenuColor }: MobileDrawerProps) => 
 
   return (
     <>
-      <div className={mobileMenuContainerClasses}>
+      <div className={mobileMenuContainerClasses} role="dialog" aria-modal="true" aria-label="모바일 메뉴 서랍">
         <span className={`inline-flex h-[2.5rem] w-full justify-end p-[0.625rem_1rem]`}>
           <RiCloseLine
             className={`${mobileMenuColor} ${hoverColor} cursor-pointer md:h-[2rem] md:w-[2rem] lg:h-[2rem] lg:w-[2rem]`}
