@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Layout from '@shared/components/Layout';
 import Title from '@shared/components/Title';
 import FilterBar from '@shared/components/filter/FilterBar';
 import WebFoundersSection from '@pages/webFounders/components/WebFoundersSection';
@@ -15,9 +16,9 @@ import useResponsiveBackgroundImage from '@shared/hooks/useResponsiveBackgroundI
 // 웹파운더즈 페이지 스타일 상수화
 const WEBFOUNDERS_STYLES = {
   container: {
-    base: 'space-y-[2.28rem] bg-cover bg-center bg-no-repeat px-[1rem] py-[8.44rem]',
-    tablet: 'md:space-y-[4.56rem]',
-    desktop: 'lg:space-y-[7.5rem] lg:px-[10rem] lg:py-[8.13rem]',
+    base: 'space-y-[2.28rem] bg-cover bg-center bg-no-repeat px-[1rem] py-[9.88rem]',
+    tablet: 'md:space-y-[4.56rem] md:py-[12.31rem]',
+    desktop: 'lg:space-y-[7.5rem] lg:px-[10rem] lg:py-[14.19rem]',
   }, // 웹파운더즈 페이지 전체 컨테이너 스타일
   titleWrapper: {
     base: '',
@@ -41,6 +42,10 @@ const WebFounders = () => {
   const backgroundImage = useResponsiveBackgroundImage(WEBFOUNDERS_BACKGROUND_IMAGES_PATH);
   const [selectedFilter, setSelectedFilter] = useState<string>(WEBFOUNDERS_FILTER_OPTIONS[0].filterValue); // 기본값: '3기'
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // 필터에 따라 멤버 필터링 (기수별로 멤버 그룹화)
   const foundersByGeneration = getFoundersByGeneration(selectedFilter);
 
@@ -57,32 +62,34 @@ const WebFounders = () => {
   const sectionsContainerClassName = combineStyles(WEBFOUNDERS_STYLES.sectionsContainer);
 
   return (
-    <div className={containerClassName} style={{ backgroundImage }}>
-      {/* 타이틀 */}
-      <div className={titleWrapperClassName}>
-        <Title title={WEBFOUNDERS_TITLE} description={WEBFOUNDERS_SUBTITLE} />
-      </div>
-
-      {/* 필터 바, 파트별 섹션 */}
-      <div className={contentWrapperClassName}>
-        {/* 필터 바 */}
-        <div className={filterBarWrapperClassName}>
-          <FilterBar
-            value={selectedFilter}
-            onChange={setSelectedFilter}
-            options={WEBFOUNDERS_FILTER_OPTIONS}
-            mode="webFounders"
-          />
+    <Layout menuMode="light" footerMode="light">
+      <div className={containerClassName} style={{ backgroundImage }}>
+        {/* 타이틀 */}
+        <div className={titleWrapperClassName}>
+          <Title title={WEBFOUNDERS_TITLE} description={WEBFOUNDERS_SUBTITLE} />
         </div>
 
-        {/* 파트별 멤버 섹션 */}
-        <div className={sectionsContainerClassName}>
-          {planDesignFounders.length > 0 && <WebFoundersSection title="기획·디자인" founders={planDesignFounders} />}
-          {frontendFounders.length > 0 && <WebFoundersSection title="프론트엔드" founders={frontendFounders} />}
-          {backendFounders.length > 0 && <WebFoundersSection title="백엔드" founders={backendFounders} />}
+        {/* 필터 바, 파트별 섹션 */}
+        <div className={contentWrapperClassName}>
+          {/* 필터 바 */}
+          <div className={filterBarWrapperClassName}>
+            <FilterBar
+              value={selectedFilter}
+              onChange={setSelectedFilter}
+              options={WEBFOUNDERS_FILTER_OPTIONS}
+              mode="webFounders"
+            />
+          </div>
+
+          {/* 파트별 멤버 섹션 */}
+          <div className={sectionsContainerClassName}>
+            {planDesignFounders.length > 0 && <WebFoundersSection title="기획·디자인" founders={planDesignFounders} />}
+            {frontendFounders.length > 0 && <WebFoundersSection title="프론트엔드" founders={frontendFounders} />}
+            {backendFounders.length > 0 && <WebFoundersSection title="백엔드" founders={backendFounders} />}
+          </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
