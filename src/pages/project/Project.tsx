@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import Layout from '@shared/components/Layout';
 import Title from '@shared/components/Title';
 import FilterBar from '@shared/components/filter/FilterBar';
 import ProjectGrid from '@pages/project/components/list/ProjectGrid';
@@ -64,17 +65,19 @@ const Project = () => {
   const contentWrapperClassName = combineStyles(PROJECT_STYLES.contentWrapper);
 
   return (
-    <div
-      className={containerClassName}
-      style={{ backgroundImage, backgroundSize: 'cover', backgroundPosition: 'top', backgroundRepeat: 'no-repeat' }}>
-      <div className={titleWrapperClassName}>
-        <Title title={PROJECT_TITLE} description={PROJECT_SUBTITLE} isIcon={true} />
+    <Layout menuMode="light" footerMode="light">
+      <div
+        className={containerClassName}
+        style={{ backgroundImage, backgroundSize: 'cover', backgroundPosition: 'top', backgroundRepeat: 'no-repeat' }}>
+        <div className={titleWrapperClassName}>
+          <Title title={PROJECT_TITLE} description={PROJECT_SUBTITLE} isIcon={true} />
+        </div>
+        <div className={contentWrapperClassName}>
+          <FilterBar value={filter} onChange={handleFilterChange} options={PROJECT_FILTER_OPTIONS} mode="project" />
+          <ProjectGrid filter={filter} />
+        </div>
       </div>
-      <div className={contentWrapperClassName}>
-        <FilterBar value={filter} onChange={handleFilterChange} options={PROJECT_FILTER_OPTIONS} mode="project" />
-        <ProjectGrid filter={filter} />
-      </div>
-    </div>
+    </Layout>
   );
 };
 
