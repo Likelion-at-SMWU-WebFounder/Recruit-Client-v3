@@ -31,7 +31,8 @@
     "react-router-dom": "^7.9.4",
     "react-slick": "^0.31.0",
     "slick-carousel": "^1.8.1",
-    "tailwind-merge": "^3.4.0"
+    "tailwind-merge": "^3.4.0",
+    "typewriter-effect": "^2.22.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.1",
