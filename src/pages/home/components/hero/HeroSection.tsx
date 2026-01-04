@@ -7,12 +7,8 @@ import useResponsiveBackgroundImage from '@shared/hooks/useResponsiveBackgroundI
 const HeroSection = () => {
   const backgroundImage = useResponsiveBackgroundImage(HERO_BACKGROUND_IMAGES_PATH);
 
-  const titleClasses = [
-    'font-GMarketSans font-[700] text-white leading-[117%]',
-    'text-[2.25rem]',
-    'md:text-[4rem] ',
-    'lg:text-[6rem] ',
-  ].join(' ');
+  const titleClasses =
+    'font-GMarketSans font-[700] text-white leading-[117%] text-[2.25rem] md:text-[4rem] lg:text-[6rem]';
 
   // 스크롤 대상 요소가 Home 페이지에 추가 후 수정 필요
   const handleScrollDown = () => {
