@@ -6,3 +6,9 @@ export const HERO_BACKGROUND_IMAGES_PATH = {
   tablet: HOME_IMAGES_PATH + '/background-image/hero-tablet.webp',
   desktop: HOME_IMAGES_PATH + '/background-image/hero-desktop.webp',
 };
+
+// home 페이지 title
+export const TITLE = {
+  TITLE_1: 'Be the lion,',
+  TITLE_2: 'Code your world',
+};
