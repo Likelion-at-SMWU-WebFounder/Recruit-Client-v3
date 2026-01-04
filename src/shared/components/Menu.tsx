@@ -167,7 +167,12 @@ const Menu = ({ mode = 'light', ...props }: MenuProps) => {
         </div>
 
         {/* 햄버거 메뉴 아이콘 : mobile */}
-        <button className="cursor-pointer md:hidden" onClick={() => setDrawerOpen(true)}>
+        <button
+          className="cursor-pointer md:hidden"
+          onClick={() => setDrawerOpen(true)}
+          aria-label="메뉴 서랍 열기"
+          aria-expanded={drawerOpen}
+          aria-controls="mobile-drawer">
           <RiMenuLine className={iconItemClasses} />
         </button>
         {drawerOpen && <MobileDrawer setDrawerOpen={setDrawerOpen} mobileMenuColor={mobileMenuColor} />}
