@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom'; // 현재 페이지 경로를 가져오기 위해 필요 (active 상태용)
 import { MENU_ORDER } from '@shared/constants/menu';
 import { KAKAOTALK_URL, INSTAGRAM_URL } from '@shared/constants/url';
 import { logo, apply_arrow } from '@shared/constants/menu';
@@ -12,7 +13,6 @@ export interface MenuProps {
 const mobileMenuColor = 'text-navyblack';
 const hoverColor = 'hover:text-blue';
 
-// 모바일 메뉴 서랍 컴포넌트
 export interface MobileDrawerProps {
   setDrawerOpen: (open: boolean) => void;
   mobileMenuColor: string;
@@ -52,6 +52,10 @@ const MobileDrawer = ({ setDrawerOpen, mobileMenuColor }: MobileDrawerProps) => 
         <div className={mobileMenuListClasses}>
           {MENU_ORDER.map((item) => (
             <span key={item.key} className={mobileMenuItemClasses}>
+              {/* 모바일 메뉴에서 active 상태 구현 시:
+                  className={`${mobileMenuColor} ${hoverColor} w-[100dvw] cursor-pointer text-[1.5rem] font-medium ${
+                    isActivePath(item.path) ? activeColor : ''
+                  }`} */}
               <Link to={item.path} onClick={handleClose}>
                 {item.label}
               </Link>
@@ -76,6 +80,22 @@ const Menu = ({ mode = 'light', ...props }: MenuProps) => {
   const isLightMode = mode === 'light';
   const menuModeColor = isLightMode ? 'text-navyblack' : 'text-white';
 
+  // 현재 페이지 경로를 가져오기 위한 hook (active 상태 구현 시 사용)
+  // const location = useLocation();
+
+  // const isActivePath = (path: string) => {
+  //   if (path === '/') return location.pathname === '/';
+  //   return location.pathname.startsWith(path);
+  // };
+
+  // active 상태일 때 사용할 색상 클래스 (필요 시 사용)
+  // const activeColor = 'text-blue';
+  // const getMenuItemClass = (path: string) => {
+  //   return `${hoverColor} md:text-[1rem] lg:text-[1.25rem] font-medium ${
+  //     isActivePath(path) ? activeColor : ''
+  //   }`;
+  // };
+
   const baseClasses = [
     'fixed top-0 left-0 w-full inline-flex justify-between items-center z-[100]',
     'backdrop-blur-md shadow-xl shadow-black/10',
@@ -93,6 +113,8 @@ const Menu = ({ mode = 'light', ...props }: MenuProps) => {
   const menuListClasses =
     'hidden md:p-[0.625rem] md:inline-flex md:justify-center md:items-center md:gap-[2.5rem] lg:gap-[4rem]';
   const menuItemClasses = `${hoverColor} md:text-[1rem] lg:text-[1.25rem] font-medium`;
+  // active 상태 구현 시 위 menuItemClasses 대신 아래와 같이 사용:
+  // const menuItemClasses = (path: string) => getMenuItemClass(path);
   const iconContainerClasses = 'hidden md:inline-flex md:justify-center md:items-right md:gap-[1rem]';
   const iconItemClasses = `${menuModeColor} cursor-pointer md:h-[1.42rem] md:w-[1.42rem] lg:h-[2rem] lg:w-[2rem]`;
 
@@ -108,6 +130,7 @@ const Menu = ({ mode = 'light', ...props }: MenuProps) => {
         <div className={menuListClasses}>
           {MENU_ORDER.map((item) => (
             <span key={item.key} className={menuItemClasses}>
+              {/* active 상태 구현 시 className={menuItemClasses(item.path)} 으로 변경*/}
               <Link to={item.path}>
                 {item.label}
                 {item.key === 'apply' && (
