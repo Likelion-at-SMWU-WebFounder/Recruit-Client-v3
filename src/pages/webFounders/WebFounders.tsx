@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Layout from '@shared/components/Layout';
 import Title from '@shared/components/Title';
 import FilterBar from '@shared/components/filter/FilterBar';
 import WebFoundersSection from '@pages/webFounders/components/WebFoundersSection';
@@ -57,32 +58,34 @@ const WebFounders = () => {
   const sectionsContainerClassName = combineStyles(WEBFOUNDERS_STYLES.sectionsContainer);
 
   return (
-    <div className={containerClassName} style={{ backgroundImage }}>
-      {/* 타이틀 */}
-      <div className={titleWrapperClassName}>
-        <Title title={WEBFOUNDERS_TITLE} description={WEBFOUNDERS_SUBTITLE} />
-      </div>
-
-      {/* 필터 바, 파트별 섹션 */}
-      <div className={contentWrapperClassName}>
-        {/* 필터 바 */}
-        <div className={filterBarWrapperClassName}>
-          <FilterBar
-            value={selectedFilter}
-            onChange={setSelectedFilter}
-            options={WEBFOUNDERS_FILTER_OPTIONS}
-            mode="webFounders"
-          />
+    <Layout menuMode="light" footerMode="light">
+      <div className={containerClassName} style={{ backgroundImage }}>
+        {/* 타이틀 */}
+        <div className={titleWrapperClassName}>
+          <Title title={WEBFOUNDERS_TITLE} description={WEBFOUNDERS_SUBTITLE} />
         </div>
 
-        {/* 파트별 멤버 섹션 */}
-        <div className={sectionsContainerClassName}>
-          {planDesignFounders.length > 0 && <WebFoundersSection title="기획·디자인" founders={planDesignFounders} />}
-          {frontendFounders.length > 0 && <WebFoundersSection title="프론트엔드" founders={frontendFounders} />}
-          {backendFounders.length > 0 && <WebFoundersSection title="백엔드" founders={backendFounders} />}
+        {/* 필터 바, 파트별 섹션 */}
+        <div className={contentWrapperClassName}>
+          {/* 필터 바 */}
+          <div className={filterBarWrapperClassName}>
+            <FilterBar
+              value={selectedFilter}
+              onChange={setSelectedFilter}
+              options={WEBFOUNDERS_FILTER_OPTIONS}
+              mode="webFounders"
+            />
+          </div>
+
+          {/* 파트별 멤버 섹션 */}
+          <div className={sectionsContainerClassName}>
+            {planDesignFounders.length > 0 && <WebFoundersSection title="기획·디자인" founders={planDesignFounders} />}
+            {frontendFounders.length > 0 && <WebFoundersSection title="프론트엔드" founders={frontendFounders} />}
+            {backendFounders.length > 0 && <WebFoundersSection title="백엔드" founders={backendFounders} />}
+          </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
