@@ -16,9 +16,9 @@ import useResponsiveBackgroundImage from '@shared/hooks/useResponsiveBackgroundI
 // 웹파운더즈 페이지 스타일 상수화
 const WEBFOUNDERS_STYLES = {
   container: {
-    base: 'space-y-[2.28rem] bg-cover bg-center bg-no-repeat px-[1rem] py-[8.44rem]',
-    tablet: 'md:space-y-[4.56rem]',
-    desktop: 'lg:space-y-[7.5rem] lg:px-[10rem] lg:py-[8.13rem]',
+    base: 'space-y-[2.28rem] bg-cover bg-center bg-no-repeat px-[1rem] py-[9.88rem]',
+    tablet: 'md:space-y-[4.56rem] md:py-[12.31rem]',
+    desktop: 'lg:space-y-[7.5rem] lg:px-[10rem] lg:py-[14.19rem]',
   }, // 웹파운더즈 페이지 전체 컨테이너 스타일
   titleWrapper: {
     base: '',
