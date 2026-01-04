@@ -32,8 +32,13 @@ const MobileDrawer = ({ setDrawerOpen, mobileMenuColor }: MobileDrawerProps) => 
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') handleClose();
     };
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
+
+    document.addEventListener('keydown', handleEscape); // ESC 키로 모달 닫기
+    document.body.style.overflow = 'hidden'; // Body scroll 막기
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = '';
+    };
   }, []);
 
   const mobileMenuContainerClasses = `
