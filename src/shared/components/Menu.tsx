@@ -21,14 +21,20 @@ export interface MobileDrawerProps {
 const MobileDrawer = ({ setDrawerOpen, mobileMenuColor }: MobileDrawerProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
   const handleClose = () => {
     setIsVisible(false);
     setTimeout(() => setDrawerOpen(false), 300);
   };
+
+  useEffect(() => {
+    setIsVisible(true);
+
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') handleClose();
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, []);
 
   const mobileMenuContainerClasses = `
     fixed top-0 right-0 h-screen w-full inline-flex flex-col justify-start items-start z-[200] bg-white md:hidden
