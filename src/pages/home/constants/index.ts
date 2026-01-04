@@ -31,3 +31,10 @@ export const SUB_TITLE = {
   SUB_TITLE_6: 'apply',
   SUB_DESCRIPTION_6: '14기 지원',
 };
+
+export const SUB_CONTENT_CLASSES = [
+  'whitespace-pre-line text-navyblack/70',
+  'text-[1rem] font-[400] leading-[170%]', // mobile
+  'md:text-[1.125rem] md:font-[500]', // tablet
+  'lg:text-[1.75rem] lg:font-[400]', // desktop
+].join(' ');
