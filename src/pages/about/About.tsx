@@ -11,6 +11,10 @@ import JoinSection from '@pages/about/components/join/JoinSection';
 const About = () => {
   const [menuMode, setMenuMode] = useState<'light' | 'dark'>('dark');
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // About 페이지에서만 브라우저 기본 스크롤바 숨김
   useEffect(() => {
     const root = document.documentElement;

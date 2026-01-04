@@ -60,6 +60,10 @@ const Project = () => {
     }
   }, [filterFromUrl, defaultFilter, searchParams, setSearchParams]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const containerClassName = combineStyles(PROJECT_STYLES.container);
   const titleWrapperClassName = combineStyles(PROJECT_STYLES.titleWrapper);
   const contentWrapperClassName = combineStyles(PROJECT_STYLES.contentWrapper);

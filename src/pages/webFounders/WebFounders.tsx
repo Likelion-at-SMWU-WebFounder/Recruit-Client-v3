@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Layout from '@shared/components/Layout';
 import Title from '@shared/components/Title';
 import FilterBar from '@shared/components/filter/FilterBar';
@@ -41,6 +41,10 @@ const WEBFOUNDERS_STYLES = {
 const WebFounders = () => {
   const backgroundImage = useResponsiveBackgroundImage(WEBFOUNDERS_BACKGROUND_IMAGES_PATH);
   const [selectedFilter, setSelectedFilter] = useState<string>(WEBFOUNDERS_FILTER_OPTIONS[0].filterValue); // 기본값: '3기'
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // 필터에 따라 멤버 필터링 (기수별로 멤버 그룹화)
   const foundersByGeneration = getFoundersByGeneration(selectedFilter);
