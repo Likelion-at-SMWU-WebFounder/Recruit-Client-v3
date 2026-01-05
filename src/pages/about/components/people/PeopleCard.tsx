@@ -1,3 +1,4 @@
+import { combineStyles } from '@shared/utils/combineStyles';
 import { renderEmphasizedText } from '@/shared/utils/renderEmphasizedText';
 
 interface PeopleCardProps {
@@ -8,19 +9,54 @@ interface PeopleCardProps {
   onClick?: () => void;
 }
 
-const DESKTOP_CARD_CLASS =
-  'hidden h-[35.5rem] w-[40rem] flex-col items-start gap-[3rem] rounded-[1.25rem] px-[4.75rem] py-[5.88rem] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] lg:flex';
-
-const TABLET_MOBILE_CARD_BASE_CLASS =
-  'flex w-[22.5625rem] cursor-pointer flex-col items-start rounded-[0.5rem] py-[1.5rem] pr-[2.3125rem] pl-[1rem] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] md:flex md:w-[56rem] md:rounded-[1.25rem] md:px-[4.75rem] md:py-[2rem] md:pr-[5.875rem] md:pl-[2.44rem] lg:hidden';
-
-const TABLET_MOBILE_CARD_OPEN_CLASS = 'gap-[1.25rem]';
-const TABLET_MOBILE_CARD_CLOSED_CLASS = 'opacity-60';
-
-const TABLET_MOBILE_DESCRIPTION_OPEN_CLASS = 'grid grid-rows-[1fr] opacity-100';
-const TABLET_MOBILE_DESCRIPTION_CLOSED_CLASS = 'grid grid-rows-[0fr] opacity-0';
-
-const ICON_SIZE_CLASS = 'w-[1.5rem] md:w-[3.25rem] lg:w-[5rem]';
+// PeopleCard 스타일 상수화
+const PEOPLE_CARD_STYLES = {
+  desktop: {
+    base: 'hidden h-[35.5rem] w-[40rem] flex-col items-start gap-[3rem] rounded-[1.25rem] px-[4.75rem] py-[5.88rem] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)]',
+    desktop: 'lg:flex',
+  },
+  tabletMobile: {
+    base: 'flex cursor-pointer flex-col items-start shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)]',
+    mobile: 'w-[22.5625rem] rounded-[0.5rem] py-[1.5rem] pr-[2.3125rem] pl-[1rem]',
+    tablet: 'md:flex md:w-[56rem] md:rounded-[1.25rem] md:px-[4.75rem] md:py-[2rem] md:pr-[5.875rem] md:pl-[2.44rem]',
+    desktop: 'lg:hidden',
+  },
+  tabletMobileOpen: {
+    base: 'gap-[1.25rem]',
+  },
+  tabletMobileClosed: {
+    base: 'opacity-60',
+  },
+  descriptionOpen: {
+    base: 'grid grid-rows-[1fr] opacity-100',
+  },
+  descriptionClosed: {
+    base: 'grid grid-rows-[0fr] opacity-0',
+  },
+  icon: {
+    base: 'w-[1.5rem]',
+    tablet: 'md:w-[3.25rem]',
+    desktop: 'lg:w-[5rem]',
+  },
+  keywordDesktop: {
+    base: 'text-navyblack text-[2rem] font-[600]',
+  },
+  descriptionDesktop: {
+    base: 'text-navyblack/70 text-[1.5rem] leading-[200%] font-[600] whitespace-pre-line',
+  },
+  keywordTabletMobile: {
+    base: 'text-navyblack text-[1.25rem] leading-[140%] font-[600]',
+    tablet: 'md:text-[1.75rem]',
+  },
+  descriptionTabletMobile: {
+    base: 'text-navyblack/70 text-[1rem] leading-[180%] font-[500]',
+    tablet: 'md:text-[1.25rem] md:font-[600] md:whitespace-pre-line',
+  },
+  iconKeywordWrapper: {
+    base: 'flex items-center gap-[0.75rem]',
+    tablet: 'md:gap-[1.25rem]',
+  },
+} as const;
 
 const PeopleCard = ({ icon, keyword, description, isOpen, onClick }: PeopleCardProps) => {
   // 첫 번째 줄바꿈만 유지하고 나머지는 공백으로 변환 (태블릿, 모바일 화면에서 필요)
@@ -28,15 +64,25 @@ const PeopleCard = ({ icon, keyword, description, isOpen, onClick }: PeopleCardP
     return offset === description.indexOf('\n') ? '\n' : ' ';
   });
 
+  const desktopClassName = combineStyles(PEOPLE_CARD_STYLES.desktop);
+  const tabletMobileClassName = `${combineStyles(PEOPLE_CARD_STYLES.tabletMobile)} ${isOpen ? combineStyles(PEOPLE_CARD_STYLES.tabletMobileOpen) : combineStyles(PEOPLE_CARD_STYLES.tabletMobileClosed)}`;
+  const iconClassName = combineStyles(PEOPLE_CARD_STYLES.icon);
+  const keywordDesktopClassName = combineStyles(PEOPLE_CARD_STYLES.keywordDesktop);
+  const descriptionDesktopClassName = combineStyles(PEOPLE_CARD_STYLES.descriptionDesktop);
+  const iconKeywordWrapperClassName = combineStyles(PEOPLE_CARD_STYLES.iconKeywordWrapper);
+  const keywordTabletMobileClassName = combineStyles(PEOPLE_CARD_STYLES.keywordTabletMobile);
+  const descriptionTabletMobileClassName = combineStyles(PEOPLE_CARD_STYLES.descriptionTabletMobile);
+  const descriptionContainerClassName = isOpen
+    ? `${PEOPLE_CARD_STYLES.descriptionOpen.base} w-full transition-[grid-template-rows,opacity] duration-300 ease-out`
+    : `${PEOPLE_CARD_STYLES.descriptionClosed.base} w-full transition-[grid-template-rows,opacity] duration-300 ease-out`;
+
   return (
     <>
       {/* 데스크톱 */}
-      <div className={DESKTOP_CARD_CLASS}>
-        <img src={icon} alt={keyword} className={ICON_SIZE_CLASS} />
-        <div className="text-navyblack text-[2rem] font-[600]">{keyword}</div>
-        <div className="text-navyblack/70 text-[1.5rem] leading-[200%] font-[600] whitespace-pre-line">
-          {renderEmphasizedText(description)}
-        </div>
+      <div className={desktopClassName}>
+        <img src={icon} alt={keyword} className={iconClassName} />
+        <div className={keywordDesktopClassName}>{keyword}</div>
+        <div className={descriptionDesktopClassName}>{renderEmphasizedText(description)}</div>
       </div>
 
       {/* 태블릿, 모바일 */}
@@ -44,7 +90,7 @@ const PeopleCard = ({ icon, keyword, description, isOpen, onClick }: PeopleCardP
         role="button"
         tabIndex={0}
         aria-expanded={isOpen}
-        className={`${TABLET_MOBILE_CARD_BASE_CLASS} ${isOpen ? TABLET_MOBILE_CARD_OPEN_CLASS : TABLET_MOBILE_CARD_CLOSED_CLASS}`}
+        className={tabletMobileClassName}
         onClick={onClick}
         onKeyDown={(event) => {
           if (event.key === 'Enter' || event.key === ' ') {
@@ -52,18 +98,13 @@ const PeopleCard = ({ icon, keyword, description, isOpen, onClick }: PeopleCardP
             onClick?.();
           }
         }}>
-        <div className="flex items-center gap-[0.75rem] md:gap-[1.25rem]">
-          <img src={icon} alt={keyword} className={ICON_SIZE_CLASS} />
-          <div className="text-navyblack text-[1.25rem] leading-[140%] font-[600] md:text-[1.75rem]">{keyword}</div>
+        <div className={iconKeywordWrapperClassName}>
+          <img src={icon} alt={keyword} className={iconClassName} />
+          <div className={keywordTabletMobileClassName}>{keyword}</div>
         </div>
-        <div
-          className={`${
-            isOpen ? TABLET_MOBILE_DESCRIPTION_OPEN_CLASS : TABLET_MOBILE_DESCRIPTION_CLOSED_CLASS
-          } w-full transition-[grid-template-rows,opacity] duration-300 ease-in-out`}>
+        <div className={descriptionContainerClassName}>
           <div className="overflow-hidden">
-            <div className="text-navyblack/70 text-[1rem] leading-[180%] font-[500] md:text-[1.25rem] md:font-[600] md:whitespace-pre-line">
-              {renderEmphasizedText(processedDescription)}
-            </div>
+            <div className={descriptionTabletMobileClassName}>{renderEmphasizedText(processedDescription)}</div>
           </div>
         </div>
       </div>
