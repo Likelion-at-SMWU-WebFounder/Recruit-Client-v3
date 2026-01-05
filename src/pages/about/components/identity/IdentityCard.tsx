@@ -35,6 +35,7 @@ const IDENTITY_CARD_STYLES = {
     desktop: 'lg:text-[1.5rem] lg:leading-[2.7rem]',
   },
   descriptionContainer: {
+    base: 'transition-[grid-template-rows,opacity] duration-300 ease-out',
     open: 'grid grid-rows-[1fr] opacity-100',
     closed: 'grid grid-rows-[0fr] opacity-0',
   }, // 설명 컨테이너 스타일 (열림, 닫힘 상태 스타일)
@@ -57,8 +58,8 @@ const IdentityCard = ({
   const identityClassName = combineStyles(IDENTITY_CARD_STYLES.identity);
   const descriptionClassName = combineStyles(IDENTITY_CARD_STYLES.description);
   const descriptionContainerClassName = isOpen
-    ? IDENTITY_CARD_STYLES.descriptionContainer.open
-    : IDENTITY_CARD_STYLES.descriptionContainer.closed;
+    ? `${IDENTITY_CARD_STYLES.descriptionContainer.base} ${IDENTITY_CARD_STYLES.descriptionContainer.open}`
+    : `${IDENTITY_CARD_STYLES.descriptionContainer.base} ${IDENTITY_CARD_STYLES.descriptionContainer.closed}`;
   const descriptionContentClassName = `${descriptionClassName} ${combineStyles(IDENTITY_CARD_STYLES.descriptionContent)}`;
 
   return (
@@ -75,7 +76,7 @@ const IdentityCard = ({
         }
       }}>
       <div className={identityClassName}>{identity}</div>
-      <div className={`${descriptionContainerClassName} transition-[grid-template-rows,opacity] duration-300 ease-out`}>
+      <div className={descriptionContainerClassName}>
         <div className="overflow-hidden">
           <div className={descriptionContentClassName}>
             <div>{description1}</div>
