@@ -10,7 +10,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import '@pages/about/styles/carousel.css';
 
 // ValueSection 스타일 상수화
-const VALUES_SECTION_STYLES = {
+const VALUE_SECTION_STYLES = {
   section: {
     base: 'w-full max-w-[100vw] py-[6.25rem]',
     tablet: 'md:pt-[12.56rem] md:pb-[15.5rem]',
@@ -45,10 +45,10 @@ const ValueSection = () => {
     arrows: false, // 화살표 표시 여부
   };
 
-  const sectionClassName = combineStyles(VALUES_SECTION_STYLES.section);
-  const mobileCarouselClassName = combineStyles(VALUES_SECTION_STYLES.mobileCarousel);
-  const desktopGridClassName = combineStyles(VALUES_SECTION_STYLES.desktopGrid);
-  const gridClassName = combineStyles(VALUES_SECTION_STYLES.grid);
+  const sectionClassName = combineStyles(VALUE_SECTION_STYLES.section);
+  const mobileCarouselClassName = combineStyles(VALUE_SECTION_STYLES.mobileCarousel);
+  const desktopGridClassName = combineStyles(VALUE_SECTION_STYLES.desktopGrid);
+  const gridClassName = combineStyles(VALUE_SECTION_STYLES.grid);
 
   return (
     <section className={sectionClassName}>
