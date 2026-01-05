@@ -53,7 +53,7 @@ const LinkIcon = ({ url, iconPath, alt }: LinkIconProps) => {
 
   return (
     <a href={url} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center">
-      <img src={iconPath} alt={alt} className={OVERVIEW_STYLES.linkIcon} />
+      <img src={iconPath} alt={alt} className={OVERVIEW_STYLES.linkIcon} loading="lazy" />
     </a>
   );
 };
