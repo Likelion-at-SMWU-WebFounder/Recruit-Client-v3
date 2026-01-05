@@ -23,7 +23,7 @@ const IDENTITY_CARD_STYLES = {
   }, // IdentityCard 열림 상태 스타일
   closed: {
     base: 'bg-white text-navyblack gap-0 shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)]',
-  }, // IdentityCard 닫힘 상타일
+  }, // IdentityCard 닫힘 상태 스타일
   identity: {
     base: 'text-[1.25rem] font-[700]',
     tablet: 'md:text-[1.5rem]',
