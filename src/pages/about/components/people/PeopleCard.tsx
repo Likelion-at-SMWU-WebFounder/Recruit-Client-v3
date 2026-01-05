@@ -80,7 +80,7 @@ const PeopleCard = ({ icon, keyword, description, isOpen, onClick }: PeopleCardP
     <>
       {/* 데스크톱 */}
       <div className={desktopClassName}>
-        <img src={icon} alt={keyword} className={iconClassName} />
+        <img src={icon} alt={keyword} className={iconClassName} loading="lazy" />
         <div className={keywordDesktopClassName}>{keyword}</div>
         <div className={descriptionDesktopClassName}>{renderEmphasizedText(description)}</div>
       </div>
@@ -99,7 +99,7 @@ const PeopleCard = ({ icon, keyword, description, isOpen, onClick }: PeopleCardP
           }
         }}>
         <div className={iconKeywordWrapperClassName}>
-          <img src={icon} alt={keyword} className={iconClassName} />
+          <img src={icon} alt={keyword} className={iconClassName} loading="lazy" />
           <div className={keywordTabletMobileClassName}>{keyword}</div>
         </div>
         <div className={descriptionContainerClassName}>
