@@ -1,6 +1,6 @@
 // about 페이지에서 사용되는 our identity card 데이터 상수화
 
-export const IDENTITIES_DATA = [
+export const IDENTITY_DATA = [
   {
     id: 1,
     identity: '소수정예 집중 트랙 운영',
