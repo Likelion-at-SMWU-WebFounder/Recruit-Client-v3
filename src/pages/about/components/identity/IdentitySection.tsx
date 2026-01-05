@@ -1,8 +1,10 @@
 import { useCallback, useState } from 'react';
 
-import SubTitle from '@shared/components/SubTitle';
 import { SUB_TITLE } from '@pages/about/constants/index';
-import { IDENTITIES_DATA } from '@pages/about/constants/identities';
+import { IDENTITY_DATA } from '@pages/about/constants/identity';
+import { combineStyles } from '@shared/utils/combineStyles';
+
+import SubTitle from '@shared/components/SubTitle';
 import IdentityCard from '@pages/about/components/identity/IdentityCard';
 
 import useDesktopScroll from '@pages/about/hooks/useDesktopScroll';
@@ -12,15 +14,33 @@ import useSnowflakeMove from '@pages/about/hooks/useSnowflakeMove';
 import { WiSnowflakeCold } from 'react-icons/wi';
 import '@pages/about/styles/snowflake.css';
 
-const DESKTOP_TABLET_SECTION_CLASS =
-  'hidden w-full max-w-[100vw] md:flex md:justify-between md:px-[6.25rem] md:py-[11.88rem] lg:px-[18.44rem] lg:py-[4rem]';
-const MOBILE_SECTION_CLASS =
-  'relative flex w-full max-w-[100vw] flex-col items-center justify-center gap-[3.38rem] py-[3.12rem] md:hidden';
+// IdentitySection 스타일 상수화
+const IDENTITY_SECTION_STYLES = {
+  desktopTablet: {
+    base: 'hidden w-full max-w-[100vw]',
+    tablet: 'md:flex md:justify-between md:px-[6.25rem] md:py-[11.88rem]',
+    desktop: 'lg:px-[18.44rem] lg:py-[6.25rem]',
+  },
+  mobile: {
+    base: 'relative flex w-full max-w-[100vw] flex-col items-center justify-center gap-[3.38rem] py-[3.12rem]',
+    tablet: 'md:hidden',
+  },
+  cardsContainer: {
+    base: 'relative',
+    tablet: 'md:flex md:flex-col md:gap-[1.25rem]',
+    desktop: 'lg:gap-[1.5rem]',
+  },
+  snowflake: {
+    base: 'text-blue pointer-events-none absolute hidden transition-[top] duration-300 ease-out',
+    tablet: 'md:-left-[3.56rem] md:block',
+    desktop: 'lg:-left-[3.75rem]',
+  },
+} as const;
 
-const IdentitiesSection = () => {
-  const [openId, setOpenId] = useState<number | null>(IDENTITIES_DATA[0]?.id ?? null);
-  const totalCards = IDENTITIES_DATA.length;
-  const getIdByIndex = useCallback((index: number) => IDENTITIES_DATA[index]?.id ?? null, []);
+const IdentitySection = () => {
+  const [openId, setOpenId] = useState<number | null>(IDENTITY_DATA[0]?.id ?? null);
+  const totalCards = IDENTITY_DATA.length;
+  const getIdByIndex = useCallback((index: number) => IDENTITY_DATA[index]?.id ?? null, []);
 
   const {
     sectionRef: desktopSectionRef,
@@ -36,7 +56,7 @@ const IdentitiesSection = () => {
   );
 
   const handleCardClick = (id: number) => {
-    const cardIndex = IDENTITIES_DATA.findIndex((item) => item.id === id);
+    const cardIndex = IDENTITY_DATA.findIndex((item) => item.id === id);
     if (cardIndex !== -1) {
       // 뷰포트에 따라 적절한 스크롤 함수 호출
       if (window.innerWidth >= 768) {
@@ -47,13 +67,18 @@ const IdentitiesSection = () => {
     }
   };
 
+  const desktopTabletClassName = combineStyles(IDENTITY_SECTION_STYLES.desktopTablet);
+  const mobileClassName = combineStyles(IDENTITY_SECTION_STYLES.mobile);
+  const cardsContainerClassName = combineStyles(IDENTITY_SECTION_STYLES.cardsContainer);
+  const snowflakeClassName = combineStyles(IDENTITY_SECTION_STYLES.snowflake);
+
   return (
     <>
       {/* 태블릿/데스크톱: 카드 */}
-      <section ref={desktopSectionRef} className={DESKTOP_TABLET_SECTION_CLASS}>
+      <section ref={desktopSectionRef} className={desktopTabletClassName}>
         <SubTitle subTitle={SUB_TITLE.SUB_TITLE_2} subDescription={SUB_TITLE.SUB_DESCRIPTION_2} align="left" />
-        <div ref={cardsContainerRef} className="relative md:flex md:flex-col md:gap-[1.25rem] lg:gap-[1.5rem]">
-          {IDENTITIES_DATA.map((identity) => (
+        <div ref={cardsContainerRef} className={cardsContainerClassName}>
+          {IDENTITY_DATA.map((identity) => (
             <div
               key={identity.id}
               ref={(el) => {
@@ -72,10 +97,7 @@ const IdentitiesSection = () => {
 
           {/* 눈송이 아이콘 */}
           {isDesktopOrTablet && openId != null ? (
-            <div
-              className="text-blue pointer-events-none absolute hidden transition-[top] duration-300 ease-out md:-left-[3.56rem] md:block lg:-left-[3.75rem]"
-              style={{ top: `${snowflakeTop}px` }}
-              aria-hidden>
+            <div className={snowflakeClassName} style={{ top: `${snowflakeTop}px` }} aria-hidden>
               <div className="snowflake-move">
                 <WiSnowflakeCold size={36} />
               </div>
@@ -85,10 +107,10 @@ const IdentitiesSection = () => {
       </section>
 
       {/* 모바일: 카드 */}
-      <section ref={mobileSectionRef} className={MOBILE_SECTION_CLASS}>
+      <section ref={mobileSectionRef} className={mobileClassName}>
         <SubTitle subTitle={SUB_TITLE.SUB_TITLE_2} subDescription={SUB_TITLE.SUB_DESCRIPTION_2} />
         <div className="flex flex-col gap-[1rem]">
-          {IDENTITIES_DATA.map((identity) => (
+          {IDENTITY_DATA.map((identity) => (
             <IdentityCard
               key={identity.id}
               identity={identity.identity}
@@ -105,4 +127,4 @@ const IdentitiesSection = () => {
   );
 };
 
-export default IdentitiesSection;
+export default IdentitySection;

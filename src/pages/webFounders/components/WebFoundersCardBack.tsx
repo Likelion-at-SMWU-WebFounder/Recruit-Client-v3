@@ -141,7 +141,7 @@ const WebFoundersCardBack = ({ founder, onFlipBack }: WebFoundersCardBackProps) 
     <div className={containerClassName}>
       <header>
         {/* 프로필 이미지 */}
-        <img src={image} className={profileImageClassName} alt={`${name} profile`} />
+        <img src={image} className={profileImageClassName} alt={`${name} profile`} loading="lazy" />
 
         {/* 이름, 기수, 파트 */}
         <div className={nameInfoWrapperClassName}>
