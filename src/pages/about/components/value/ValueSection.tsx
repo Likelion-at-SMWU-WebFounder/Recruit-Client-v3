@@ -4,6 +4,7 @@ import { combineStyles } from '@shared/utils/combineStyles';
 import { SUB_TITLE } from '@pages/about/constants/index';
 import { VALUES_DATA } from '@/pages/about/constants/values';
 import Slider from 'react-slick';
+
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '@pages/about/styles/carousel.css';
@@ -30,17 +31,18 @@ const VALUES_SECTION_STYLES = {
 } as const;
 
 const ValueSection = () => {
+  // 캐러셀 설정
   const settings = {
-    dots: VALUES_DATA.length > 1,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    pauseOnHover: true,
-    pauseOnFocus: true,
-    arrows: false,
+    dots: VALUES_DATA.length > 1, // 캐러셀 점 표시 여부 (데이터 개수가 1개 이상일 때만 표시)
+    infinite: true, // 무한 반복 여부
+    speed: 500, // 슬라이드 속도
+    slidesToShow: 1, // 한 번에 보여지는 슬라이드 수
+    slidesToScroll: 1, // 한 번에 스크롤되는 슬라이드 수
+    autoplay: true, // 자동 재생 여부
+    autoplaySpeed: 3000, // 3초마다 자동 재생
+    pauseOnHover: true, // 마우스 오버 시 정지 여부
+    pauseOnFocus: true, // 포커스 시 정지 여부
+    arrows: false, // 화살표 표시 여부
   };
 
   const sectionClassName = combineStyles(VALUES_SECTION_STYLES.section);
