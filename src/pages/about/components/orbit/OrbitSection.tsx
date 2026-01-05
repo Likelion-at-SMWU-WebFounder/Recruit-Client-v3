@@ -57,7 +57,7 @@ const OrbitSectionRenderer = ({
 // 최종 오빗 섹션 컴포넌트 - 반응형 설정
 const OrbitSection = () => {
   const handleScrollDown = () => {
-    const valuesSection = document.getElementById('values-section');
+    const valuesSection = document.getElementById('value-section');
     if (valuesSection) {
       valuesSection.scrollIntoView({ behavior: 'smooth' });
     }

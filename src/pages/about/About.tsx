@@ -78,7 +78,7 @@ const About = () => {
           <OrbitSection />
         </div>
       </div>
-      <div id="values-section" className={contentSectionClassName}>
+      <div id="value-section" className={contentSectionClassName}>
         <ValueSection />
         <IdentitySection />
         <PeopleSection />
