@@ -1,12 +1,27 @@
 import { useEffect, useState } from 'react';
+import { combineStyles } from '@shared/utils/combineStyles';
 
 import Layout from '@shared/components/Layout';
 import HeroSection from '@pages/about/components/hero/HeroSection';
 import OrbitSection from '@pages/about/components/orbit/OrbitSection';
-import ValuesSection from '@pages/about/components/value/ValuesSection';
-import IdentitySection from '@/pages/about/components/identity/IdentitySection';
+import ValueSection from '@pages/about/components/value/ValueSection';
+import IdentitySection from '@pages/about/components/identity/IdentitySection';
 import PeopleSection from '@pages/about/components/people/PeopleSection';
 import JoinSection from '@pages/about/components/join/JoinSection';
+
+// About 페이지 스타일 상수화
+const ABOUT_STYLES = {
+  scrollContainer: {
+    base: 'scrollbar-hidden h-[100dvh] max-h-[100dvh] w-full snap-y snap-mandatory overflow-y-scroll',
+  },
+  section: {
+    base: 'relative h-[100dvh] snap-start overflow-hidden',
+  },
+  contentSection: {
+    base: '',
+    desktop: 'lg:space-y-[1.25rem]',
+  },
+} as const;
 
 const About = () => {
   const [menuMode, setMenuMode] = useState<'light' | 'dark'>('dark');
@@ -49,18 +64,22 @@ const About = () => {
     };
   }, []);
 
+  const scrollContainerClassName = combineStyles(ABOUT_STYLES.scrollContainer);
+  const sectionClassName = combineStyles(ABOUT_STYLES.section);
+  const contentSectionClassName = combineStyles(ABOUT_STYLES.contentSection);
+
   return (
     <Layout menuMode={menuMode} footerMode="light">
-      <div className="scrollbar-hidden h-[100dvh] max-h-[100dvh] w-full snap-y snap-mandatory overflow-y-scroll">
-        <div id="hero-section" className="relative h-[100dvh] snap-start overflow-hidden">
+      <div className={scrollContainerClassName}>
+        <div id="hero-section" className={sectionClassName}>
           <HeroSection />
         </div>
-        <div id="orbit-section" className="relative h-[100dvh] snap-start overflow-hidden">
+        <div id="orbit-section" className={sectionClassName}>
           <OrbitSection />
         </div>
       </div>
-      <div id="values-section" className="lg:space-y-[1.25rem]">
-        <ValuesSection />
+      <div id="values-section" className={contentSectionClassName}>
+        <ValueSection />
         <IdentitySection />
         <PeopleSection />
       </div>
