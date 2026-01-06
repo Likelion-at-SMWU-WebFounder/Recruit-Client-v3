@@ -1,22 +1,37 @@
+import { useNavigate } from 'react-router-dom';
+import { ROUTER_URL } from '@/shared/constants/url';
+
 import SubTitle from '@shared/components/SubTitle';
-import { SUB_TITLE, SUB_CONTENT_CLASSES } from '@pages/home/constants/index';
+import { SUB_TITLE, TEXT_CONTENT_CLASSES } from '@pages/home/constants/index';
+import { ABOUT_BUTTON_TEXT, ABOUT_CONTENT_TEXT } from '@pages/home/constants/about';
+
 import AboutCard from '@pages/home/components/about/AboutCard';
+import DefaultButtonWhite from '@shared/components/button/DefaultButtonWhite';
+
+const DESKTOP_TABLET_SECTION_CLASS =
+  'hidden w-full max-w-[100vw] h-[100dvh] pt-[5rem] md:inline-flex md:flex-col md:justify-center md:items-center';
+const MOBILE_SECTION_CLASS =
+  'relative flex w-full max-w-[100vw] h-[100dvh] flex-col items-center justify-center py-[3.12rem] md:hidden';
+const MOBILE_SUB_CONTENT_CLASSES = `${TEXT_CONTENT_CLASSES} w-[22rem] text-center`;
 
 const AboutSection = () => {
-  const DESKTOP_TABLET_SECTION_CLASS =
-    'hidden w-full max-w-[100vw] md:flex md:flex-col md:items-center md:p-[10.5rem_2rem]';
-  const MOBILE_SECTION_CLASS =
-    'relative flex w-full max-w-[100vw] flex-col items-center justify-center gap-[3.38rem] py-[3.12rem] md:hidden';
-
+  const navigate = useNavigate();
+  const handleAboutClick = () => {
+    navigate(ROUTER_URL.ABOUT);
+  };
   return (
     <>
       {/* 데스크톱, 태블릿 */}
       <section className={DESKTOP_TABLET_SECTION_CLASS}>
-        <div className="inline-flex flex-col items-center justify-center gap-[3.125rem]">
+        <div className="mb-[3rem] inline-flex flex-col items-center justify-center gap-[1.25rem] text-center">
           <SubTitle subTitle={SUB_TITLE.SUB_TITLE_1} subDescription={SUB_TITLE.SUB_DESCRIPTION_1} />
-          <div className={`${SUB_CONTENT_CLASSES}`}>{SUB_TITLE.SUB_CONTENT_1}</div>
+          <div className={`${TEXT_CONTENT_CLASSES} hidden lg:block`}>{ABOUT_CONTENT_TEXT.desktop}</div>
+          <div className={`${TEXT_CONTENT_CLASSES} lg:hidden`}>{ABOUT_CONTENT_TEXT.tablet}</div>
         </div>
         <AboutCard />
+        <div className="mt-[2rem]">
+          <DefaultButtonWhite onClick={handleAboutClick}>{ABOUT_BUTTON_TEXT.desktop_tablet}</DefaultButtonWhite>
+        </div>
       </section>
 
       {/* 모바일 */}
@@ -24,7 +39,10 @@ const AboutSection = () => {
         <div className="inline-flex flex-col items-center justify-center gap-[3.125rem]">
           <SubTitle subTitle={SUB_TITLE.SUB_TITLE_1} subDescription={SUB_TITLE.SUB_DESCRIPTION_1} />
           <AboutCard />
-          <div className={`${SUB_CONTENT_CLASSES}`}>{SUB_TITLE.SUB_CONTENT_1}</div>
+          <div className={MOBILE_SUB_CONTENT_CLASSES}>{ABOUT_CONTENT_TEXT.mobile}</div>
+        </div>
+        <div className="mt-[2.5rem]">
+          <DefaultButtonWhite onClick={handleAboutClick}>{ABOUT_BUTTON_TEXT.mobile}</DefaultButtonWhite>
         </div>
       </section>
     </>
