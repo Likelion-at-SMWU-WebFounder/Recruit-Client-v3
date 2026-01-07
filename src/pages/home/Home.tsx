@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Layout from '@shared/components/Layout';
 import HeroSection from '@pages/home/components/hero/HeroSection';
 import AboutSection from '@pages/home/components/about/AboutSection';
+import ActivitySection from '@pages/home/components/activity/ActivitySection';
 
 const Home = () => {
   const sectionClasses = 'relative h-[100dvh] snap-start overflow-hidden';
@@ -59,6 +60,9 @@ const Home = () => {
       </div>
       <div id="about-section" className={sectionClasses}>
         <AboutSection />
+      </div>
+      <div id="activity-section" className={sectionClasses}>
+        <ActivitySection />
       </div>
     </Layout>
   );
