@@ -34,10 +34,10 @@ const Home = () => {
         entries.forEach((entry) => {
           const targetId = entry.target.id;
 
-          if (targetId === 'hero-section' && entry.isIntersecting) {
-            setMenuMode('dark'); // hero 섹션에서는 다크 모드
-          } else if (targetId === 'about-section' && entry.isIntersecting) {
-            setMenuMode('light'); // about 섹션에서는 라이트 모드
+          if (targetId === 'hero-section' || (targetId === 'apply-section' && entry.isIntersecting)) {
+            setMenuMode('dark'); // hero, apply 섹션에서는 다크 모드
+          } else if (entry.isIntersecting) {
+            setMenuMode('light'); // 나머지 섹션에서는 라이트 모드
           }
         });
       },
