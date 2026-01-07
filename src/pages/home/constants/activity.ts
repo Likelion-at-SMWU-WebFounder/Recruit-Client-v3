@@ -9,13 +9,17 @@ export const ACTIVITY_CONTENT_TEXT = {
 
 const ACTIVITY_IMAGES_PATH = import.meta.env.VITE_IMAGE_PATH + '/activity';
 
-export const ACTIVITY_CARD = {
-  hackathon: '해커톤',
-  hackathon_description: '해커톤 참여를 통해 아이디어를 기획부터 구현까지 빠르게 실현합니다.',
-  hackathon_icon: ACTIVITY_IMAGES_PATH + '/hackathon_icon.svg',
-  hackathon_image: ACTIVITY_IMAGES_PATH + '/hackathon.webp',
-  seminar: '세미나',
-  seminar_description: '매주 화요일 7시부터 9시까지 각 파트별로 정기 세미나를 진행합니다.',
-  seminar_icon: ACTIVITY_IMAGES_PATH + '/seminar_icon.svg',
-  seminar_image: ACTIVITY_IMAGES_PATH + '/seminar.webp',
+export const ACTIVITY_DATA = {
+  hackathon: {
+    title: '해커톤',
+    description: '해커톤 참여를 통해 아이디어를 기획부터 구현까지 빠르게 실현합니다.',
+    icon: ACTIVITY_IMAGES_PATH + '/hackathon_icon.svg',
+    image: ACTIVITY_IMAGES_PATH + '/hackathon.webp',
+  },
+  seminar: {
+    title: '세미나',
+    description: '매주 화요일 7시부터 9시까지 각 파트별로 정기 세미나를 진행합니다.',
+    icon: ACTIVITY_IMAGES_PATH + '/seminar_icon.svg',
+    image: ACTIVITY_IMAGES_PATH + '/seminar.webp',
+  },
 };
