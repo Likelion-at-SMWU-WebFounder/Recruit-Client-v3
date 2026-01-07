@@ -13,16 +13,20 @@ export const AboutCard = () => {
 
   // 자동 슬라이드
   useEffect(() => {
+    let fadeTimeout: NodeJS.Timeout | null = null;
     const interval = setInterval(() => {
       setIsFading(true);
 
-      setTimeout(() => {
+      fadeTimeout = setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % total);
         setIsFading(false);
       }, 350);
     }, 3000);
-    return () => clearInterval(interval);
-  }, [total]);
+    return () => {
+      clearInterval(interval);
+      if (fadeTimeout) clearTimeout(fadeTimeout);
+    };
+  }, []);
 
   const getIndex = (offset: number) => {
     return (currentIndex + offset + total) % total;
