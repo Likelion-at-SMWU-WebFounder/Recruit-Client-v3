@@ -41,7 +41,7 @@ const Home = () => {
           }
         });
       },
-      { threshold: 0.9 } // 10% 이상 보일 때 감지
+      { threshold: 0.9 }
     );
 
     observer.observe(heroSection);
