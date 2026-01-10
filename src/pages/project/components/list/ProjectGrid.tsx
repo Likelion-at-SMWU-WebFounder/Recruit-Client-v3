@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import ProjectCard from '@pages/project/components/list/ProjectCard';
 import Loading from '@pages/project/components/list/Loading';
-import Pagination from '@shared/components/Pagination';
+import Pagination from '@pages/project/components/list/Pagination';
 import { combineStyles } from '@shared/utils/combineStyles';
 import { ROUTER_URL } from '@shared/constants/url';
 import { allProjectsData } from '@pages/project/constants/project/allProjectData';
