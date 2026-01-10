@@ -4,6 +4,8 @@ interface LoadingProps {
   text?: string;
 }
 
+const DEFAULT_LOADING_TEXT = '로딩 중' as const;
+
 // 로딩 스피너 스타일 상수화
 const LOADING_SPINNER_STYLES = {
   wrapper: {
@@ -32,7 +34,7 @@ const LOADING_SPINNER_STYLES = {
   mask: 'radial-gradient(farthest-side, transparent calc(100% - 3px), black calc(100% - 3px))',
 } as const;
 
-const Loading = ({ text }: LoadingProps) => {
+const Loading = ({ text = DEFAULT_LOADING_TEXT }: LoadingProps) => {
   const containerClassName = combineStyles(LOADING_SPINNER_STYLES.container);
   const baseClassName = combineStyles(LOADING_SPINNER_STYLES.base);
   const spinnerClassName = combineStyles(LOADING_SPINNER_STYLES.spinner);
@@ -43,7 +45,7 @@ const Loading = ({ text }: LoadingProps) => {
   // 로딩 스피너 컨텐츠 (스피너와 텍스트)
   const content = (
     <div className={containerClassName}>
-      <div className={baseClassName} role="status" aria-label={text || '로딩 중'}>
+      <div className={baseClassName} role="status" aria-label={text}>
         <div
           className={spinnerClassName}
           style={{
@@ -52,9 +54,9 @@ const Loading = ({ text }: LoadingProps) => {
             WebkitMask: LOADING_SPINNER_STYLES.mask,
           }}
         />
-        <span className="sr-only">{text || '페이지 불러오는 중'}</span>
+        <span className="sr-only">{text}</span>
       </div>
-      {text && <span className={textClassName}>{text}</span>}
+      <span className={textClassName}>{text}</span>
     </div>
   );
 
