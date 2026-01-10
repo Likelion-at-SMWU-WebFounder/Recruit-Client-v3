@@ -45,7 +45,7 @@ const Loading = ({ text = DEFAULT_LOADING_TEXT }: LoadingProps) => {
   // 로딩 스피너 컨텐츠 (스피너와 텍스트)
   const content = (
     <div className={containerClassName}>
-      <div className={baseClassName} role="status" aria-label={text}>
+      <div className={baseClassName} role="status">
         <div
           className={spinnerClassName}
           style={{
