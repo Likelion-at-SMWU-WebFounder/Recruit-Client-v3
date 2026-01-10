@@ -17,7 +17,7 @@ const TOGGLE_STYLES = {
       'w-full bg-white [box-shadow:1px_1px_8.4px_0_rgba(27,38,52,0.10)] md:bg-[#F0F5FA] md:[box-shadow:none] px-[1.25rem] py-[0.9rem] md:pl-[1.5rem] md:py-[0.95rem] lg:pl-[1rem] lg:py-[1.25rem] rounded-[1.25rem]',
   },
   header: {
-    base: 'cursor-pointer flex items-center gap-[0.5rem] md:gap-[1rem] p-[0.6rem] md:p-[0.8rem] lg:p-[1rem]',
+    base: 'cursor-pointer w-full flex items-center gap-[0.5rem] md:gap-[1rem] p-[0.6rem] md:p-[0.8rem] lg:p-[1rem]',
     desktop: 'md:cursor-default md:pointer-events-none',
     text: 'text-[1.125rem] font-semibold leading-[140%] md:text-[1.25rem] lg:text-[1.75rem]',
     icon: 'size-5 transition-transform duration-200 ease-out md:size-6 lg:size-7',
