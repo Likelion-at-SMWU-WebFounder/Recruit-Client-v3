@@ -37,7 +37,7 @@ const ProjectDetail = () => {
   };
 
   return (
-    <Layout>
+    <Layout menuMode="light" footerMode="light">
       <div className="flex w-full justify-center px-[1rem] pt-[9.75rem] pb-[7.5rem] md:px-[4rem] md:pt-[13rem] md:pb-[5.62rem] lg:px-[10rem] lg:pt-[14.5rem] lg:pb-[1.5rem]">
         <div className="w-full">
           {/* 헤더 */}
