@@ -38,11 +38,10 @@ const useMobileProjectLoad = ({
     if (isLoading || visibleCount >= totalItems) return;
 
     setIsLoading(true);
-    // 600ms 딜레이 후 프로젝트 추가 로드
-    setTimeout(() => {
+    return setTimeout(() => {
       setVisibleCount((prev) => Math.min(prev + loadCount, totalItems));
       setIsLoading(false);
-    }, 600);
+    }, 700);
   }, [totalItems, isLoading, visibleCount, loadCount]);
 
   // 스크롤 시 자동 로드 (모바일 전용)
