@@ -2,7 +2,7 @@ import { useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import ProjectCard from '@pages/project/components/list/ProjectCard';
-import Loading from '@pages/project/components/list/Loading';
+import MobileLoadingDots from '@/pages/project/components/list/MobileLoadingDots';
 import Pagination from '@pages/project/components/list/Pagination';
 import { combineStyles } from '@shared/utils/combineStyles';
 import { ROUTER_URL } from '@shared/constants/url';
@@ -130,7 +130,7 @@ const ProjectGrid = ({ filter }: ProjectGridProps) => {
       {!isMobile && totalPages > 1 && (
         <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       )}
-      {isLoading && <Loading />}
+      {isLoading && <MobileLoadingDots />}
     </div>
   );
 };
