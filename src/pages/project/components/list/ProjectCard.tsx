@@ -83,13 +83,14 @@ const ProjectCard = ({ thumbnail, title, summary, no, category, onClick, isFirst
 
   // 이미지가 이미 로드되어 있는지 확인 (브라우저 캐시)
   useEffect(() => {
+    setIsImageLoaded(false); // 이미지 로드 상태 초기화
     if (imgRef.current?.complete) {
-      setIsImageLoaded(true);
+      setIsImageLoaded(true); // 이미지 로드 상태 설정
     }
   }, [thumbnail]);
 
   const handleImageLoad = () => {
-    setIsImageLoaded(true);
+    setIsImageLoaded(true); // 이미지 로드 상태 설정
   };
 
   return (
