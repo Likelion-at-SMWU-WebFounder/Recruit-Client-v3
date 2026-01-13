@@ -1,79 +1,27 @@
-import { lazy, Suspense } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
 import { ROUTER_URL } from '@shared/constants/url';
-import Loading from '@shared/components/Loading';
 
-// 코드 스플리팅: 페이지 컴포넌트를 lazy load
-const Home = lazy(() => import('@pages/home/Home'));
-const About = lazy(() => import('@pages/about/About'));
-const Project = lazy(() => import('@pages/project/Project'));
-const ProjectDetail = lazy(() => import('@pages/project/ProjectDetail'));
-const Apply = lazy(() => import('@pages/apply/Apply'));
-// const Activity = lazy(() => import('@pages/activity/Activity'));
-const WebFounders = lazy(() => import('@pages/webFounders/WebFounders'));
+import Home from '@pages/home/Home';
+import About from '@pages/about/About';
+import Project from '@pages/project/Project';
+import ProjectDetail from '@pages/project/ProjectDetail';
+import Apply from '@pages/apply/Apply';
+// import Activity from '@pages/activity/Activity';
+import WebFounders from '@pages/webFounders/WebFounders';
 
 const router = createBrowserRouter([
   {
     path: ROUTER_URL.HOME,
     element: <App />,
     children: [
-      {
-        path: ROUTER_URL.HOME,
-        element: (
-          <Suspense fallback={<Loading text="페이지 불러오는 중" />}>
-            <Home />
-          </Suspense>
-        ),
-      },
-      {
-        path: ROUTER_URL.ABOUT,
-        element: (
-          <Suspense fallback={<Loading text="페이지 불러오는 중" />}>
-            <About />
-          </Suspense>
-        ),
-      },
-      {
-        path: ROUTER_URL.PROJECT,
-        element: (
-          <Suspense fallback={<Loading text="페이지 불러오는 중" />}>
-            <Project />
-          </Suspense>
-        ),
-      },
-      {
-        path: ROUTER_URL.PROJECT_DETAIL,
-        element: (
-          <Suspense fallback={<Loading text="페이지 불러오는 중" />}>
-            <ProjectDetail />
-          </Suspense>
-        ),
-      },
-      {
-        path: ROUTER_URL.APPLY,
-        element: (
-          <Suspense fallback={<Loading text="페이지 불러오는 중" />}>
-            <Apply />
-          </Suspense>
-        ),
-      },
-      //   {
-      //     path: ROUTER_URL.ACTIVITY,
-      //     element: (
-      //       <Suspense fallback={<Loading text="페이지 불러오는 중" />}>
-      //         <Activity />
-      //       </Suspense>
-      //     ),
-      //   },
-      {
-        path: ROUTER_URL.WEBFOUNDERS,
-        element: (
-          <Suspense fallback={<Loading text="페이지 불러오는 중" />}>
-            <WebFounders />
-          </Suspense>
-        ),
-      },
+      { index: true, element: <Home /> },
+      { path: ROUTER_URL.ABOUT, element: <About /> },
+      { path: ROUTER_URL.PROJECT, element: <Project /> },
+      { path: ROUTER_URL.PROJECT_DETAIL, element: <ProjectDetail /> },
+      { path: ROUTER_URL.APPLY, element: <Apply /> },
+      // { path: ROUTER_URL.ACTIVITY, element: <Activity /> },
+      { path: ROUTER_URL.WEBFOUNDERS, element: <WebFounders /> },
     ],
   },
 ]);
