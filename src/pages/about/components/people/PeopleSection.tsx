@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react';
+import { combineStyles } from '@shared/utils/combineStyles';
 
 import SubTitle from '@shared/components/SubTitle';
 import { SUB_TITLE } from '@pages/about/constants/index';
@@ -9,6 +10,41 @@ import useDesktopScroll from '@pages/about/hooks/useDesktopScroll';
 import useMobileScroll from '@pages/about/hooks/useMobileScroll';
 import useXPositionDrag from '@pages/about/hooks/useXPositionDrag';
 
+// PeopleSection 스타일 상수화
+const PEOPLE_SECTION_STYLES = {
+  desktop: {
+    base: 'hidden w-full max-w-[100vw]',
+    desktop: 'lg:flex lg:flex-row lg:gap-[21.31rem] lg:py-[11.625rem] lg:pl-[18.5rem]',
+  },
+  desktopTitleWrapper: {
+    base: 'py-[2rem]',
+  },
+  desktopCarousel: {
+    base: 'scrollbar-hidden flex w-full snap-x snap-mandatory flex-row gap-[2.375rem] overflow-x-auto scroll-smooth p-[2rem]',
+  },
+  desktopGradient: {
+    base: 'pointer-events-none absolute inset-y-0 right-0 flex h-full w-[17rem] items-center justify-end bg-gradient-to-r from-transparent to-white',
+  },
+  desktopArrow: {
+    base: 'absolute inset-y-0 right-80 flex items-center justify-end px-[0.5rem]',
+  },
+  tablet: {
+    base: 'hidden w-full max-w-[100vw] flex-col items-center gap-[11.25rem] overflow-hidden px-[4rem] pb-[11.875rem]',
+    tablet: 'md:flex',
+    desktop: 'lg:hidden',
+  },
+  mobile: {
+    base: 'w-full max-w-[100vw] space-y-[3.38rem] overflow-hidden py-[5rem]',
+    tablet: 'md:hidden',
+  },
+  tabletWrapper: {
+    base: 'w-full space-y-[1.5rem]',
+  },
+  mobileWrapper: {
+    base: 'flex flex-col items-center gap-[1rem]',
+  },
+} as const;
+
 const DESKTOP_CAROUSEL_PADDING_LEFT = 2; // rem
 const DESKTOP_CAROUSEL_TRAILING_SPACE_WIDTH = 17; // rem
 
@@ -16,15 +52,21 @@ const DESKTOP_CAROUSEL_TRAILING_SPACE_WIDTH = 17; // rem
 const PeopleDesktopSection = () => {
   const { carouselRef, scrollToNextCard, isLastCard } = useXPositionDrag();
 
+  const desktopClassName = combineStyles(PEOPLE_SECTION_STYLES.desktop);
+  const desktopTitleWrapperClassName = combineStyles(PEOPLE_SECTION_STYLES.desktopTitleWrapper);
+  const desktopCarouselClassName = combineStyles(PEOPLE_SECTION_STYLES.desktopCarousel);
+  const desktopGradientClassName = combineStyles(PEOPLE_SECTION_STYLES.desktopGradient);
+  const desktopArrowClassName = combineStyles(PEOPLE_SECTION_STYLES.desktopArrow);
+
   return (
-    <section className="hidden w-full max-w-[100vw] lg:flex lg:flex-row lg:gap-[21.31rem] lg:py-[11.625rem] lg:pl-[18.5rem]">
-      <div className="py-[2rem]">
+    <section className={desktopClassName}>
+      <div className={desktopTitleWrapperClassName}>
         <SubTitle subTitle={SUB_TITLE.SUB_TITLE_3} subDescription={SUB_TITLE.SUB_DESCRIPTION_3} align="left" />
       </div>
       <div className="relative flex-1 overflow-hidden">
         <div
           ref={carouselRef}
-          className="scrollbar-hidden flex w-full snap-x snap-mandatory flex-row gap-[2.375rem] overflow-x-auto scroll-smooth p-[2rem]"
+          className={desktopCarouselClassName}
           style={{
             scrollPaddingLeft: `${DESKTOP_CAROUSEL_PADDING_LEFT}rem`,
             scrollPaddingRight: `${DESKTOP_CAROUSEL_TRAILING_SPACE_WIDTH}rem`,
@@ -39,11 +81,11 @@ const PeopleDesktopSection = () => {
         </div>
 
         {/* 그라데이션 Rectangle 영역 */}
-        <div className="pointer-events-none absolute inset-y-0 right-0 flex h-full w-[17rem] items-center justify-end bg-gradient-to-r from-transparent to-white" />
+        <div className={desktopGradientClassName} />
 
         {/* 다음 카드로 넘기는 화살표 버튼 영역 (데스크톱) */}
         {!isLastCard && (
-          <div className="absolute inset-y-0 right-80 flex items-center justify-end px-[0.5rem]">
+          <div className={desktopArrowClassName}>
             <ArrowButton iconColor="gray" onArrowBtnClick={scrollToNextCard} />
           </div>
         )}
@@ -72,10 +114,12 @@ const PeopleAccordionSection = ({
   const isTablet = mode === 'tablet';
 
   const sectionClassName = isTablet
-    ? 'hidden w-full max-w-[100vw] flex-col items-center gap-[11.25rem] overflow-hidden px-[4rem] pb-[11.875rem] md:flex lg:hidden'
-    : 'w-full max-w-[100vw] space-y-[3.38rem] overflow-hidden py-[5rem] md:hidden';
+    ? combineStyles(PEOPLE_SECTION_STYLES.tablet)
+    : combineStyles(PEOPLE_SECTION_STYLES.mobile);
 
-  const wrapperClassName = isTablet ? 'w-full space-y-[1.5rem]' : 'flex flex-col items-center gap-[1rem]';
+  const wrapperClassName = isTablet
+    ? combineStyles(PEOPLE_SECTION_STYLES.tabletWrapper)
+    : combineStyles(PEOPLE_SECTION_STYLES.mobileWrapper);
 
   const accordionContainerRef = isTablet ? cardsContainerRef : undefined;
 

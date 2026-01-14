@@ -35,9 +35,9 @@ const useMobileScroll = (totalCards: number, getIdByIndex: GetIdByIndex, setOpen
       const scrollTrigger = ScrollTrigger.create({
         trigger: section,
         start: 'top top',
-        end: `+=${totalCards * 150}%`,
+        end: `+=${totalCards * 100}%`,
         pin: true,
-        scrub: 0.5,
+        scrub: 0.2,
         onUpdate: (self) => {
           if (isClickScrollingRef.current) return;
 
