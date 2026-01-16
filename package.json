@@ -13,7 +13,8 @@
     "prepare": "husky",
     "lint-staged": "lint-staged",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "tokens:build": "node sd-tokens-config.js"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
