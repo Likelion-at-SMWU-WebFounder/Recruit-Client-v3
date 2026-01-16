@@ -10,16 +10,14 @@
   --color-gray: var(--global-color-gray-main);
   --color-navyblack: var(--global-color-navyblack-main);
   --color-black: var(--global-color-black-main);
-  --color-error-red: var(--global-color-error-red);
-  --color-error-red-darkmode: var(--global-color-error-red-darkmode);
 
   /* White variants */
   --color-white-background: var(--global-color-white-background);
-  --color-white-dark: var(--global-color-white-dark);
   --color-white-opacity75: var(--global-color-white-opacity75);
-  --color-white-opacity55: var(--global-color-white-opacity55);
   --color-white-opacity12: var(--global-color-white-opacity12);
+  --color-white-dark: var(--global-color-white-dark);
   --color-white-opacity1: var(--global-color-white-opacity1);
+  --color-white-opacity55: var(--global-color-white-opacity55);
 
   /* Blue variants */
   --color-blue-dark: var(--global-color-blue-dark);
@@ -29,22 +27,26 @@
   --color-blue-opacity4: var(--global-color-blue-opacity4);
 
   /* Navyblack variants */
-  --color-navyblack-opacity70: var(--global-color-navyblack-opacity70);
+  --color-navyblack-opacity10: var(--global-color-navyblack-opacity10);
   --color-navyblack-opacity65: var(--global-color-navyblack-opacity65);
   --color-navyblack-opacity60: var(--global-color-navyblack-opacity60);
+  --color-navyblack-opacity70: var(--global-color-navyblack-opacity70);
   --color-navyblack-opacity45: var(--global-color-navyblack-opacity45);
   --color-navyblack-opacity30: var(--global-color-navyblack-opacity30);
-  --color-navyblack-opacity10: var(--global-color-navyblack-opacity10);
 
   /* Gray variants */
+  --color-gray-opacity20: var(--global-color-gray-opacity20);
   --color-gray-dark: var(--global-color-gray-dark);
   --color-gray-sub: var(--global-color-gray-sub);
-  --color-gray-opacity20: var(--global-color-gray-opacity20);
 
   /* Dim colors */
   --color-dim-navydark19: var(--global-color-dim-navydark19);
-  --color-dim-black50: var(--global-color-dim-black50);
   --color-dim-black20: var(--global-color-dim-black20);
+  --color-dim-black50: var(--global-color-dim-black50);
+
+  /* Error colors */
+  --color-error-red: var(--global-color-error-red);
+  --color-error-red-darkmode: var(--global-color-error-red-darkmode);
 
   /* ===== Typography ===== */
   /* Font families */
