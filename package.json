@@ -14,7 +14,9 @@
     "lint-staged": "lint-staged",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "tokens:build": "node sd-tokens-config.js"
+    "tokens:build": "node sd-tokens-config.js", 
+    "theme:generate": "node generate-theme.js",
+    "tokens:apply": "npm run tokens:build && npm run theme:generate"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
