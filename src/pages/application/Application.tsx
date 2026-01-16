@@ -1,5 +1,5 @@
 import { useApplicationForm } from './hooks/UseApplicationForm';
-import ApplicantInfoSection from './components/ApplicantInfoSection';
+import ApplicantInfoSection from './components/applicant/ApplicantInfoSection';
 import PartSelectionSection from './components/PartSelectionSection';
 import QuestionSection from './components/QuestionSection';
 import InterviewScheduleSection from './components/InterviewScheduleSection';
