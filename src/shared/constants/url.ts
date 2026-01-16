@@ -6,6 +6,7 @@ export const ROUTER_URL = {
   APPLY: '/apply',
   ACTIVITY: '/activity',
   WEBFOUNDERS: '/webfounders',
+  APPLICATION: '/application',
 
   // 추가되는 거 있음 여기에 작성
 };
