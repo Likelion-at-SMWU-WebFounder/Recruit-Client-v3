@@ -1,3 +1,6 @@
+// generate-theme-css.js
+// 3. tokens.css 파일을 읽어와서 theme.css 파일을 생성
+
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
@@ -8,14 +11,14 @@ const THEME_CSS_PATH = 'src/shared/styles/theme.css';
 const tokensContent = readFileSync(TOKENS_CSS_PATH, 'utf-8');
 
 // CSS 변수 추출 정규식
-const variableRegex = /--global-([^:]+):\s*([^;]+);/g;
+const variableRegex = /--([^:]+):\s*([^;]+);/g;
 
 // 모든 변수 추출
 const variables = new Map();
 let match;
 while ((match = variableRegex.exec(tokensContent)) !== null) {
   const [, name, value] = match;
-  variables.set(`--global-${name}`, value.trim());
+  variables.set(`--${name}`, value.trim());
 }
 
 // 변수 이름을 카테고리별로 분류
@@ -61,9 +64,9 @@ variables.forEach((value, varName) => {
 
 // 색상 변수 이름 변환 함수
 const transformColorName = (varName) => {
-  // --global-color-white-main -> --color-white
-  // --global-color-white-background -> --color-white-background
-  const match = varName.match(/--global-color-([^-]+(?:-[^-]+)*)/);
+  // --color-white-main -> --color-white
+  // --color-white-background -> --color-white-background
+  const match = varName.match(/--color-([^-]+(?:-[^-]+)*)/);
   if (match) {
     const colorName = match[1];
     // main은 제거
@@ -77,7 +80,7 @@ const transformColorName = (varName) => {
 
 // 폰트 크기 변수 이름 변환
 const transformFontSizeName = (varName) => {
-  const match = varName.match(/--global-font-size-(\d+)/);
+  const match = varName.match(/--font-size-(\d+)/);
   if (match) {
     return `--font-size-${match[1]}`;
   }
@@ -86,7 +89,7 @@ const transformFontSizeName = (varName) => {
 
 // 폰트 웨이트 변수 이름 변환
 const transformFontWeightName = (varName) => {
-  const match = varName.match(/--global-font-weights-pretendard-(\d+)/);
+  const match = varName.match(/--font-weights-pretendard-(\d+)/);
   if (match) {
     return `--font-weight-pretendard-${match[1]}`;
   }
@@ -95,7 +98,7 @@ const transformFontWeightName = (varName) => {
 
 // 폰트 패밀리 변수 이름 변환
 const transformFontFamilyName = (varName) => {
-  const match = varName.match(/--global-font-families-(\w+)/);
+  const match = varName.match(/--font-families-(\w+)/);
   if (match) {
     return `--font-family-${match[1]}`;
   }
@@ -104,7 +107,7 @@ const transformFontFamilyName = (varName) => {
 
 // 라인 높이 변수 이름 변환
 const transformLineHeightName = (varName) => {
-  const match = varName.match(/--global-line-heights-(\d+)/);
+  const match = varName.match(/--line-heights-(\d+)/);
   if (match) {
     return `--line-height-${match[1]}`;
   }
@@ -113,7 +116,7 @@ const transformLineHeightName = (varName) => {
 
 // 레터 스페이싱 변수 이름 변환
 const transformLetterSpacingName = (varName) => {
-  const match = varName.match(/--global-letter-spacing-(\d+)/);
+  const match = varName.match(/--letter-spacing-(\d+)/);
   if (match) {
     return `--letter-spacing-${match[1]}`;
   }
@@ -122,12 +125,12 @@ const transformLetterSpacingName = (varName) => {
 
 // 섀도우 변수 이름 변환
 const transformShadowName = (varName) => {
-  // --global-effect-shadow-default -> --shadow-default
-  // --global-effect-card-activity-card -> --shadow-card-activity-card
+  // --effect-shadow-default -> --shadow-default
+  // --effect-card-activity-card -> --shadow-card-activity-card
   if (varName.includes('card-activity-card')) {
     return '--shadow-card-activity-card';
   }
-  const match = varName.match(/--global-effect-shadow-(.+)/);
+  const match = varName.match(/--effect-shadow-(.+)/);
   if (match) {
     return `--shadow-${match[1]}`;
   }
@@ -136,7 +139,7 @@ const transformShadowName = (varName) => {
 
 // 텍스트 케이스 변수 이름 변환
 const transformTextCaseName = (varName) => {
-  const match = varName.match(/--global-text-case-(\w+)/);
+  const match = varName.match(/--text-case-(\w+)/);
   if (match) {
     return `--text-case-${match[1]}`;
   }
@@ -145,7 +148,7 @@ const transformTextCaseName = (varName) => {
 
 // 텍스트 데코레이션 변수 이름 변환
 const transformTextDecorationName = (varName) => {
-  const match = varName.match(/--global-text-decoration-(\w+)/);
+  const match = varName.match(/--text-decoration-(\w+)/);
   if (match) {
     return `--text-decoration-${match[1]}`;
   }
@@ -154,7 +157,7 @@ const transformTextDecorationName = (varName) => {
 
 // 패러그래프 스페이싱 변수 이름 변환
 const transformParagraphSpacingName = (varName) => {
-  const match = varName.match(/--global-paragraph-spacing-(\d+)/);
+  const match = varName.match(/--paragraph-spacing-(\d+)/);
   if (match) {
     return `--paragraph-spacing-${match[1]}`;
   }
@@ -163,7 +166,7 @@ const transformParagraphSpacingName = (varName) => {
 
 // 패러그래프 인덴트 변수 이름 변환
 const transformParagraphIndentName = (varName) => {
-  const match = varName.match(/--global-paragraph-indent-(\d+)/);
+  const match = varName.match(/--paragraph-indent-(\d+)/);
   if (match) {
     return `--paragraph-indent-${match[1]}`;
   }
@@ -441,7 +444,7 @@ if (categorized.header.length > 0) {
       return 0;
     })
     .forEach(({ varName }) => {
-      const match = varName.match(/--global-header-hd(\d+)(?:-(\w+))?/);
+      const match = varName.match(/--header-hd(\d+)(?:-(\w+))?/);
       if (match) {
         const size = match[1];
         const variant = match[2] || '';
@@ -467,7 +470,7 @@ if (categorized.body.length > 0) {
       return 0;
     })
     .forEach(({ varName }) => {
-      const match = varName.match(/--global-body-bd(\d+)/);
+      const match = varName.match(/--body-bd(\d+)/);
       if (match) {
         const size = match[1];
         themeContent += `@utility bd${size} {\n`;

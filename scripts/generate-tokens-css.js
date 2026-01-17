@@ -1,16 +1,13 @@
-import { register } from '@tokens-studio/sd-transforms';
-import StyleDictionary from 'style-dictionary';
+// generate-tokens-css.js
+// 2. tokens.flattened.json 파일을 읽어와서 tokens.css 파일을 생성
 
-register(StyleDictionary, {
-  prefix: 'global',
-});
+import StyleDictionary from 'style-dictionary';
+import { register } from '@tokens-studio/sd-transforms';
+
+register(StyleDictionary);
 
 const sd = new StyleDictionary({
-  source: ['tokens/token.json'],
-  preprocessors: ['tokens-studio'],
-  log: {
-    verbosity: 'verbose',
-  },
+  source: ['tokens/token.flattened.json'],
   platforms: {
     css: {
       transformGroup: 'tokens-studio',
