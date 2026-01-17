@@ -50,8 +50,6 @@ const Application = () => {
             programmersCompleted={formData.programmersCompleted}
             onProgrammersChange={updateProgrammersCompleted}
           />
-          <hr className="w-full border-[#E0E0E0]" />
-
           {/* 질문 답변 */}
           <QuestionSection answers={formData.answers} onAnswerChange={updateAnswer} />
 
