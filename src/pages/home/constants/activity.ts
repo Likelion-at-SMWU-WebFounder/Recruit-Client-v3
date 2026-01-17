@@ -7,7 +7,7 @@ export const ACTIVITY_CONTENT_TEXT = {
     '정기 세미나부터 해커톤,\n파이널 프로젝트까지\n숙멋사의 활동은 도전으로 가득합니다.\n실무 중심의 커리큘럼과 협업 환경 속에서\n직접 아이디어를 실현하고 부딪치며 성장합니다.\n혼자가 아닌, 함께라서 더 큰 변화를 만들어냅니다.',
 };
 
-const ACTIVITY_IMAGES_PATH = import.meta.env.VITE_IMAGE_PATH + '/activity';
+const ACTIVITY_IMAGES_PATH = import.meta.env.VITE_IMAGE_PATH + '/home/activity';
 
 export const ACTIVITY_DATA = {
   hackathon: {
