@@ -25,8 +25,8 @@ const IDENTITY_CARD_STYLES = {
     base: 'bg-white text-navyblack gap-0 shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)]',
   }, // IdentityCard 닫힘 상태 스타일
   identity: {
-    base: 'text-[1.25rem] font-[700]',
-    tablet: 'md:text-[1.5rem]',
+    base: 'hd20-semibold',
+    tablet: 'md:hd28-semibold',
     desktop: 'lg:hd32-semibold',
   },
   description: {
