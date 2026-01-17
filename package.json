@@ -14,9 +14,10 @@
     "lint-staged": "lint-staged",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "tokens:build": "node sd-tokens-config.js", 
-    "theme:generate": "node generate-theme.js",
-    "tokens:apply": "npm run tokens:build && npm run theme:generate"
+    "tokens:flatten": "node scripts/generate-flattened-tokens.js",
+    "tokens:css": "node scripts/generate-tokens-css.js",
+    "theme:css": "node scripts/generate-theme-css.js",
+    "tokens:build": "npm run tokens:flatten && npm run tokens:css && npm run theme:css"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
