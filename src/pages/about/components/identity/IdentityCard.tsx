@@ -27,7 +27,7 @@ const IDENTITY_CARD_STYLES = {
   identity: {
     base: 'text-[1.25rem] font-[700]',
     tablet: 'md:text-[1.5rem]',
-    desktop: 'lg:text-[2rem]',
+    desktop: 'lg:hd32-semibold',
   },
   description: {
     base: 'text-[1rem] font-[500] leading-[1.8rem]',
