@@ -276,7 +276,7 @@
       "type": "lineHeights"
     },
     "11": {
-      "value": "AUTO",
+      "value": "normal",
       "type": "lineHeights"
     },
     "12": {
@@ -374,15 +374,15 @@
   },
   "fontWeights": {
     "pretendard-0": {
-      "value": "Medium",
+      "value": "500",
       "type": "fontWeights"
     },
     "pretendard-1": {
-      "value": "Bold",
+      "value": "700",
       "type": "fontWeights"
     },
     "pretendard-2": {
-      "value": "SemiBold",
+      "value": "600",
       "type": "fontWeights"
     }
   },
