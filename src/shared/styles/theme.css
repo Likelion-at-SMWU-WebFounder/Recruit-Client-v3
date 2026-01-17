@@ -4,275 +4,275 @@
 @theme {
   /* ===== Colors ===== */
   /* Main colors */
-  --color-orange: var(--global-color-orange-main);
-  --color-blue: var(--global-color-blue-main);
-  --color-white: var(--global-color-white-main);
-  --color-gray: var(--global-color-gray-main);
-  --color-navyblack: var(--global-color-navyblack-main);
-  --color-black: var(--global-color-black-main);
+  --color-orange: var(--color-orange-main);
+  --color-blue: var(--color-blue-main);
+  --color-white: var(--color-white-main);
+  --color-gray: var(--color-gray-main);
+  --color-navyblack: var(--color-navyblack-main);
+  --color-black: var(--color-black-main);
 
   /* White variants */
-  --color-white-background: var(--global-color-white-background);
-  --color-white-opacity75: var(--global-color-white-opacity75);
-  --color-white-opacity12: var(--global-color-white-opacity12);
-  --color-white-dark: var(--global-color-white-dark);
-  --color-white-opacity1: var(--global-color-white-opacity1);
-  --color-white-opacity55: var(--global-color-white-opacity55);
+  --color-white-background: var(--color-white-background);
+  --color-white-opacity75: var(--color-white-opacity75);
+  --color-white-opacity12: var(--color-white-opacity12);
+  --color-white-dark: var(--color-white-dark);
+  --color-white-opacity1: var(--color-white-opacity1);
+  --color-white-opacity55: var(--color-white-opacity55);
 
   /* Blue variants */
-  --color-blue-dark: var(--global-color-blue-dark);
-  --color-blue-opacity80: var(--global-color-blue-opacity80);
-  --color-blue-opacity50: var(--global-color-blue-opacity50);
-  --color-blue-opacity13: var(--global-color-blue-opacity13);
-  --color-blue-opacity4: var(--global-color-blue-opacity4);
+  --color-blue-dark: var(--color-blue-dark);
+  --color-blue-opacity80: var(--color-blue-opacity80);
+  --color-blue-opacity50: var(--color-blue-opacity50);
+  --color-blue-opacity13: var(--color-blue-opacity13);
+  --color-blue-opacity4: var(--color-blue-opacity4);
 
   /* Navyblack variants */
-  --color-navyblack-opacity10: var(--global-color-navyblack-opacity10);
-  --color-navyblack-opacity65: var(--global-color-navyblack-opacity65);
-  --color-navyblack-opacity60: var(--global-color-navyblack-opacity60);
-  --color-navyblack-opacity70: var(--global-color-navyblack-opacity70);
-  --color-navyblack-opacity45: var(--global-color-navyblack-opacity45);
-  --color-navyblack-opacity30: var(--global-color-navyblack-opacity30);
+  --color-navyblack-opacity10: var(--color-navyblack-opacity10);
+  --color-navyblack-opacity65: var(--color-navyblack-opacity65);
+  --color-navyblack-opacity60: var(--color-navyblack-opacity60);
+  --color-navyblack-opacity70: var(--color-navyblack-opacity70);
+  --color-navyblack-opacity45: var(--color-navyblack-opacity45);
+  --color-navyblack-opacity30: var(--color-navyblack-opacity30);
 
   /* Gray variants */
-  --color-gray-opacity20: var(--global-color-gray-opacity20);
-  --color-gray-dark: var(--global-color-gray-dark);
-  --color-gray-sub: var(--global-color-gray-sub);
+  --color-gray-opacity20: var(--color-gray-opacity20);
+  --color-gray-dark: var(--color-gray-dark);
+  --color-gray-sub: var(--color-gray-sub);
 
   /* Dim colors */
-  --color-dim-navydark19: var(--global-color-dim-navydark19);
-  --color-dim-black20: var(--global-color-dim-black20);
-  --color-dim-black50: var(--global-color-dim-black50);
+  --color-dim-navydark19: var(--color-dim-navydark19);
+  --color-dim-black20: var(--color-dim-black20);
+  --color-dim-black50: var(--color-dim-black50);
 
   /* Error colors */
-  --color-error-red: var(--global-color-error-red);
-  --color-error-red-darkmode: var(--global-color-error-red-darkmode);
+  --color-error-red: var(--color-error-red);
+  --color-error-red-darkmode: var(--color-error-red-darkmode);
 
   /* ===== Typography ===== */
   /* Font families */
   --font-family-GMarketSans: 'GMarketSans', sans-serif;
-  --font-family-pretendard: var(--global-font-families-pretendard);
+  --font-family-pretendard: var(--font-families-pretendard);
 
   /* Font sizes */
-  --font-size-0: var(--global-font-size-0);
-  --font-size-1: var(--global-font-size-1);
-  --font-size-2: var(--global-font-size-2);
-  --font-size-3: var(--global-font-size-3);
-  --font-size-4: var(--global-font-size-4);
-  --font-size-5: var(--global-font-size-5);
-  --font-size-6: var(--global-font-size-6);
-  --font-size-7: var(--global-font-size-7);
-  --font-size-8: var(--global-font-size-8);
-  --font-size-9: var(--global-font-size-9);
-  --font-size-10: var(--global-font-size-10);
-  --font-size-11: var(--global-font-size-11);
-  --font-size-12: var(--global-font-size-12);
-  --font-size-13: var(--global-font-size-13);
-  --font-size-14: var(--global-font-size-14);
-  --font-size-15: var(--global-font-size-15);
+  --font-size-0: var(--font-size-0);
+  --font-size-1: var(--font-size-1);
+  --font-size-2: var(--font-size-2);
+  --font-size-3: var(--font-size-3);
+  --font-size-4: var(--font-size-4);
+  --font-size-5: var(--font-size-5);
+  --font-size-6: var(--font-size-6);
+  --font-size-7: var(--font-size-7);
+  --font-size-8: var(--font-size-8);
+  --font-size-9: var(--font-size-9);
+  --font-size-10: var(--font-size-10);
+  --font-size-11: var(--font-size-11);
+  --font-size-12: var(--font-size-12);
+  --font-size-13: var(--font-size-13);
+  --font-size-14: var(--font-size-14);
+  --font-size-15: var(--font-size-15);
 
   /* Font weights */
-  --font-weight-pretendard-0: var(--global-font-weights-pretendard-0);
-  --font-weight-pretendard-1: var(--global-font-weights-pretendard-1);
-  --font-weight-pretendard-2: var(--global-font-weights-pretendard-2);
+  --font-weight-pretendard-0: var(--font-weights-pretendard-0);
+  --font-weight-pretendard-1: var(--font-weights-pretendard-1);
+  --font-weight-pretendard-2: var(--font-weights-pretendard-2);
 
   /* Line heights */
-  --line-height-0: var(--global-line-heights-0);
-  --line-height-1: var(--global-line-heights-1);
-  --line-height-2: var(--global-line-heights-2);
-  --line-height-3: var(--global-line-heights-3);
-  --line-height-4: var(--global-line-heights-4);
-  --line-height-5: var(--global-line-heights-5);
-  --line-height-6: var(--global-line-heights-6);
-  --line-height-7: var(--global-line-heights-7);
-  --line-height-8: var(--global-line-heights-8);
-  --line-height-9: var(--global-line-heights-9);
-  --line-height-10: var(--global-line-heights-10);
-  --line-height-11: var(--global-line-heights-11);
-  --line-height-12: var(--global-line-heights-12);
-  --line-height-13: var(--global-line-heights-13);
-  --line-height-14: var(--global-line-heights-14);
-  --line-height-15: var(--global-line-heights-15);
-  --line-height-16: var(--global-line-heights-16);
-  --line-height-17: var(--global-line-heights-17);
-  --line-height-18: var(--global-line-heights-18);
-  --line-height-19: var(--global-line-heights-19);
-  --line-height-20: var(--global-line-heights-20);
-  --line-height-21: var(--global-line-heights-21);
-  --line-height-22: var(--global-line-heights-22);
-  --line-height-23: var(--global-line-heights-23);
-  --line-height-24: var(--global-line-heights-24);
-  --line-height-25: var(--global-line-heights-25);
-  --line-height-26: var(--global-line-heights-26);
-  --line-height-27: var(--global-line-heights-27);
-  --line-height-28: var(--global-line-heights-28);
-  --line-height-29: var(--global-line-heights-29);
-  --line-height-30: var(--global-line-heights-30);
-  --line-height-31: var(--global-line-heights-31);
-  --line-height-32: var(--global-line-heights-32);
-  --line-height-33: var(--global-line-heights-33);
-  --line-height-34: var(--global-line-heights-34);
+  --line-height-0: var(--line-heights-0);
+  --line-height-1: var(--line-heights-1);
+  --line-height-2: var(--line-heights-2);
+  --line-height-3: var(--line-heights-3);
+  --line-height-4: var(--line-heights-4);
+  --line-height-5: var(--line-heights-5);
+  --line-height-6: var(--line-heights-6);
+  --line-height-7: var(--line-heights-7);
+  --line-height-8: var(--line-heights-8);
+  --line-height-9: var(--line-heights-9);
+  --line-height-10: var(--line-heights-10);
+  --line-height-11: var(--line-heights-11);
+  --line-height-12: var(--line-heights-12);
+  --line-height-13: var(--line-heights-13);
+  --line-height-14: var(--line-heights-14);
+  --line-height-15: var(--line-heights-15);
+  --line-height-16: var(--line-heights-16);
+  --line-height-17: var(--line-heights-17);
+  --line-height-18: var(--line-heights-18);
+  --line-height-19: var(--line-heights-19);
+  --line-height-20: var(--line-heights-20);
+  --line-height-21: var(--line-heights-21);
+  --line-height-22: var(--line-heights-22);
+  --line-height-23: var(--line-heights-23);
+  --line-height-24: var(--line-heights-24);
+  --line-height-25: var(--line-heights-25);
+  --line-height-26: var(--line-heights-26);
+  --line-height-27: var(--line-heights-27);
+  --line-height-28: var(--line-heights-28);
+  --line-height-29: var(--line-heights-29);
+  --line-height-30: var(--line-heights-30);
+  --line-height-31: var(--line-heights-31);
+  --line-height-32: var(--line-heights-32);
+  --line-height-33: var(--line-heights-33);
+  --line-height-34: var(--line-heights-34);
 
   /* Letter spacing */
-  --letter-spacing-0: var(--global-letter-spacing-0);
-  --letter-spacing-1: var(--global-letter-spacing-1);
+  --letter-spacing-0: var(--letter-spacing-0);
+  --letter-spacing-1: var(--letter-spacing-1);
 
   /* ===== Shadows ===== */
-  --shadow-card-activity-card: var(--global-effect-card-activity-card);
-  --shadow-default: var(--global-effect-shadow-default);
-  --shadow-sub: var(--global-effect-shadow-sub);
-  --shadow-blue: var(--global-effect-shadow-blue);
-  --shadow-input: var(--global-effect-shadow-input);
-  --shadow-white: var(--global-effect-shadow-white);
-  --shadow-red: var(--global-effect-shadow-red);
+  --shadow-card-activity-card: var(--effect-card-activity-card);
+  --shadow-default: var(--effect-shadow-default);
+  --shadow-sub: var(--effect-shadow-sub);
+  --shadow-blue: var(--effect-shadow-blue);
+  --shadow-input: var(--effect-shadow-input);
+  --shadow-white: var(--effect-shadow-white);
+  --shadow-red: var(--effect-shadow-red);
 
   /* ===== Text utilities ===== */
-  --text-case-none: var(--global-text-case-none);
-  --text-case-uppercase: var(--global-text-case-uppercase);
-  --text-decoration-none: var(--global-text-decoration-none);
-  --paragraph-spacing-0: var(--global-paragraph-spacing-0);
-  --paragraph-indent-0: var(--global-paragraph-indent-0);
+  --text-case-none: var(--text-case-none);
+  --text-case-uppercase: var(--text-case-uppercase);
+  --text-decoration-none: var(--text-decoration-none);
+  --paragraph-spacing-0: var(--paragraph-spacing-0);
+  --paragraph-indent-0: var(--paragraph-indent-0);
 }
 
 /* ===== Typography Utilities ===== */
 /* Header typography */
 @utility hd42 {
-  font: var(--global-header-hd42);
+  font: var(--header-hd42);
 }
 
 @utility hd42-semibold {
-  font: var(--global-header-hd42-semibold);
+  font: var(--header-hd42-semibold);
 }
 
 @utility hd36 {
-  font: var(--global-header-hd36);
+  font: var(--header-hd36);
 }
 
 @utility hd36-semibold {
-  font: var(--global-header-hd36-semibold);
+  font: var(--header-hd36-semibold);
 }
 
 @utility hd32 {
-  font: var(--global-header-hd32);
+  font: var(--header-hd32);
 }
 
 @utility hd32-semibold {
-  font: var(--global-header-hd32-semibold);
+  font: var(--header-hd32-semibold);
 }
 
 @utility hd30 {
-  font: var(--global-header-hd30);
+  font: var(--header-hd30);
 }
 
 @utility hd30-semibold {
-  font: var(--global-header-hd30-semibold);
+  font: var(--header-hd30-semibold);
 }
 
 @utility hd28 {
-  font: var(--global-header-hd28);
+  font: var(--header-hd28);
 }
 
 @utility hd28-semibold {
-  font: var(--global-header-hd28-semibold);
+  font: var(--header-hd28-semibold);
 }
 
 @utility hd26 {
-  font: var(--global-header-hd26);
+  font: var(--header-hd26);
 }
 
 @utility hd26-semibold {
-  font: var(--global-header-hd26-semibold);
+  font: var(--header-hd26-semibold);
 }
 
 @utility hd24 {
-  font: var(--global-header-hd24);
+  font: var(--header-hd24);
 }
 
 @utility hd24-semibold {
-  font: var(--global-header-hd24-semibold);
+  font: var(--header-hd24-semibold);
 }
 
 @utility hd22 {
-  font: var(--global-header-hd22);
+  font: var(--header-hd22);
 }
 
 @utility hd20-semibold {
-  font: var(--global-header-hd20-semibold);
+  font: var(--header-hd20-semibold);
 }
 
 @utility hd18 {
-  font: var(--global-header-hd18);
+  font: var(--header-hd18);
 }
 
 @utility hd18-semibold {
-  font: var(--global-header-hd18-semibold);
+  font: var(--header-hd18-semibold);
 }
 
 @utility hd16 {
-  font: var(--global-header-hd16);
+  font: var(--header-hd16);
 }
 
 @utility hd16-semibold {
-  font: var(--global-header-hd16-semibold);
+  font: var(--header-hd16-semibold);
 }
 
 @utility hd14 {
-  font: var(--global-header-hd14);
+  font: var(--header-hd14);
 }
 
 @utility hd14-semibold {
-  font: var(--global-header-hd14-semibold);
+  font: var(--header-hd14-semibold);
 }
 
 /* Body typography */
 @utility bd32 {
-  font: var(--global-body-bd32);
+  font: var(--body-bd32);
 }
 
 @utility bd30 {
-  font: var(--global-body-bd30);
+  font: var(--body-bd30);
 }
 
 @utility bd28 {
-  font: var(--global-body-bd28);
+  font: var(--body-bd28);
 }
 
 @utility bd24 {
-  font: var(--global-body-bd24);
+  font: var(--body-bd24);
 }
 
 @utility bd22 {
-  font: var(--global-body-bd22);
+  font: var(--body-bd22);
 }
 
 @utility bd20 {
-  font: var(--global-body-bd20);
+  font: var(--body-bd20);
 }
 
 @utility bd18 {
-  font: var(--global-body-bd18);
+  font: var(--body-bd18);
 }
 
 @utility bd17 {
-  font: var(--global-body-bd17);
+  font: var(--body-bd17);
 }
 
 @utility bd16 {
-  font: var(--global-body-bd16);
+  font: var(--body-bd16);
 }
 
 @utility bd15 {
-  font: var(--global-body-bd15);
+  font: var(--body-bd15);
 }
 
 @utility bd14 {
-  font: var(--global-body-bd14);
+  font: var(--body-bd14);
 }
 
 @utility bd13 {
-  font: var(--global-body-bd13);
+  font: var(--body-bd13);
 }
 
 @utility bd12 {
-  font: var(--global-body-bd12);
+  font: var(--body-bd12);
 }
