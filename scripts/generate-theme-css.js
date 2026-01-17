@@ -480,6 +480,21 @@ if (categorized.body.length > 0) {
     });
 }
 
+// Shadow utilities
+if (categorized.shadow.length > 0) {
+  themeContent += `/* ===== Shadow Utilities ===== */\n`;
+  categorized.shadow.forEach(({ varName }) => {
+    const transformed = transformShadowName(varName);
+    if (transformed) {
+      // --shadow-default -> shadow-default
+      const utilityName = transformed.replace('--shadow-', 'shadow-');
+      themeContent += `@utility ${utilityName} {\n`;
+      themeContent += `  box-shadow: var(${transformed});\n`;
+      themeContent += `}\n\n`;
+    }
+  });
+}
+
 // 파일 쓰기
 writeFileSync(THEME_CSS_PATH, themeContent, 'utf-8');
 console.log(`✅ theme.css가 성공적으로 생성되었습니다: ${THEME_CSS_PATH}`);

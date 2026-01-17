@@ -276,3 +276,32 @@
 @utility bd12 {
   font: var(--body-bd12);
 }
+
+/* ===== Shadow Utilities ===== */
+@utility shadow-card-activity-card {
+  box-shadow: var(--shadow-card-activity-card);
+}
+
+@utility shadow-default {
+  box-shadow: var(--shadow-default);
+}
+
+@utility shadow-sub {
+  box-shadow: var(--shadow-sub);
+}
+
+@utility shadow-blue {
+  box-shadow: var(--shadow-blue);
+}
+
+@utility shadow-input {
+  box-shadow: var(--shadow-input);
+}
+
+@utility shadow-white {
+  box-shadow: var(--shadow-white);
+}
+
+@utility shadow-red {
+  box-shadow: var(--shadow-red);
+}
