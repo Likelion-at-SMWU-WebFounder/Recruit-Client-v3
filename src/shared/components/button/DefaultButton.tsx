@@ -18,9 +18,9 @@ const DefaultButton = ({ border = 'solid', children, isIcon = true, onClick, ...
 
   // 반응형 버튼 사이즈(모바일 기본, md: 태블릿, lg: 데스크톱)
   const sizeClasses = [
-    'h-[3.0625rem] px-4 py-3 text-[1.125rem] font-bold rounded-xl', // mobile
-    'md:h-[4rem] md:px-5 md:py-3.5 md:text-[1.5rem] md:font-bold md:rounded-2xl', // tablet
-    'lg:h-[4.34125rem] lg:px-5 lg:py-3.5 lg:text-[1.75rem] lg:font-bold lg:rounded-2xl', // desktop
+    'hd18 h-[3.0625rem] px-4 py-3 rounded-[0.75rem]', // mobile
+    'md:hd24 md:h-[4rem] md:px-5 md:py-3.5 md:rounded-[1rem]', // tablet
+    'lg:hd28 lg:h-[4.34125rem] lg:px-5 lg:py-3.5', // desktop
   ].join(' ');
 
   // 반응형 아이콘 사이즈(모바일 기본, md: 태블릿, lg: 데스크톱)
@@ -28,9 +28,8 @@ const DefaultButton = ({ border = 'solid', children, isIcon = true, onClick, ...
 
   // 보더 및 효과 스타일
   const borderAndEffectClasses = {
-    solid:
-      'outline outline-[1.50px] outline-offset-[-1.50px] outline-blue transition ease-out duration-300 shadow-[1px_1px_25.5px_4px_rgba(27,38,52,0.12)]',
-    none: '',
+    solid: 'border border-blue border-[1.5px] transition ease-out duration-300',
+    none: 'border-none',
   };
 
   return (
