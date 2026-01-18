@@ -78,7 +78,7 @@ const ProjectDetail = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
+  }, [projectId]);
 
   if (!project) {
     return null;
@@ -92,7 +92,7 @@ const ProjectDetail = () => {
     const carouselImages = projectWithImages.images || [];
     if (carouselImages.length === 0) return null;
 
-    return <ProjectCarousel images={carouselImages} />;
+    return <ProjectCarousel key={projectId} images={carouselImages} />;
   };
 
   const containerClassName = combineStyles(PROJECT_DETAIL_STYLES.container);
