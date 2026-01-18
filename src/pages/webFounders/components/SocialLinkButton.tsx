@@ -10,7 +10,7 @@ interface SocialLinkButtonProps {
 // 소셜 링크 버튼 스타일 상수화
 const SOCIAL_LINK_BUTTON_STYLES = {
   button: {
-    base: 'hover:text-navyblack flex h-[1.5rem] w-[1.5rem] cursor-pointer items-center justify-center rounded-lg border border-white transition duration-300 ease-in-out hover:bg-white',
+    base: 'hover:text-navyblack flex h-[1.5rem] w-[1.5rem] cursor-pointer items-center justify-center rounded-lg border border-white text-white transition duration-300 ease-in-out hover:bg-white',
     tablet: 'md:h-[2.5rem] md:w-[2.5rem] md:rounded-2xl',
   },
 } as const;
