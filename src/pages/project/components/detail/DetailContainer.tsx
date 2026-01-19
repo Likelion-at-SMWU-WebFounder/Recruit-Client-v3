@@ -6,7 +6,7 @@ interface DetailContainerProps {
   children: React.ReactNode;
   defaultOpen?: boolean; // 기본 열림 여부
   mobileOnlyToggle?: boolean; // true면 모바일에서만 토글, 데스크탑/태블릿에서는 항상 열림 설정
-  mode?: 'default' | 'light'; // default: shadow 있음, 배경 white | light: shadow 없음, 배경 white-dark 설정
+  mode?: 'default' | 'light'; // default: shadow 있음, 배경 white | light: 모바일만 shadow 있음, 배경 white-dark 설정
 }
 
 const TOGGLE_STYLES = {
