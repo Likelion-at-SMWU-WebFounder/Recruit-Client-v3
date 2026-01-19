@@ -10,13 +10,13 @@ const BUTTON_TEXT = '다음 프로젝트 보기';
 
 const NEXT_PROJECT_BUTTON_STYLES = {
   button: {
-    base: 'group hover:bg-blue w-full cursor-pointer overflow-hidden rounded-[1.25rem] bg-white p-[1rem] pr-[2rem] [box-shadow:1px_1px_8.4px_0_rgba(27,38,52,0.10)] transition-shadow duration-300',
-    tablet: 'md:w-auto',
+    base: 'shadow-sub group hover:bg-blue w-full cursor-pointer overflow-hidden bg-white p-[1rem] transition-shadow duration-300 ease-out border border-gray-opacity20',
+    tablet: 'md:w-[17.5625rem] md:rounded-[0.75rem]',
+    desktop: 'lg:w-[21.8125rem] lg:rounded-[1.25rem]',
   },
-  content: 'flex flex-row items-center gap-[1.25rem]',
+  content: 'flex flex-row items-center gap-[1.25rem] justify-start',
   thumbnailWrapper: {
-    base: 'relative flex-shrink-0 overflow-hidden rounded-[0.5rem] bg-[#F0F5FA]',
-    tablet: 'md:rounded-[0.75rem]',
+    base: 'relative flex-shrink-0 overflow-hidden rounded-[0.5rem] bg-white-opacity12',
   },
   thumbnailSize: {
     base: 'h-[6.25rem] w-[6.25rem]',
@@ -26,9 +26,9 @@ const NEXT_PROJECT_BUTTON_STYLES = {
   thumbnailImage: 'h-full w-full object-cover',
   textWrapper: 'flex items-center justify-center',
   text: {
-    base: 'text-navyblack text-[1.5rem] leading-[140%] font-bold whitespace-nowrap transition-colors duration-300 group-hover:text-white',
-    tablet: 'md:text-[1.125rem]',
-    desktop: 'lg:text-[1.25rem]',
+    base: 'text-navyblack whitespace-nowrap transition-colors duration-300 ease-out group-hover:text-white',
+    tablet: 'md:hd18-semibold',
+    desktop: 'lg:hd20-semibold',
   },
 } as const;
 
@@ -60,10 +60,13 @@ const NextProjectButton = ({ currentProjectId }: NextProjectButtonProps) => {
   }, [navigate, nextProject]);
 
   // 스타일 클래스명 조합
-  const buttonClassName = useMemo(() => combineStyles(NEXT_PROJECT_BUTTON_STYLES.button), []);
-  const thumbnailWrapperClassName = useMemo(() => combineStyles(NEXT_PROJECT_BUTTON_STYLES.thumbnailWrapper), []);
-  const thumbnailSizeClassName = useMemo(() => combineStyles(NEXT_PROJECT_BUTTON_STYLES.thumbnailSize), []);
-  const textClassName = useMemo(() => combineStyles(NEXT_PROJECT_BUTTON_STYLES.text), []);
+  const buttonClassName = combineStyles(NEXT_PROJECT_BUTTON_STYLES.button);
+  const contentClassName = NEXT_PROJECT_BUTTON_STYLES.content;
+  const thumbnailWrapperClassName = combineStyles(NEXT_PROJECT_BUTTON_STYLES.thumbnailWrapper);
+  const thumbnailSizeClassName = combineStyles(NEXT_PROJECT_BUTTON_STYLES.thumbnailSize);
+  const thumbnailImageClassName = NEXT_PROJECT_BUTTON_STYLES.thumbnailImage;
+  const textWrapperClassName = NEXT_PROJECT_BUTTON_STYLES.textWrapper;
+  const textClassName = combineStyles(NEXT_PROJECT_BUTTON_STYLES.text);
 
   // 다음 프로젝트가 없으면 렌더링하지 않음
   if (!nextProject) {
@@ -72,21 +75,21 @@ const NextProjectButton = ({ currentProjectId }: NextProjectButtonProps) => {
 
   return (
     <button type="button" onClick={handleClick} className={buttonClassName}>
-      <div className={NEXT_PROJECT_BUTTON_STYLES.content}>
+      <div className={contentClassName}>
         {/* 왼쪽: 프로젝트 썸네일 */}
         <div className={thumbnailWrapperClassName}>
           <div className={thumbnailSizeClassName}>
             <img
               src={nextProjectThumbnail}
               alt={`${nextProject.title} 프로젝트 썸네일`}
-              className={NEXT_PROJECT_BUTTON_STYLES.thumbnailImage}
+              className={thumbnailImageClassName}
               loading="lazy"
             />
           </div>
         </div>
 
         {/* 오른쪽: 버튼 텍스트 */}
-        <div className={NEXT_PROJECT_BUTTON_STYLES.textWrapper}>
+        <div className={textWrapperClassName}>
           <span className={textClassName}>{BUTTON_TEXT}</span>
         </div>
       </div>

@@ -10,7 +10,7 @@ const HERO_SECTION_STYLES = {
     base: 'relative flex h-[100dvh] w-full max-w-[100vw] flex-col items-center justify-center gap-[0.56rem] overflow-hidden bg-cover bg-center bg-no-repeat',
   },
   title: {
-    base: 'text-[1.125rem] leading-[117%] font-semibold tracking-[-0.01125rem] text-white/75',
+    base: 'text-[1.125rem] leading-[117%] font-semibold tracking-[-0.01125rem] text-white-opacity75',
     tablet: 'md:text-[2rem] md:tracking-[-0.02rem]',
   },
   description: {

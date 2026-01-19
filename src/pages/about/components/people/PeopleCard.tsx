@@ -12,11 +12,11 @@ interface PeopleCardProps {
 // PeopleCard 스타일 상수화
 const PEOPLE_CARD_STYLES = {
   desktop: {
-    base: 'hidden h-[35.5rem] w-[40rem] flex-col items-start gap-[3rem] rounded-[1.25rem] px-[4.75rem] py-[5.88rem] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)]',
+    base: 'hidden h-[35.5rem] w-[40rem] flex-col items-start gap-[3rem] rounded-[1.25rem] px-[4.75rem] py-[5.88rem] shadow-default',
     desktop: 'lg:flex',
   },
   tabletMobile: {
-    base: 'flex cursor-pointer flex-col items-start shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)]',
+    base: 'flex cursor-pointer flex-col items-start shadow-sub md:shadow-default',
     mobile: 'w-[22.5625rem] rounded-[0.5rem] py-[1.5rem] pr-[2.3125rem] pl-[1rem]',
     tablet: 'md:flex md:w-[56rem] md:rounded-[1.25rem] md:px-[4.75rem] md:py-[2rem] md:pr-[5.875rem] md:pl-[2.44rem]',
     desktop: 'lg:hidden',
@@ -39,14 +39,14 @@ const PEOPLE_CARD_STYLES = {
     desktop: 'lg:w-[5rem]',
   },
   keywordDesktop: {
-    base: 'text-navyblack text-[2rem] font-[600]',
+    base: 'hd32-semibold text-navyblack',
   },
   descriptionDesktop: {
     base: 'text-navyblack/70 text-[1.5rem] leading-[200%] font-[600] whitespace-pre-line',
   },
   keywordTabletMobile: {
-    base: 'text-navyblack text-[1.25rem] leading-[140%] font-[600]',
-    tablet: 'md:text-[1.75rem]',
+    base: 'text-navyblack hd20-semibold',
+    tablet: 'md:hd28-semibold',
   },
   descriptionTabletMobile: {
     base: 'text-navyblack/70 text-[1rem] leading-[180%] font-[500]',
