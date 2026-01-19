@@ -16,7 +16,7 @@ const PAGINATION_STYLES = {
     inactive: 'md:bd16 lg:bd28 text-navyblack/50 hover:text-[#6978B2]',
   },
   arrowButton: {
-    base: 'w-[3rem] md:size-4 lg:size-6',
+    base: 'w-[3rem]',
     enabled: 'cursor-pointer text-navyblack/50 transition-colors duration-200 ease-out hover:text-[#6978B2]',
     disabled: 'cursor-not-allowed text-navyblack/20',
   },
@@ -70,7 +70,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
         disabled={isPrevDisabled}
         className={prevArrowClassName}
         aria-label="이전 페이지로 이동">
-        <FaCaretLeft />
+        <FaCaretLeft className="md:size-4 lg:size-6" />
       </button>
       {pages.map((page) => (
         <button
@@ -89,7 +89,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
         disabled={isNextDisabled}
         className={nextArrowClassName}
         aria-label="다음 페이지로 이동">
-        <FaCaretRight />
+        <FaCaretRight className="md:size-4 lg:size-6" />
       </button>
     </div>
   );
