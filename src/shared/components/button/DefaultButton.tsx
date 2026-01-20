@@ -1,4 +1,5 @@
 import { ArrowUpRight } from 'lucide-react';
+import { combineStyles } from '@shared/utils/combineStyles';
 
 export interface DefaultButtonProps {
   /** 버튼 border 스타일 (solid: 보더 있음, none: 보더 없음) */
@@ -9,19 +10,31 @@ export interface DefaultButtonProps {
   isIcon?: boolean;
   /** 버튼 클릭 이벤트 */
   onClick?: () => void;
+  /** 버튼 배경 타입 (white: 하얀 버튼, blue: 파란 버튼) */
+  backgroundType?: 'white' | 'blue';
 }
 
-const DefaultButton = ({ border = 'solid', children, isIcon = true, onClick, ...props }: DefaultButtonProps) => {
+const DefaultButton = ({
+  border = 'solid',
+  children,
+  isIcon = true,
+  onClick,
+  backgroundType = 'white',
+  ...props
+}: DefaultButtonProps) => {
+  // 배경 타입에 따른 기본 스타일
+  const backgroundClasses =
+    backgroundType === 'white' ? 'bg-white text-blue hover:bg-blue hover:text-white' : 'bg-blue text-white';
+
   // 기본 스타일
-  const baseClasses =
-    'bg-blue text-white lg:bg-white lg:text-blue lg:hover:bg-blue lg:hover:text-white inline-flex justify-center items-center gap-2.5 overflow-hidden cursor-pointer';
+  const baseClasses = `${backgroundClasses} inline-flex justify-center items-center gap-[0.625rem] overflow-hidden cursor-pointer`;
 
   // 반응형 버튼 사이즈(모바일 기본, md: 태블릿, lg: 데스크톱)
-  const sizeClasses = [
-    'hd18 h-[3.0625rem] px-4 py-3 rounded-[0.75rem]', // mobile
-    'md:hd24 md:h-[4rem] md:px-5 md:py-3.5 md:rounded-[1rem]', // tablet
-    'lg:hd28 lg:h-[4.34125rem] lg:px-5 lg:py-3.5', // desktop
-  ].join(' ');
+  const sizeClasses = {
+    base: 'hd18 px-[1rem] py-[0.75rem] rounded-[0.75rem]', // mobile
+    tablet: 'md:hd24 md:px-[1.375rem] md:py-[0.9375rem] md:rounded-[1rem]', // tablet
+    desktop: 'lg:hd28', // desktop
+  } as const;
 
   // 반응형 아이콘 사이즈(모바일 기본, md: 태블릿, lg: 데스크톱)
   const iconSizeClasses = 'size-6 md:size-8 md:p-1 lg:size-8 lg:p-1';
@@ -30,14 +43,13 @@ const DefaultButton = ({ border = 'solid', children, isIcon = true, onClick, ...
   const borderAndEffectClasses = {
     solid: 'border border-blue border-[1.5px] transition ease-out duration-300',
     none: 'border-none',
-  };
+  } as const;
+
+  const sizeClassName = combineStyles(sizeClasses);
+  const borderClassName = borderAndEffectClasses[border];
 
   return (
-    <button
-      type="button"
-      className={`${baseClasses} ${sizeClasses} ${borderAndEffectClasses[border]}`}
-      onClick={onClick}
-      {...props}>
+    <button type="button" className={`${baseClasses} ${sizeClassName} ${borderClassName}`} onClick={onClick} {...props}>
       {children}
       {isIcon && <ArrowUpRight className={iconSizeClasses} />}
     </button>
