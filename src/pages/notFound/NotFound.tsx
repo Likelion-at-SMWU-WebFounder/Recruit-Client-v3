@@ -26,12 +26,12 @@ const NOT_FOUND_STYLES = {
   messageTitle: {
     base: 'text-navyblack/90 text-[1.75rem] font-bold leading-[150%] tracking-[-0.0385rem]',
     tablet: 'md:text-[3rem] md:tracking-[-0.066rem]',
-    desktop: 'lg:text-[3.25rem] tracking-[-0.0715rem]',
+    desktop: 'lg:text-[3.25rem] lg:tracking-[-0.0715rem]',
   },
   description: {
     base: 'text-navyblack/70 text-[1rem] font-medium leading-[170%]',
     tablet: 'md:text-[1.5rem]',
-    desktop: 'lg:text-[1.75rem] leading-[180%]',
+    desktop: 'lg:text-[1.75rem] lg:leading-[180%]',
   },
   lineBreak: {
     base: 'block',
