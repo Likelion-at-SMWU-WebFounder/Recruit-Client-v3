@@ -19,7 +19,6 @@ const AgreementSection = ({ agreements, onAgreementChange }: AgreementSectionPro
     .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(27, 38, 52, 0.2); border-radius: 10px; }
   `;
 
-  // 두 번째 섹션 전용 커스텀 아이콘 SVG
   const CustomBulletIcon = () => (
     <svg width="29" height="29" viewBox="0 0 29 29" fill="none" className="h-full w-full">
       <path
@@ -49,37 +48,30 @@ const AgreementSection = ({ agreements, onAgreementChange }: AgreementSectionPro
                 {info.title}
               </h4>
             </div>
-
-            {/* 타이틀 - 본문 간격: shrink-0 필수 */}
             <div className="h-[1rem] shrink-0 md:h-[1.2rem] lg:h-[1.38rem]" />
 
-            {/* 2. 본문 영역: flex-1과 overflow-y-auto가 결합되어 스크롤 발생 */}
+            {/* 2. 본문 영역 */}
             <div className="flex w-full flex-1 justify-center overflow-hidden">
               <div className="custom-scrollbar font-pretendard w-full overflow-y-auto pr-2 text-left text-[0.875rem] font-medium text-[rgba(27,38,52,0.70)] md:text-[1rem] lg:w-[87.125rem] lg:text-[1.5rem] lg:leading-[160%]">
                 {isPhotoUsage ? (
-                  /* [두 번째 섹션 전용] 커스텀 SVG 아이콘과 줄 단위 렌더링 */
                   <div className="flex flex-col gap-y-[0.75rem] pl-[0.5rem] md:pl-[1rem] lg:pl-0">
                     {info.content.split('\n').map((line, i) => (
                       <div key={i} className="flex items-start gap-x-[0.5rem] lg:gap-x-[0.8125rem]">
                         <span className="aspect-square h-[1.2rem] w-[1.2rem] shrink-0 lg:h-[1.8125rem] lg:w-[1.8125rem]">
                           <CustomBulletIcon />
                         </span>
-                        {/* 이미지처럼 기호 제거 후 텍스트만 출력 */}
                         <span>{line.replace(/^[•※-]\s*/, '')}</span>
                       </div>
                     ))}
                   </div>
                 ) : (
-                  /* [첫 번째, 세 번째 섹션] 들여쓰기(pl) 보정 유지 */
                   <div className="pl-[0.5rem] whitespace-pre-line md:pl-[1rem] lg:pl-0">{info.content}</div>
                 )}
               </div>
             </div>
-
-            {/* 본문 - 체크박스 간격: shrink-0 필수 */}
             <div className="h-[1.5rem] shrink-0 md:h-[1.8rem] lg:h-[2.31rem]" />
 
-            {/* 3. 체크란 영역: 본문과 동일한 시작점(pl) 정렬 */}
+            {/* 3. 체크란 영역 */}
             <div className="flex w-full shrink-0 justify-center">
               <div className="flex w-full items-center justify-start pl-[0.5rem] md:pl-[1rem] lg:w-[87.125rem] lg:pl-0">
                 <label

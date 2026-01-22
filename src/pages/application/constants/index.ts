@@ -149,10 +149,12 @@ export const AGREEMENT_INFO = {
   },
 };
 
-// 비밀번호 안내
+/// 비밀번호 안내
 export const PASSWORD_INFO = {
   title: '비밀번호 설정',
-  description: '서류에 입력하신 정보 수정 시 사용됩니다.',
-  placeholder: '비밀번호를 입력해주세요.',
-  confirmPlaceholder: '위의 입력한 비밀번호와 같은 지 입력해주세요.',
+  label1: '서류전형, 면접전형 결과 조회 시 사용할 개인비밀번호 4자리를 설정해주세요.',
+  placeholder1: '4자리 입력',
+  label2: '설정한 비밀번호를 한 번 더 입력해주세요.',
+  subDescription: '비밀번호 분실 시, 추후 결과 조회가 어려울 수 있습니다.',
+  placeholder2: '한 번 더 입력',
 };

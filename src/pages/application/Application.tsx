@@ -62,8 +62,6 @@ const Application = () => {
           {/* 정보 수집 동의 */}
           <AgreementSection agreements={formData.agreements} onAgreementChange={updateAgreement} />
 
-          <hr className="w-full border-[#E0E0E0]" />
-
           {/* 비밀번호 설정 */}
           <VerificationSection
             password={formData.password}
