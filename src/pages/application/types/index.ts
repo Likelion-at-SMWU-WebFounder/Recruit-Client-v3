@@ -32,7 +32,7 @@ export interface ApplicationFormData {
   };
   interviewSchedule: { [date: string]: string[] };
   agreements: {
-    infoCollection: boolean;
+    activityParticipation: boolean;
     photoUsage: boolean;
     eventParticipation: boolean;
   };

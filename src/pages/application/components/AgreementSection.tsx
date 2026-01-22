@@ -1,79 +1,119 @@
+import SectionHeader from './SectionHeader';
 import { AGREEMENT_INFO } from '../constants/index';
 
 interface AgreementSectionProps {
   agreements: {
-    infoCollection: boolean;
+    activityParticipation: boolean;
     photoUsage: boolean;
     eventParticipation: boolean;
   };
-  onAgreementChange: (field: 'infoCollection' | 'photoUsage' | 'eventParticipation', checked: boolean) => void;
+  onAgreementChange: (field: 'activityParticipation' | 'photoUsage' | 'eventParticipation', checked: boolean) => void;
 }
 
 const AgreementSection = ({ agreements, onAgreementChange }: AgreementSectionProps) => {
+  const agreementKeys = Object.keys(AGREEMENT_INFO) as Array<keyof typeof agreements>;
+
+  const scrollbarStyle = `
+    .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(27, 38, 52, 0.2); border-radius: 10px; }
+  `;
+
+  // 두 번째 섹션 전용 커스텀 아이콘 SVG
+  const CustomBulletIcon = () => (
+    <svg width="29" height="29" viewBox="0 0 29 29" fill="none" className="h-full w-full">
+      <path
+        d="M6.0002 14.5169C6.0002 14.3028 6.07916 14.1113 6.22581 13.9536C6.29378 13.8777 6.37732 13.8173 6.47075 13.7764C6.56418 13.7356 6.66531 13.7154 6.76728 13.717C6.98161 13.717 7.17338 13.7959 7.32002 13.9536C7.46667 14.1113 7.54563 14.2916 7.54563 14.5169C7.54563 14.7309 7.46667 14.9112 7.32002 15.0577C7.24936 15.1295 7.16509 15.1865 7.07213 15.2254C6.97916 15.2643 6.87936 15.2844 6.77856 15.2844C6.67775 15.2844 6.57795 15.2643 6.48499 15.2254C6.39202 15.1865 6.30775 15.1295 6.23709 15.0577C6.16047 14.9903 6.09956 14.9069 6.05864 14.8135C6.01771 14.7201 5.99777 14.6188 6.0002 14.5169ZM8.23375 14.5169C8.23375 14.3028 8.31271 14.1113 8.45936 13.9536C8.52733 13.8777 8.61087 13.8173 8.7043 13.7764C8.79773 13.7356 8.89886 13.7154 9.00083 13.717H12.6444L10.0725 11.1484C9.99613 11.0833 9.93526 11.0019 9.89429 10.9104C9.85331 10.8188 9.83326 10.7192 9.83559 10.619C9.83559 10.4049 9.91455 10.2247 10.0725 10.0669C10.2304 9.90921 10.4109 9.83035 10.6252 9.83035C10.8396 9.83035 11.02 9.90921 11.178 10.0669L13.7387 12.6243V9.00795C13.7387 8.7939 13.8176 8.60239 13.9756 8.44467C14.1335 8.28695 14.314 8.20809 14.5396 8.20809C14.7539 8.20809 14.9344 8.28695 15.081 8.44467C15.2277 8.60239 15.3067 8.78264 15.3067 9.00795V12.6468L17.8899 10.0557C18.0478 9.89794 18.2283 9.81908 18.4314 9.81908C18.6344 9.81908 18.8262 9.89794 18.9841 10.0557C19.1195 10.2134 19.1872 10.3936 19.1872 10.6077C19.1872 10.8217 19.1195 11.002 18.9841 11.1372L16.4122 13.7058H20.0558C20.2588 13.7058 20.4393 13.7846 20.586 13.9423C20.7326 14.1001 20.8116 14.2803 20.8116 14.5056C20.8116 14.7084 20.7326 14.8887 20.586 15.0351C20.5174 15.1065 20.4351 15.1632 20.344 15.202C20.2528 15.2407 20.1548 15.2606 20.0558 15.2604H16.4122L18.9954 17.8403C19.1308 17.9755 19.1985 18.1557 19.1985 18.3698C19.1985 18.5838 19.1308 18.7641 18.9954 18.9218C18.8375 19.0795 18.6457 19.1584 18.4427 19.1584C18.2396 19.1584 18.0478 19.0795 17.9012 18.9218L15.3179 16.3307V19.9808C15.3179 20.1948 15.239 20.3863 15.0923 20.5328C14.9457 20.6793 14.7652 20.7581 14.5509 20.7581C14.3407 20.7587 14.1386 20.6779 13.9868 20.5328C13.9105 20.4627 13.8499 20.3773 13.8091 20.2822C13.7683 20.187 13.7481 20.0843 13.7499 19.9808V16.3532L11.1893 18.9105C11.0313 19.0683 10.8508 19.1471 10.6365 19.1471C10.4222 19.1471 10.2417 19.0683 10.0838 18.9105C9.92583 18.7528 9.84687 18.5726 9.84687 18.3585C9.84687 18.1445 9.92583 17.9755 10.0838 17.829L12.6783 15.2492H9.02339C8.80906 15.2492 8.62857 15.1703 8.48192 15.0239C8.40038 14.9678 8.3347 14.8917 8.29122 14.8029C8.24775 14.7141 8.22795 14.6156 8.23375 14.5169ZM8.24503 19.9695C8.24503 19.7667 8.32399 19.5752 8.48192 19.4288C8.61729 19.271 8.79778 19.1922 9.01211 19.1922C9.22644 19.1922 9.40693 19.271 9.56485 19.4288C9.72278 19.5865 9.80175 19.7667 9.80175 19.9695C9.80175 20.1723 9.72278 20.3638 9.56485 20.5103C9.40693 20.668 9.22644 20.7469 9.01211 20.7469C8.79778 20.7469 8.61729 20.668 8.48192 20.5103C8.4059 20.4424 8.34539 20.359 8.30452 20.2656C8.26364 20.1723 8.24335 20.0713 8.24503 19.9695ZM8.24503 9.03048C8.24503 8.8277 8.32399 8.63618 8.48192 8.48973C8.61729 8.33201 8.79778 8.25315 9.01211 8.25315C9.22644 8.25315 9.40693 8.33201 9.56485 8.48973C9.72278 8.64745 9.80175 8.8277 9.80175 9.03048C9.80175 9.33466 9.72278 9.42478 9.56485 9.5825C9.40693 15.2844 9.22644 9.81908 9.01211 9.81908C8.79778 9.81908 8.61729 9.74022 8.48192 9.5825C8.40724 9.51117 8.34776 9.4255 8.30705 9.33064C8.26634 9.23578 8.24525 9.13369 8.24503 9.03048ZM13.7161 22.2227C13.7161 22.0199 13.7951 21.8396 13.953 21.6932C14.1109 21.5467 14.2914 21.4679 14.517 21.4679C14.7314 21.4679 14.9118 21.5467 15.0585 21.6932C15.2051 21.8396 15.2841 22.0199 15.2841 22.2227C15.2841 22.4367 15.2051 22.6282 15.0585 22.7747C14.9118 22.9211 14.7314 23 14.517 23C14.3069 23.0006 14.1047 22.9198 13.953 22.7747C13.8761 22.7051 13.8151 22.6197 13.7743 22.5245C13.7334 22.4292 13.7135 22.3263 13.7161 22.2227ZM13.7161 6.77734C13.7161 6.56329 13.7951 6.37177 13.953 6.22532C14.1109 6.07886 14.2914 6 14.517 6C14.7314 6 14.9118 6.07886 15.0585 6.22532C15.1654 6.33244 15.2381 6.46878 15.2676 6.61713C15.297 6.76549 15.2818 6.91923 15.2239 7.05898C15.166 7.19873 15.068 7.31824 14.9422 7.40244C14.8164 7.48664 14.6685 7.53177 14.517 7.53214C14.3069 7.53272 14.1047 7.45196 13.953 7.30683C13.8778 7.24066 13.8178 7.15915 13.7769 7.0678C13.736 6.97644 13.7153 6.87739 13.7161 6.77734ZM19.2097 19.9695C19.2097 19.7667 19.2887 19.5752 19.4466 19.4288C19.582 19.271 19.7625 19.1922 19.9768 19.1922C20.1911 19.1922 20.3716 19.271 20.5296 19.4288C20.6875 19.5865 20.7664 19.7667 20.7664 19.9695C20.7664 20.1723 20.6875 20.3638 20.5296 20.5103C20.3716 20.668 20.1911 20.7469 19.9768 20.7469C19.7625 20.7469 19.582 20.668 19.4466 20.5103C19.3706 20.4424 19.3101 20.359 19.2692 20.2656C19.2283 20.1723 19.2081 20.0713 19.2097 19.9695ZM19.2097 9.03048C19.2097 8.8277 19.2887 8.63618 19.4466 8.48973C19.582 8.33201 19.7625 8.25315 19.9768 8.25315C20.1911 8.25315 20.3716 8.33201 20.5296 8.48973C20.6875 8.64745 20.7664 8.8277 20.7664 9.03048C20.7664 9.33466 20.6875 9.42478 20.5296 9.5825C20.3716 9.74022 20.1911 9.81908 19.9768 9.81908C19.7625 9.81908 19.582 9.74022 19.4466 9.5825C19.3719 9.51117 19.3125 9.4255 19.2718 9.33064C19.231 9.23578 19.2099 9.13369 19.2097 9.03048ZM21.4658 14.5169C21.4658 14.3028 21.5448 14.1113 21.6915 13.9536C21.8381 13.7959 22.0299 13.717 22.2442 13.717C22.4473 13.717 22.6277 13.7959 22.7744 13.9536C22.921 14.1113 23 14.2916 23 14.5169C23 14.7197 22.921 14.8999 22.7744 15.0464C22.6306 15.1895 22.4359 15.2698 22.2329 15.2698C22.0299 15.2698 21.8352 15.1895 21.6915 15.0464C21.62 14.9779 21.5632 14.8957 21.5244 14.8047C21.4856 14.7137 21.4657 14.6158 21.4658 14.5169Z"
+        fill="#1B2634"
+        fillOpacity="0.7"
+      />
+    </svg>
+  );
+
   return (
-    <section className="flex flex-col gap-8">
-      <h3 className="text-[1.125rem] font-semibold text-[#1B2634] md:text-[1.25rem]">정보 수집</h3>
+    <section className="mx-auto flex w-full flex-col items-center gap-[2.1875rem] self-stretch px-4 md:px-0 lg:w-[98.18744rem]">
+      <style dangerouslySetInnerHTML={{ __html: scrollbarStyle }} />
+      <SectionHeader title="정보 수집" />
 
-      {/* 개인정보 수집 동의 */}
-      <div className="flex flex-col gap-3">
-        <h4 className="text-[0.875rem] font-semibold text-[#1B2634] md:text-[1rem]">
-          {AGREEMENT_INFO.infoCollection.title}
-        </h4>
-        <p className="rounded-[0.5rem] border border-[#E0E0E0] bg-[#F7FAFF] p-4 text-[0.75rem] leading-[170%] whitespace-pre-line text-[rgba(27,38,52,0.7)] md:text-[0.875rem]">
-          {AGREEMENT_INFO.infoCollection.content}
-        </p>
-        <label className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={agreements.infoCollection}
-            onChange={(e) => onAgreementChange('infoCollection', e.target.checked)}
-            className="h-4 w-4 accent-[#4284FF]"
-          />
-          <span className="text-[0.875rem] text-[#1B2634] md:text-[1rem]">
-            {AGREEMENT_INFO.infoCollection.checkbox}
-          </span>
-        </label>
-      </div>
+      {agreementKeys.map((key) => {
+        const info = AGREEMENT_INFO[key];
+        const isPhotoUsage = key === 'photoUsage';
 
-      {/* 사진 사용 동의 */}
-      <div className="flex flex-col gap-3">
-        <h4 className="text-[0.875rem] font-semibold text-[#1B2634] md:text-[1rem]">
-          {AGREEMENT_INFO.photoUsage.title}
-        </h4>
-        <p className="rounded-[0.5rem] border border-[#E0E0E0] bg-[#F7FAFF] p-4 text-[0.75rem] leading-[170%] whitespace-pre-line text-[rgba(27,38,52,0.7)] md:text-[0.875rem]">
-          {AGREEMENT_INFO.photoUsage.content}
-        </p>
-        <label className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={agreements.photoUsage}
-            onChange={(e) => onAgreementChange('photoUsage', e.target.checked)}
-            className="h-4 w-4 accent-[#4284FF]"
-          />
-          <span className="text-[0.875rem] text-[#1B2634] md:text-[1rem]">{AGREEMENT_INFO.photoUsage.checkbox}</span>
-        </label>
-      </div>
+        return (
+          <div
+            key={key}
+            className="shadow-[1px_1px_6.4px_0_rgba(27, 38, 52, 0.10)] /* 모바일 사양 반영 */ /* 태블릿 사양 반영 */ /* 노트북 사양 유지 */ flex max-h-[25.375rem] w-full flex-col items-center self-stretch overflow-hidden rounded-[1.25rem] bg-[#F0F5FA] p-[1.5625rem_1.25rem_1.5625rem_1.3125rem] md:max-h-[29.25rem] md:items-center md:p-[2.5rem_4.8125rem_2.5rem_3.75rem] lg:max-h-[35rem] lg:w-[98.18744rem] lg:p-[3rem_3.71875rem]">
+            {/* 1. 타이틀 영역 */}
+            <div className="flex w-full shrink-0 justify-center">
+              <h4 className="font-pretendard w-full text-left text-[1.25rem] font-semibold text-[#1B2634] md:text-[1.5rem] lg:w-[90.0625rem] lg:text-[2rem]">
+                {info.title}
+              </h4>
+            </div>
 
-      {/* 행사 참여 동의 */}
-      <div className="flex flex-col gap-3">
-        <h4 className="text-[0.875rem] font-semibold text-[#1B2634] md:text-[1rem]">
-          {AGREEMENT_INFO.eventParticipation.title}
-        </h4>
-        <p className="rounded-[0.5rem] border border-[#E0E0E0] bg-[#F7FAFF] p-4 text-[0.75rem] leading-[170%] whitespace-pre-line text-[rgba(27,38,52,0.7)] md:text-[0.875rem]">
-          {AGREEMENT_INFO.eventParticipation.content}
-        </p>
-        <label className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={agreements.eventParticipation}
-            onChange={(e) => onAgreementChange('eventParticipation', e.target.checked)}
-            className="h-4 w-4 accent-[#4284FF]"
-          />
-          <span className="text-[0.875rem] text-[#1B2634] md:text-[1rem]">
-            {AGREEMENT_INFO.eventParticipation.checkbox}
-          </span>
-        </label>
-      </div>
+            {/* 타이틀 - 본문 간격: shrink-0 필수 */}
+            <div className="h-[1rem] shrink-0 md:h-[1.2rem] lg:h-[1.38rem]" />
+
+            {/* 2. 본문 영역: flex-1과 overflow-y-auto가 결합되어 스크롤 발생 */}
+            <div className="flex w-full flex-1 justify-center overflow-hidden">
+              <div className="custom-scrollbar font-pretendard w-full overflow-y-auto pr-2 text-left text-[0.875rem] font-medium text-[rgba(27,38,52,0.70)] md:text-[1rem] lg:w-[87.125rem] lg:text-[1.5rem] lg:leading-[160%]">
+                {isPhotoUsage ? (
+                  /* [두 번째 섹션 전용] 커스텀 SVG 아이콘과 줄 단위 렌더링 */
+                  <div className="flex flex-col gap-y-[0.75rem] pl-[0.5rem] md:pl-[1rem] lg:pl-0">
+                    {info.content.split('\n').map((line, i) => (
+                      <div key={i} className="flex items-start gap-x-[0.5rem] lg:gap-x-[0.8125rem]">
+                        <span className="aspect-square h-[1.2rem] w-[1.2rem] shrink-0 lg:h-[1.8125rem] lg:w-[1.8125rem]">
+                          <CustomBulletIcon />
+                        </span>
+                        {/* 이미지처럼 기호 제거 후 텍스트만 출력 */}
+                        <span>{line.replace(/^[•※-]\s*/, '')}</span>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  /* [첫 번째, 세 번째 섹션] 들여쓰기(pl) 보정 유지 */
+                  <div className="pl-[0.5rem] whitespace-pre-line md:pl-[1rem] lg:pl-0">{info.content}</div>
+                )}
+              </div>
+            </div>
+
+            {/* 본문 - 체크박스 간격: shrink-0 필수 */}
+            <div className="h-[1.5rem] shrink-0 md:h-[1.8rem] lg:h-[2.31rem]" />
+
+            {/* 3. 체크란 영역: 본문과 동일한 시작점(pl) 정렬 */}
+            <div className="flex w-full shrink-0 justify-center">
+              <div className="flex w-full items-center justify-start pl-[0.5rem] md:pl-[1rem] lg:w-[87.125rem] lg:pl-0">
+                <label
+                  className="inline-flex cursor-pointer items-center gap-[0.8125rem]"
+                  onClick={() => onAgreementChange(key, !agreements[key])}>
+                  <div
+                    className={`flex aspect-square h-[1.75rem] w-[1.75rem] shrink-0 items-center justify-center rounded-[0.5rem] border-2 transition-all md:h-[2.2rem] md:w-[2.2rem] md:rounded-[0.75rem] lg:h-[2.8125rem] lg:w-[2.8125rem] lg:rounded-[1rem] ${
+                      agreements[key]
+                        ? 'border-[#1B2634] bg-[#F7FAFF] drop-shadow-[1px_1px_8.4px_rgba(27,38,52,0.10)]'
+                        : 'shadow-[1px_1px_8.4px_0_rgba(27, 38, 52, 0.10)] border-[rgba(27,38,52,0.65)] bg-[#F7FAFF]'
+                    } `}>
+                    {agreements[key] && (
+                      <svg width="24" height="11" viewBox="0 0 24 11" fill="none" className="h-auto w-[60%]">
+                        <path
+                          d="M1.5 1.5L11.5 9.5L22 1.5"
+                          stroke="#1B2634"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    )}
+                  </div>
+
+                  <span className="font-pretendard text-[1rem] font-medium text-[#1B2634] md:text-[1.25rem] lg:text-[1.75rem]">
+                    {info.checkbox}
+                    <span className="ml-[0.25rem] font-bold text-[#4284FF]">*</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+        );
+      })}
     </section>
   );
 };

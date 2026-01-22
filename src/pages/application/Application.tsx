@@ -59,8 +59,6 @@ const Application = () => {
             onScheduleChange={updateInterviewSchedule}
           />
 
-          <hr className="w-full border-[#E0E0E0]" />
-
           {/* 정보 수집 동의 */}
           <AgreementSection agreements={formData.agreements} onAgreementChange={updateAgreement} />
 

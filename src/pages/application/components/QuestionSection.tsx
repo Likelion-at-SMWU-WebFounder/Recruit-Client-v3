@@ -44,7 +44,7 @@ const QuestionSection = ({ answers, onAnswerChange }: QuestionSectionProps) => {
                   onAnswerChange(question.id, inputValue);
                 }
               }}
-              className="/* 상하좌우 패딩 설정 */ /* [사용자 요청] 기기별 입력칸 높이 사양 적용 */ /* 모바일 (Mobile) */ /* 태블릿 (Tablet) */ /* 랩탑 (Laptop) */ /* 폰트 크기 반응형 */ h-[37rem] w-full resize-none rounded-[1rem] border-2 border-[rgba(27,38,52,0.65)] bg-[#F7FAFF] px-[1.375rem] pt-[1.0625rem] pb-[1.0625rem] text-[1.125rem] font-medium text-[#1B2634] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)] transition-all outline-none placeholder:text-[rgba(27,38,52,0.45)] focus:border-[#4284FF] md:h-[26.375rem] md:text-[1.25rem] lg:h-[24.8125rem] lg:text-[1.75rem]"
+              className="h-[37rem] w-full resize-none rounded-[1rem] border-2 border-[rgba(27,38,52,0.65)] bg-[#F7FAFF] px-[1.375rem] pt-[1.0625rem] pb-[1.0625rem] text-[1.125rem] font-medium text-[#1B2634] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)] transition-all outline-none placeholder:text-[rgba(27,38,52,0.45)] focus:border-[#4284FF] md:h-[26.375rem] md:text-[1.25rem] lg:h-[24.8125rem] lg:text-[1.75rem]"
             />
             {/* 글자수 표시 */}
             <div className="mt-[0.5rem] self-stretch text-right text-[0.875rem] font-medium text-[rgba(27,38,52,0.65)] md:text-[1rem] lg:text-[1.25rem]">
