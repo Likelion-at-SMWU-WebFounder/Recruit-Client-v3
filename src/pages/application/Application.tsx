@@ -38,43 +38,44 @@ const Application = () => {
             {PAGE_SUBTITLE}
           </p>
         </div>
+
         <form
           onSubmit={handleSubmit}
-          className="mx-auto flex w-full flex-col items-center justify-center gap-[11.4375rem] self-stretch pb-[10rem] lg:max-w-[98.2rem]">
-          {/* 지원자 정보 */}
-          <ApplicantInfoSection data={formData.applicantInfo} onChange={updateApplicantInfo} />
-          {/* 지원 파트 */}
-          <PartSelectionSection
-            selectedPart={formData.part}
-            onPartChange={updatePart}
-            programmersCompleted={formData.programmersCompleted}
-            onProgrammersChange={updateProgrammersCompleted}
-          />
-          {/* 질문 답변 */}
-          <QuestionSection answers={formData.answers} onAnswerChange={updateAnswer} />
+          className="mx-auto flex w-full flex-col items-center justify-center self-stretch pb-[10rem] lg:max-w-[98.2rem]">
+          <div className="flex w-full flex-col items-center gap-[11.4375rem]">
+            {/* 지원자 정보 */}
+            <ApplicantInfoSection data={formData.applicantInfo} onChange={updateApplicantInfo} />
+            {/* 지원 파트 */}
+            <PartSelectionSection
+              selectedPart={formData.part}
+              onPartChange={updatePart}
+              programmersCompleted={formData.programmersCompleted}
+              onProgrammersChange={updateProgrammersCompleted}
+            />
+            {/* 질문 답변 */}
+            <QuestionSection answers={formData.answers} onAnswerChange={updateAnswer} />
 
-          {/* 면접 일정 */}
-          <InterviewScheduleSection
-            selectedSchedule={formData.interviewSchedule}
-            onScheduleChange={updateInterviewSchedule}
-          />
+            {/* 면접 일정 */}
+            <InterviewScheduleSection
+              selectedSchedule={formData.interviewSchedule}
+              onScheduleChange={updateInterviewSchedule}
+            />
 
-          {/* 정보 수집 동의 */}
-          <AgreementSection agreements={formData.agreements} onAgreementChange={updateAgreement} />
+            {/* 정보 수집 동의 */}
+            <AgreementSection agreements={formData.agreements} onAgreementChange={updateAgreement} />
 
-          {/* 비밀번호 설정 */}
-          <VerificationSection
-            password={formData.password}
-            passwordConfirm={formData.passwordConfirm}
-            onPasswordChange={updatePassword}
-            onPasswordConfirmChange={updatePasswordConfirm}
-          />
-
-          {/* 제출 버튼 */}
-          <div className="flex flex-col items-center">
+            {/* 비밀번호 설정 */}
+            <VerificationSection
+              password={formData.password}
+              passwordConfirm={formData.passwordConfirm}
+              onPasswordChange={updatePassword}
+              onPasswordConfirmChange={updatePasswordConfirm}
+            />
+          </div>
+          <div className="mt-[10.75rem] flex flex-col items-center">
             <button
               type="submit"
-              className="bg-blue w-full rounded-[0.5rem] py-4 text-[1rem] font-semibold text-white transition-all hover:opacity-90 md:w-[20rem] md:text-[1.125rem] lg:py-6 lg:text-[1.25rem]">
+              className="flex items-center justify-center gap-[0.625rem] rounded-[0.75rem] border-[1.5px] border-[#4284FF] bg-[#F7FAFF] px-[2rem] py-[0.7rem] text-[1rem] font-bold text-[#4284FF] transition-all duration-300 hover:bg-[#4284FF] hover:text-white md:px-[2.5rem] md:py-[0.8rem] md:text-[1.125rem] lg:rounded-[1rem] lg:px-[3.3125rem] lg:py-[0.9375rem] lg:text-[1.375rem]">
               제출하기
             </button>
           </div>
