@@ -6,11 +6,13 @@ import QuestionSection from './components/QuestionSection';
 import InterviewScheduleSection from './components/InterviewScheduleSection';
 import AgreementSection from './components/AgreementSection';
 import VerificationSection from './components/VerificationSection';
+import SubmitModal from './components/SubmitModal';
 import { PAGE_TITLE, PAGE_SUBTITLE, QUESTIONS } from './constants/index';
 
 const Application = () => {
   const {
     formData,
+    submitStatus,
     updateApplicantInfo,
     updatePart,
     updateProgrammersCompleted,
@@ -23,24 +25,23 @@ const Application = () => {
   } = useApplicationForm();
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitted(true);
 
-    // 유효성 검증 로직
-    const isApplicantInfoValid = Object.values(formData.applicantInfo).every((val) => val.trim() !== '');
+    // [로직] 전체 유효성 검증
+    const isApplicantValid = Object.values(formData.applicantInfo).every((v) => v.trim() !== '');
     const isPhoneValid = /^010-\d{3,4}-\d{4}$/.test(formData.applicantInfo.phone);
     const isPartValid = !!formData.part;
-    const isAgreementsValid = Object.values(formData.agreements).every((val) => val === true);
+    const isQuestionsValid = QUESTIONS.filter((q) => q.required).every((q) => formData.answers[q.id]?.trim() !== '');
+    const isInterviewValid = Object.values(formData.interviewSchedule).some((t) => t.length > 0);
+    const isAgreementsValid = Object.values(formData.agreements).every((v) => v === true);
     const isPasswordValid = formData.password.length === 4 && formData.password === formData.passwordConfirm;
-    const isQuestionsValid = QUESTIONS.filter((q) => q.type !== 'special' && q.required).every(
-      (q) => formData.answers[q.id]?.trim() !== ''
-    );
-    const isInterviewValid = Object.values(formData.interviewSchedule).some((times) => times.length > 0);
 
     if (
-      isApplicantInfoValid &&
+      isApplicantValid &&
       isPhoneValid &&
       isPartValid &&
       isQuestionsValid &&
@@ -48,29 +49,52 @@ const Application = () => {
       isAgreementsValid &&
       isPasswordValid
     ) {
-      submitForm();
+      setIsModalOpen(true);
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const getPartName = (part: string | null) => {
+    switch (part) {
+      case 'plan-design':
+        return '기획·디자인';
+      case 'frontend':
+        return '프론트엔드';
+      case 'backend':
+        return '백엔드';
+      default:
+        return '';
+    }
+  };
+
+  const handleFinalConfirm = async () => {
+    const isSuccess = await submitForm();
+
+    if (isSuccess) {
+      // [수정] 바로 닫지 않음. submitStatus가 'success'가 되면서 모달 내용이 자동으로 바뀜
+      console.log('제출 성공 - 완료 화면으로 전환');
+    } else {
+      alert('제출 중 오류가 발생했습니다.');
     }
   };
 
   return (
     <div className="flex min-h-screen w-full flex-col items-center overflow-x-hidden bg-[var(--color-white)] px-4 md:px-8">
       <main className="w-full lg:max-w-[120rem]">
-        {/* 헤더 영역 */}
-        <div className="mx-auto mt-[5rem] mb-[4rem] flex flex-col items-center justify-center gap-[1.5625rem] md:mt-[10rem] md:mb-[8rem] lg:mt-[22.75rem] lg:mb-[19.25rem] lg:max-w-[50.4rem]">
-          <h1 className="text-center text-[1.5rem] leading-[140%] font-bold break-keep text-[var(--color-navyblack)] md:text-[2rem] lg:text-[2.625rem] lg:whitespace-nowrap">
+        <header className="mx-auto mt-[5rem] mb-[4rem] flex flex-col items-center gap-[1.5625rem] lg:mt-[22.75rem] lg:mb-[19.25rem]">
+          <h1 className="text-center text-[1.5rem] font-bold break-keep md:text-[2rem] lg:text-[2.625rem]">
             {PAGE_TITLE}
           </h1>
-          <p className="text-center text-[0.875rem] leading-[140%] font-semibold text-[var(--color-blue)] uppercase md:text-[1.125rem] lg:text-[1.25rem] lg:whitespace-nowrap">
+          <p className="text-center text-[0.875rem] font-semibold text-[var(--color-blue)] uppercase lg:text-[1.25rem]">
             {PAGE_SUBTITLE}
           </p>
-        </div>
+        </header>
 
         <form
           onSubmit={handleSubmit}
-          className="mx-auto flex w-full flex-col items-center justify-center pb-[10rem] lg:max-w-[98.2rem]">
-          <div className="flex w-full flex-col items-center gap-[11.4375rem]">
+          className="mx-auto flex w-full flex-col items-center pb-[10rem] lg:max-w-[98.2rem]">
+          <div className="flex w-full flex-col gap-[11.4375rem]">
             <ApplicantInfoSection
               data={formData.applicantInfo}
               onChange={updateApplicantInfo}
@@ -103,16 +127,23 @@ const Application = () => {
             />
           </div>
 
-          {/* 제출 버튼 */}
-          <div className="mt-[10.75rem] flex flex-col items-center">
+          <div className="mt-[10.75rem]">
             <button
               type="submit"
-              className="flex cursor-pointer items-center justify-center gap-[0.625rem] rounded-[0.75rem] border-[1.5px] border-[var(--color-blue)] bg-[var(--color-white)] px-[2rem] py-[0.7rem] text-[1rem] font-bold text-[var(--color-blue)] transition-all duration-300 hover:bg-[var(--color-blue)] hover:text-[var(--color-white)] md:px-[2.5rem] md:py-[0.8rem] md:text-[1.125rem] lg:rounded-[1rem] lg:px-[3.3125rem] lg:py-[0.9375rem] lg:text-[1.375rem]">
+              className="flex cursor-pointer items-center justify-center rounded-[0.75rem] border-[1.5px] border-[var(--color-blue)] bg-white px-[3.3125rem] py-[0.9375rem] text-[1.375rem] font-bold text-[var(--color-blue)] transition-all hover:bg-[var(--color-blue)] hover:text-white">
               제출하기
             </button>
           </div>
         </form>
       </main>
+
+      <SubmitModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={handleFinalConfirm}
+        partName={getPartName(formData.part)}
+        submitStatus={submitStatus}
+      />
     </div>
   );
 };

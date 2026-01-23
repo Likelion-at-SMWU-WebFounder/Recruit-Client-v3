@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import type { ApplicationFormData, ApplicantInfo, PartType } from '../types/index';
+import { useState, useCallback } from 'react';
+import type { ApplicationFormData, ApplicantInfo, PartType, AgreementKey } from '../types/index';
 
 const initialFormData: ApplicationFormData = {
   applicantInfo: {
@@ -14,123 +14,76 @@ const initialFormData: ApplicationFormData = {
   },
   part: null,
   programmersCompleted: false,
-  answers: {
-    q1: '',
-    q2: '',
-    q3: '',
-    q4: '',
-    q5: '',
-    q6: '',
-    q7: '',
-    q8: '',
-  },
+  answers: { q1: '', q2: '', q3: '', q4: '', q5: '', q6: '', q7: '' },
   interviewSchedule: {},
-  agreements: {
-    activityParticipation: false,
-    photoUsage: false,
-    eventParticipation: false,
-  },
+  agreements: { activityParticipation: false, photoUsage: false, eventParticipation: false },
   password: '',
   passwordConfirm: '',
 };
 
 export const useApplicationForm = () => {
   const [formData, setFormData] = useState<ApplicationFormData>(initialFormData);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
-  // 지원자 정보 업데이트
-  const updateApplicantInfo = (field: keyof ApplicantInfo, value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      applicantInfo: {
-        ...prev.applicantInfo,
-        [field]: value,
-      },
-    }));
-  };
+  const updateApplicantInfo = useCallback((field: keyof ApplicantInfo, value: string) => {
+    setFormData((prev) => ({ ...prev, applicantInfo: { ...prev.applicantInfo, [field]: value } }));
+  }, []);
 
-  // 지원 파트 업데이트
-  const updatePart = (part: PartType) => {
-    setFormData((prev) => ({
-      ...prev,
-      part,
-    }));
-  };
+  const updatePart = useCallback((part: PartType) => {
+    setFormData((prev) => ({ ...prev, part }));
+  }, []);
 
-  // 프로그래머스 완료 여부 업데이트
-  const updateProgrammersCompleted = (completed: boolean) => {
-    setFormData((prev) => ({
-      ...prev,
-      programmersCompleted: completed,
-    }));
-  };
+  const updateProgrammersCompleted = useCallback((completed: boolean) => {
+    setFormData((prev) => ({ ...prev, programmersCompleted: completed }));
+  }, []);
 
-  // 질문 답변 업데이트
-  const updateAnswer = (questionId: string, value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      answers: {
-        ...prev.answers,
-        [questionId]: value,
-      },
-    }));
-  };
+  const updateAnswer = useCallback((questionId: string, value: string) => {
+    setFormData((prev) => ({ ...prev, answers: { ...prev.answers, [questionId]: value } }));
+  }, []);
 
-  // 면접 일정 업데이트
-  const updateInterviewSchedule = (date: string, time: string, checked: boolean) => {
+  const updateInterviewSchedule = useCallback((date: string, time: string, checked: boolean) => {
     setFormData((prev) => {
       const currentTimes = prev.interviewSchedule[date] || [];
       const newTimes = checked ? [...currentTimes, time] : currentTimes.filter((t) => t !== time);
-
-      return {
-        ...prev,
-        interviewSchedule: {
-          ...prev.interviewSchedule,
-          [date]: newTimes,
-        },
-      };
+      const newSchedule = { ...prev.interviewSchedule };
+      if (newTimes.length > 0) newSchedule[date] = newTimes;
+      else delete newSchedule[date];
+      return { ...prev, interviewSchedule: newSchedule };
     });
-  };
+  }, []);
 
-  // 동의 항목 업데이트
-  const updateAgreement = (field: keyof ApplicationFormData['agreements'], checked: boolean) => {
-    setFormData((prev) => ({
-      ...prev,
-      agreements: {
-        ...prev.agreements,
-        [field]: checked,
-      },
-    }));
-  };
+  const updateAgreement = useCallback((field: AgreementKey, checked: boolean) => {
+    setFormData((prev) => ({ ...prev, agreements: { ...prev.agreements, [field]: checked } }));
+  }, []);
 
-  // 비밀번호 업데이트
-  const updatePassword = (value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      password: value,
-    }));
-  };
+  const updatePassword = useCallback((value: string) => {
+    setFormData((prev) => ({ ...prev, password: value }));
+  }, []);
 
-  // 비밀번호 확인 업데이트
-  const updatePasswordConfirm = (value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      passwordConfirm: value,
-    }));
-  };
+  const updatePasswordConfirm = useCallback((value: string) => {
+    setFormData((prev) => ({ ...prev, passwordConfirm: value }));
+  }, []);
 
-  // 폼 제출
-  const submitForm = () => {
-    console.log('Form submitted:', formData);
-    // API 호출 로직 추가
-  };
+  const submitForm = useCallback(async () => {
+    setSubmitStatus('loading');
+    try {
+      // API 전송 시뮬레이션
+      console.log('Server Request:', formData);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setSubmitStatus('success');
+      return true;
+    } catch (error) {
+      console.log(error);
+      setSubmitStatus('error');
+      return false;
+    }
+  }, [formData]);
 
-  // 폼 초기화
-  const resetForm = () => {
-    setFormData(initialFormData);
-  };
+  const resetForm = useCallback(() => setFormData(initialFormData), []);
 
   return {
     formData,
+    submitStatus,
     updateApplicantInfo,
     updatePart,
     updateProgrammersCompleted,

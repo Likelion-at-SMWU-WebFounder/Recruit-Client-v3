@@ -250,3 +250,24 @@ export const VERIFICATION_ERRORS = {
   length: '숫자 4자리 비밀번호를 입력해주세요.',
   mismatch: '비밀번호가 일치하지 않습니다.',
 } as const;
+
+export const SUBMIT_MODAL = {
+  TITLE: '제출하시겠습니까?',
+  PART_LABEL: '지원 파트:',
+  WARNING_TEXT_1: '제출 이후에는 작성내용 조회 및 수정, 지원 취소가 불가능합니다.',
+  WARNING_TEXT_2: '내용이 정확히 작성되었는지 다시 한 번 확인해주세요!',
+  BUTTON_TEXT: '제출하기',
+} as const;
+
+export const SUCCESS_MODAL = {
+  TITLE: '서류 접수가 완료되었습니다.',
+  DESC_1: '멋쟁이사자처럼 숙명여대 13기 모집에 지원해 주셔서 감사합니다.',
+  DESC_2_PREFIX: '정상적으로 서류가 접수된 경우, ',
+  DESC_2_BLUE: '확인 메일',
+  DESC_2_SUFFIX: '을 발송 드릴 예정입니다.',
+  DESC_3_PREFIX: '확인 메일을 받지 못하신 경우, 반드시 ',
+  DESC_3_BLUE_LINK: '오픈채팅',
+  DESC_3_BLUE_PLAIN: '을 통해 문의',
+  DESC_3_SUFFIX: '해 주세요.',
+  BUTTON: '홈으로',
+} as const;
