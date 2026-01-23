@@ -40,13 +40,17 @@ export interface InterviewScheduleOption {
   dayOfWeek: string;
   times: string[];
 }
-
 // 선택된 스케줄 데이터 타입
 export type SelectedSchedule = {
   [date: string]: string[];
 };
 
-// 6. 전체 신청서 데이터 구조
+// 6. 동의 항목 키 타입 분리
+export type AgreementKey = 'activityParticipation' | 'photoUsage' | 'eventParticipation';
+// 동의 상태 객체 타입
+export type AgreementsState = Record<AgreementKey, boolean>;
+
+// 7. 전체 신청서 데이터 구조
 export interface ApplicationFormData {
   applicantInfo: ApplicantInfo;
   part: PartType | null;
@@ -55,13 +59,7 @@ export interface ApplicationFormData {
     [key: string]: string;
   };
   interviewSchedule: SelectedSchedule;
-  agreements: {
-    activityParticipation: boolean;
-    photoUsage: boolean;
-    eventParticipation: boolean;
-  };
-
-  // 비밀번호 관리
+  agreements: AgreementsState;
   password: string;
   passwordConfirm: string;
 }

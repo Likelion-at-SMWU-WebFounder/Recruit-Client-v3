@@ -32,12 +32,12 @@ const Application = () => {
     const isApplicantInfoValid = Object.values(formData.applicantInfo).every((val) => val.trim() !== '');
     const isPhoneValid = /^010-\d{3,4}-\d{4}$/.test(formData.applicantInfo.phone);
     const isPartValid = !!formData.part;
-    const isAgreementsValid = Object.values(formData.agreements).every((val) => val === true);
     const isPasswordValid = formData.password.length === 4 && formData.password === formData.passwordConfirm;
     const isQuestionsValid = QUESTIONS.filter((q) => q.type !== 'special' && q.required).every(
       (q) => formData.answers[q.id]?.trim() !== ''
     );
     const isInterviewValid = Object.values(formData.interviewSchedule).some((times) => times.length > 0);
+    const isAgreementsValid = Object.values(formData.agreements).every((val) => val === true);
 
     if (
       isApplicantInfoValid &&
@@ -88,7 +88,11 @@ const Application = () => {
               onScheduleChange={updateInterviewSchedule}
               isSubmitted={isSubmitted}
             />
-            <AgreementSection agreements={formData.agreements} onAgreementChange={updateAgreement} />
+            <AgreementSection
+              agreements={formData.agreements}
+              onAgreementChange={updateAgreement}
+              isSubmitted={isSubmitted}
+            />
             <VerificationSection
               password={formData.password}
               passwordConfirm={formData.passwordConfirm}
