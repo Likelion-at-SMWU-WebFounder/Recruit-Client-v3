@@ -57,21 +57,30 @@ export const PASSWORD_ERRORS = {
   short: '4자리를 모두 입력해주세요.',
 };
 
+// 지원 파트 섹션 정보
+export const PART_SELECTION_INFO = {
+  label: '지원 파트',
+} as const;
+
 // 지원 파트 옵션
 export const PART_OPTIONS = [
-  { id: 'plan-design', label: '기획·디자인' },
-  { id: 'frontend', label: '프론트엔드' },
-  { id: 'backend', label: '백엔드' },
+  { label: '기획·디자인', value: 'plan-design' },
+  { label: '프론트엔드', value: 'frontend' },
+  { label: '백엔드', value: 'backend' },
 ] as const;
 
-// 학기 옵션
-export const SEMESTER_OPTIONS = [
-  { value: '1', label: '1학기' },
-  { value: '2', label: '2학기' },
-  { value: '3', label: '3학기' },
-  { value: '4', label: '4학기' },
-  { value: '5', label: '5학기 이상' },
-] as const;
+export const PART_ERRORS = {
+  select: '지원 파트를 선택해주세요.',
+};
+// 프로그래머스 인증 관련 상수
+export const PROGRAMMERS_INFO = {
+  title: '프로그래머스 수강 인증',
+  linkText: '파이썬 입문 강의 링크',
+  linkUrl: 'https://school.programmers.co.kr/learn/courses/2',
+  description: '1~8, 10~11강 수강 완료 스크린샷을 zip 파일로 업로드 해주세요.',
+  uploadComplete: '파일 업로드 완료',
+  uploadDefault: '파일 업로드',
+};
 
 // 질문 목록
 export const QUESTIONS: Question[] = [

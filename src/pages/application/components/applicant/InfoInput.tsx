@@ -37,7 +37,7 @@ const InfoInput = ({ label, required, placeholder, value, subText, errorMessage,
 
         {/* 에러 메시지 */}
         {hasError ? (
-          <p className="font-pretendard text-[0.8125rem] font-medium text-[rgba(255,36,36,0.80)] md:text-[1rem] lg:text-[1.25rem]">
+          <p className="text-[0.8125rem] font-medium text-[rgba(255,36,36,0.80)] md:text-[1rem] lg:text-[1.25rem]">
             {errorMessage}
           </p>
         ) : (
