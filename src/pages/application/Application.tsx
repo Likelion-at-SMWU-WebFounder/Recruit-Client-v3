@@ -31,7 +31,7 @@ const Application = () => {
     e.preventDefault();
     setIsSubmitted(true);
 
-    // [로직] 전체 유효성 검증
+    // 전체 유효성 검증
     const isApplicantValid = Object.values(formData.applicantInfo).every((v) => v.trim() !== '');
     const isPhoneValid = /^010-\d{3,4}-\d{4}$/.test(formData.applicantInfo.phone);
     const isPartValid = !!formData.part;
@@ -72,7 +72,6 @@ const Application = () => {
     const isSuccess = await submitForm();
 
     if (isSuccess) {
-      // [수정] 바로 닫지 않음. submitStatus가 'success'가 되면서 모달 내용이 자동으로 바뀜
       console.log('제출 성공 - 완료 화면으로 전환');
     } else {
       alert('제출 중 오류가 발생했습니다.');
