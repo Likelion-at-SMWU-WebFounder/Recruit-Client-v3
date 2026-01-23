@@ -12,7 +12,7 @@ const InfoInput = ({ label, required, placeholder, value, subText, errorMessage,
   const hasError = !!errorMessage;
 
   return (
-    <div className="flex w-full flex-col items-start gap-[1.375rem] md:w-[24.75rem] lg:w-[40.3125rem]">
+    <div className="flex w-full flex-col gap-[1rem] md:w-[24.75rem] md:gap-[1.375rem] lg:w-[40.3125rem]">
       <div className="flex items-end gap-[0.5rem] md:gap-[0.8125rem]">
         <span className="text-[1.25rem] font-semibold text-[var(--color-navyblack)] md:text-[1.5rem] lg:text-[2rem]">
           {label}
@@ -22,7 +22,7 @@ const InfoInput = ({ label, required, placeholder, value, subText, errorMessage,
         )}
       </div>
 
-      <div className="flex w-full flex-col items-start gap-[0.75rem]">
+      <div className="flex w-full flex-col gap-[0.75rem]">
         <input
           type="text"
           placeholder={placeholder}
@@ -34,19 +34,19 @@ const InfoInput = ({ label, required, placeholder, value, subText, errorMessage,
               : 'border-2 border-[rgba(27,38,52,0.65)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)] focus:border-[var(--color-navyblack)]'
           }`}
         />
-
-        {/* 에러 메시지 */}
-        {hasError ? (
-          <p className="text-[0.8125rem] font-medium text-[rgba(255,36,36,0.80)] md:text-[1rem] lg:text-[1.25rem]">
-            {errorMessage}
-          </p>
-        ) : (
-          subText && (
-            <p className="text-[0.8125rem] font-medium break-keep text-[rgba(27,38,52,0.65)] md:text-[1rem] lg:text-[1.25rem]">
-              {subText}
+        <div className="min-h-[1.25rem] md:min-h-[1.5rem]">
+          {hasError ? (
+            <p className="text-[0.8125rem] font-medium tracking-[-0.0325rem] text-[rgba(255,36,36,0.80)] md:text-[1rem] md:tracking-[-0.02rem] lg:text-[1.25rem] lg:tracking-normal">
+              {errorMessage}
             </p>
-          )
-        )}
+          ) : (
+            subText && (
+              <p className="text-[0.8125rem] font-medium tracking-[-0.0325rem] break-keep text-[rgba(27,38,52,0.65)] md:text-[1rem] md:tracking-[-0.02rem] lg:text-[1.25rem] lg:tracking-normal">
+                {subText}
+              </p>
+            )
+          )}
+        </div>
       </div>
     </div>
   );

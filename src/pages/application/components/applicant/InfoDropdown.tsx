@@ -34,7 +34,9 @@ const InfoDropdown = ({ label, required, value, options, errorMessage, onChange 
               : 'border-2 border-[rgba(27,38,52,0.65)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)]'
           }`}>
           <span
-            className={`text-[1rem] font-medium md:text-[1.25rem] lg:text-[1.75rem] ${value ? 'text-[var(--color-navyblack)]' : 'text-[rgba(27,38,52,0.45)]'}`}>
+            className={`text-[1rem] font-medium md:text-[1.25rem] lg:text-[1.75rem] ${
+              value ? 'text-[var(--color-navyblack)]' : 'text-[rgba(27,38,52,0.45)]'
+            }`}>
             {value || '선택'}
           </span>
           <svg
@@ -50,7 +52,6 @@ const InfoDropdown = ({ label, required, value, options, errorMessage, onChange 
             />
           </svg>
         </div>
-
         {isOpen && (
           <div className="absolute top-full z-20 mt-[0.5rem] w-full overflow-hidden rounded-[1rem] border-2 border-[rgba(27,38,52,0.65)] bg-white shadow-lg">
             {filteredOptions.map((opt, index) => (
@@ -60,15 +61,16 @@ const InfoDropdown = ({ label, required, value, options, errorMessage, onChange 
                   onChange(opt.value);
                   setIsOpen(false);
                 }}
-                className={`flex h-[2.5rem] cursor-pointer items-center px-[0.875rem] text-[1rem] font-medium text-[var(--color-navyblack)] hover:bg-[var(--color-white)] md:h-[3.625rem] md:px-[1.5rem] md:text-[1.25rem] lg:h-[4.1875rem] lg:px-[1.375rem] lg:text-[1.75rem] ${index !== filteredOptions.length - 1 ? 'border-b border-[rgba(27,38,52,0.1)]' : ''}`}>
+                className={`flex h-[2.5rem] cursor-pointer items-center px-[0.875rem] text-[1rem] font-medium text-[var(--color-navyblack)] hover:bg-[var(--color-white)] md:h-[3.625rem] md:px-[1.5rem] md:text-[1.25rem] lg:h-[4.1875rem] lg:px-[1.375rem] lg:text-[1.75rem] ${
+                  index !== filteredOptions.length - 1 ? 'border-b border-[rgba(27,38,52,0.1)]' : ''
+                }`}>
                 {opt.label}
               </div>
             ))}
           </div>
         )}
-
         {hasError && (
-          <p className="mt-[0.75rem] text-[0.8125rem] font-medium text-[rgba(255,36,36,0.80)] md:text-[1rem] lg:text-[1.25rem]">
+          <p className="mt-[0.75rem] text-[0.8125rem] font-medium tracking-[-0.0325rem] text-[rgba(255,36,36,0.80)] md:text-[1rem] md:tracking-[-0.02rem] lg:text-[1.25rem] lg:tracking-normal">
             {errorMessage}
           </p>
         )}

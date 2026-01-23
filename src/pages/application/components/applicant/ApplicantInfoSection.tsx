@@ -18,21 +18,17 @@ const ApplicantInfoSection = ({ data, onChange, isSubmitted }: ApplicantInfoSect
     if (!isSubmitted) return '';
     if (isEmpty) return APPLICANT_ERRORS[fieldId];
 
-    // 전화번호 필드일 경우 형식 검사 추가
     if (fieldId === 'phone') {
       const phoneRegex = /^010-\d{3,4}-\d{4}$/;
-      if (!phoneRegex.test(value)) {
-        return APPLICANT_ERRORS.phoneFormat;
-      }
+      if (!phoneRegex.test(value)) return APPLICANT_ERRORS.phoneFormat;
     }
-
     return '';
   };
 
   return (
-    <section className="flex w-full flex-col items-center gap-[2.1875rem] px-4 md:px-0">
+    <section className="flex w-full flex-col items-center gap-[1.5rem] px-4 md:gap-[1.75rem] md:px-0 lg:gap-[2.1875rem]">
       <SectionHeader title="지원자 정보" />
-      <div className="flex w-full flex-wrap justify-center gap-y-[3rem] md:w-[52.75rem] md:gap-x-[3.25rem] md:gap-y-[4rem] lg:w-[90.0625rem] lg:gap-x-[8.5625rem] lg:gap-y-[5rem]">
+      <div className="flex w-full flex-wrap justify-center gap-y-[2.5rem] md:w-[52.75rem] md:gap-x-[3.25rem] md:gap-y-[4rem] lg:w-[90.0625rem] lg:gap-x-[8.5625rem] lg:gap-y-[5rem]">
         {APPLICANT_FIELD_CONFIG.map((field) => {
           const commonProps = {
             key: field.id,
@@ -42,7 +38,6 @@ const ApplicantInfoSection = ({ data, onChange, isSubmitted }: ApplicantInfoSect
             onChange: (val: string) => onChange(field.id, val),
             errorMessage: getErrorMessage(field.id),
           };
-
           if (field.options) {
             return <InfoDropdown {...commonProps} options={field.options} />;
           }
