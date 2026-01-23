@@ -22,7 +22,7 @@ interface SocialLinkConfig {
 // 스타일 상수화
 const CARD_BACK_STYLES = {
   container: {
-    base: 'bg-navyblack items-between absolute inset-0 flex h-full [transform:rotateY(180deg)] flex-col justify-between overflow-hidden text-white [-webkit-backface-visibility:hidden] [backface-visibility:hidden]',
+    base: 'bg-navyblack items-between absolute inset-0 flex h-full [transform:rotateY(180deg)] flex-col justify-between overflow-hidden [-webkit-backface-visibility:hidden] [backface-visibility:hidden]',
     mobile: 'rounded-[0.75rem] p-[0.89rem]',
     tablet: 'md:rounded-[1.4rem] md:p-[1.5rem]',
     desktop: 'lg:rounded-[1.56rem] lg:p-[1.94rem]',
@@ -40,20 +40,20 @@ const CARD_BACK_STYLES = {
     desktop: 'lg:mt-[1.56rem] lg:mb-[1.41rem]',
   }, // 이름, 기수, 파트 컨테이너 스타일
   nameText: {
-    base: 'leading-[140%] font-bold',
-    mobile: 'text-[1.125rem]',
-    tablet: 'md:text-[1.75rem]',
+    base: 'text-white-background',
+    mobile: 'hd18',
+    tablet: 'md:hd28',
   }, // 이름 스타일
   noPartText: {
-    base: 'leading-[140%] font-medium',
-    mobile: 'text-[0.75rem]',
-    tablet: 'md:text-[1.25rem]',
+    base: 'text-white-background',
+    mobile: 'bd12',
+    tablet: 'md:bd20',
   }, // 기수, 파트 스타일
   responsibilitiesText: {
-    base: 'leading-[140%] font-medium whitespace-pre-line text-white/70 break-keep',
-    mobile: 'text-[0.75rem]',
-    tablet: 'md:text-[1rem]',
-    desktop: 'lg:text-[1.25rem]',
+    base: 'whitespace-pre-line text-white-background break-keep',
+    mobile: 'bd12',
+    tablet: 'md:bd16',
+    desktop: 'lg:bd20',
   }, // 담당 파트 설명 스타일
   footer: {
     base: 'flex items-end justify-between',
@@ -141,7 +141,7 @@ const WebFoundersCardBack = ({ founder, onFlipBack }: WebFoundersCardBackProps) 
     <div className={containerClassName}>
       <header>
         {/* 프로필 이미지 */}
-        <img src={image} className={profileImageClassName} alt={`${name} profile`} loading="lazy" />
+        <img src={image} className={profileImageClassName} alt={`${name} 프로필 이미지`} loading="lazy" />
 
         {/* 이름, 기수, 파트 */}
         <div className={nameInfoWrapperClassName}>

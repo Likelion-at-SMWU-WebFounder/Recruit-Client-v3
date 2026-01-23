@@ -25,9 +25,16 @@ const IDENTITY_CARD_STYLES = {
     base: 'bg-white text-navyblack gap-0 shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)]',
   }, // IdentityCard 닫힘 상태 스타일
   identity: {
-    base: 'text-[1.25rem] font-[700]',
-    tablet: 'md:text-[1.5rem]',
-    desktop: 'lg:text-[2rem]',
+    open: {
+      base: 'hd20-semibold',
+      tablet: 'md:hd28',
+      desktop: 'lg:hd32',
+    },
+    closed: {
+      base: 'hd20-semibold',
+      tablet: 'md:hd28-semibold',
+      desktop: 'lg:hd32-semibold',
+    },
   },
   description: {
     base: 'text-[1rem] font-[500] leading-[1.8rem]',
@@ -55,7 +62,9 @@ const IdentityCard = ({
   isAdditionalInfo,
 }: IdentityCardProps) => {
   const cardClassName = `${combineStyles(IDENTITY_CARD_STYLES.card)} ${isOpen ? combineStyles(IDENTITY_CARD_STYLES.open) : combineStyles(IDENTITY_CARD_STYLES.closed)}`;
-  const identityClassName = combineStyles(IDENTITY_CARD_STYLES.identity);
+  const identityClassName = isOpen
+    ? combineStyles(IDENTITY_CARD_STYLES.identity.open)
+    : combineStyles(IDENTITY_CARD_STYLES.identity.closed);
   const descriptionClassName = combineStyles(IDENTITY_CARD_STYLES.description);
   const descriptionContainerClassName = isOpen
     ? `${IDENTITY_CARD_STYLES.descriptionContainer.base} ${IDENTITY_CARD_STYLES.descriptionContainer.open}`

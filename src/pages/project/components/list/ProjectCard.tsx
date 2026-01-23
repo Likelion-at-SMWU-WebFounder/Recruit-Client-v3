@@ -49,13 +49,13 @@ const CARD_STYLES = {
     tablet: 'md:space-y-[0.75rem]',
   },
   title: {
-    base: 'text-navyblack leading-[140%] font-bold text-[1.125rem] group-hover:text-blue transition-all duration-300 ease-out',
-    tablet: 'md:text-[1.5rem]',
-    desktop: 'lg:text-[1.75rem]',
+    base: 'hd18 text-navyblack group-hover:text-blue transition-all duration-300 ease-out',
+    tablet: 'md:hd24',
+    desktop: 'lg:hd28',
   },
   summary: {
-    base: 'text-gray line-clamp-1 leading-[160%] font-semibold text-[0.875rem]',
-    tablet: 'md:line-clamp-none md:text-[1.125rem] md:break-keep',
+    base: 'hd14-semibold text-gray line-clamp-1',
+    tablet: 'md:hd18-semibold md:line-clamp-none md:break-keep',
     desktop: 'lg:text-[1.5rem]',
   },
   badgeContainer: {
