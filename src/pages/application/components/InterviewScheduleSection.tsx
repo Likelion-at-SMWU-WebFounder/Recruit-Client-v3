@@ -1,7 +1,7 @@
 import { useState, type TouchEvent } from 'react';
 import { INTERVIEW_SCHEDULE, QUESTIONS, INTERVIEW_ERRORS } from '../constants/index';
 import type { SelectedSchedule } from '../types/index';
-import CheckMark from './CheckMark';
+import CheckMark from './icon/CheckMark';
 
 interface InterviewScheduleSectionProps {
   selectedSchedule: SelectedSchedule;

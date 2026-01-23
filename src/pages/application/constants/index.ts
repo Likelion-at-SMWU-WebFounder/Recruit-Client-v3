@@ -227,12 +227,6 @@ export const APPLICANT_ERRORS = {
   verificationCode: '재/휴학여부를 선택해주세요.',
 };
 
-export const PASSWORD_ERRORS = {
-  empty: '비밀번호를 입력해주세요.',
-  mismatch: '비밀번호가 일치하지 않습니다.',
-  short: '4자리를 모두 입력해주세요.',
-};
-
 export const PART_ERRORS = {
   select: '지원 파트를 선택해주세요.',
 };
@@ -249,4 +243,10 @@ export const AGREEMENT_ERRORS = {
   activityParticipation: '숙명여대 멋사 필수 참여 행사를 확인해주세요.',
   photoUsage: '서류 제출 유의사항을 확인해주세요.',
   eventParticipation: '개인정보 수집·이용에 동의해주세요.',
+} as const;
+
+export const VERIFICATION_ERRORS = {
+  empty: '비밀번호를 입력해주세요.',
+  length: '숫자 4자리 비밀번호를 입력해주세요.',
+  mismatch: '비밀번호가 일치하지 않습니다.',
 } as const;

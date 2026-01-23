@@ -10,7 +10,7 @@ const QuestionSection = ({ answers, onAnswerChange, isSubmitted }: QuestionSecti
   const inputBaseStyle = `
     w-full rounded-[1rem] border-2 bg-[var(--color-white)] 
     text-[var(--color-navyblack)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)] transition-all outline-none 
-    text-[1.125rem] md:text-[1.25rem] lg:text-[1.75rem] 
+    text-[1rem] md:text-[1.375rem] lg:text-[1.75rem] 
     font-medium leading-normal 
     placeholder:text-[rgba(27, 38, 52, 0.45)]
   `;
@@ -118,12 +118,12 @@ const QuestionSection = ({ answers, onAnswerChange, isSubmitted }: QuestionSecti
             </div>
 
             <div className="mt-[1.375rem] flex w-full flex-col gap-[0.5rem]">
-              <input
-                type="text"
+              <textarea
                 placeholder={q7.placeholder}
                 value={answers[q7.id] || ''}
                 onChange={(e) => onAnswerChange(q7.id, e.target.value)}
-                className={`${inputBaseStyle} p-[1rem] lg:px-[1.375rem] lg:py-[1.0625rem] ${
+                rows={1}
+                className={`${inputBaseStyle} h-auto min-h-[3.5rem] resize-none px-[1rem] py-[0.8rem] md:min-h-[3.75rem] md:py-[0.9rem] lg:min-h-[4.25rem] lg:px-[1.375rem] lg:py-[1.0625rem] ${
                   hasError
                     ? 'border-[rgba(255,36,36,0.80)]'
                     : 'border-[rgba(27,38,52,0.65)] focus:border-[var(--color-blue)]'

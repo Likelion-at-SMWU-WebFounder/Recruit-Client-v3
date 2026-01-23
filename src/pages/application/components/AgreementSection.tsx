@@ -1,6 +1,6 @@
 import SectionHeader from './SectionHeader';
 import { AGREEMENT_INFO, AGREEMENT_ERRORS } from '../constants/index';
-import CheckMark from './CheckMark';
+import CheckMark from './icon/CheckMark';
 import bulletIcon from '../assets/bullet-icon.svg';
 import type { AgreementKey, AgreementsState } from '../types/index';
 
