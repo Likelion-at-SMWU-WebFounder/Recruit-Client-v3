@@ -37,33 +37,6 @@ export const APPLICANT_FIELD_CONFIG: FieldConfig[] = [
   { id: 'email', label: '이메일', placeholder: 'sooklion@gmail.com', required: true },
 ];
 
-// 3. 에러 메시지 모음
-export const APPLICANT_ERRORS = {
-  name: '이름을 입력해주세요.',
-  studentId: '학번을 입력해주세요.',
-  major: '전공을 입력해주세요.',
-  semestersLeft: '수료 학기를 입력해주세요.',
-  graduationYear: '졸업 예정 연도를 입력해주세요.',
-  phone: '전화번호를 입력해주세요.',
-  phoneFormat: '전화번호 형식이 올바르지 않습니다.',
-  email: '이메일을 입력해주세요.',
-  verificationCode: '재/휴학여부를 선택해주세요.',
-};
-
-export const PASSWORD_ERRORS = {
-  empty: '비밀번호를 입력해주세요.',
-  mismatch: '비밀번호가 일치하지 않습니다.',
-  short: '4자리를 모두 입력해주세요.',
-};
-
-export const PART_ERRORS = {
-  select: '지원 파트를 선택해주세요.',
-};
-
-export const QUESTION_ERRORS = {
-  requiredSuffix: '번 문항을 입력해주세요.',
-};
-
 // 4. 지원 파트 및 인증 관련
 export const PART_SELECTION_INFO = { label: '지원 파트' } as const;
 
@@ -216,4 +189,35 @@ export const PASSWORD_INFO = {
   label2: '설정한 비밀번호를 한 번 더 입력해주세요.',
   subDescription: '비밀번호 분실 시, 추후 결과 조회가 어려울 수 있습니다.',
   placeholder2: '한 번 더 입력',
+};
+
+// 3. 에러 메시지 모음
+export const APPLICANT_ERRORS = {
+  name: '이름을 입력해주세요.',
+  studentId: '학번을 입력해주세요.',
+  major: '전공을 입력해주세요.',
+  semestersLeft: '수료 학기를 입력해주세요.',
+  graduationYear: '졸업 예정 연도를 입력해주세요.',
+  phone: '전화번호를 입력해주세요.',
+  phoneFormat: '전화번호 형식이 올바르지 않습니다.',
+  email: '이메일을 입력해주세요.',
+  verificationCode: '재/휴학여부를 선택해주세요.',
+};
+
+export const PASSWORD_ERRORS = {
+  empty: '비밀번호를 입력해주세요.',
+  mismatch: '비밀번호가 일치하지 않습니다.',
+  short: '4자리를 모두 입력해주세요.',
+};
+
+export const PART_ERRORS = {
+  select: '지원 파트를 선택해주세요.',
+};
+
+export const QUESTION_ERRORS = {
+  requiredSuffix: '번 문항을 입력해주세요.',
+};
+
+export const INTERVIEW_ERRORS = {
+  empty: '면접 가능 일자를 하나 이상 체크해주세요.',
 };

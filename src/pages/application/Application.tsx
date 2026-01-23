@@ -6,7 +6,7 @@ import QuestionSection from './components/QuestionSection';
 import InterviewScheduleSection from './components/InterviewScheduleSection';
 import AgreementSection from './components/AgreementSection';
 import VerificationSection from './components/VerificationSection';
-import { PAGE_TITLE, PAGE_SUBTITLE, QUESTIONS } from './constants/index'; // QUESTIONS 추가
+import { PAGE_TITLE, PAGE_SUBTITLE, QUESTIONS } from './constants/index';
 
 const Application = () => {
   const {
@@ -37,12 +37,14 @@ const Application = () => {
     const isQuestionsValid = QUESTIONS.filter((q) => q.type !== 'special' && q.required).every(
       (q) => formData.answers[q.id]?.trim() !== ''
     );
+    const isInterviewValid = Object.values(formData.interviewSchedule).some((times) => times.length > 0);
 
     if (
       isApplicantInfoValid &&
       isPhoneValid &&
       isPartValid &&
       isQuestionsValid &&
+      isInterviewValid &&
       isAgreementsValid &&
       isPasswordValid
     ) {
@@ -80,11 +82,11 @@ const Application = () => {
               onProgrammersChange={updateProgrammersCompleted}
               isSubmitted={isSubmitted}
             />
-            {/* QuestionSection에 isSubmitted 추가 */}
             <QuestionSection answers={formData.answers} onAnswerChange={updateAnswer} isSubmitted={isSubmitted} />
             <InterviewScheduleSection
               selectedSchedule={formData.interviewSchedule}
               onScheduleChange={updateInterviewSchedule}
+              isSubmitted={isSubmitted}
             />
             <AgreementSection agreements={formData.agreements} onAgreementChange={updateAgreement} />
             <VerificationSection
