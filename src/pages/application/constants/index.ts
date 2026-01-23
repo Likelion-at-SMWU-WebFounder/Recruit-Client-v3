@@ -1,8 +1,61 @@
-import type { Question, InterviewScheduleOption } from '../types/index';
+import type { FieldConfig, Question, InterviewScheduleOption } from '../types/index';
 
 // 페이지 제목
 export const PAGE_TITLE = '숙명여대 멋사 13기 모집 서류 작성페이지 입니다.';
 export const PAGE_SUBTITLE = '* 표시 문항은 필수 응답 항목입니다.';
+
+// 지원자 정보 필드 별 상세 설정
+export const APPLICANT_FIELD_CONFIG: FieldConfig[] = [
+  { id: 'name', label: '이름', placeholder: '김멋사', required: true },
+  { id: 'studentId', label: '학번', placeholder: '2345678', required: true },
+  {
+    id: 'major',
+    label: '전공',
+    placeholder: '경영학부(본), 인공지능공학부(복)',
+    required: true,
+    subText: '본전공(본), 복수전공(복), 연계전공(연) 등을 모두 입력해주세요.',
+  },
+  {
+    id: 'semestersLeft',
+    label: '수료 학기',
+    placeholder: '3',
+    required: true,
+    subText: '종강한 학기를 기준으로 수료 학기를 입력해주세요.',
+  },
+  {
+    id: 'verificationCode',
+    label: '재/휴학여부',
+    required: true,
+    options: [
+      { label: '재학', value: '재학' },
+      { label: '휴학', value: '휴학' },
+      { label: '졸업 유예', value: '졸업 유예' },
+    ],
+  },
+  { id: 'graduationYear', label: '졸업 예정 연도', placeholder: '2026년 2월', required: true },
+  { id: 'phone', label: '전화번호', placeholder: '010-1234-5678', required: true },
+  { id: 'email', label: '이메일', placeholder: 'sooklion@gmail.com', required: true },
+];
+
+// 지원자 정보 에러 메시지
+export const APPLICANT_ERRORS = {
+  name: '이름을 입력해주세요.',
+  studentId: '학번을 입력해주세요.',
+  major: '전공을 입력해주세요.',
+  semestersLeft: '수료 학기를 입력해주세요.',
+  graduationYear: '졸업 예정 연도를 입력해주세요.',
+  phone: '전화번호를 입력해주세요.',
+  phoneFormat: '전화번호 형식이 올바르지 않습니다.',
+  email: '이메일을 입력해주세요.',
+  verificationCode: '재/휴학여부를 선택해주세요.',
+};
+
+// 비밀번호 에러 메시지
+export const PASSWORD_ERRORS = {
+  empty: '비밀번호를 입력해주세요.',
+  mismatch: '비밀번호가 일치하지 않습니다.',
+  short: '4자리를 모두 입력해주세요.',
+};
 
 // 지원 파트 옵션
 export const PART_OPTIONS = [

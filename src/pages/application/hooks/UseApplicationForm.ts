@@ -7,6 +7,7 @@ const initialFormData: ApplicationFormData = {
     studentId: '',
     major: '',
     semestersLeft: '',
+    graduationYear: '',
     phone: '',
     verificationCode: '',
     email: '',
@@ -25,7 +26,7 @@ const initialFormData: ApplicationFormData = {
   },
   interviewSchedule: {},
   agreements: {
-    infoCollection: false,
+    activityParticipation: false,
     photoUsage: false,
     eventParticipation: false,
   },

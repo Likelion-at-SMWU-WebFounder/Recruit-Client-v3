@@ -5,34 +5,50 @@ interface InfoDropdownProps {
   required?: boolean;
   value: string;
   options: { label: string; value: string }[];
+  errorMessage?: string;
   onChange: (value: string) => void;
 }
 
-const InfoDropdown = ({ label, required, value, options, onChange }: InfoDropdownProps) => {
+const InfoDropdown = ({ label, required, value, options, errorMessage, onChange }: InfoDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const hasError = !!errorMessage;
+
+  // 현재 선택된 항목을 리스트에서 제외하는 로직
+  const filteredOptions = options.filter((opt) => opt.value !== value);
 
   return (
-    <div className="flex w-full shrink-0 flex-col items-start gap-[1rem] md:w-[24.75rem] md:gap-[1.375rem] lg:w-[40.3125rem]">
-      <div className="flex items-end gap-[0.5rem] self-stretch md:gap-[0.8125rem]">
-        <span className="text-[1.25rem] font-semibold text-[#1B2634] md:text-[1.5rem] lg:text-[2rem]">{label}</span>
-        {required && <span className="text-[1rem] font-bold text-[#4284FF] md:text-[1.25rem] lg:text-[1.5rem]">*</span>}
+    <div className="flex w-full flex-col items-start gap-[1rem] md:w-[24.75rem] md:gap-[1.375rem] lg:w-[40.3125rem]">
+      <div className="flex items-end gap-[0.5rem] md:gap-[0.8125rem]">
+        <span className="text-[1.25rem] font-semibold text-[var(--color-navyblack)] md:text-[1.5rem] lg:text-[2rem]">
+          {label}
+        </span>
+        {required && (
+          <span className="text-[1rem] font-bold text-[var(--color-blue)] md:text-[1.25rem] lg:text-[1.5rem]">*</span>
+        )}
       </div>
 
       <div className="relative w-full">
+        {/* 선택된 영역 */}
         <div
           onClick={() => setIsOpen(!isOpen)}
-          className="/* Mobile Layout */ /* Tablet Layout */ /* Laptop Layout */ flex h-[2.5rem] w-full cursor-pointer items-center justify-between rounded-[1rem] border-2 border-[rgba(27,38,52,0.65)] bg-[#F7FAFF] pt-[0.6875rem] pr-[1.0625rem] pb-[0.625rem] pl-[0.875rem] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)] md:h-[3.625rem] md:pt-[1rem] md:pr-[1.51225rem] md:pb-[1rem] md:pl-[1.5rem] lg:h-[4.1875rem] lg:px-[1.375rem] lg:py-[1.0625rem]">
+          className={`flex h-[2.5rem] w-full cursor-pointer items-center justify-between rounded-[1rem] bg-[var(--color-white)] px-[0.875rem] py-[0.625rem] transition-all md:h-[3.625rem] md:px-[1.5rem] md:py-[1rem] lg:h-[4.1875rem] lg:px-[1.375rem] lg:py-[1.0625rem] ${
+            hasError
+              ? 'border-2 border-[rgba(255,36,36,0.80)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)]'
+              : 'border-2 border-[rgba(27,38,52,0.65)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)]'
+          }`}>
           <span
-            className={`font-medium ${value ? 'text-[#1B2634]' : 'text-[rgba(27,38,52,0.45)]'} text-[1rem] md:text-[1.25rem] lg:text-[1.75rem]`}>
+            className={`text-[1rem] font-medium md:text-[1.25rem] lg:text-[1.75rem] ${
+              value ? 'text-[var(--color-navyblack)]' : 'text-[rgba(27,38,52,0.45)]'
+            }`}>
             {value || '선택'}
           </span>
           <svg
-            className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''} /* 기본(모바일): 24px */ /* 태블릿(md) 이상: 32px */ h-6 w-6 md:h-8 md:w-8`}
+            className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''} h-6 w-6 md:h-8 md:w-8`}
             viewBox="0 0 24 24"
             fill="none">
             <path
               d="M7 10L12 15L17 10"
-              stroke="#1B2634"
+              stroke={hasError ? 'rgba(255, 36, 36, 0.80)' : 'var(--color-navyblack)'}
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -40,20 +56,30 @@ const InfoDropdown = ({ label, required, value, options, onChange }: InfoDropdow
           </svg>
         </div>
 
+        {/* 드롭다운 옵션 목록 */}
         {isOpen && (
-          <div className="absolute top-[3rem] z-20 w-full overflow-hidden rounded-[1rem] border-2 border-[rgba(27,38,52,0.65)] bg-white shadow-lg md:top-[4rem] lg:top-[4.5rem]">
-            {options.map((opt) => (
+          <div className="absolute top-full z-20 mt-[0.5rem] w-full overflow-hidden rounded-[1rem] border-2 border-[rgba(27,38,52,0.65)] bg-white shadow-lg">
+            {filteredOptions.map((opt, index) => (
               <div
                 key={opt.value}
                 onClick={() => {
                   onChange(opt.value);
                   setIsOpen(false);
                 }}
-                className="flex h-[2.5rem] cursor-pointer items-center border-b border-[rgba(27,38,52,0.1)] px-[1.375rem] text-[1rem] font-medium text-[#1B2634] last:border-none hover:bg-[#F7FAFF] md:h-[3.625rem] md:text-[1.25rem] lg:h-[4.1875rem] lg:text-[1.75rem]">
+                className={`flex h-[2.5rem] cursor-pointer items-center px-[0.875rem] text-[1rem] font-medium text-[var(--color-navyblack)] hover:bg-[var(--color-white)] md:h-[3.625rem] md:px-[1.5rem] md:text-[1.25rem] lg:h-[4.1875rem] lg:px-[1.375rem] lg:text-[1.75rem] ${
+                  index !== filteredOptions.length - 1 ? 'border-b border-[rgba(27,38,52,0.1)]' : ''
+                }`}>
                 {opt.label}
               </div>
             ))}
           </div>
+        )}
+
+        {/* 하단 에러 메시지 */}
+        {hasError && (
+          <p className="font-pretendard mt-[0.75rem] text-[0.8125rem] font-medium text-[rgba(255,36,36,0.80)] md:text-[1rem] lg:text-[1.25rem]">
+            {errorMessage}
+          </p>
         )}
       </div>
     </div>

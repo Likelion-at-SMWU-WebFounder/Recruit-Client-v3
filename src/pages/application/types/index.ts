@@ -4,9 +4,18 @@ export interface ApplicantInfo {
   major: string;
   semestersLeft: string;
   phone: string;
-  verificationCode: string; // 재/휴학여부 저장용으로 사용
-  graduationYear: string; // 졸업 예정 연도
+  verificationCode: string;
+  graduationYear: string;
   email: string;
+}
+
+export interface FieldConfig {
+  id: keyof ApplicantInfo;
+  label: string;
+  placeholder?: string;
+  required: boolean;
+  subText?: string;
+  options?: { label: string; value: string }[];
 }
 
 export type PartType = 'plan-design' | 'frontend' | 'backend';
