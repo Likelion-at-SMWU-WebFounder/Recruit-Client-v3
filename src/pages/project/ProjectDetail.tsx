@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Layout from '@shared/components/Layout';
@@ -8,6 +8,7 @@ import ProjectMember from '@pages/project/components/detail/ProjectMember';
 import ProjectDescription from '@/pages/project/components/detail/ProjectDescription';
 import NextProjectButton from '@pages/project/components/detail/NextProjectButton';
 import { allProjectsData } from '@pages/project/constants/project/allProjectData';
+import useImageManager from '@shared/hooks/useImageManager';
 import { combineStyles } from '@shared/utils/combineStyles';
 
 interface ProjectWithImages {
@@ -79,6 +80,19 @@ const ProjectDetail = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [projectId]);
+
+  // 프로젝트 이미지 URL 배열 생성 (preload용)
+  const preloadImageUrls = useMemo(() => {
+    if (!project) return [];
+    const projectWithImages = project as ProjectWithImages;
+    return projectWithImages.images || [];
+  }, [project]);
+
+  // 프로젝트 이미지 preload
+  useImageManager({
+    imageUrls: preloadImageUrls,
+    enabled: preloadImageUrls.length > 0,
+  });
 
   if (!project) {
     return null;
