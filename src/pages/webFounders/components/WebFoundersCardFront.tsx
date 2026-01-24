@@ -14,7 +14,7 @@ interface WebFoundersCardFrontProps {
 // 웹파운더즈 카드 앞면 스타일 상수화
 const WEBFOUNDERS_CARD_FRONT_STYLES = {
   cardContainer: {
-    base: 'absolute inset-0 flex h-full flex-col justify-end rounded-[0.75rem] bg-cover bg-center text-white',
+    base: 'absolute inset-0 flex h-full flex-col justify-end rounded-[0.75rem] bg-cover bg-center',
     tablet: 'md:rounded-[1.38613rem]',
     desktop: 'lg:rounded-[1.5625rem]',
   }, // 카드 앞면 컨테이너 스타일
@@ -34,12 +34,12 @@ const WEBFOUNDERS_CARD_FRONT_STYLES = {
     tablet: 'md:space-y-[0.31rem]',
   }, // 이름, 기수, 파트 컨테이너 스타일
   nameText: {
-    base: 'text-[1.125rem] leading-[140%] font-bold',
-    tablet: 'md:text-[1.75rem]',
+    base: 'hd18 text-white-background',
+    tablet: 'md:hd28',
   }, // 이름 스타일
   noPartText: {
-    base: 'text-[0.75rem] leading-[140%] font-medium',
-    tablet: 'md:text-[1.25rem]',
+    base: 'bd12 text-white-background',
+    tablet: 'md:bd20',
   }, // 기수, 파트 스타일
   flipButton: {
     base: 'hover:bg-navyblack text-navyblack flex cursor-pointer items-center justify-center rounded-[0.625rem] bg-white p-[0.375rem] transition duration-300 ease-in-out hover:text-white',

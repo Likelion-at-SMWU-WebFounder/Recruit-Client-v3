@@ -62,13 +62,17 @@ const JoinSection = () => {
         <div className={overlayClassName} />
 
         <div className={overlayButtonClassName}>
-          <DefaultButton onClick={handleJoinClick}>{JOIN_BUTTON_TEXT}</DefaultButton>
+          <DefaultButton onClick={handleJoinClick} backgroundType="blue">
+            {JOIN_BUTTON_TEXT}
+          </DefaultButton>
         </div>
       </div>
 
       {/* tablet, mobile 버튼 */}
       <div className={mobileButtonClassName}>
-        <DefaultButton onClick={handleJoinClick}>{JOIN_BUTTON_TEXT}</DefaultButton>
+        <DefaultButton onClick={handleJoinClick} backgroundType="blue">
+          {JOIN_BUTTON_TEXT}
+        </DefaultButton>
       </div>
     </div>
   );

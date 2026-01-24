@@ -6,7 +6,8 @@ on:
 
 env:
   NODE_VERSION: '18'
-  VITE_IMAGE_PATH: 'https://d16db46s7ypt8s.cloudfront.net/assets'
+  VITE_SITE_URL: 'https://likelion-smwu.com'
+  VITE_IMAGE_PATH: 'https://likelion-smwu.com/assets'
 
 jobs:
   ci:

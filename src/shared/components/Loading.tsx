@@ -26,11 +26,11 @@ const LOADING_SPINNER_STYLES = {
     base: 'absolute inset-0 animate-spin rounded-full',
   }, // 스피너 애니메이션
   text: {
-    base: 'text-[0.875rem] leading-[140%] font-bold text-white',
+    base: 'text-[0.875rem] leading-[140%] font-bold text-white-background',
     tablet: 'md:text-[1rem]',
   }, // 텍스트
   gradient:
-    'conic-gradient(from 180deg at 50% 50%, var(--Color-white-background, #FFF) 0deg, var(--Color-blue-dark, #4682F3) 360deg)',
+    'conic-gradient(from 180deg at 50% 50%, var(--color-white-background, #ffffff) 0deg, var(--color-blue-dark, #4682f3) 360deg)',
   mask: 'radial-gradient(farthest-side, transparent calc(100% - 3px), black calc(100% - 3px))',
 } as const;
 

@@ -8,15 +8,16 @@ interface PaginationProps {
 
 const PAGINATION_STYLES = {
   container: {
-    base: 'flex w-full items-center justify-end gap-[4.875rem]',
+    base: 'flex w-full items-center justify-end md:gap-[0.75rem] lg:gap-[3.25rem]',
   },
   pageButton: {
-    base: 'cursor-pointer transition-colors duration-200 ease-out md:text-[1rem] lg:text-[1.75rem]',
+    base: 'w-[2.75rem] cursor-pointer transition-colors duration-200 ease-out md:text-[1rem] lg:text-[1.75rem]',
     active: 'text-blue font-bold leading-[170%]',
-    inactive: 'text-navyblack/50 font-medium hover:text-[#6978B2] leading-[140%]',
+    inactive: 'md:bd16 lg:bd28 text-navyblack/50 hover:text-[#6978B2]',
   },
   arrowButton: {
-    enabled: 'cursor-pointer text-navyblack/50 transition-colors duration-200 ease-out hover:text-blue/30',
+    base: 'w-[3rem]',
+    enabled: 'cursor-pointer text-navyblack/50 transition-colors duration-200 ease-out hover:text-[#6978B2]',
     disabled: 'cursor-not-allowed text-navyblack/20',
   },
 } as const;
@@ -49,13 +50,15 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
     return [base, state].join(' ');
   };
 
-  const prevArrowClassName = isPrevDisabled
-    ? PAGINATION_STYLES.arrowButton.disabled
-    : PAGINATION_STYLES.arrowButton.enabled;
+  const prevArrowClassName = [
+    PAGINATION_STYLES.arrowButton.base,
+    isPrevDisabled ? PAGINATION_STYLES.arrowButton.disabled : PAGINATION_STYLES.arrowButton.enabled,
+  ].join(' ');
 
-  const nextArrowClassName = isNextDisabled
-    ? PAGINATION_STYLES.arrowButton.disabled
-    : PAGINATION_STYLES.arrowButton.enabled;
+  const nextArrowClassName = [
+    PAGINATION_STYLES.arrowButton.base,
+    isNextDisabled ? PAGINATION_STYLES.arrowButton.disabled : PAGINATION_STYLES.arrowButton.enabled,
+  ].join(' ');
 
   const containerClassName = PAGINATION_STYLES.container.base;
 
@@ -67,7 +70,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
         disabled={isPrevDisabled}
         className={prevArrowClassName}
         aria-label="이전 페이지로 이동">
-        <FaCaretLeft className="md:size-5 lg:size-7" />
+        <FaCaretLeft className="md:size-4 lg:size-6" />
       </button>
       {pages.map((page) => (
         <button
@@ -86,7 +89,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
         disabled={isNextDisabled}
         className={nextArrowClassName}
         aria-label="다음 페이지로 이동">
-        <FaCaretRight className="md:size-5 lg:size-7" />
+        <FaCaretRight className="md:size-4 lg:size-6" />
       </button>
     </div>
   );

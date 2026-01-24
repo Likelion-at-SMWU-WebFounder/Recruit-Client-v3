@@ -13,7 +13,11 @@
     "prepare": "husky",
     "lint-staged": "lint-staged",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "tokens:flatten": "node scripts/generate-flattened-tokens.js",
+    "tokens:css": "node scripts/generate-tokens-css.js",
+    "theme:css": "node scripts/generate-theme-css.js",
+    "tokens:build": "npm run tokens:flatten && npm run tokens:css && npm run theme:css"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -43,6 +47,7 @@
     "@storybook/addon-vitest": "^9.1.10",
     "@storybook/react-vite": "^9.1.10",
     "@tailwindcss/vite": "^4.1.14",
+    "@tokens-studio/sd-transforms": "^2.0.3",
     "@types/node": "^24.6.0",
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",
@@ -66,12 +71,15 @@
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.6.14",
+    "sd-tailwindcss-transformer": "^2.2.1",
     "storybook": "^9.1.10",
+    "style-dictionary": "^5.1.4",
     "tailwindcss": "^4.1.14",
     "tw-animate-css": "^1.4.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.45.0",
     "vite": "^7.1.7",
+    "vite-plugin-sitemap": "^0.8.2",
     "vitest": "^3.2.4"
   },
   "lint-staged": {

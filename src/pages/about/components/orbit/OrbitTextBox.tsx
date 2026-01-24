@@ -11,7 +11,7 @@ const ORBIT_TEXT_BOX_STYLES = {
     tablet: 'md:text-[4rem]',
   },
   description: {
-    base: 'text-navyblack/70 text-center text-[1.125rem] leading-[170%] font-[500] whitespace-pre-line',
+    base: 'text-navyblack-opacity70 text-center text-[1.125rem] leading-[170%] font-[500] whitespace-pre-line',
     tablet: 'md:text-[2rem]',
   },
 } as const;

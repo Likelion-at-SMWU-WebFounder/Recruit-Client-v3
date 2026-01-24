@@ -19,27 +19,25 @@ const VALUE_CARD_STYLES = {
     desktop: 'lg:px-[3.12rem] lg:py-[4.37rem]',
   },
   keyword: {
-    base: 'text-[1.5rem] font-[700] text-navyblack',
-    tablet: 'md:text-[1.5rem]',
-    desktop: 'lg:font-[600] lg:text-[2.625rem]',
+    base: 'hd24 text-navyblack',
+    tablet: 'md:hd24',
+    desktop: 'lg:hd42-semibold',
   },
   description: {
-    base: 'text-[1rem] font-[700] text-navyblack',
-    tablet: 'md:text-[1rem]',
-    desktop: 'lg:font-[600] lg:text-[2rem]',
+    base: 'hd16 text-navyblack',
+    tablet: 'md:hd16',
+    desktop: 'lg:hd28-semibold',
   },
-  shadow: '0px 0px 22.7px 0px rgba(27,38,52,0.13)',
+  shadow: 'shadow-sub lg:shadow-default',
 } as const;
 
 const ValueCard = ({ keyword, description, cardImage }: ValueCardProps) => {
-  const containerClassName = `${combineStyles(VALUE_CARD_STYLES.container)} ${combineStyles(VALUE_CARD_STYLES.padding)}`;
+  const containerClassName = `${combineStyles(VALUE_CARD_STYLES.container)} ${combineStyles(VALUE_CARD_STYLES.padding)} ${VALUE_CARD_STYLES.shadow}`;
   const keywordClassName = combineStyles(VALUE_CARD_STYLES.keyword);
   const descriptionClassName = combineStyles(VALUE_CARD_STYLES.description);
 
   return (
-    <div
-      className={containerClassName}
-      style={{ backgroundImage: `url(${cardImage})`, boxShadow: VALUE_CARD_STYLES.shadow }}>
+    <div className={containerClassName} style={{ backgroundImage: `url(${cardImage})` }}>
       <div className={keywordClassName}>{renderEmphasizedText(keyword, { emphasisClassName: 'text-blue' })}</div>
       <div className={descriptionClassName}>{description}</div>
     </div>
