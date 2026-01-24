@@ -8,7 +8,6 @@ interface SkeletonProps {
   circle?: boolean;
   count?: number;
   className?: string;
-  borderRadius?: string;
   baseColor?: string;
   highlightColor?: string;
   containerClassName?: string;
@@ -21,9 +20,6 @@ const SKELETON_STYLES = {
   },
   skeleton: {
     base: 'w-full h-full',
-    rounded: 'rounded-[0.75rem]',
-    tablet: 'md:rounded-[1rem]',
-    desktop: 'lg:rounded-[1.25rem]',
   },
 } as const;
 
@@ -33,7 +29,6 @@ const Skeleton = ({
   circle = false,
   count = 1,
   className = '',
-  borderRadius,
   baseColor = '#e2e2e2',
   highlightColor = '#f2f2f2',
   containerClassName = '',
@@ -42,15 +37,7 @@ const Skeleton = ({
     base: [SKELETON_STYLES.container.base, containerClassName].filter(Boolean).join(' '),
   });
 
-  const skeletonClass = [
-    SKELETON_STYLES.skeleton.base,
-    !circle && !borderRadius ? SKELETON_STYLES.skeleton.rounded : '',
-    !circle && !borderRadius ? SKELETON_STYLES.skeleton.tablet : '',
-    !circle && !borderRadius ? SKELETON_STYLES.skeleton.desktop : '',
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ');
+  const skeletonClass = [SKELETON_STYLES.skeleton.base, className].filter(Boolean).join(' ');
 
   return (
     <div className={containerClass}>
@@ -60,7 +47,6 @@ const Skeleton = ({
         circle={circle}
         count={count}
         className={skeletonClass}
-        borderRadius={borderRadius}
         baseColor={baseColor}
         highlightColor={highlightColor}
       />
