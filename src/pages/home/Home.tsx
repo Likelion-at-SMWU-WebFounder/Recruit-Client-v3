@@ -24,28 +24,27 @@ const Home = () => {
 
   useEffect(() => {
     // 스크롤 위치에 따라 메뉴 모드 변경
-    const heroSection = document.getElementById('hero-section');
     const aboutSection = document.getElementById('about-section');
 
-    if (!heroSection || !aboutSection) return;
-
+    if (!aboutSection) return;
     // 메뉴 모드 변경을 위한 IntersectionObserver 생성
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           const targetId = entry.target.id;
 
-          if (targetId === 'hero-section' || (targetId === 'apply-section' && entry.isIntersecting)) {
-            setMenuMode('dark'); // hero, apply 섹션에서는 다크 모드
-          } else if (entry.isIntersecting) {
-            setMenuMode('light'); // 나머지 섹션에서는 라이트 모드
+          if (entry.isIntersecting) {
+            if (targetId === 'about-section') {
+              setMenuMode('light'); // about 섹션에서는 라이트 모드
+            } else {
+              setMenuMode('dark');
+            }
           }
         });
       },
       { threshold: 0.9 }
     );
 
-    observer.observe(heroSection);
     observer.observe(aboutSection);
 
     return () => {
