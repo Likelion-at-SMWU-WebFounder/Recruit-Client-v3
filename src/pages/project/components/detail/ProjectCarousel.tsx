@@ -4,6 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '@pages/project/styles/carousel.css';
 import ArrowButton from '@shared/components/button/ArrowButton';
+import Skeleton from '@shared/components/loading/Skeleton';
 
 interface ProjectCarouselProps {
   images: string[];
@@ -37,7 +38,12 @@ const CarouselImage = ({ image, index }: CarouselImageProps) => {
   };
 
   return (
-    <div className="bg-gray/40 relative flex min-h-[200px] items-center justify-center rounded-[0.75rem] md:rounded-[1rem] lg:rounded-[1.25rem]">
+    <div className="relative flex min-h-[200px] items-center justify-center overflow-hidden rounded-[0.75rem] md:rounded-[1rem] lg:rounded-[1.25rem]">
+      {!isImageLoaded && (
+        <div className="absolute inset-0">
+          <Skeleton width="100%" height="100%" className="rounded-[0.75rem] md:rounded-[1rem] lg:rounded-[1.25rem]" />
+        </div>
+      )}
       <img
         ref={imgRef}
         src={image}
