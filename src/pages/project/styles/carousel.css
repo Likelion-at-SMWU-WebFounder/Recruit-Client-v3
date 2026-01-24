@@ -15,11 +15,15 @@
   display: none !important;
 }
 
+.project-carousel .slick-list {
+  margin: 0 -0.5rem;
+}
+
 .project-carousel .slick-slide {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* padding: 0 0.625rem; */
+  padding: 0 0.5rem;
 }
 
 .project-carousel .slick-slide > div {
@@ -77,6 +81,14 @@
 
 /* 태블릿 스타일 (768px 이상 1024px 미만) */
 @media (min-width: 768px) and (max-width: 1023px) {
+  .project-carousel .slick-list {
+    margin: 0 -0.75rem;
+  }
+
+  .project-carousel .slick-slide {
+    padding: 0 0.75rem;
+  }
+
   .project-carousel img {
     border-radius: 1rem !important;
   }
@@ -127,6 +139,14 @@
 
 /* 데스크탑 스타일 (1024px 이상) */
 @media (min-width: 1024px) {
+  .project-carousel .slick-list {
+    margin: 0 -1rem;
+  }
+
+  .project-carousel .slick-slide {
+    padding: 0 1rem;
+  }
+
   .project-carousel img {
     border-radius: 1.25rem !important;
   }

@@ -7,7 +7,7 @@ import Pagination from '@pages/project/components/list/Pagination';
 import { combineStyles } from '@shared/utils/combineStyles';
 import { ROUTER_URL } from '@shared/constants/url';
 import { allProjectsData } from '@pages/project/constants/project/allProjectData';
-import useImagePreload from '@pages/project/hooks/useImagePreload';
+import useImageManager from '@shared/hooks/useImageManager';
 import usePagination from '@pages/project/hooks/usePagination';
 import useMobileProjectLoad from '@pages/project/hooks/useMobileProjectLoad';
 import useResponsive from '@shared/hooks/useResponsive';
@@ -98,7 +98,7 @@ const ProjectGrid = ({ filter }: ProjectGridProps) => {
   }, [isMobile, currentPage, currentProjects]);
 
   // 프로젝트 목록 첫 페이지 이미지 preload 함수
-  useImagePreload({
+  useImageManager({
     imageUrls: preloadImageUrls,
     enabled: !isMobile && currentPage === 1 && currentProjects.length > 0,
   });

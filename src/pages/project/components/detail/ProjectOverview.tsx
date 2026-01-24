@@ -29,7 +29,7 @@ interface LinkIconProps {
 // 개요 컴포넌트 스타일
 const OVERVIEW_STYLES = {
   wrapper: 'flex flex-row gap-[1.25rem] md:gap-[2rem] lg:gap-[3.25rem]',
-  label: 'hd16 md:hd18-semibold lg:hd20-semibold w-[5.625rem] md:w-[6.8125rem] text-navyblack',
+  label: 'hd16 md:hd18-semibold lg:hd20-semibold w-[5.625rem] md:w-[6.8125rem] text-navyblack flex-shrink-0',
   value: 'bd16 md:bd18 lg:bd20 text-navyblack break-words',
   grid: 'grid grid-cols-[auto,1fr] gap-x-[2.5rem] gap-y-[1.69rem] lg:gap-y-[2.62rem]',
   linkContainer: 'flex flex-wrap items-center gap-[0.94rem]',

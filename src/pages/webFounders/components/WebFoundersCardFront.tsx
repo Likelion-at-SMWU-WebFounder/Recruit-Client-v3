@@ -1,4 +1,5 @@
 import BlurOverlay from '@/pages/webFounders/components/BlurOverlay';
+import useImageManager from '@shared/hooks/useImageManager';
 import { combineStyles } from '@shared/utils/combineStyles';
 
 import { BiPlus } from 'react-icons/bi';
@@ -53,7 +54,9 @@ const WEBFOUNDERS_CARD_FRONT_STYLES = {
 } as const;
 
 const WebFoundersCardFront = ({ name, no, part, image, onFlip }: WebFoundersCardFrontProps) => {
+  const { isImageLoaded = false } = useImageManager({ imageUrl: image, trackLoad: true });
   const hasFlipButton = onFlip !== undefined;
+
   const cardContainerClassName = `${combineStyles(WEBFOUNDERS_CARD_FRONT_STYLES.cardContainer)} ${hasFlipButton ? WEBFOUNDERS_CARD_FRONT_STYLES.transform.base : ''}`;
   const overlayFooterContainerClassName = combineStyles(WEBFOUNDERS_CARD_FRONT_STYLES.overlayFooterContainer);
   const nameInfoWrapperClassName = combineStyles(WEBFOUNDERS_CARD_FRONT_STYLES.nameInfoWrapper);
@@ -63,7 +66,14 @@ const WebFoundersCardFront = ({ name, no, part, image, onFlip }: WebFoundersCard
   const flipIconClassName = combineStyles(WEBFOUNDERS_CARD_FRONT_STYLES.flipIcon);
 
   return (
-    <div className={cardContainerClassName} style={{ backgroundImage: `url(${image})` }}>
+    <div
+      className={cardContainerClassName}
+      style={{
+        backgroundImage: isImageLoaded ? `url(${image})` : 'none',
+        backgroundColor: isImageLoaded ? 'transparent' : '#e2e2e2',
+        transition: 'opacity 0.3s ease-in-out',
+        opacity: isImageLoaded ? 1 : 0.7,
+      }}>
       <div className={overlayFooterContainerClassName}>
         {/* 오버레이 */}
         <BlurOverlay />

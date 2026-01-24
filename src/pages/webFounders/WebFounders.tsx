@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Layout from '@shared/components/Layout';
 import Title from '@shared/components/Title';
 import FilterBar from '@shared/components/filter/FilterBar';
@@ -10,6 +10,7 @@ import {
   WEBFOUNDERS_BACKGROUND_IMAGES_PATH,
 } from '@pages/webFounders/constants';
 import { getFoundersByGeneration, getFoundersByPart } from '@pages/webFounders/utils';
+import useImageManager from '@shared/hooks/useImageManager';
 import { combineStyles } from '@shared/utils/combineStyles';
 import useResponsiveBackgroundImage from '@shared/hooks/useResponsiveBackgroundImage';
 
@@ -53,6 +54,18 @@ const WebFounders = () => {
   const planDesignFounders = getFoundersByPart(foundersByGeneration, '기획디자인');
   const frontendFounders = getFoundersByPart(foundersByGeneration, '프론트엔드');
   const backendFounders = getFoundersByPart(foundersByGeneration, '백엔드'); // 백엔드 파트 멤버 필터링
+
+  // 현재 표시되는 모든 멤버 이미지 URL 수집 (preload용)
+  const preloadImageUrls = useMemo(() => {
+    const allFounders = [...planDesignFounders, ...frontendFounders, ...backendFounders];
+    return allFounders.map((founder) => founder.image).filter(Boolean);
+  }, [planDesignFounders, frontendFounders, backendFounders]);
+
+  // 멤버 이미지 preload
+  useImageManager({
+    imageUrls: preloadImageUrls,
+    enabled: preloadImageUrls.length > 0,
+  });
 
   // 스타일 클래스명
   const containerClassName = combineStyles(WEBFOUNDERS_STYLES.container);
