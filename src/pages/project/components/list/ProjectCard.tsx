@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Badge from '@pages/project/components/list/Badge';
+import Skeleton from '@/shared/components/loading/Skeleton';
 import { combineStyles } from '@shared/utils/combineStyles';
 
 interface ProjectCardProps {
@@ -23,7 +24,7 @@ const CARD_STYLES = {
     desktop: 'lg:max-h-[33.3125rem] lg:min-h-[31.0625rem] lg:w-[32.375rem]',
   },
   thumbnailWrapper: {
-    base: 'relative flex-shrink-0 overflow-hidden bg-gray/40',
+    base: 'relative flex-shrink-0 overflow-hidden',
     mobile: 'h-[6.25rem] min-h-[6.25rem] w-[6.25rem] min-w-[6.25rem] rounded-[0.34781rem]',
     tablet: 'md:h-[15.5rem] md:min-h-0 md:w-[27.5rem] md:min-w-0 md:rounded-[1.25rem]',
     desktop: 'lg:h-[18.25rem] lg:w-[32.375rem]',
@@ -96,6 +97,11 @@ const ProjectCard = ({ thumbnail, title, summary, no, category, onClick, isFirst
   return (
     <div onClick={onClick} className={containerClassName}>
       <div className={thumbnailWrapperClassName}>
+        {!isImageLoaded && (
+          <div className="absolute inset-0">
+            <Skeleton width="100%" height="100%" className="rounded-[0.34781rem] md:rounded-[1.25rem]" />
+          </div>
+        )}
         <img
           ref={imgRef}
           src={thumbnail}
