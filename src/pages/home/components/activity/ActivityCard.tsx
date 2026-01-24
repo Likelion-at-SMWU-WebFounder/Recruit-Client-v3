@@ -16,13 +16,13 @@ interface CardItem {
 // ActivityCard 스타일 상수화
 const ACTIVITY_CARD_STYLES = {
   desktopTabletTextCard: {
-    base: 'md:inline-flex md:flex-col items-left justify-center shadow-default rounded-[1.25rem] bg-navyblack/20 p-[2rem]',
+    base: 'md:inline-flex md:flex-col items-start justify-center shadow-default rounded-[1.25rem] bg-navyblack/20 p-[2rem]',
     desktop: 'lg:w-[20rem] lg:h-[18rem] lg:gap-[1.25rem]',
     tablet: 'md:inline-flex md:w-[13rem] md:h-[18rem] md:gap-[1.65rem]',
     mobile: 'hidden',
   },
   mobileTextCard: {
-    base: 'shadow-sub inline-flex flex-col items-left justify-center pl-[0.75rem] rounded-[0.75rem]',
+    base: 'shadow-sub inline-flex flex-col items-start justify-center pl-[0.75rem] rounded-[0.75rem]',
     tablet: 'md:hidden',
     mobile: 'w-[6.5rem] h-[6.5rem] gap-[0.5rem]',
   },
