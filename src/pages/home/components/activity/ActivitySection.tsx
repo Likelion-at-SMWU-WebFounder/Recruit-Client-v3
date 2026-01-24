@@ -1,31 +1,70 @@
 import SubTitle from '@shared/components/SubTitle';
 import { SUB_TITLE, TEXT_CONTENT_CLASSES } from '@pages/home/constants/index';
 import { ACTIVITY_CONTENT_TEXT } from '@pages/home/constants/activity';
+import { ActivityCardContainer } from '@pages/home/components/activity/ActivityCard';
+import { combineStyles } from '@shared/utils/combineStyles';
 
-const DESKTOP_TABLET_SECTION_CLASS =
-  'hidden w-full max-w-[100vw] h-[100dvh] pt-[5rem] md:inline-flex md:justify-center md:items-center';
-const MOBILE_SECTION_CLASS =
-  'relative flex w-full max-w-[100vw] h-[100dvh] flex-col items-center justify-center py-[3.12rem] md:hidden';
-const MOBILE_SUB_CONTENT_CLASSES = `${TEXT_CONTENT_CLASSES} w-[22rem] text-center`;
+// ActivitySection 스타일 상수화
+const ACTIVITY_SECTION_STYLES = {
+  desktopTabletSection: {
+    base: 'hidden w-full max-w-[100vw] h-[100dvh] pt-[5rem]',
+    tablet: 'md:inline-flex md:px-[10rem] md:justify-between md:items-center',
+  },
+  mobileSection: {
+    base: 'relative flex w-full max-w-[100vw] h-[100dvh] flex-col items-center justify-center py-[3.12rem]',
+    tablet: 'md:hidden',
+  },
+  textContainer: {
+    base: 'mb-[3rem] inline-flex flex-col items-start justify-center gap-[1.25rem]',
+  },
+  desktopText: {
+    base: `${TEXT_CONTENT_CLASSES} hidden`,
+    desktop: 'lg:block',
+  },
+  tabletText: {
+    base: `${TEXT_CONTENT_CLASSES}`,
+    desktop: 'lg:hidden',
+  },
+  mobileTextContainer: {
+    base: 'inline-flex flex-col items-center justify-center gap-[3.125rem]',
+  },
+  mobileText: {
+    base: `${TEXT_CONTENT_CLASSES} w-[22rem] text-center`,
+  },
+  cardContainer: {
+    base: '',
+  },
+} as const;
 
 const ActivitySection = () => {
+  const desktopTabletSectionClassName = combineStyles(ACTIVITY_SECTION_STYLES.desktopTabletSection);
+  const mobileSectionClassName = combineStyles(ACTIVITY_SECTION_STYLES.mobileSection);
+  const textContainerClassName = combineStyles(ACTIVITY_SECTION_STYLES.textContainer);
+  const desktopTextClassName = combineStyles(ACTIVITY_SECTION_STYLES.desktopText);
+  const tabletTextClassName = combineStyles(ACTIVITY_SECTION_STYLES.tabletText);
+  const mobileTextContainerClassName = combineStyles(ACTIVITY_SECTION_STYLES.mobileTextContainer);
+  const mobileTextClassName = combineStyles(ACTIVITY_SECTION_STYLES.mobileText);
+  const cardContainerClassName = combineStyles(ACTIVITY_SECTION_STYLES.cardContainer);
+
   return (
     <>
       {/* 데스크톱, 태블릿 */}
-      <section className={DESKTOP_TABLET_SECTION_CLASS}>
-        <div className="mb-[3rem] inline-flex flex-col items-start justify-center gap-[1.25rem]">
-          <SubTitle subTitle={SUB_TITLE.SUB_TITLE_1} subDescription={SUB_TITLE.SUB_DESCRIPTION_1} align="left" />
-          <div className={`${TEXT_CONTENT_CLASSES} hidden lg:block`}>{ACTIVITY_CONTENT_TEXT.desktop}</div>
-          <div className={`${TEXT_CONTENT_CLASSES} lg:hidden`}>{ACTIVITY_CONTENT_TEXT.tablet}</div>
+      <section className={desktopTabletSectionClassName}>
+        <div className={textContainerClassName}>
+          <SubTitle subTitle={SUB_TITLE.SUB_TITLE_2} subDescription={SUB_TITLE.SUB_DESCRIPTION_2} align="left" />
+          <div className={desktopTextClassName}>{ACTIVITY_CONTENT_TEXT.desktop}</div>
+          <div className={tabletTextClassName}>{ACTIVITY_CONTENT_TEXT.tablet}</div>
         </div>
-        <div className="">활동사진</div>
+        <div className={cardContainerClassName}>
+          <ActivityCardContainer />
+        </div>
       </section>
 
       {/* 모바일 */}
-      <section className={MOBILE_SECTION_CLASS}>
-        <div className="inline-flex flex-col items-center justify-center gap-[3.125rem]">
+      <section className={mobileSectionClassName}>
+        <div className={mobileTextContainerClassName}>
           <SubTitle subTitle={SUB_TITLE.SUB_TITLE_1} subDescription={SUB_TITLE.SUB_DESCRIPTION_1} />
-          <div className={MOBILE_SUB_CONTENT_CLASSES}>{ACTIVITY_CONTENT_TEXT.mobile}</div>
+          <div className={mobileTextClassName}>{ACTIVITY_CONTENT_TEXT.mobile}</div>
         </div>
       </section>
     </>
