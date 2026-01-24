@@ -9,24 +9,35 @@ interface ActivityCardProps {
 // ActivityCard 스타일 상수화
 const ACTIVITY_CARD_STYLES = {
   desktopTabletTextCard: {
-    base: 'shadow-default hidden rounded-[1.25rem] bg-navyblack/20 p-[2rem] w-[20rem] h-[18rem] gap-[1.25rem]',
-    tablet: 'md:inline-flex md:flex-col md:items-left md:justify-center',
+    base: 'inline-flex flex-col items-left justify-center shadow-default rounded-[1.25rem] bg-navyblack/20 p-[2rem]',
+    desktop: 'lg:w-[20rem] lg:h-[18rem] lg:gap-[1.25rem]',
+    tablet: 'md:w-[13rem] md:h-[18rem] md:gap-[1.65rem]',
   },
   mobileTextCard: {
     base: 'shadow-sub inline-flex flex-col items-left pt-[1rem] gap-[2rem] w-[6.5rem] h-[6.8rem]',
     tablet: 'md:hidden',
   },
   textCardIcon: {
-    base: 'h-[3.125rem] w-[3.125rem]',
+    desktop: 'lg:h-[3.125rem] lg:w-[3.125rem]',
+    tablet: 'md:h-[2.5rem] md:w-[2.5rem]',
+    mobile: 'h-[1.5rem] w-[1.5rem]',
   },
   textCardTitle: {
-    base: 'text-[1.75rem] font-medium',
+    base: 'font-medium',
+    desktop: 'lg:text-[1.75rem]',
+    tablet: 'md:text-[1.5rem]',
+    mobile: 'text-[1.125rem]',
   },
   textCardDescription: {
-    base: 'text-[1.375rem] font-normal',
+    base: 'font-normal',
+    desktop: 'lg:text-[1.375rem] ',
+    tablet: 'md:text-[1.125rem]',
   },
   imageCard: {
-    base: 'w-[20rem] h-[26rem] rounded-[1.25rem] object-cover',
+    base: 'rounded-[1.25rem] object-cover',
+    desktop: 'lg:w-[20rem] lg:h-[26rem]  ',
+    tablet: 'md:w-[13rem] md:h-[26rem] ',
+    mobile: 'w-[6.5rem] h-[6.8rem]',
   },
   cardContainer: {
     base: 'inline-flex flex-row gap-[1.5rem]',

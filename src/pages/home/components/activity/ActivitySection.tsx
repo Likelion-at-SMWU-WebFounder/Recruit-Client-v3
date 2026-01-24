@@ -7,15 +7,17 @@ import { combineStyles } from '@shared/utils/combineStyles';
 // ActivitySection 스타일 상수화
 const ACTIVITY_SECTION_STYLES = {
   desktopTabletSection: {
-    base: 'hidden w-full max-w-[100vw] h-[100dvh] pt-[5rem]',
-    tablet: 'md:inline-flex md:px-[10rem] md:justify-between md:items-center',
+    base: 'hidden w-full max-w-[100vw] pt-[5rem] inline-flex  justify-between items-start',
+    desktop: 'lg:px-[10rem]',
+    tablet: 'md:px-[4rem]',
   },
   mobileSection: {
-    base: 'relative flex w-full max-w-[100vw] h-[100dvh] flex-col items-center justify-center py-[3.12rem]',
+    base: 'relative flex w-full max-w-[100vw] flex-col items-center justify-center py-[3.12rem]',
     tablet: 'md:hidden',
   },
   textContainer: {
-    base: 'mb-[3rem] inline-flex flex-col items-start justify-center gap-[1.25rem]',
+    base: 'inline-flex flex-col items-start justify-center gap-[1.25rem]',
+    tablet: 'md:mt-[6rem]',
   },
   desktopText: {
     base: `${TEXT_CONTENT_CLASSES} hidden`,
