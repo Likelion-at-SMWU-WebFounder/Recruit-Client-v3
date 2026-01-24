@@ -35,7 +35,7 @@ const Home = () => {
 
           if (entry.isIntersecting) {
             if (targetId === 'about-section') {
-              setMenuMode('light'); // about 섹션에서는 라이트 모드
+              setMenuMode(entry.isIntersecting ? 'light' : 'dark'); // about 섹션에서는 라이트 모드
             } else {
               setMenuMode('dark');
             }
