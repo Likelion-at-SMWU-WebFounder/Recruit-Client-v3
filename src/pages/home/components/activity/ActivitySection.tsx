@@ -7,12 +7,13 @@ import { combineStyles } from '@shared/utils/combineStyles';
 // ActivitySection 스타일 상수화
 const ACTIVITY_SECTION_STYLES = {
   desktopTabletSection: {
-    base: 'hidden w-full max-w-[100vw] pt-[5rem] inline-flex  justify-between items-start',
+    base: 'md:inline-flex justify-between items-start w-full max-w-[100vw] pt-[5rem] ',
     desktop: 'lg:px-[10rem]',
     tablet: 'md:px-[4rem]',
+    mobile: 'hidden',
   },
   mobileSection: {
-    base: 'relative flex w-full max-w-[100vw] flex-col items-center justify-center py-[3.12rem]',
+    base: 'relative flex w-full max-w-[100vw] flex-col items-center justify-center gap-[2.7rem] ',
     tablet: 'md:hidden',
   },
   textContainer: {
@@ -65,8 +66,11 @@ const ActivitySection = () => {
       {/* 모바일 */}
       <section className={mobileSectionClassName}>
         <div className={mobileTextContainerClassName}>
-          <SubTitle subTitle={SUB_TITLE.SUB_TITLE_1} subDescription={SUB_TITLE.SUB_DESCRIPTION_1} />
+          <SubTitle subTitle={SUB_TITLE.SUB_TITLE_2} subDescription={SUB_TITLE.SUB_DESCRIPTION_2} />
           <div className={mobileTextClassName}>{ACTIVITY_CONTENT_TEXT.mobile}</div>
+        </div>
+        <div className={cardContainerClassName}>
+          <ActivityCardContainer />
         </div>
       </section>
     </>
