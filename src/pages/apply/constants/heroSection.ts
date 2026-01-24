@@ -2,6 +2,7 @@
 export const RECRUITMENT_PHASES = {
   NOTIFICATION: 'NOTIFICATION', // 알림 신청
   APPLICATION: 'APPLICATION', // 지원 기간
+  DOCUMENT_REVIEWING: 'DOCUMENT_REVIEWING',
   DOCUMENT_CHECK: 'DOCUMENT_CHECK', // 서류 확인
   FINAL_CHECK: 'FINAL_CHECK', // 최종 합격
 } as const;
@@ -21,7 +22,7 @@ export const HERO_PHASE_CONTENT = {
     DESCRIPTION: '14기 아기사자 모집에 지원해주세요!',
     APPLY_PERIOD: null,
     BUTTON_TEXT: '14기 모집 알림 받기',
-    PATH: '/notify',
+    PATH: '/apply/notify',
   },
   [RECRUITMENT_PHASES.APPLICATION]: {
     TITLE: '숙명여대 멋사와 함께할 14기 아기사자를 모집합니다!',
@@ -29,6 +30,13 @@ export const HERO_PHASE_CONTENT = {
     APPLY_PERIOD: '14기 서류 접수 기간: 26.02.12 ~ 26.02.18',
     BUTTON_TEXT: '지원하러 가기',
     PATH: '/application',
+  },
+  [RECRUITMENT_PHASES.DOCUMENT_REVIEWING]: {
+    TITLE: '숙명여대 멋사 14기 모집 서류 심사가 진행 중입니다.',
+    DESCRIPTION: '현재 제출된 지원서를 바탕으로 서류 심사가 진행 중입니다.',
+    APPLY_PERIOD: '심사 결과는 추후 해당 페이지를 통해 안내드릴 예정입니다.',
+    BUTTON_TEXT: null,
+    PATH: null,
   },
   [RECRUITMENT_PHASES.DOCUMENT_CHECK]: {
     TITLE: '숙명여대 멋사 14기 모집 서류 심사가 완료되었습니다!',

@@ -1,10 +1,10 @@
 import { useEffect, useState, useRef } from 'react';
-import CompletionConditionSection from './components/CompletionConditionSection';
-import FAQSection from './components/FAQSection';
-import HeroSection from './components/HeroSection';
-import RecruitInfoSection from './components/RecruitInfoSection';
-import RecruitPartSection from './components/RecruitPartSection';
-import ScheduleSection from './components/ScheduleSection';
+import CompletionConditionSection from './components/apply/CompletionConditionSection';
+import FAQSection from './components/apply/FAQSection';
+import HeroSection from './components/apply/HeroSection';
+import RecruitInfoSection from './components/apply/RecruitInfoSection';
+import RecruitPartSection from './components/apply/RecruitPartSection';
+import ScheduleSection from './components/apply/ScheduleSection';
 import Layout from '@/shared/components/Layout';
 
 const Apply = () => {

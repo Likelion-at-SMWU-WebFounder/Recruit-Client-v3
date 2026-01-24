@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { SECTION_TITLES, COMPLETION_CONDITIONS } from '../constants/index';
-import img3dSpring from '../assets/3d-spring.png';
-import img3dKnot from '../assets/3d-knot.png';
+import { SECTION_TITLES, COMPLETION_CONDITIONS } from '../../constants/index';
+import img3dSpring from '../../assets/3d-spring.png';
+import img3dKnot from '../../assets/3d-knot.png';
 
 const CARD_IMAGES = [img3dSpring, img3dKnot];
 
