@@ -265,4 +265,14 @@
       transform: translateX(-50%) translateY(1rem);
     }
   }
+
+  /* Activity Card Fade In 애니메이션 */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 }

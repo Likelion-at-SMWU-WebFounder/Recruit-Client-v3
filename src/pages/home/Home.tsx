@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Layout from '@shared/components/Layout';
 import HeroSection from '@pages/home/components/hero/HeroSection';
 import AboutSection from '@pages/home/components/about/AboutSection';
+import ActivitySection from '@pages/home/components/activity/ActivitySection';
 
 const Home = () => {
   const sectionClasses = 'relative h-[100dvh] snap-start overflow-hidden';
@@ -23,28 +24,27 @@ const Home = () => {
 
   useEffect(() => {
     // 스크롤 위치에 따라 메뉴 모드 변경
-    const heroSection = document.getElementById('hero-section');
     const aboutSection = document.getElementById('about-section');
 
-    if (!heroSection || !aboutSection) return;
-
+    if (!aboutSection) return;
     // 메뉴 모드 변경을 위한 IntersectionObserver 생성
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           const targetId = entry.target.id;
 
-          if (targetId === 'hero-section' && entry.isIntersecting) {
-            setMenuMode('dark'); // hero 섹션에서는 다크 모드
-          } else if (targetId === 'about-section' && entry.isIntersecting) {
-            setMenuMode('light'); // about 섹션에서는 라이트 모드
+          if (entry.isIntersecting) {
+            if (targetId === 'about-section') {
+              setMenuMode(entry.isIntersecting ? 'light' : 'dark'); // about 섹션에서는 라이트 모드
+            } else {
+              setMenuMode('dark');
+            }
           }
         });
       },
       { threshold: 0.9 }
     );
 
-    observer.observe(heroSection);
     observer.observe(aboutSection);
 
     return () => {
@@ -59,6 +59,9 @@ const Home = () => {
       </div>
       <div id="about-section" className={sectionClasses}>
         <AboutSection />
+      </div>
+      <div id="activity-section" className={sectionClasses}>
+        <ActivitySection />
       </div>
     </Layout>
   );
