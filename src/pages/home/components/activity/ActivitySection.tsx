@@ -7,7 +7,7 @@ import { combineStyles } from '@shared/utils/combineStyles';
 // ActivitySection 스타일 상수화
 const ACTIVITY_SECTION_STYLES = {
   desktopTabletSection: {
-    base: 'md:inline-flex justify-between items-start w-full max-w-[100vw] pt-[5rem] ',
+    base: 'md:inline-flex justify-between items-center w-full max-w-[100vw] h-[100dvh] overflow-hidden pt-[5rem]',
     desktop: 'lg:px-[10rem]',
     tablet: 'md:px-[4rem]',
     mobile: 'hidden',
