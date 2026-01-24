@@ -5,6 +5,9 @@ import { PEOPLE_DATA } from '@pages/about/constants/people';
 const useXPositionDrag = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [isLastCard, setIsLastCard] = useState(false);
+  const isDraggingRef = useRef(false);
+  const startXRef = useRef(0);
+  const scrollLeftRef = useRef(0);
 
   const getXPositionScroll = useCallback(() => {
     const container = carouselRef.current;
@@ -95,13 +98,62 @@ const useXPositionDrag = () => {
       evaluateIsLastCard();
     };
 
+    // 마우스 드래그 핸들러
+    const handleMouseDown = (e: MouseEvent) => {
+      isDraggingRef.current = true;
+      const rect = container.getBoundingClientRect();
+      startXRef.current = e.pageX - rect.left;
+      scrollLeftRef.current = container.scrollLeft;
+      container.style.cursor = 'grabbing';
+      container.style.userSelect = 'none';
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isDraggingRef.current) return;
+      e.preventDefault();
+      const rect = container.getBoundingClientRect();
+      const x = e.pageX - rect.left;
+      const walk = (x - startXRef.current) * 2; // 드래그 속도 조절 (2배)
+      container.scrollLeft = scrollLeftRef.current - walk;
+    };
+
+    const handleMouseUp = () => {
+      isDraggingRef.current = false;
+      container.style.cursor = 'grab';
+      container.style.userSelect = '';
+    };
+
+    const handleMouseLeave = () => {
+      isDraggingRef.current = false;
+      container.style.cursor = 'grab';
+      container.style.userSelect = '';
+    };
+
     // 초기 상태 계산
     evaluateIsLastCard();
 
+    // 스크롤 이벤트
     container.addEventListener('scroll', handleScroll);
+
+    // 마우스 드래그 이벤트
+    container.addEventListener('mousedown', handleMouseDown);
+    container.addEventListener('mousemove', handleMouseMove);
+    container.addEventListener('mouseup', handleMouseUp);
+    container.addEventListener('mouseleave', handleMouseLeave);
+
+    // 전역 mouseup 이벤트 (캐러셀 영역 밖에서 마우스를 놓았을 때도 처리)
+    document.addEventListener('mouseup', handleMouseUp);
+
+    // 초기 커서 스타일 설정
+    container.style.cursor = 'grab';
 
     return () => {
       container.removeEventListener('scroll', handleScroll);
+      container.removeEventListener('mousedown', handleMouseDown);
+      container.removeEventListener('mousemove', handleMouseMove);
+      container.removeEventListener('mouseup', handleMouseUp);
+      container.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('mouseup', handleMouseUp);
     };
   }, [evaluateIsLastCard, getXPositionScroll]);
 
