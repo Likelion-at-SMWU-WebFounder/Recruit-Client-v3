@@ -23,11 +23,13 @@ interface CarouselImageProps {
 
 const CarouselImage = ({ image, index }: CarouselImageProps) => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
 
   // 이미지가 이미 로드되어 있는지 확인 (브라우저 캐시)
   useEffect(() => {
     setIsImageLoaded(false);
+    setHasError(false);
     if (imgRef.current?.complete) {
       setIsImageLoaded(true);
     }
@@ -36,10 +38,13 @@ const CarouselImage = ({ image, index }: CarouselImageProps) => {
   const handleImageLoad = () => {
     setIsImageLoaded(true);
   };
+  const handleImageError = () => {
+    setHasError(true);
+  };
 
   return (
     <div className="relative flex min-h-[200px] items-center justify-center overflow-hidden rounded-[0.75rem] md:rounded-[1rem] lg:rounded-[1.25rem]">
-      {!isImageLoaded && (
+      {(!isImageLoaded || hasError) && (
         <div className="absolute inset-0">
           <Skeleton width="100%" height="100%" className="rounded-[0.75rem] md:rounded-[1rem] lg:rounded-[1.25rem]" />
         </div>
@@ -50,11 +55,11 @@ const CarouselImage = ({ image, index }: CarouselImageProps) => {
         alt={index === 0 ? '프로젝트 썸네일' : `프로젝트 이미지 ${index}`}
         loading="lazy"
         className={`mx-auto w-full rounded-[0.75rem] object-contain transition-opacity duration-300 md:rounded-[1rem] lg:rounded-[1.25rem] ${
-          isImageLoaded ? 'opacity-100' : 'opacity-0'
+          isImageLoaded && !hasError ? 'opacity-100' : 'opacity-0'
         }`}
         style={{ minHeight: '200px' }}
         onLoad={handleImageLoad}
-        onError={() => setIsImageLoaded(true)}
+        onError={handleImageError}
       />
     </div>
   );
