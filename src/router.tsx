@@ -11,6 +11,7 @@ import Apply from '@pages/apply/Apply';
 import WebFounders from '@pages/webFounders/WebFounders';
 import NotFound from '@pages/notFound/NotFound';
 import Notify from '@pages/apply/Notify';
+import ResultCheck from '@pages/apply/ResultCheck';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,8 @@ const router = createBrowserRouter([
       { path: ROUTER_URL.PROJECT_DETAIL, element: <ProjectDetail /> },
       { path: ROUTER_URL.APPLY, element: <Apply /> },
       { path: ROUTER_URL.NOTIFY, element: <Notify /> },
+      { path: ROUTER_URL.RESULT_DOCUMENT, element: <ResultCheck /> },
+      { path: ROUTER_URL.RESULT_FINAL, element: <ResultCheck /> },
       // { path: ROUTER_URL.ACTIVITY, element: <Activity /> },
       { path: ROUTER_URL.WEBFOUNDERS, element: <WebFounders /> },
       { path: '*', element: <NotFound /> },

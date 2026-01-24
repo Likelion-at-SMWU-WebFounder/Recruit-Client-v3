@@ -5,6 +5,8 @@ export const ROUTER_URL = {
   PROJECT_DETAIL: '/project/:projectId',
   APPLY: '/apply',
   NOTIFY: '/apply/notify',
+  RESULT_DOCUMENT: 'apply/document',
+  RESULT_FINAL: 'apply/final',
   ACTIVITY: '/activity',
   WEBFOUNDERS: '/webfounders',
 

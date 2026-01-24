@@ -43,13 +43,13 @@ export const HERO_PHASE_CONTENT = {
     DESCRIPTION: '하단 버튼을 통해 서류 심사 결과  확인이 가능합니다.',
     APPLY_PERIOD: null,
     BUTTON_TEXT: '서류 심사 결과 확인하기',
-    PATH: '/result/document',
+    PATH: '/apply/document',
   },
   [RECRUITMENT_PHASES.FINAL_CHECK]: {
     TITLE: '숙명여대 멋사 14기 모집 최종 심사가 완료되었습니다!',
     DESCRIPTION: '하단 버튼을 통해 최종 심사 결과  확인이 가능합니다.',
     APPLY_PERIOD: null,
     BUTTON_TEXT: '최종 심사 결과 확인하기',
-    PATH: '/result/final',
+    PATH: '/apply/final',
   },
 };

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ReusableBackground from './components/ReusableBackground';
+import ReusableBackground from './components/background/ReusableBackground';
 import Layout from '@/shared/components/Layout';
 import { NOTIFY_CONTENT } from './constants/notify';
 

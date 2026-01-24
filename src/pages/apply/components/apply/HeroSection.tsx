@@ -2,11 +2,11 @@ import { useNavigate } from 'react-router-dom';
 // import { useState, useEffect } from 'react';
 import { RECRUITMENT_PHASES, HERO_PHASE_CONTENT, type RecruitmentPhase } from '../../constants/heroSection';
 // import { PHASE_SCHEDULE } from '../constants/heroSection';
-import ReusableBackground from '../ReusableBackground';
+import ReusableBackground from '../background/ReusableBackground';
 import GotoIcon from '../icon/GotoIcon';
 import '../../styles/HomeSection.css';
 
-const CURRENT_MODE = 1;
+const CURRENT_MODE = 5;
 
 const HeroSection = () => {
   const navigate = useNavigate();

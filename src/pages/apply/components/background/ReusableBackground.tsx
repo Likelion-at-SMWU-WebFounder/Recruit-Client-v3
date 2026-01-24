@@ -1,6 +1,6 @@
 import React from 'react';
-import decoOrange from '../assets/deco-orange.svg';
-import decoBlue from '../assets/deco-blue.svg';
+import decoOrange from '../../assets/deco-orange.svg';
+import decoBlue from '../../assets/deco-blue.svg';
 
 interface ReusableBackgroundProps {
   children: React.ReactNode;
