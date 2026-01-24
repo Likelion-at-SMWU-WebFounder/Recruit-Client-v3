@@ -1,13 +1,14 @@
 import { ACTIVITY_DATA } from '@pages/home/constants/activity';
 import { combineStyles } from '@shared/utils/combineStyles';
 import { useState, useEffect } from 'react';
+import type { ReactElement } from 'react';
 
 interface ActivityCardProps {
   type: 'hackathon' | 'seminar';
 }
 
 interface CardItem {
-  component: JSX.Element;
+  component: ReactElement;
   column?: number;
   row?: number;
 }
