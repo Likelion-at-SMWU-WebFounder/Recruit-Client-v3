@@ -31,7 +31,6 @@ const ApplicantInfoSection = ({ data, onChange, isSubmitted }: ApplicantInfoSect
       <div className="flex w-full flex-wrap justify-center gap-y-[2.5rem] md:w-[52.75rem] md:gap-x-[3.25rem] md:gap-y-[4rem] lg:w-[90.0625rem] lg:gap-x-[8.5625rem] lg:gap-y-[5rem]">
         {APPLICANT_FIELD_CONFIG.map((field) => {
           const commonProps = {
-            key: field.id,
             label: field.label,
             required: field.required,
             value: data[field.id],
@@ -39,10 +38,12 @@ const ApplicantInfoSection = ({ data, onChange, isSubmitted }: ApplicantInfoSect
             errorMessage: getErrorMessage(field.id),
           };
           if (field.options) {
-            return <InfoDropdown {...commonProps} options={field.options} />;
+            return <InfoDropdown key={field.id} {...commonProps} options={field.options} />;
           }
 
-          return <InfoInput {...commonProps} placeholder={field.placeholder || ''} subText={field.subText} />;
+          return (
+            <InfoInput key={field.id} {...commonProps} placeholder={field.placeholder || ''} subText={field.subText} />
+          );
         })}
       </div>
     </section>
