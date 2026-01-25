@@ -1,4 +1,4 @@
-const PART_IMAGE_PATH = import.meta.env.VITE_IMAGE_PATH + '/home/part';
+const PART_IMAGE_PATH = (import.meta.env.VITE_IMAGE_PATH ?? '') + '/home/part';
 
 export const PART_DATA = [
   {
