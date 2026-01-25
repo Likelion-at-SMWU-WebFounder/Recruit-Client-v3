@@ -65,7 +65,7 @@ const InterviewScheduleSection = ({
         <div
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
-          className="flex h-[17.0625rem] w-[19.375rem] flex-col rounded-[0.875rem] border-2 border-[rgba(27,38,52,0.65)] bg-[var(--color-white)] px-[2.8125rem] py-[1.875rem] shadow-[1px_1px_6.4px_0_rgba(27,38,52,0.10)] transition-all">
+          className="flex h-auto w-[19.375rem] flex-col rounded-[0.875rem] border-2 border-[rgba(27,38,52,0.65)] bg-[var(--color-white)] px-[2.8125rem] py-[1.875rem] shadow-[1px_1px_6.4px_0_rgba(27,38,52,0.10)] transition-all">
           <div className="mb-[1.25rem] flex w-full justify-end">
             <span className="text-[1.25rem] font-semibold text-[var(--color-navyblack)]">
               {INTERVIEW_SCHEDULE[activeIndex].date}

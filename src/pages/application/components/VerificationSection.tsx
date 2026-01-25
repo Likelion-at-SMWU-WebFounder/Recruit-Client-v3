@@ -33,7 +33,7 @@ const VerificationSection = ({
   const secondError = isSubmitted && password !== passwordConfirm ? VERIFICATION_ERRORS.mismatch : null;
 
   const inputContainerStyle = (hasError: boolean) => `
-    relative flex items-center w-full h-[3.5rem] md:w-[18rem] md:h-[3.75rem] lg:w-[21.9375rem] lg:h-[4.25rem]
+    relative flex items-center w-full h-[3rem] md:w-[18rem] md:h-[3.75rem] lg:w-[21.9375rem] lg:h-[4.25rem]
     rounded-[1rem] border-2 transition-all bg-[#F7FAFF]
     ${
       hasError
@@ -47,7 +47,7 @@ const VerificationSection = ({
     h-full w-full bg-transparent px-4 outline-none font-medium text-[var(--color-navyblack)]
     text-[1.125rem] md:text-[1.25rem] lg:text-[1.75rem]
     placeholder:text-[rgba(27,38,52,0.45)] placeholder:font-medium
-    placeholder:text-[1rem] md:placeholder:text-[1.375rem] lg:placeholder:text-[1.75rem]
+    placeholder:text-[1.125rem] md:placeholder:text-[1.25rem] lg:placeholder:text-[1.75rem]
   `;
 
   const errorTextStyle = `mt-[0.5rem] text-[0.8125rem] font-medium text-[var(--Color-error-red,rgba(255,36,36,0.80))] md:text-[1rem] lg:text-[1.25rem] text-right md:text-left`;

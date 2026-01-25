@@ -1,7 +1,7 @@
 import type { FieldConfig, Question, InterviewScheduleOption } from '../types/index';
 
 // 1. 페이지 헤더 정보
-export const PAGE_TITLE = '숙명여대 멋사 13기 모집 서류 작성페이지 입니다.';
+export const PAGE_TITLE = '숙명여대 멋사 14기 모집 서류 작성페이지 입니다.';
 export const PAGE_SUBTITLE = '* 표시 문항은 필수 응답 항목입니다.';
 
 // 2. 지원자 정보 섹션 설정
@@ -60,7 +60,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'q1',
     number: 1,
-    question: "다양한 IT 동아리 중에서 '멋쟁이사자처럼 대학 13기'를 선택하고 지원하시게 된 이유를 작성해 주세요.",
+    question: "다양한 IT 동아리 중에서 '멋쟁이사자처럼 대학 14기'를 선택하고 지원하시게 된 이유를 작성해 주세요.",
     placeholder: '답변을 입력해 주세요.',
     type: 'long',
     maxLength: 600,
@@ -135,20 +135,38 @@ export const QUESTIONS: Question[] = [
 // 6. 면접 및 정보 수집 동의
 export const INTERVIEW_SCHEDULE: InterviewScheduleOption[] = [
   {
-    date: '03.15(수)',
+    date: '02.24(화)',
+    dayOfWeek: '화',
+    times: [
+      '11:00~11:40',
+      '12:00~12:40',
+      '14:00~14:40',
+      '15:00~15:40',
+      '16:00~16:40',
+      '18:00~18:40',
+      '19:00~19:40',
+      '20:00~20:40',
+    ],
+  },
+  {
+    date: '02.25(수)',
     dayOfWeek: '수',
-    times: ['17:00~17:40', '18:00~18:40', '19:00~19:40', '20:00~20:40'],
+    times: [
+      '11:00~11:40',
+      '12:00~12:40',
+      '14:00~14:40',
+      '15:00~15:40',
+      '16:00~16:40',
+      '18:00~18:40',
+      '19:00~19:40',
+      '20:00~20:40',
+    ],
   },
-  {
-    date: '03.16(목)',
-    dayOfWeek: '목',
-    times: ['17:00~17:40', '18:00~18:40', '19:00~19:40', '20:00~20:40'],
-  },
-  {
-    date: '03.17(금)',
-    dayOfWeek: '금',
-    times: ['17:00~17:40', '18:00~18:40', '19:00~19:40', '20:00~20:40'],
-  },
+  // {
+  //   date: '03.17(금)',
+  //   dayOfWeek: '금',
+  //   times: ['17:00~17:40', '18:00~18:40', '19:00~19:40', '20:00~20:40'],
+  // },
 ];
 
 export const AGREEMENT_INFO = {
