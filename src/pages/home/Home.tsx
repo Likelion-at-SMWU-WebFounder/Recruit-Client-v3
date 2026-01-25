@@ -7,6 +7,7 @@ import ActivitySection from '@pages/home/components/activity/ActivitySection';
 import YearSection from '@pages/home/components/year/YearSection';
 import PartSection from '@pages/home/components/part/PartSection';
 import ProjectSection from '@pages/home/components/project/ProjectSection';
+import ApplySection from '@pages/home/components/apply/ApplySection';
 
 // Home 페이지 스타일 상수화
 const HOME_STYLES = {
@@ -31,12 +32,12 @@ const Home = () => {
   // HeroSection이 뷰포트에 있는지 감지 -> menuMode 변경
   useEffect(() => {
     const heroSection = document.getElementById('hero-section');
-    if (!heroSection) return;
+    const applySection = document.getElementById('apply-section');
+    if (!heroSection || !applySection) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // HeroSection 뷰포트에 있으면 light, 없으면 dark
           setMenuMode(entry.isIntersecting ? 'dark' : 'light');
         });
       },
@@ -46,6 +47,7 @@ const Home = () => {
     );
 
     observer.observe(heroSection);
+    observer.observe(applySection);
 
     return () => {
       observer.disconnect();
@@ -70,9 +72,12 @@ const Home = () => {
         <div id="part-section" className={sectionClassName}>
           <PartSection />
         </div>
+        <div id="project-section" className={sectionClassName}>
+          <ProjectSection />
+        </div>
       </div>
-      <div id="project-section" className={sectionClassName}>
-        <ProjectSection />
+      <div id="apply-section" className={sectionClassName}>
+        <ApplySection />
       </div>
     </Layout>
   );
