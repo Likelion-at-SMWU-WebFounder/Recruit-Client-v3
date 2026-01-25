@@ -4,7 +4,6 @@ import Layout from '@/shared/components/Layout';
 import ResultBackground from './components/background/ResultBackground';
 import { RESULT_CHECK_CONTENT } from './constants/resultCheck';
 
-/** 🎨 스타일 상수 (기존 유지) */
 const INPUT_STYLE = `
   flex w-full items-center rounded-[1rem] border-[1.5px] bg-[#F7FAFF]/01 
   px-[1rem] py-[0.7rem] md:px-[1.375rem] md:py-[1rem] 
@@ -64,8 +63,8 @@ const ResultCheck = () => {
         // 2. 최종 심사 결과 데이터 예시
         const finalResult = {
           name: formData.name,
-          interview: 'PASS',
-          track: 'Web',
+          interview: 'REJECT',
+          track: 'FRONTEND',
         };
         navigate(`${RESULT_CHECK_CONTENT.FINAL.PATH}/result`, { state: finalResult });
       }
