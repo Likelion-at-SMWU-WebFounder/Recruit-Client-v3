@@ -20,3 +20,5 @@ export const PART_DATA = [
     image: PART_IMAGE_PATH + '/part-backend.webp',
   },
 ];
+
+export const PART_BUTTON_TEXT = '활동 자세히 보기';
