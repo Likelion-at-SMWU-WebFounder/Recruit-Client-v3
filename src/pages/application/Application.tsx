@@ -94,23 +94,35 @@ const Application = () => {
 
   // 2. 페이지 이탈(Abandon) 감지 로직
   useEffect(() => {
-    const handleBeforeUnload = () => {
-      // 시작은 했지만, 성공 상태가 아닐 때만 이벤트 전송
+    // 이탈 신호를 보내는 공통 함수
+    const sendAbandonEvent = () => {
       if (hasStartedRef.current && submitStatus !== 'success') {
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           event: 'application_abandon',
           page_path: window.location.pathname,
         });
+        console.log('🚀 [GTM 내부 이탈] 다른 페이지로 이동함');
       }
     };
 
-    window.addEventListener('beforeunload', handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
+    // 외부 이탈 감지 (탭 닫기, 최소화 등)
+    const handleExit = (e: Event) => {
+      if (document.visibilityState === 'hidden' || e.type === 'pagehide') {
+        sendAbandonEvent();
+      }
     };
-  }, [submitStatus]); // 제출 상태에 따라 감지 여부 결정
+
+    document.addEventListener('visibilitychange', handleExit);
+    window.addEventListener('pagehide', handleExit);
+
+    // 내부 이탈 감지 (리액트 라우터 이동 등 컴포넌트가 사라질 때)
+    return () => {
+      document.removeEventListener('visibilitychange', handleExit);
+      window.removeEventListener('pagehide', handleExit);
+      sendAbandonEvent();
+    };
+  }, [submitStatus]); // submitStatus가 success가 아닐 때만 작동하게 함
 
   // 3. 제출 성공 시 상태 해제 (이탈로 간주하지 않음)
   useEffect(() => {
