@@ -76,11 +76,23 @@ const Application = () => {
     await submitForm();
   };
 
-  // GTM 로직
-  // 폼 작성 시작 여부를 추적하는 Ref
+  // 1. 상태 추적용 Ref들 (렌더링에 영향을 주지 않으면서 최신 값 유지)
   const hasStartedRef = useRef(false);
+  const submitStatusRef = useRef(submitStatus);
+  const hasSentAbandonRef = useRef(false);
 
-  // 1. 사용자가 어떤 입력이라도 시작했는지 감지
+  // 2. 최신 submitStatus 동기화 및 성공 시 상태 초기화
+  useEffect(() => {
+    submitStatusRef.current = submitStatus;
+
+    if (submitStatus === 'success') {
+      // 성공 시에는 이탈로 간주하지 않도록 모든 플래그 초기화
+      hasStartedRef.current = false;
+      hasSentAbandonRef.current = false;
+    }
+  }, [submitStatus]);
+
+  // 3. 입력 시작 감지 (Vite 프로젝트 내 formData 관찰)
   useEffect(() => {
     const isAnyFieldFilled =
       Object.values(formData.applicantInfo).some((v) => v.trim() !== '') ||
@@ -90,46 +102,41 @@ const Application = () => {
     if (isAnyFieldFilled && !hasStartedRef.current) {
       hasStartedRef.current = true;
     }
-  }, [formData]); // formData가 변경될 때마다 체크
+  }, [formData]);
 
-  // 2. 페이지 이탈(Abandon) 감지 로직
+  // 4. 이탈 감지 및 전송 로직 (중복 및 오발송 방지 최적화)
   useEffect(() => {
-    // 이탈 신호를 보내는 공통 함수
-    const sendAbandonEvent = () => {
-      if (hasStartedRef.current && submitStatus !== 'success') {
+    const sendAbandonEvent = (reason: string) => {
+      // 이미 전송했거나, 시작도 안 했거나, 성공했다면 즉시 중단
+      if (hasSentAbandonRef.current) return;
+
+      if (hasStartedRef.current && submitStatusRef.current !== 'success') {
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           event: 'application_abandon',
           page_path: window.location.pathname,
         });
-        console.log('🚀 [GTM 내부 이탈] 다른 페이지로 이동함');
+        hasSentAbandonRef.current = true; // 전송 완료 표시
+        console.log(`🚀 [GTM 이탈 기록] 사유: ${reason}`);
       }
     };
 
-    // 외부 이탈 감지 (탭 닫기, 최소화 등)
     const handleExit = (e: Event) => {
       if (document.visibilityState === 'hidden' || e.type === 'pagehide') {
-        sendAbandonEvent();
+        sendAbandonEvent(e.type);
       }
     };
 
     document.addEventListener('visibilitychange', handleExit);
     window.addEventListener('pagehide', handleExit);
 
-    // 내부 이탈 감지 (리액트 라우터 이동 등 컴포넌트가 사라질 때)
     return () => {
       document.removeEventListener('visibilitychange', handleExit);
       window.removeEventListener('pagehide', handleExit);
-      sendAbandonEvent();
+      // 컴포넌트가 사라질 때(내부 페이지 이동 등) 최종 체크
+      sendAbandonEvent('unmount');
     };
-  }, [submitStatus]); // submitStatus가 success가 아닐 때만 작동하게 함
-
-  // 3. 제출 성공 시 상태 해제 (이탈로 간주하지 않음)
-  useEffect(() => {
-    if (submitStatus === 'success') {
-      hasStartedRef.current = false;
-    }
-  }, [submitStatus]);
+  }, []); // 빈 배열로 설정하여 컴포넌트 생명주기 동안 딱 한 번만 리스너 등록
 
   return (
     <Layout menuMode="light" footerMode="light">
