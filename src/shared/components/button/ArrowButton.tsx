@@ -1,9 +1,9 @@
-import { IoMdArrowForward, IoMdArrowDown } from 'react-icons/io';
+import { IoMdArrowForward, IoMdArrowDown, IoMdArrowBack } from 'react-icons/io';
 
 interface NextArrowBtnProps {
   iconColor: 'gray' | 'navyblack' | 'blue';
   onArrowBtnClick: () => void;
-  direction?: 'right' | 'down';
+  direction?: 'right' | 'down' | 'left';
 }
 
 // 스타일 상수화
@@ -20,8 +20,9 @@ const ARROW_BUTTON_STYLES = {
 
 const ArrowButton = ({ iconColor, onArrowBtnClick, direction = 'right' }: NextArrowBtnProps) => {
   const className = `${ARROW_BUTTON_STYLES.base} ${ARROW_BUTTON_STYLES.size} ${ARROW_BUTTON_STYLES.color[iconColor]}`;
-  const ArrowIcon = direction === 'down' ? IoMdArrowDown : IoMdArrowForward;
-  const ariaLabel = direction === 'down' ? 'down scroll' : 'next scroll';
+
+  const ArrowIcon = direction === 'down' ? IoMdArrowDown : direction === 'left' ? IoMdArrowBack : IoMdArrowForward;
+  const ariaLabel = direction === 'down' ? 'down scroll' : direction === 'left' ? 'previous scroll' : 'next scroll';
 
   return (
     <button type="button" aria-label={ariaLabel} className={className} onClick={onArrowBtnClick}>
