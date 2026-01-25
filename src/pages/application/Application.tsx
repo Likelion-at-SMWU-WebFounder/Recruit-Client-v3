@@ -71,13 +71,7 @@ const Application = () => {
   };
 
   const handleFinalConfirm = async () => {
-    const isSuccess = await submitForm();
-
-    if (isSuccess) {
-      console.log('제출 성공 - 완료 화면으로 전환');
-    } else {
-      alert('제출 중 오류가 발생했습니다.');
-    }
+    await submitForm();
   };
 
   return (

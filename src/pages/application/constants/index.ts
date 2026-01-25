@@ -272,3 +272,12 @@ export const SUCCESS_MODAL = {
   DESC_3_SUFFIX: '해 주세요.',
   BUTTON: '홈으로',
 } as const;
+
+export const DUPLICATE_MODAL = {
+  TITLE: '이미 지원 접수되었습니다.',
+  DESC_1: '지원 접수는 1회까지만 가능합니다.',
+  DESC_2_PREFIX: '관련 문의사항이 있다면 ',
+  DESC_2_BLUE_LINK: '오픈채팅',
+  DESC_2_SUFFIX: '으로 연락해주세요.',
+  BUTTON: '홈으로',
+} as const;
