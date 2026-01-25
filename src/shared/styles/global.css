@@ -265,4 +265,61 @@
       transform: translateX(-50%) translateY(1rem);
     }
   }
+
+  /* Activity Card Fade In 애니메이션 */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  /* Line Drawing 애니메이션 */
+  @keyframes draw {
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes drawReverse {
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  .line-drawing {
+    opacity: 0.5;
+    background: linear-gradient(
+      90deg,
+      #4284ff 0%,
+      #4284ff 5%,
+      #4284ff 25%,
+      #4284ff 50%,
+      #4284ff 75%,
+      rgba(66, 132, 255, 0.05) 95%,
+      rgba(66, 132, 255, 0) 100%
+    );
+    transform-origin: left;
+    transform: scaleX(0);
+    animation: draw 1.2s ease-out forwards;
+  }
+
+  .line-reverse-drawing {
+    opacity: 0.5;
+    background: linear-gradient(
+      -90deg,
+      #4284ff 0%,
+      #4284ff 5%,
+      #4284ff 25%,
+      #4284ff 50%,
+      #4284ff 75%,
+      rgba(66, 132, 255, 0.05) 95%,
+      rgba(66, 132, 255, 0) 100%
+    );
+    transform-origin: right;
+    transform: scaleX(0);
+    animation: drawReverse 1.2s ease-out forwards;
+  }
 }

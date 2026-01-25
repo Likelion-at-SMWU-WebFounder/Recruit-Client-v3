@@ -11,6 +11,7 @@ export const ROUTER_URL = {
   RESULT_FINAL: 'apply/final/result',
   ACTIVITY: '/activity',
   WEBFOUNDERS: '/webfounders',
+  APPLICATION: '/application',
 
   // 추가되는 거 있음 여기에 작성
 };

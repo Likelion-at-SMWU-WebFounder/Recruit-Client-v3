@@ -7,6 +7,7 @@ import About from '@pages/about/About';
 import Project from '@pages/project/Project';
 import ProjectDetail from '@pages/project/ProjectDetail';
 import Apply from '@pages/apply/Apply';
+import Application from '@pages/application/Application';
 // import Activity from '@pages/activity/Activity';
 import WebFounders from '@pages/webFounders/WebFounders';
 import NotFound from '@pages/notFound/NotFound';
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
       { path: ROUTER_URL.CHECK_FINAL, element: <ResultCheck /> },
       { path: ROUTER_URL.RESULT_DOCUMENT, element: <Result /> },
       { path: ROUTER_URL.RESULT_FINAL, element: <Result /> },
+      { path: ROUTER_URL.APPLICATION, element: <Application /> },
       // { path: ROUTER_URL.ACTIVITY, element: <Activity /> },
       { path: ROUTER_URL.WEBFOUNDERS, element: <WebFounders /> },
       { path: '*', element: <NotFound /> },

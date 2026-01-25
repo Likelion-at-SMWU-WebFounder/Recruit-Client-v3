@@ -2,50 +2,36 @@ import { useState, useEffect } from 'react';
 import Layout from '@shared/components/Layout';
 import HeroSection from '@pages/home/components/hero/HeroSection';
 import AboutSection from '@pages/home/components/about/AboutSection';
+import ActivitySection from '@pages/home/components/activity/ActivitySection';
+import YearSection from '@pages/home/components/year/YearSection';
 
 const Home = () => {
   const sectionClasses = 'relative h-[100dvh] snap-start overflow-hidden';
 
-  // 페이지 이동 시 메뉴 모드 변경을 위한 상태 (기본값 light)
-  const [menuMode, setMenuMode] = useState<'light' | 'dark'>('dark');
+  const [menuMode, setMenuMode] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  // HeroSection이 뷰포트에 있는지 감지 -> menuMode 변경
   useEffect(() => {
-    const root = document.documentElement;
-    root.classList.add('scrollbar-hidden');
-    return () => {
-      root.classList.remove('scrollbar-hidden');
-    };
-  }, []);
-
-  useEffect(() => {
-    // 스크롤 위치에 따라 메뉴 모드 변경
     const heroSection = document.getElementById('hero-section');
-    const aboutSection = document.getElementById('about-section');
+    if (!heroSection) return;
 
-    if (!heroSection || !aboutSection) return;
-
-    // 메뉴 모드 변경을 위한 IntersectionObserver 생성
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const targetId = entry.target.id;
-
-          if (targetId === 'hero-section' && entry.isIntersecting) {
-            setMenuMode('dark'); // hero 섹션에서는 다크 모드
-          } else if (targetId === 'about-section' && entry.isIntersecting) {
-            setMenuMode('light'); // about 섹션에서는 라이트 모드
-          }
+          // HeroSection 뷰포트에 있으면 light, 없으면 dark
+          setMenuMode(entry.isIntersecting ? 'dark' : 'light');
         });
       },
-      { threshold: 0.9 }
+      {
+        threshold: 0.9, // 90% 이상 보이면 감지
+      }
     );
 
     observer.observe(heroSection);
-    observer.observe(aboutSection);
 
     return () => {
       observer.disconnect();
@@ -59,6 +45,12 @@ const Home = () => {
       </div>
       <div id="about-section" className={sectionClasses}>
         <AboutSection />
+      </div>
+      <div id="activity-section" className={sectionClasses}>
+        <ActivitySection />
+      </div>
+      <div id="year-section" className={sectionClasses}>
+        <YearSection />
       </div>
     </Layout>
   );
