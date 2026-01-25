@@ -6,7 +6,7 @@ import ReusableBackground from '../background/ReusableBackground';
 import GotoIcon from '../icon/GotoIcon';
 import '../../styles/HomeSection.css';
 
-const CURRENT_MODE = 5;
+const CURRENT_MODE = 4;
 
 const HeroSection = () => {
   const navigate = useNavigate();

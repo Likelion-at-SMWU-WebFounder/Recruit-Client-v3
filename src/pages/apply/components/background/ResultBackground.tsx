@@ -6,8 +6,8 @@ const GLASS_CARD_STYLE = `
   border border-[#F7FAFF]/10 bg-[#F7FAFF]/12 backdrop-blur-md
   shadow-[1px_1px_25.5px_4px_rgba(27,38,52,0.12)]
   
-  w-[24.125rem] h-[32.75rem] py-[1rem] px-[1.5rem]
-  md:w-[56.4375rem] md:h-[51.75rem] md:py-[4.5rem] md:px-[3rem]
+  w-[22.125rem] h-[34.75rem] py-[1rem] px-[1.5rem]
+  md:w-[54.4375rem] md:h-[51.75rem] md:py-[4.5rem] md:px-[3rem]
   lg:w-[66.3125rem] lg:h-[53rem] lg:py-[6.97rem] lg:px-[5rem]
 `;
 

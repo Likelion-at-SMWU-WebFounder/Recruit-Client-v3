@@ -1,9 +1,10 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Layout from '@/shared/components/Layout';
 import ResultBackground from './components/background/ResultBackground';
 import { RESULT_CHECK_CONTENT } from './constants/resultCheck';
 
+/** 🎨 스타일 상수 (기존 유지) */
 const INPUT_STYLE = `
   flex w-full items-center rounded-[1rem] border-[1.5px] bg-[#F7FAFF]/01 
   px-[1rem] py-[0.7rem] md:px-[1.375rem] md:py-[1rem] 
@@ -29,8 +30,8 @@ const ERROR_TEXT_STYLE = `
 
 const ResultCheck = () => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({ name: '', id: '', password: '' });
-
   const [errorType, setErrorType] = useState<'REQUIRED' | 'NOT_FOUND' | null>(null);
 
   const isDocument = pathname === RESULT_CHECK_CONTENT.DOCUMENT.PATH;
@@ -38,29 +39,39 @@ const ResultCheck = () => {
 
   const handleInputChange = (field: keyof typeof formData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
-    if (errorType) setErrorType(null); // 입력 시작 시 에러 초기화
+    if (errorType) setErrorType(null);
   };
 
+  /** 결과 확인 및 페이지 이동 로직 */
   const handleCheck = async () => {
-    // 1. 필수 항목 유효성 검사
     if (!formData.name || !formData.id || !formData.password) {
       setErrorType('REQUIRED');
       return;
     }
 
     try {
-      // 2. API 연동 로직
       console.log('데이터 제출:', formData);
 
-      // 실제 API 호출 후 404 에러가 발생했다고 가정할 때:
-      // if (response.status === 404) throw new Error('NOT_FOUND');
-
-      // [테스트용]
-      // setErrorType('NOT_FOUND');
+      if (isDocument) {
+        // 1. 서류 심사 결과 데이터 예시
+        const docResult = {
+          name: formData.name,
+          docs: 'PASS',
+          interviewTime: '02.27(목) 10:00~10:40',
+        };
+        navigate(`${RESULT_CHECK_CONTENT.DOCUMENT.PATH}/result`, { state: docResult });
+      } else {
+        // 2. 최종 심사 결과 데이터 예시
+        const finalResult = {
+          name: formData.name,
+          interview: 'PASS',
+          track: 'Web',
+        };
+        navigate(`${RESULT_CHECK_CONTENT.FINAL.PATH}/result`, { state: finalResult });
+      }
     } catch (error) {
-      // 에러 메시지 처리를 위한 상태 업데이트
       setErrorType('NOT_FOUND');
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -75,7 +86,6 @@ const ResultCheck = () => {
                 {currentTitle}
               </h2>
 
-              {/* 에러 메시지 노출 (상태에 따라 문구 변경) */}
               <div className="flex min-h-[1.25rem] items-center justify-center md:min-h-[1.75rem] lg:min-h-[2rem]">
                 {errorType && (
                   <p className={ERROR_TEXT_STYLE}>
