@@ -4,6 +4,7 @@ import HeroSection from '@pages/home/components/hero/HeroSection';
 import AboutSection from '@pages/home/components/about/AboutSection';
 import ActivitySection from '@pages/home/components/activity/ActivitySection';
 import YearSection from '@pages/home/components/year/YearSection';
+import PartSection from '@pages/home/components/part/PartSection';
 
 const Home = () => {
   const sectionClasses = 'relative h-[100dvh] snap-start overflow-hidden';
@@ -51,6 +52,9 @@ const Home = () => {
       </div>
       <div id="year-section" className={sectionClasses}>
         <YearSection />
+      </div>
+      <div id="part-section" className={sectionClasses}>
+        <PartSection />
       </div>
     </Layout>
   );
