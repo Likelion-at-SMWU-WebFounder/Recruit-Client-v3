@@ -30,22 +30,38 @@ const ERROR_TEXT_STYLE = `
 const ResultCheck = () => {
   const { pathname } = useLocation();
   const [formData, setFormData] = useState({ name: '', id: '', password: '' });
-  const [isError, setIsError] = useState(false);
+
+  const [errorType, setErrorType] = useState<'REQUIRED' | 'NOT_FOUND' | null>(null);
 
   const isDocument = pathname === RESULT_CHECK_CONTENT.DOCUMENT.PATH;
   const currentTitle = isDocument ? RESULT_CHECK_CONTENT.DOCUMENT.TITLE : RESULT_CHECK_CONTENT.FINAL.TITLE;
 
   const handleInputChange = (field: keyof typeof formData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
-    if (isError) setIsError(false);
+    if (errorType) setErrorType(null); // 입력 시작 시 에러 초기화
   };
 
-  const handleCheck = () => {
+  const handleCheck = async () => {
+    // 1. 필수 항목 유효성 검사
     if (!formData.name || !formData.id || !formData.password) {
-      setIsError(true);
+      setErrorType('REQUIRED');
       return;
     }
-    console.log(`${currentTitle} 데이터 제출:`, formData);
+
+    try {
+      // 2. API 연동 로직
+      console.log('데이터 제출:', formData);
+
+      // 실제 API 호출 후 404 에러가 발생했다고 가정할 때:
+      // if (response.status === 404) throw new Error('NOT_FOUND');
+
+      // [테스트용]
+      // setErrorType('NOT_FOUND');
+    } catch (error) {
+      // 에러 메시지 처리를 위한 상태 업데이트
+      setErrorType('NOT_FOUND');
+      console.log(error);
+    }
   };
 
   return (
@@ -53,17 +69,25 @@ const ResultCheck = () => {
       <ResultBackground>
         <div className="flex h-full w-full max-w-[51.3125rem] flex-col items-center justify-center">
           <div className="flex w-full flex-col items-center gap-[1.875rem] md:gap-[3.75rem] lg:gap-[4.0625rem]">
-            {/* 1. 제목 및 에러 메시지 */}
+            {/* 타이틀 및 에러 메시지 섹션 */}
             <div className="flex w-full flex-col items-center gap-[0.31rem] md:gap-[0.31rem] lg:gap-[0.44rem]">
               <h2 className="text-center text-[1.375rem] font-bold text-[#F7FAFF] md:text-[2rem] lg:text-[2.25rem]">
                 {currentTitle}
               </h2>
+
+              {/* 에러 메시지 노출 (상태에 따라 문구 변경) */}
               <div className="flex min-h-[1.25rem] items-center justify-center md:min-h-[1.75rem] lg:min-h-[2rem]">
-                {isError && <p className={ERROR_TEXT_STYLE}>{RESULT_CHECK_CONTENT.ERROR_MESSAGES.REQUIRED}</p>}
+                {errorType && (
+                  <p className={ERROR_TEXT_STYLE}>
+                    {errorType === 'REQUIRED'
+                      ? RESULT_CHECK_CONTENT.ERROR_MESSAGES.REQUIRED
+                      : RESULT_CHECK_CONTENT.ERROR_MESSAGES.NOT_FOUND}
+                  </p>
+                )}
               </div>
             </div>
 
-            {/* 2. 입력 항목 리스트 */}
+            {/* 입력 리스트 섹션 */}
             <div className="flex w-full flex-col gap-[1.875rem] md:gap-[3.375rem] lg:gap-[2.2rem]">
               {[
                 {
@@ -85,7 +109,9 @@ const ResultCheck = () => {
                   type: 'password',
                 },
               ].map((item) => {
-                const isEmpty = isError && !formData[item.id as keyof typeof formData];
+                const isFieldEmpty = errorType === 'REQUIRED' && !formData[item.id as keyof typeof formData];
+                const isNotFound = errorType === 'NOT_FOUND';
+                const hasError = isFieldEmpty || isNotFound;
 
                 return (
                   <div key={item.id} className="flex flex-col gap-[0.4rem] md:gap-[0.7rem] lg:gap-[1rem]">
@@ -96,7 +122,7 @@ const ResultCheck = () => {
                       type={item.type}
                       value={formData[item.id as keyof typeof formData]}
                       placeholder={item.ph}
-                      className={`${INPUT_STYLE} ${isEmpty ? 'border-[#FF5757]' : 'border-[#F7FAFF]/75'}`}
+                      className={`${INPUT_STYLE} ${hasError ? 'border-[#FF5757]' : 'border-[#F7FAFF]/75'}`}
                       onChange={(e) => handleInputChange(item.id as keyof typeof formData, e.target.value)}
                     />
                   </div>
@@ -104,7 +130,6 @@ const ResultCheck = () => {
               })}
             </div>
 
-            {/* 3. 결과 확인 버튼 */}
             <button type="button" className={BUTTON_STYLE} onClick={handleCheck}>
               {RESULT_CHECK_CONTENT.BUTTON}
             </button>

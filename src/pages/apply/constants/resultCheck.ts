@@ -20,5 +20,6 @@ export const RESULT_CHECK_CONTENT = {
   BUTTON: '결과 확인',
   ERROR_MESSAGES: {
     REQUIRED: '모든 항목을 입력해주세요.',
+    NOT_FOUND: '존재하지 않는 회원정보입니다.',
   },
 } as const;
