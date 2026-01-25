@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SECTION_TITLES, RECRUIT_INFO_TABS, QUALIFICATIONS, ACTIVITY_INFO, BONUS_INFO } from '../constants/index';
+import { SECTION_TITLES, RECRUIT_INFO_TABS, QUALIFICATIONS, ACTIVITY_INFO, BONUS_INFO } from '../../constants/index';
 
 const RecruitInfoSection = () => {
   const [activeTab, setActiveTab] = useState<string>('qualification');

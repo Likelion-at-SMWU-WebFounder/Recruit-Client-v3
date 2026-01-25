@@ -4,8 +4,14 @@ export const ROUTER_URL = {
   PROJECT: '/project',
   PROJECT_DETAIL: '/project/:projectId',
   APPLY: '/apply',
+  NOTIFY: '/apply/notify',
+  CHECK_DOCUMENT: 'apply/document',
+  CHECK_FINAL: 'apply/final',
+  RESULT_DOCUMENT: 'apply/document/result',
+  RESULT_FINAL: 'apply/final/result',
   ACTIVITY: '/activity',
   WEBFOUNDERS: '/webfounders',
+  APPLICATION: '/application',
 
   // 추가되는 거 있음 여기에 작성
 };
