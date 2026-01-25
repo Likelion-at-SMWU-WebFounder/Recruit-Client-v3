@@ -1,4 +1,4 @@
-const THIRTEENTH_PROJECT_IMAGE_PATH = import.meta.env.VITE_LOCAL_IMAGE_PATH + '/project/13th';
+const THIRTEENTH_PROJECT_IMAGE_PATH = import.meta.env.VITE_IMAGE_PATH + '/project/13th';
 
 export const thirteenthProjectsData = [
   {
@@ -132,7 +132,6 @@ export const thirteenthProjectsData = [
       `${THIRTEENTH_PROJECT_IMAGE_PATH}/herethon/HERizon_1305/HERizon3.png`,
       `${THIRTEENTH_PROJECT_IMAGE_PATH}/herethon/HERizon_1305/HERizon4.png`,
       `${THIRTEENTH_PROJECT_IMAGE_PATH}/herethon/HERizon_1305/HERizon5.png`,
-      `${THIRTEENTH_PROJECT_IMAGE_PATH}/herethon/HERizon_1305/HERizon6.png`,
     ],
     title: 'HERizon',
     teamMember: '최서아(BE) 외 5명',
@@ -349,6 +348,7 @@ export const thirteenthProjectsData = [
       `${THIRTEENTH_PROJECT_IMAGE_PATH}/herethon/Herizon_1314/Herizon3.png`,
       `${THIRTEENTH_PROJECT_IMAGE_PATH}/herethon/Herizon_1314/Herizon4.png`,
       `${THIRTEENTH_PROJECT_IMAGE_PATH}/herethon/Herizon_1314/Herizon5.png`,
+      `${THIRTEENTH_PROJECT_IMAGE_PATH}/herethon/Herizon_1314/Herizon6.png`,
     ],
     title: 'Herizon',
     teamMember: '김은지(PM/PD)외 4명',

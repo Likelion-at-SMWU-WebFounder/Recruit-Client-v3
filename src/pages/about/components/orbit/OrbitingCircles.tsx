@@ -1,4 +1,5 @@
 import React from 'react';
+import { combineStyles } from '@shared/utils/combineStyles';
 
 import { cn } from '@/pages/about/utils/utils';
 
@@ -15,6 +16,21 @@ export interface OrbitingCirclesProps extends React.HTMLAttributes<HTMLDivElemen
   lineTransparency?: string;
 }
 
+// OrbitingCircles 스타일 상수화
+const ORBITING_CIRCLES_STYLES = {
+  svg: {
+    base: 'pointer-events-none absolute inset-0 size-full',
+  },
+  circle: {
+    base: 'stroke-blue stroke-1',
+  },
+  orbitItem: {
+    base: 'animate-orbit absolute top-1/2 left-1/2 flex transform-gpu items-center justify-center rounded-full',
+    mobile: 'size-[0.7rem]',
+    tablet: 'md:size-[1.25rem]',
+  },
+} as const;
+
 export const OrbitingCircles = ({
   className,
   children,
@@ -27,15 +43,16 @@ export const OrbitingCircles = ({
   ...props
 }: OrbitingCirclesProps) => {
   const calculatedDuration = duration / speed;
+  const svgClassName = combineStyles(ORBITING_CIRCLES_STYLES.svg);
+  const circleClassName = combineStyles(ORBITING_CIRCLES_STYLES.circle);
+  const orbitItemBaseClassName = combineStyles(ORBITING_CIRCLES_STYLES.orbitItem);
+
   return (
     <>
       {path && (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          version="1.1"
-          className="pointer-events-none absolute inset-0 size-full">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className={svgClassName}>
           <circle
-            className="stroke-blue stroke-1"
+            className={circleClassName}
             cx="50%"
             cy="50%"
             r={radius}
@@ -55,11 +72,7 @@ export const OrbitingCircles = ({
                 '--angle': angle,
               } as React.CSSProperties
             }
-            className={cn(
-              `animate-orbit absolute top-1/2 left-1/2 flex size-[0.7rem] transform-gpu items-center justify-center rounded-full md:size-[1.25rem]`,
-              { '[animation-direction:reverse]': reverse },
-              className
-            )}
+            className={cn(orbitItemBaseClassName, { '[animation-direction:reverse]': reverse }, className)}
             {...props}>
             {child}
           </div>

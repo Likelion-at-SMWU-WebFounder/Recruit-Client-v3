@@ -1,4 +1,5 @@
 import BlurOverlay from '@/pages/webFounders/components/BlurOverlay';
+import useImageManager from '@shared/hooks/useImageManager';
 import { combineStyles } from '@shared/utils/combineStyles';
 
 import { BiPlus } from 'react-icons/bi';
@@ -14,7 +15,7 @@ interface WebFoundersCardFrontProps {
 // 웹파운더즈 카드 앞면 스타일 상수화
 const WEBFOUNDERS_CARD_FRONT_STYLES = {
   cardContainer: {
-    base: 'absolute inset-0 flex h-full flex-col justify-end rounded-[0.75rem] bg-cover bg-center text-white',
+    base: 'absolute inset-0 flex h-full flex-col justify-end rounded-[0.75rem] bg-cover bg-center',
     tablet: 'md:rounded-[1.38613rem]',
     desktop: 'lg:rounded-[1.5625rem]',
   }, // 카드 앞면 컨테이너 스타일
@@ -34,12 +35,12 @@ const WEBFOUNDERS_CARD_FRONT_STYLES = {
     tablet: 'md:space-y-[0.31rem]',
   }, // 이름, 기수, 파트 컨테이너 스타일
   nameText: {
-    base: 'text-[1.125rem] leading-[140%] font-bold',
-    tablet: 'md:text-[1.75rem]',
+    base: 'hd18 text-white-background',
+    tablet: 'md:hd28',
   }, // 이름 스타일
   noPartText: {
-    base: 'text-[0.75rem] leading-[140%] font-medium',
-    tablet: 'md:text-[1.25rem]',
+    base: 'bd12 text-white-background',
+    tablet: 'md:bd20',
   }, // 기수, 파트 스타일
   flipButton: {
     base: 'hover:bg-navyblack text-navyblack flex cursor-pointer items-center justify-center rounded-[0.625rem] bg-white p-[0.375rem] transition duration-300 ease-in-out hover:text-white',
@@ -53,7 +54,9 @@ const WEBFOUNDERS_CARD_FRONT_STYLES = {
 } as const;
 
 const WebFoundersCardFront = ({ name, no, part, image, onFlip }: WebFoundersCardFrontProps) => {
+  const { isImageLoaded = false } = useImageManager({ imageUrl: image, trackLoad: true });
   const hasFlipButton = onFlip !== undefined;
+
   const cardContainerClassName = `${combineStyles(WEBFOUNDERS_CARD_FRONT_STYLES.cardContainer)} ${hasFlipButton ? WEBFOUNDERS_CARD_FRONT_STYLES.transform.base : ''}`;
   const overlayFooterContainerClassName = combineStyles(WEBFOUNDERS_CARD_FRONT_STYLES.overlayFooterContainer);
   const nameInfoWrapperClassName = combineStyles(WEBFOUNDERS_CARD_FRONT_STYLES.nameInfoWrapper);
@@ -63,7 +66,14 @@ const WebFoundersCardFront = ({ name, no, part, image, onFlip }: WebFoundersCard
   const flipIconClassName = combineStyles(WEBFOUNDERS_CARD_FRONT_STYLES.flipIcon);
 
   return (
-    <div className={cardContainerClassName} style={{ backgroundImage: `url(${image})` }}>
+    <div
+      className={cardContainerClassName}
+      style={{
+        backgroundImage: isImageLoaded ? `url(${image})` : 'none',
+        backgroundColor: isImageLoaded ? 'transparent' : '#e2e2e2',
+        transition: 'opacity 0.3s ease-in-out',
+        opacity: isImageLoaded ? 1 : 0.7,
+      }}>
       <div className={overlayFooterContainerClassName}>
         {/* 오버레이 */}
         <BlurOverlay />

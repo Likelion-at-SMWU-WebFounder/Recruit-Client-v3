@@ -23,9 +23,9 @@ const TITLE_STYLES = {
     desktop: 'lg:text-[2.625rem]',
   },
   description: {
-    base: 'text-gray text-[1rem] font-semibold',
-    tablet: 'md:text-[1.5rem]',
-    desktop: 'lg:text-[1.75rem]',
+    base: 'text-gray hd18-semibold',
+    tablet: 'md:hd24-semibold',
+    desktop: 'lg:hd28-semibold',
     withIcon: 'pl-[0.38rem]',
   },
 } as const;

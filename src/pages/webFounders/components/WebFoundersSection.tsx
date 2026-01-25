@@ -14,9 +14,9 @@ const WEBFOUNDERS_SECTION_STYLES = {
     tablet: 'md:space-y-[2.5rem]',
   }, // 웹파운더즈 섹션 컨테이너 스타일
   titleText: {
-    base: 'text-navyblack text-[1.375rem] leading-[170%] font-bold',
-    tablet: 'md:text-[1.875rem]',
-    desktop: 'lg:text-[2.625rem]',
+    base: 'text-navyblack hd22',
+    tablet: 'md:hd30',
+    desktop: 'lg:hd42',
   }, // 웹파운더즈 섹션 타이틀 스타일
   grid: {
     base: 'grid grid-cols-2 gap-[1rem]',

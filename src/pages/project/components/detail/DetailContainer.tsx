@@ -6,21 +6,29 @@ interface DetailContainerProps {
   children: React.ReactNode;
   defaultOpen?: boolean; // 기본 열림 여부
   mobileOnlyToggle?: boolean; // true면 모바일에서만 토글, 데스크탑/태블릿에서는 항상 열림 설정
-  mode?: 'default' | 'light'; // default: shadow 있음, 배경 white | light: shadow 없음, 배경 '#F0F5FA' 설정
+  mode?: 'default' | 'light'; // default: shadow 있음, 배경 white | light: 모바일만 shadow 있음, 배경 white-dark 설정
 }
 
 const TOGGLE_STYLES = {
   wrapper: {
     default:
-      'w-full bg-white [box-shadow:1px_1px_8.4px_0_rgba(27,38,52,0.10)] px-[1.25rem] py-[0.9rem] md:pl-[1.5rem] md:py-[0.95rem] lg:pl-[1rem] lg:py-[1.25rem] rounded-[1.25rem] space-y-[1.75rem]',
+      'shadow-sub border border-gray-opacity20 w-full bg-white px-[1.25rem] py-[0.9rem] md:pl-[1.5rem] md:py-[0.95rem] lg:pl-[1rem] lg:py-[1.25rem] rounded-[1.25rem]',
     light:
-      'w-full bg-white [box-shadow:1px_1px_8.4px_0_rgba(27,38,52,0.10)] md:bg-[#F0F5FA] md:[box-shadow:none] px-[1.25rem] py-[0.9rem] md:pl-[1.5rem] md:py-[0.95rem] lg:pl-[1rem] lg:py-[1.25rem] rounded-[1.25rem] space-y-[1.75rem]',
+      'shadow-sub border border-gray-opacity20 md:border-none w-full bg-white md:bg-white-dark md:[box-shadow:none] px-[1.25rem] py-[0.9rem] md:pl-[1.5rem] md:py-[0.95rem] lg:pl-[1rem] lg:py-[1.25rem] rounded-[1.25rem]',
   },
   header: {
-    base: 'cursor-pointer flex items-center gap-[0.5rem] md:gap-[1rem] p-[0.6rem] md:p-[0.8rem] lg:p-[1rem]',
+    base: 'cursor-pointer w-full flex items-center gap-[0.5rem] md:gap-[1rem] p-[0.6rem] md:p-[0.8rem] lg:p-[1rem]',
     desktop: 'md:cursor-default md:pointer-events-none',
-    text: 'text-[1.125rem] font-semibold leading-[140%] md:text-[1.25rem] lg:text-[1.75rem]',
+    text: 'hd18-semibold md:hd20-semibold lg:hd28-semibold',
     icon: 'size-5 transition-transform duration-200 ease-out md:size-6 lg:size-7',
+  },
+  contentWrapper: {
+    base: 'grid min-h-0 transition-[grid-template-rows,opacity] duration-300 ease-out',
+    open: 'grid-rows-[1fr] opacity-100 mt-[1.75rem]',
+    closed: 'grid-rows-[0fr] opacity-0 mt-0',
+  },
+  contentInner: {
+    base: 'overflow-hidden',
   },
   content:
     'rounded-[1.5rem] text-[1rem] font-[400] leading-[170%] lg:leading-[190%] text-navyblack md:text-[1.125rem] lg:text-[1.25rem]',
@@ -59,6 +67,10 @@ const DetailContainer = ({
     TOGGLE_STYLES.header.base,
     mobileOnlyToggle && !isMobile && TOGGLE_STYLES.header.desktop,
   ].join(' ');
+  const contentWrapperClassName = [
+    TOGGLE_STYLES.contentWrapper.base,
+    isOpen ? TOGGLE_STYLES.contentWrapper.open : TOGGLE_STYLES.contentWrapper.closed,
+  ].join(' ');
   const contentClassName = TOGGLE_STYLES.content;
   const iconClassName = [
     TOGGLE_STYLES.header.icon,
@@ -86,7 +98,11 @@ const DetailContainer = ({
         <span className={textClassName}>{title}</span>
       </button>
 
-      {isOpen && <div className={contentClassName}>{children}</div>}
+      <div className={contentWrapperClassName}>
+        <div className={TOGGLE_STYLES.contentInner.base}>
+          <div className={contentClassName}>{children}</div>
+        </div>
+      </div>
     </div>
   );
 };

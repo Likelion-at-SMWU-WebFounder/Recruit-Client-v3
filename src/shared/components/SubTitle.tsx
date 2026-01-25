@@ -17,14 +17,14 @@ const SubTitle = ({ mode = 'light', subTitle, subDescription, align = 'center', 
 
   // 서브 타이틀 스타일 설정: 라이트 모드(light), 다크 모드(dark)
   const subTitleClass = {
-    light: 'text-navyblack/50 text-[0.875rem] md:text-[1rem] lg:text-[1.25rem]',
-    dark: 'text-white/50 text-[0.875rem] md:text-[1rem] lg:text-[1.25rem]',
+    light: 'text-navyblack/50 hd14-semibold md:hd16-semibold lg:hd20-semibold',
+    dark: 'text-white/50 hd14-semibold md:hd16-semibold lg:hd20-semibold',
   };
 
   // 서브 디스크립션 스타일 설정: 라이트 모드(light), 다크 모드(dark)
   const subDescriptionClass = {
-    light: 'text-navyblack text-[1.5rem] md:text-[2rem] lg:text-[2.625rem]',
-    dark: 'text-white text-[1.5rem] md:text-[2rem] lg:text-[2.625rem]',
+    light: 'hd24-semibold md:hd32-semibold lg:hd42-semibold text-navyblack',
+    dark: 'hd24-semibold md:hd32-semibold lg:hd42-semibold text-white',
   };
 
   return (

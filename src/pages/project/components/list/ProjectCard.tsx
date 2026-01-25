@@ -1,13 +1,16 @@
+import { useState, useEffect, useRef } from 'react';
 import Badge from '@pages/project/components/list/Badge';
+import Skeleton from '@/shared/components/loading/Skeleton';
 import { combineStyles } from '@shared/utils/combineStyles';
 
 interface ProjectCardProps {
-  thumbnail: string;
-  title: string;
-  summary: string;
-  no: string;
-  category: string;
-  onClick: () => void;
+  thumbnail: string; // 프로젝트 썸네일 이미지 URL
+  title: string; // 프로젝트 제목
+  summary: string; // 프로젝트 요약
+  no: string; // 프로젝트 기수 (ex. 9기 ~ 13기)
+  category: string; // 프로젝트 카테고리 (ex. 아이디어톤, 여기톤, 중앙해커톤, 4호선톤, 파이널프로젝트)
+  onClick: () => void; // 프로젝트 상세 페이지로 이동 함수
+  isFirstPage?: boolean; // 프로젝트 목록 첫 페이지 이미지 eager loading 여부
 }
 
 // 스타일 상수화: desktop이 없는 경우는 tablet과 같은 스타일을 사용
@@ -26,10 +29,12 @@ const CARD_STYLES = {
     tablet: 'md:h-[15.5rem] md:min-h-0 md:w-[27.5rem] md:min-w-0 md:rounded-[1.25rem]',
     desktop: 'lg:h-[18.25rem] lg:w-[32.375rem]',
   },
-  thumbnail: {
-    base: 'object-cover',
-    mobile: 'h-[6.25rem] min-h-[6.25rem] w-[6.25rem] min-w-[6.25rem] rounded-[0.34781rem]',
-    tablet: 'md:h-full md:min-h-0 md:w-full md:min-w-0 md:rounded-none ',
+  thumbnailImage: {
+    base: 'absolute inset-0 h-full w-full object-cover transition-opacity duration-300',
+    mobile: 'rounded-[0.34781rem]',
+    tablet: 'md:rounded-[1.25rem]',
+    loading: 'opacity-0',
+    loaded: 'opacity-100',
   },
   thumbnailOverlay: {
     base: 'absolute inset-0 flex items-center justify-center text-white text-[1rem] font-semibold opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100',
@@ -45,13 +50,13 @@ const CARD_STYLES = {
     tablet: 'md:space-y-[0.75rem]',
   },
   title: {
-    base: 'text-navyblack leading-[140%] font-bold text-[1.125rem] group-hover:text-blue transition-all duration-300 ease-out',
-    tablet: 'md:text-[1.5rem]',
-    desktop: 'lg:text-[1.75rem]',
+    base: 'hd18 text-navyblack group-hover:text-blue transition-all duration-300 ease-out',
+    tablet: 'md:hd24',
+    desktop: 'lg:hd28',
   },
   summary: {
-    base: 'text-gray line-clamp-1 leading-[160%] font-semibold text-[0.875rem]',
-    tablet: 'md:line-clamp-none md:text-[1.125rem] md:break-keep',
+    base: 'hd14-semibold text-gray line-clamp-1',
+    tablet: 'md:hd18-semibold md:line-clamp-none md:break-keep',
     desktop: 'lg:text-[1.5rem]',
   },
   badgeContainer: {
@@ -60,10 +65,16 @@ const CARD_STYLES = {
   },
 } as const;
 
-const ProjectCard = ({ thumbnail, title, summary, no, category, onClick }: ProjectCardProps) => {
+const ProjectCard = ({ thumbnail, title, summary, no, category, onClick, isFirstPage = false }: ProjectCardProps) => {
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
   const containerClassName = combineStyles(CARD_STYLES.container);
   const thumbnailWrapperClassName = combineStyles(CARD_STYLES.thumbnailWrapper);
-  const thumbnailClassName = combineStyles(CARD_STYLES.thumbnail);
+  const thumbnailImageClassName = [
+    combineStyles(CARD_STYLES.thumbnailImage),
+    isImageLoaded ? CARD_STYLES.thumbnailImage.loaded : CARD_STYLES.thumbnailImage.loading,
+  ].join(' ');
   const thumbnailOverlayClassName = combineStyles(CARD_STYLES.thumbnailOverlay);
   const contentClassName = combineStyles(CARD_STYLES.content);
   const textSectionClassName = combineStyles(CARD_STYLES.textSection);
@@ -71,10 +82,35 @@ const ProjectCard = ({ thumbnail, title, summary, no, category, onClick }: Proje
   const summaryClassName = combineStyles(CARD_STYLES.summary);
   const badgeContainerClassName = combineStyles(CARD_STYLES.badgeContainer);
 
+  // 이미지가 이미 로드되어 있는지 확인 (브라우저 캐시)
+  useEffect(() => {
+    setIsImageLoaded(false); // 이미지 로드 상태 초기화
+    if (imgRef.current?.complete) {
+      setIsImageLoaded(true); // 이미지 로드 상태 설정
+    }
+  }, [thumbnail]);
+
+  const handleImageLoad = () => {
+    setIsImageLoaded(true); // 이미지 로드 상태 설정
+  };
+
   return (
     <div onClick={onClick} className={containerClassName}>
       <div className={thumbnailWrapperClassName}>
-        <img src={thumbnail} alt={`${title} 프로젝트 썸네일`} className={thumbnailClassName} loading="lazy" />
+        {!isImageLoaded && (
+          <div className="absolute inset-0">
+            <Skeleton width="100%" height="100%" className="rounded-[0.34781rem] md:rounded-[1.25rem]" />
+          </div>
+        )}
+        <img
+          ref={imgRef}
+          src={thumbnail}
+          alt={`${title} 프로젝트 썸네일`}
+          className={thumbnailImageClassName}
+          loading={isFirstPage ? 'eager' : 'lazy'}
+          onLoad={handleImageLoad}
+          onError={() => setIsImageLoaded(true)} // 에러 시에도 로딩 상태 해제
+        />
         <div className={thumbnailOverlayClassName}>
           <div className="text-blue rounded-2xl bg-white px-[1.375rem] py-[0.625rem] leading-[140%] font-semibold md:text-[1.5rem] lg:text-[1.75rem]">
             프로젝트 더보기

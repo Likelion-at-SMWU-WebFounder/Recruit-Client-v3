@@ -14,7 +14,7 @@ const Footer = ({ mode = 'light', ...props }: FooterProps) => {
 
   // 기본 스타일 + 색상 모드
   const baseClasses = [
-    'w-screen inline-flex flex-col justify-center items-center',
+    'w-full inline-flex flex-col justify-center items-center',
     `${mode === 'light' ? 'bg-white' : 'bg-navyblack  '}`,
   ].join(' ');
 

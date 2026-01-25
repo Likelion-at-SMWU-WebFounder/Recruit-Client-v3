@@ -36,9 +36,9 @@ const useDesktopScroll = (totalCards: number, getIdByIndex: GetIdByIndex, setOpe
       const scrollTrigger = ScrollTrigger.create({
         trigger: section,
         start: 'top 10%',
-        end: `+=${(totalCards + 1) * 200}%`,
+        end: `+=${(totalCards + 1) * 120}%`,
         pin: true,
-        scrub: 1,
+        scrub: 0.3,
         onUpdate: (self) => {
           if (isClickScrollingRef.current) return;
 

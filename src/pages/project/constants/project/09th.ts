@@ -1,4 +1,4 @@
-const NINTH_PROJECT_IMAGE_PATH = import.meta.env.VITE_LOCAL_IMAGE_PATH + '/project/09th';
+const NINTH_PROJECT_IMAGE_PATH = import.meta.env.VITE_IMAGE_PATH + '/project/09th';
 
 export const ninthProjectsData = [
   {

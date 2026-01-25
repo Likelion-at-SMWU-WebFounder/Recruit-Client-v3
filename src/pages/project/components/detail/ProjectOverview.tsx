@@ -29,9 +29,8 @@ interface LinkIconProps {
 // 개요 컴포넌트 스타일
 const OVERVIEW_STYLES = {
   wrapper: 'flex flex-row gap-[1.25rem] md:gap-[2rem] lg:gap-[3.25rem]',
-  label:
-    'w-[5.625rem] md:w-[6.8125rem] text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] font-[600] text-navyblack leading-[140%]',
-  value: 'text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] font-[400] text-navyblack leading-[150%] break-words',
+  label: 'hd16 md:hd18-semibold lg:hd20-semibold w-[5.625rem] md:w-[6.8125rem] text-navyblack flex-shrink-0',
+  value: 'bd16 md:bd18 lg:bd20 text-navyblack break-words',
   grid: 'grid grid-cols-[auto,1fr] gap-x-[2.5rem] gap-y-[1.69rem] lg:gap-y-[2.62rem]',
   linkContainer: 'flex flex-wrap items-center gap-[0.94rem]',
   linkIcon: 'h-[2.5rem] w-[2.5rem] md:h-[3rem] md:w-[3rem] lg:h-[4.5rem] lg:w-[4.5rem]',
@@ -53,7 +52,7 @@ const LinkIcon = ({ url, iconPath, alt }: LinkIconProps) => {
 
   return (
     <a href={url} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center">
-      <img src={iconPath} alt={alt} className={OVERVIEW_STYLES.linkIcon} />
+      <img src={iconPath} alt={alt} className={OVERVIEW_STYLES.linkIcon} loading="lazy" />
     </a>
   );
 };
