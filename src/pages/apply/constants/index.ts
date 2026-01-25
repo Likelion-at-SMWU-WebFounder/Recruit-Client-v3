@@ -1,13 +1,5 @@
 import type { RecruitPartTypes, RecruitInfoTabTypes, ScheduleTypes, FAQTypes } from '../types/index';
 
-// Hero Section
-export const HERO_CONTENT = {
-  TITLE: '숙명여대 멋사와 함께할 13기 아기사자를 모집합니다!',
-  DESCRIPTION: '아래의 소개 및 일정을 반드시 읽고 지원서를 작성해주세요.',
-  APPLY_PERIOD: '13기 서류 접수 기간: 25.02.14~25.02.21',
-  BUTTON_TEXT: '지원하러 가기',
-};
-
 // 섹션 타이틀
 export const SECTION_TITLES = {
   RECRUIT_PART: '모집 파트',

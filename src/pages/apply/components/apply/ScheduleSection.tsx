@@ -1,5 +1,5 @@
-import { SECTION_TITLES, SCHEDULES } from '../constants/index';
-import iconStar from '../assets/icon-star.svg';
+import { SECTION_TITLES, SCHEDULES } from '../../constants/index';
+import iconStar from '../../assets/icon-star.svg';
 
 const ScheduleSection = () => {
   const mobileSchedules = SCHEDULES.slice(0, 4);

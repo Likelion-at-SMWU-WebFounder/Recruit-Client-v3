@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { SECTION_TITLES, RECRUIT_PARTS } from '../constants/index';
-import img3dOrange from '../assets/3d-orange.png';
-import img3dBlue from '../assets/3d-blue.png';
-import img3dGreen from '../assets/3d-green.png';
+import { SECTION_TITLES, RECRUIT_PARTS } from '../../constants/index';
+import img3dOrange from '../../assets/3d-orange.png';
+import img3dBlue from '../../assets/3d-blue.png';
+import img3dGreen from '../../assets/3d-green.png';
 
 const PART_IMAGES = [img3dOrange, img3dBlue, img3dGreen];
 
