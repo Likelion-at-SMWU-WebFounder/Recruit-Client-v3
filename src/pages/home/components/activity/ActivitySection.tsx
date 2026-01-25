@@ -13,7 +13,7 @@ const ACTIVITY_SECTION_STYLES = {
     mobile: 'hidden',
   },
   mobileSection: {
-    base: 'relative flex w-full max-w-[100vw] flex-col items-center justify-center gap-[2.7rem] ',
+    base: 'relative flex w-full max-w-[100vw] h-[100dvh] flex-col items-center justify-center  gap-[2.7rem] ',
     tablet: 'md:hidden',
   },
   textContainer: {
