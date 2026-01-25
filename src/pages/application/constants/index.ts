@@ -162,11 +162,6 @@ export const INTERVIEW_SCHEDULE: InterviewScheduleOption[] = [
       '20:00~20:40',
     ],
   },
-  // {
-  //   date: '03.17(금)',
-  //   dayOfWeek: '금',
-  //   times: ['17:00~17:40', '18:00~18:40', '19:00~19:40', '20:00~20:40'],
-  // },
 ];
 
 export const AGREEMENT_INFO = {
