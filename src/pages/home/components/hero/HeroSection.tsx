@@ -12,7 +12,7 @@ const HeroSection = () => {
 
   // 스크롤 대상 요소가 Home 페이지에 추가 후 수정 필요
   const handleScrollDown = () => {
-    const orbitSection = document.getElementById('??'); // id 값으로 수정 필요
+    const orbitSection = document.getElementById('about-section'); // id 값으로 수정 필요
     if (orbitSection) {
       orbitSection.scrollIntoView({ behavior: 'smooth' });
     }
