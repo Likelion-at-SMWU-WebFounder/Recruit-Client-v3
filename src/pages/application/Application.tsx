@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useApplicationForm } from './hooks/UseApplicationForm';
 import ApplicantInfoSection from './components/applicant/ApplicantInfoSection';
 import PartSelectionSection from './components/PartSelectionSection';
@@ -76,6 +76,49 @@ const Application = () => {
     await submitForm();
   };
 
+  // GTM 로직
+  // 폼 작성 시작 여부를 추적하는 Ref
+  const hasStartedRef = useRef(false);
+
+  // 1. 사용자가 어떤 입력이라도 시작했는지 감지
+  useEffect(() => {
+    const isAnyFieldFilled =
+      Object.values(formData.applicantInfo).some((v) => v.trim() !== '') ||
+      Object.values(formData.answers).some((v) => v.trim() !== '') ||
+      formData.part !== null;
+
+    if (isAnyFieldFilled && !hasStartedRef.current) {
+      hasStartedRef.current = true;
+    }
+  }, [formData]); // formData가 변경될 때마다 체크
+
+  // 2. 페이지 이탈(Abandon) 감지 로직
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      // 시작은 했지만, 성공 상태가 아닐 때만 이벤트 전송
+      if (hasStartedRef.current && submitStatus !== 'success') {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'application_abandon',
+          page_path: window.location.pathname,
+        });
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [submitStatus]); // 제출 상태에 따라 감지 여부 결정
+
+  // 3. 제출 성공 시 상태 해제 (이탈로 간주하지 않음)
+  useEffect(() => {
+    if (submitStatus === 'success') {
+      hasStartedRef.current = false;
+    }
+  }, [submitStatus]);
+
   return (
     <Layout menuMode="light" footerMode="light">
       <div className="flex min-h-screen w-full flex-col items-center overflow-x-hidden bg-[var(--color-white)] px-4 md:px-8">
@@ -90,6 +133,7 @@ const Application = () => {
           </header>
 
           <form
+            id="application-form"
             onSubmit={handleSubmit}
             className="mx-auto flex w-full flex-col items-center pb-[10rem] lg:max-w-[98.2rem]">
             <div className="flex w-full flex-col gap-[11.4375rem]">

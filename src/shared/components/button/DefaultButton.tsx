@@ -12,6 +12,7 @@ export interface DefaultButtonProps {
   onClick?: () => void;
   /** 버튼 배경 타입 (white: 하얀 버튼, blue: 파란 버튼) */
   backgroundType?: 'white' | 'blue';
+  id?: string;
 }
 
 const DefaultButton = ({
