@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { ROUTER_URL } from '@/shared/constants/url';
 
 import SubTitle from '@shared/components/SubTitle';
@@ -43,12 +44,39 @@ const PROJECT_SECTION_STYLES = {
 } as const;
 
 const ProjectSection = () => {
+  const [isAnimating, setIsAnimating] = useState(false);
+
   const sectionClassName = combineStyles(PROJECT_SECTION_STYLES.section);
   const scrollContainerClassName = combineStyles(PROJECT_SECTION_STYLES.scrollContainer);
   const scrollRowClassName = combineStyles(PROJECT_SECTION_STYLES.scrollRow);
   const firstRowClassName = combineStyles(PROJECT_SECTION_STYLES.firstRow);
   const secondRowClassName = combineStyles(PROJECT_SECTION_STYLES.secondRow);
   const projectCardClassName = combineStyles(PROJECT_SECTION_STYLES.projectCard);
+
+  // IntersectionObserver로 섹션이 뷰포트에 들어오면 애니메이션 시작
+  useEffect(() => {
+    const projectSection = document.getElementById('project-section');
+    if (!projectSection) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isAnimating) {
+            setIsAnimating(true);
+          }
+        });
+      },
+      {
+        threshold: 0.3, // 30% 이상 보이면 애니메이션 시작
+      }
+    );
+
+    observer.observe(projectSection);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [isAnimating]);
 
   const navigate = useNavigate();
   const handlePartClick = () => {
@@ -69,7 +97,7 @@ const ProjectSection = () => {
 
       <div className={`${scrollContainerClassName} lg:cursor-pointer`}>
         {/* 첫 번째 줄: 오른쪽으로 스크롤 */}
-        <div className={`${scrollRowClassName} ${firstRowClassName} project-scroll-right`}>
+        <div className={`${scrollRowClassName} ${firstRowClassName} ${isAnimating ? 'project-scroll-right' : ''}`}>
           {duplicatedFirstRow.map((imagePath, index) => (
             <div
               key={`first-${index}`}
@@ -81,7 +109,7 @@ const ProjectSection = () => {
         </div>
 
         {/* 두 번째 줄: 왼쪽으로 스크롤 - 모바일에서 안 보임 */}
-        <div className={`${scrollRowClassName} ${secondRowClassName} project-scroll-left`}>
+        <div className={`${scrollRowClassName} ${secondRowClassName} ${isAnimating ? 'project-scroll-left' : ''}`}>
           {duplicatedSecondRow.map((imagePath, index) => (
             <div
               key={`second-${index}`}
