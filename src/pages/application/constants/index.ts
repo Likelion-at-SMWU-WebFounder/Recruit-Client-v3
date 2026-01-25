@@ -1,7 +1,7 @@
 import type { FieldConfig, Question, InterviewScheduleOption } from '../types/index';
 
 // 1. 페이지 헤더 정보
-export const PAGE_TITLE = '숙명여대 멋사 13기 모집 서류 작성페이지 입니다.';
+export const PAGE_TITLE = '숙명여대 멋사 14기 모집 서류 작성페이지 입니다.';
 export const PAGE_SUBTITLE = '* 표시 문항은 필수 응답 항목입니다.';
 
 // 2. 지원자 정보 섹션 설정
@@ -60,7 +60,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'q1',
     number: 1,
-    question: "다양한 IT 동아리 중에서 '멋쟁이사자처럼 대학 13기'를 선택하고 지원하시게 된 이유를 작성해 주세요.",
+    question: "다양한 IT 동아리 중에서 '멋쟁이사자처럼 대학 14기'를 선택하고 지원하시게 된 이유를 작성해 주세요.",
     placeholder: '답변을 입력해 주세요.',
     type: 'long',
     maxLength: 600,
