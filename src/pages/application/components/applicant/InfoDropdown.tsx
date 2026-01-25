@@ -28,7 +28,7 @@ const InfoDropdown = ({ label, required, value, options, errorMessage, onChange 
       <div className="relative w-full">
         <div
           onClick={() => setIsOpen(!isOpen)}
-          className={`flex h-[3rem] w-full cursor-pointer items-center justify-between rounded-[1rem] bg-[var(--color-white)] px-[0.875rem] py-[0.625rem] transition-all md:h-[3.625rem] md:px-[1.5rem] md:py-[1rem] lg:h-[4.1875rem] lg:px-[1.375rem] lg:py-[1.0625rem] ${
+          className={`flex h-[2.8rem] w-full cursor-pointer items-center justify-between rounded-[1rem] bg-[var(--color-white)] px-[0.875rem] py-[0.625rem] transition-all md:h-[3.625rem] md:px-[1.5rem] md:py-[1rem] lg:h-[4.1875rem] lg:px-[1.375rem] lg:py-[1.0625rem] ${
             hasError
               ? 'border-2 border-[rgba(255,36,36,0.80)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)]'
               : 'border-2 border-[rgba(27,38,52,0.65)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)]'
@@ -69,11 +69,13 @@ const InfoDropdown = ({ label, required, value, options, errorMessage, onChange 
             ))}
           </div>
         )}
-        {hasError && (
-          <p className="mt-[0.75rem] text-[0.8125rem] font-medium tracking-[-0.0325rem] text-[rgba(255,36,36,0.80)] md:text-[1rem] md:tracking-[-0.02rem] lg:text-[1.25rem] lg:tracking-normal">
-            {errorMessage}
-          </p>
-        )}
+        <div className="mt-[0.75rem] min-h-[1.25rem] md:min-h-[1.5rem]">
+          {hasError && (
+            <p className="mt-[0.75rem] text-[0.8125rem] font-medium tracking-[-0.0325rem] text-[rgba(255,36,36,0.80)] md:text-[1rem] md:tracking-[-0.02rem] lg:text-[1.25rem] lg:tracking-normal">
+              {errorMessage}
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );

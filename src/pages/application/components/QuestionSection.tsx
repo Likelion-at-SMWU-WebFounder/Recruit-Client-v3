@@ -129,7 +129,7 @@ placeholder:text-[rgba(27, 38, 52, 0.45)]
                 value={answers[q7.id] || ''}
                 onChange={(e) => onAnswerChange(q7.id, e.target.value)}
                 rows={1}
-                className={`${inputBaseStyle} min-h-[4.3rem] overflow-hidden px-[0.875rem] py-[0.5625rem] md:min-h-[4rem] md:py-[0.9rem] lg:min-h-[5rem] lg:px-[1.375rem] lg:py-[1.0625rem] ${
+                className={`${inputBaseStyle} min-h-[4.7rem] overflow-hidden px-[0.875rem] py-[0.5625rem] md:min-h-[4rem] md:py-[0.9rem] lg:min-h-[5rem] lg:px-[1.375rem] lg:py-[1.0625rem] ${
                   hasError
                     ? 'border-[rgba(255,36,36,0.80)]'
                     : 'border-[rgba(27,38,52,0.65)] focus:border-[var(--color-blue)]'

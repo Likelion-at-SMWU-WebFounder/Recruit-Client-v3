@@ -67,9 +67,11 @@ const InterviewScheduleSection = ({
           onTouchEnd={handleTouchEnd}
           className="flex h-auto w-[19.375rem] flex-col rounded-[0.875rem] border-2 border-[rgba(27,38,52,0.65)] bg-[var(--color-white)] px-[2.8125rem] py-[1.875rem] shadow-[1px_1px_6.4px_0_rgba(27,38,52,0.10)] transition-all">
           <div className="mb-[1.25rem] flex w-full justify-end">
-            <span className="text-[1.25rem] font-semibold text-[var(--color-navyblack)]">
-              {INTERVIEW_SCHEDULE[activeIndex].date}
-            </span>
+            <div className="flex min-w-[5.5rem] justify-center">
+              <span className="text-[1.25rem] font-semibold text-[var(--color-navyblack)]">
+                {INTERVIEW_SCHEDULE[activeIndex].date}
+              </span>
+            </div>
           </div>
           <div className="flex flex-col gap-[0.75rem]">
             {INTERVIEW_SCHEDULE[activeIndex].times.map((time) => {
@@ -77,16 +79,18 @@ const InterviewScheduleSection = ({
               return (
                 <div key={time} className="flex items-center justify-between self-stretch">
                   <span className="text-[1rem] font-medium text-[var(--color-navyblack)]">{time}</span>
-                  <div
-                    onClick={() => onScheduleChange(INTERVIEW_SCHEDULE[activeIndex].date, time, !checked)}
-                    className={`relative flex aspect-square w-[2.125rem] cursor-pointer items-center justify-center rounded-[0.5rem] border-2 transition-all ${
-                      checked
-                        ? 'border-[var(--color-navyblack)] bg-[var(--color-white)] drop-shadow-[1px_1px_8.4px_rgba(27,38,52,0.10)]'
-                        : hasError
-                          ? 'border-[rgba(255,36,36,0.80)] bg-white'
-                          : 'border-[rgba(27,38,52,0.65)] bg-[var(--color-white)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)]'
-                    }`}>
-                    {checked && <CheckMark />}
+                  <div className="flex min-w-[5.5rem] justify-center">
+                    <div
+                      onClick={() => onScheduleChange(INTERVIEW_SCHEDULE[activeIndex].date, time, !checked)}
+                      className={`relative flex aspect-square w-[2.125rem] cursor-pointer items-center justify-center rounded-[0.5rem] border-2 transition-all ${
+                        checked
+                          ? 'border-[var(--color-navyblack)] bg-[var(--color-white)] drop-shadow-[1px_1px_8.4px_rgba(27,38,52,0.10)]'
+                          : hasError
+                            ? 'border-[rgba(255,36,36,0.80)] bg-white'
+                            : 'border-[rgba(27,38,52,0.65)] bg-[var(--color-white)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)]'
+                      }`}>
+                      {checked && <CheckMark />}
+                    </div>
                   </div>
                 </div>
               );

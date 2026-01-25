@@ -6,7 +6,7 @@ import ReusableBackground from '../background/ReusableBackground';
 import DefaultButton from '@/shared/components/button/DefaultButton';
 import '../../styles/HomeSection.css';
 
-const CURRENT_MODE = 5;
+const CURRENT_MODE = 2;
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -65,7 +65,7 @@ const HeroSection = () => {
     <ReusableBackground className="h-[53.25rem] md:h-[85.375rem] lg:h-[67.5rem]" isAnimated={true}>
       <div className="flex flex-col items-center gap-[2.5rem] md:gap-[3.5rem] lg:gap-[4.375rem]">
         <div className="flex flex-col items-center gap-[2rem] md:gap-[3rem] lg:gap-[4.375rem]">
-          <h1 className="text-center text-[1.5rem] leading-[140%] font-bold whitespace-pre-line text-[#F7FAFF] md:text-[2.25rem] lg:text-[3.5625rem]">
+          <h1 className="text-center text-[1rem] leading-[140%] font-bold whitespace-pre-line text-[#F7FAFF] md:text-[2.25rem] lg:text-[3.5625rem]">
             {currentContent.TITLE}
           </h1>
 
@@ -81,7 +81,7 @@ const HeroSection = () => {
           </div>
         </div>
         {currentContent.BUTTON_TEXT && (
-          <DefaultButton onClick={handleApplyClick} backgroundType="white" border="none" isIcon={true}>
+          <DefaultButton onClick={handleApplyClick} backgroundType="white" border="none" isIcon={true} id="cta-apply">
             {currentContent.BUTTON_TEXT}
           </DefaultButton>
         )}
