@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SECTION_TITLES, FAQS } from '../constants/index';
+import { SECTION_TITLES, FAQS } from '../../constants/index';
 
 const FAQSection = () => {
   const [openId, setOpenId] = useState<string | null>('f1');

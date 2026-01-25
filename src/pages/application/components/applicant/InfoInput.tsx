@@ -28,7 +28,7 @@ const InfoInput = ({ label, required, placeholder, value, subText, errorMessage,
           placeholder={placeholder}
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className={`h-[2.5rem] w-full rounded-[1rem] bg-[var(--color-white)] px-[0.875rem] py-[0.625rem] text-[1rem] font-medium text-[var(--color-navyblack)] transition-all outline-none placeholder:text-[rgba(27,38,52,0.45)] md:h-[3.625rem] md:px-[1.5rem] md:py-[1rem] md:text-[1.25rem] lg:h-[4.1875rem] lg:px-[1.375rem] lg:py-[1.0625rem] lg:text-[1.75rem] ${
+          className={`h-[3em] w-full rounded-[1rem] bg-[var(--color-white)] px-[0.875rem] py-[0.625rem] text-[1.125rem] font-medium text-[var(--color-navyblack)] transition-all outline-none placeholder:text-[rgba(27,38,52,0.45)] md:h-[3.625rem] md:px-[1.5rem] md:py-[1rem] md:text-[1.375rem] lg:h-[4.1875rem] lg:px-[1.375rem] lg:py-[1.0625rem] lg:text-[1.75rem] ${
             hasError
               ? 'border-2 border-[rgba(255,36,36,0.80)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)]'
               : 'border-2 border-[rgba(27,38,52,0.65)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)] focus:border-[var(--color-navyblack)]'
