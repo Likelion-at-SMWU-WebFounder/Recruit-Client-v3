@@ -224,6 +224,7 @@ export const APPLICANT_ERRORS = {
   phone: '전화번호를 입력해주세요.',
   phoneFormat: '전화번호 형식이 올바르지 않습니다.',
   email: '이메일을 입력해주세요.',
+  emailFormat: '이메일 형식이 올바르지 않습니다.',
   verificationCode: '재/휴학여부를 선택해주세요.',
 };
 
@@ -232,7 +233,7 @@ export const PART_ERRORS = {
 };
 
 export const QUESTION_ERRORS = {
-  requiredSuffix: '번 문항을 입력해주세요.',
+  requiredSuffix: '내용을 입력해주세요.',
 };
 
 export const INTERVIEW_ERRORS = {

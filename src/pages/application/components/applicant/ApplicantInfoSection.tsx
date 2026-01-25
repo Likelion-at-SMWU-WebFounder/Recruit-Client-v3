@@ -22,6 +22,11 @@ const ApplicantInfoSection = ({ data, onChange, isSubmitted }: ApplicantInfoSect
       const phoneRegex = /^010-\d{3,4}-\d{4}$/;
       if (!phoneRegex.test(value)) return APPLICANT_ERRORS.phoneFormat;
     }
+    if (fieldId === 'email') {
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailRegex.test(value)) return APPLICANT_ERRORS.emailFormat;
+    }
+
     return '';
   };
 

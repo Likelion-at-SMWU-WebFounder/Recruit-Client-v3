@@ -34,6 +34,7 @@ const Application = () => {
     // 전체 유효성 검증
     const isApplicantValid = Object.values(formData.applicantInfo).every((v) => v.trim() !== '');
     const isPhoneValid = /^010-\d{3,4}-\d{4}$/.test(formData.applicantInfo.phone);
+    const isEmailValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.applicantInfo.email);
     const isPartValid = !!formData.part;
     const isQuestionsValid = QUESTIONS.filter((q) => q.required).every((q) => formData.answers[q.id]?.trim() !== '');
     const isInterviewValid = Object.values(formData.interviewSchedule).some((t) => t.length > 0);
@@ -43,6 +44,7 @@ const Application = () => {
     if (
       isApplicantValid &&
       isPhoneValid &&
+      isEmailValid &&
       isPartValid &&
       isQuestionsValid &&
       isInterviewValid &&

@@ -19,7 +19,7 @@ const QuestionSection = ({ answers, onAnswerChange, isSubmitted }: QuestionSecti
   const getErrorMessage = (question: (typeof QUESTIONS)[0]) => {
     const value = answers[question.id] || '';
     if (question.required && isSubmitted && !value.trim()) {
-      return `${question.number}${QUESTION_ERRORS.requiredSuffix}`;
+      return QUESTION_ERRORS.requiredSuffix;
     }
     return '';
   };
