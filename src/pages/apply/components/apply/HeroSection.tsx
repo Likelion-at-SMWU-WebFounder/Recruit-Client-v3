@@ -81,7 +81,7 @@ const HeroSection = () => {
           </div>
         </div>
         {currentContent.BUTTON_TEXT && (
-          <DefaultButton onClick={handleApplyClick} backgroundType="white" border="none" isIcon={true}>
+          <DefaultButton onClick={handleApplyClick} backgroundType="white" border="none" isIcon={true} id="cta-apply">
             {currentContent.BUTTON_TEXT}
           </DefaultButton>
         )}
