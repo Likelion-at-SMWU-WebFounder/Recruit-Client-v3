@@ -15,11 +15,12 @@ import { PART_DATA, PART_BUTTON_TEXT } from '@/pages/home/constants/part';
 const PART_SECTION_STYLES = {
   section: {
     base: 'w-full max-w-[100vw] flex flex-col justify-center items-center py-[6.25rem]',
-    tablet: 'md:pt-[12.56rem] md:pb-[15.5rem]',
-    desktop: 'lg:py-[10.25rem]',
+    desktop: 'lg:gap-[3.25rem]',
+    tablet: 'md:gap-[8.5rem]',
+    mobile: 'gap-[1rem]',
   },
   mobileCarousel: {
-    base: 'relative flex justify-center items-center w-[22rem] h-[25rem] p-[1rem]',
+    base: 'relative flex justify-center items-center w-[22rem] h-[25rem] p-[1rem] ',
     tablet: 'md:hidden',
   },
   mobileScroll: {
@@ -32,7 +33,7 @@ const PART_SECTION_STYLES = {
     base: 'absolute inset-y-0 right-4 flex items-center z-20',
   },
   desktopGrid: {
-    base: 'md:mt-[6.25rem] md:flex md:justify-center',
+    base: 'md:flex md:justify-center',
     mobile: 'hidden',
   },
   grid: {
