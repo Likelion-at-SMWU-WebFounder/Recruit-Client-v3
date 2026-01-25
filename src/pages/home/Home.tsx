@@ -1,13 +1,26 @@
 import { useState, useEffect } from 'react';
+import { combineStyles } from '@shared/utils/combineStyles';
 import Layout from '@shared/components/Layout';
 import HeroSection from '@pages/home/components/hero/HeroSection';
 import AboutSection from '@pages/home/components/about/AboutSection';
 import ActivitySection from '@pages/home/components/activity/ActivitySection';
 import YearSection from '@pages/home/components/year/YearSection';
 import PartSection from '@pages/home/components/part/PartSection';
+import ProjectSection from '@pages/home/components/project/ProjectSection';
+
+// Home 페이지 스타일 상수화
+const HOME_STYLES = {
+  scrollContainer: {
+    base: 'scrollbar-hidden h-[100dvh] max-h-[100dvh] w-full snap-y snap-mandatory overflow-y-scroll',
+  },
+  section: {
+    base: 'relative h-[100dvh] snap-start overflow-hidden',
+  },
+} as const;
 
 const Home = () => {
-  const sectionClasses = 'relative h-[100dvh] snap-start overflow-hidden';
+  const scrollContainerClassName = combineStyles(HOME_STYLES.scrollContainer);
+  const sectionClassName = combineStyles(HOME_STYLES.section);
 
   const [menuMode, setMenuMode] = useState<'light' | 'dark'>('light');
 
@@ -41,20 +54,25 @@ const Home = () => {
 
   return (
     <Layout menuMode={menuMode} footerMode="light">
-      <div id="hero-section" className={sectionClasses}>
-        <HeroSection />
+      <div className={scrollContainerClassName}>
+        <div id="hero-section" className={sectionClassName}>
+          <HeroSection />
+        </div>
+        <div id="about-section" className={sectionClassName}>
+          <AboutSection />
+        </div>
+        <div id="activity-section" className={sectionClassName}>
+          <ActivitySection />
+        </div>
+        <div id="year-section" className={sectionClassName}>
+          <YearSection />
+        </div>
+        <div id="part-section" className={sectionClassName}>
+          <PartSection />
+        </div>
       </div>
-      <div id="about-section" className={sectionClasses}>
-        <AboutSection />
-      </div>
-      <div id="activity-section" className={sectionClasses}>
-        <ActivitySection />
-      </div>
-      <div id="year-section" className={sectionClasses}>
-        <YearSection />
-      </div>
-      <div id="part-section" className={sectionClasses}>
-        <PartSection />
+      <div id="project-section" className={sectionClassName}>
+        <ProjectSection />
       </div>
     </Layout>
   );

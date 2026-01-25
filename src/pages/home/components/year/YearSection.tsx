@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import SubTitle from '@shared/components/SubTitle';
 import { SUB_TITLE } from '@pages/home/constants/index';
 import { combineStyles } from '@shared/utils/combineStyles';
@@ -51,6 +52,8 @@ const YEAR_SECTION_STYLES = {
 } as const;
 
 const YearSection = () => {
+  const [isAnimating, setIsAnimating] = useState(false);
+
   const containerClassName = combineStyles(YEAR_SECTION_STYLES.container);
   const textContainerClassName = combineStyles(YEAR_SECTION_STYLES.textContainer);
   const lineContainerClassName = combineStyles(YEAR_SECTION_STYLES.lineContainer);
@@ -62,6 +65,31 @@ const YearSection = () => {
   const contentRow1ClassName = combineStyles(YEAR_SECTION_STYLES.contentRow1);
   const contentRow2ClassName = combineStyles(YEAR_SECTION_STYLES.contentRow2);
 
+  // IntersectionObserver로 섹션이 뷰포트에 들어오면 애니메이션 시작
+  useEffect(() => {
+    const yearSection = document.getElementById('year-section');
+    if (!yearSection) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isAnimating) {
+            setIsAnimating(true);
+          }
+        });
+      },
+      {
+        threshold: 0.3, // 30% 이상 보이면 애니메이션 시작
+      }
+    );
+
+    observer.observe(yearSection);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [isAnimating]);
+
   return (
     <>
       {/* 데스크톱, 태블릿 */}
@@ -72,9 +100,11 @@ const YearSection = () => {
 
         {/* 애니메이션 선 */}
         <div className={lineContainerClassName}>
-          <div className={`${lineClassName} ${lineResponsiveClassName}`} style={{ animationDelay: '0s' }}></div>
           <div
-            className={`${lineReverseClassName} ${lineResponsiveClassName}`}
+            className={`${isAnimating ? lineClassName : ''} ${lineResponsiveClassName}`}
+            style={{ animationDelay: '0s' }}></div>
+          <div
+            className={`${isAnimating ? lineReverseClassName : ''} ${lineResponsiveClassName}`}
             style={{ animationDelay: '0.6s' }}></div>
         </div>
 
