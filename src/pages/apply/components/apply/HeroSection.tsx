@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { RECRUITMENT_PHASES, HERO_PHASE_CONTENT, type RecruitmentPhase } from '../../constants/heroSection';
 // import { PHASE_SCHEDULE } from '../constants/heroSection';
 import ReusableBackground from '../background/ReusableBackground';
-import GotoIcon from '../icon/GotoIcon';
+import DefaultButton from '@/shared/components/button/DefaultButton';
 import '../../styles/HomeSection.css';
 
 const CURRENT_MODE = 5;
@@ -80,16 +80,10 @@ const HeroSection = () => {
             )}
           </div>
         </div>
-
         {currentContent.BUTTON_TEXT && (
-          <button
-            onClick={handleApplyClick}
-            className="flex cursor-pointer items-center justify-center gap-[0.625rem] rounded-[1rem] bg-[#F7FAFF] px-5 py-3 transition-colors hover:bg-[#F7FAFF]/90 md:px-7 md:py-4 lg:px-[1.375rem] lg:py-[0.9375rem]">
-            <span className="text-[1.125rem] font-bold text-[#4284FF] md:text-[1.375rem] lg:text-[1.75rem]">
-              {currentContent.BUTTON_TEXT}
-            </span>
-            <GotoIcon className="h-[0.5rem] w-[0.4rem] md:h-[0.7rem] md:w-[0.6rem] lg:h-[0.875rem] lg:w-[0.75rem]" />
-          </button>
+          <DefaultButton onClick={handleApplyClick} backgroundType="white" border="none" isIcon={true}>
+            {currentContent.BUTTON_TEXT}
+          </DefaultButton>
         )}
       </div>
     </ReusableBackground>

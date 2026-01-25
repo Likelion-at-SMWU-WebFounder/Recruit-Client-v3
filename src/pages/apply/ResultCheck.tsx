@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Layout from '@/shared/components/Layout';
 import ResultBackground from './components/background/ResultBackground';
 import { RESULT_CHECK_CONTENT } from './constants/resultCheck';
+import DefaultButton from '@/shared/components/button/DefaultButton';
 
 const INPUT_STYLE = `
   flex w-full items-center rounded-[1rem] border-[1.5px] bg-[#F7FAFF]/01 
@@ -10,14 +11,6 @@ const INPUT_STYLE = `
   text-[#F7FAFF] outline-none transition-all
   text-[0.9375rem] md:text-[1.375rem] lg:text-[1.5rem]
   placeholder:text-[#F7FAFF]/55 shadow-[1px_1px_8.4px_2px_rgba(247,250,255,0.05)]
-`;
-
-const BUTTON_STYLE = `
-  flex items-center justify-center rounded-[1rem] bg-[#F7FAFF] 
-  text-[#4284FF] font-bold transition-all cursor-pointer
-  px-[1.5rem] py-[0.7rem] md:px-[2rem] md:py-[0.9375rem]
-  text-[1rem] md:text-[1.375rem] lg:text-[1.5rem]
-  hover:bg-[#4284FF] hover:text-[#F7FAFF]
 `;
 
 const ERROR_TEXT_STYLE = `
@@ -138,10 +131,9 @@ const ResultCheck = () => {
                 );
               })}
             </div>
-
-            <button type="button" className={BUTTON_STYLE} onClick={handleCheck}>
+            <DefaultButton onClick={handleCheck} isIcon={false} backgroundType="white" border="none">
               {RESULT_CHECK_CONTENT.BUTTON}
-            </button>
+            </DefaultButton>
           </div>
         </div>
       </ResultBackground>
