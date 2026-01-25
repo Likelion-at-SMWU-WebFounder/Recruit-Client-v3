@@ -100,7 +100,7 @@ const ProjectSection = () => {
         <div className={`${scrollRowClassName} ${firstRowClassName} ${isAnimating ? 'project-scroll-right' : ''}`}>
           {duplicatedFirstRow.map((imagePath, index) => (
             <div
-              key={`first-${index}`}
+              key={`first-${index}-${imagePath}`}
               className={projectCardClassName}
               style={{ backgroundImage: `url(${imagePath})` }}
               onClick={handlePartClick}
@@ -112,7 +112,7 @@ const ProjectSection = () => {
         <div className={`${scrollRowClassName} ${secondRowClassName} ${isAnimating ? 'project-scroll-left' : ''}`}>
           {duplicatedSecondRow.map((imagePath, index) => (
             <div
-              key={`second-${index}`}
+              key={`second-${index}-${imagePath}`}
               className={projectCardClassName}
               style={{ backgroundImage: `url(${imagePath})` }}
               onClick={handlePartClick}
