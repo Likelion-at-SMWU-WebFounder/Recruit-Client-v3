@@ -322,4 +322,31 @@
     transform: scaleX(0);
     animation: drawReverse 1.2s ease-out forwards;
   }
+
+  /* project 무한 스크롤 애니메이션 */
+  @keyframes scrollRight {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-33.333%);
+    }
+  }
+
+  @keyframes scrollLeft {
+    0% {
+      transform: translateX(-33.333%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .project-scroll-right {
+    animation: scrollRight 120s linear infinite;
+  }
+
+  .project-scroll-left {
+    animation: scrollLeft 120s linear infinite;
+  }
 }
