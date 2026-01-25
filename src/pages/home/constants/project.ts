@@ -1,7 +1,7 @@
 export const PROJECT_BUTTON_TEXT = '프로젝트 더보기';
 
 /* getProjectImages.ts에서 사용하는 프로젝트 이미지 경로 상수 */
-const PROJECT_IMAGE_PATH = import.meta.env.VITE_IMAGE_PATH + '/project';
+const PROJECT_IMAGE_PATH = (import.meta.env.VITE_IMAGE_PATH ?? '') + '/project';
 export const PROJECT_IMAGES = {
   // 13기
   '13th': {
