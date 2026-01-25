@@ -118,7 +118,7 @@ export const QUESTIONS: Question[] = [
     id: 'q7',
     number: 7,
     question: '만약 기술 블로그, GitHub, 포트폴리오 등 제출하시고 싶은 자료가 있다면 링크를 기재해 주세요.',
-    placeholder: '포트폴리오 링크가 외부에서 접근 가능한 상태(Public 등)인지 확인 후 입력해 주세요.',
+    placeholder: '포트폴리오 링크가 외부에서 접근 가능한 상태인지 확인 후 입력해 주세요.',
     type: 'short',
     required: false,
   },

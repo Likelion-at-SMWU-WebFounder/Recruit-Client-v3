@@ -34,7 +34,7 @@ const SubmitModal = ({ isOpen, onClose, onConfirm, partName, submitStatus }: Sub
         <div className="flex flex-col items-center gap-8 lg:gap-[2.375rem]">
           <div className="flex w-full flex-col gap-6 lg:gap-[2rem]">
             {/* 제목 영역 */}
-            <h2 className="text-[1.75rem] font-semibold break-keep text-[var(--color-navyblack)] md:text-[2rem] lg:text-[2.25rem]">
+            <h2 className="text-[1.375rem] font-semibold break-keep text-[var(--color-navyblack)] md:text-[2rem] lg:text-[2.25rem]">
               {isSuccess ? SUCCESS_MODAL.TITLE : isDuplicate ? DUPLICATE_MODAL.TITLE : SUBMIT_MODAL.TITLE}
             </h2>
             {/* 본문 영역 */}
