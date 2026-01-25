@@ -64,7 +64,7 @@ const PartSelectionSection = ({
         {/* 2. 프로그래머스 수강 인증 영역 */}
         <div className="flex w-full flex-col gap-[1rem] md:w-[24.75rem] md:gap-[1.375rem] lg:w-[40.3125rem]">
           <div className="flex w-full items-end justify-between">
-            <span className="text-[1.25rem] font-semibold text-[var(--color-navyblack)] md:text-[1.625rem] lg:text-[2rem]">
+            <span className="text-[1.25rem] font-semibold text-[var(--color-navyblack)] md:text-[1.5rem] lg:text-[2rem]">
               {PROGRAMMERS_INFO.title}
             </span>
             <a
@@ -80,13 +80,17 @@ const PartSelectionSection = ({
             <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" accept=".zip" />
 
             {programmersCompleted ? (
-              <div className="flex w-full items-center gap-[0.75rem] rounded-[0.9375rem] border-2 border-[#F0F5FA] bg-[#F0F5FA] p-[0.625rem_0.5625rem_0.4375rem_0.5625rem] shadow-[1px_1px_6.4px_0_rgba(27,38,52,0.10)] lg:h-[4.1875rem]">
-                <img src={ClipIcon} alt="clip" className="h-[2.3125rem] w-[2.3125rem]" />
+              <div className="flex h-[3rem] w-full items-center gap-[0.75rem] rounded-[0.9375rem] border-2 border-[#F0F5FA] bg-[#F0F5FA] p-[0.625rem_0.5625rem_0.625rem_0.5625rem] shadow-[1px_1px_6.4px_0_rgba(27,38,52,0.10)] md:h-[3.625rem] lg:h-[4.1875rem]">
+                <img
+                  src={ClipIcon}
+                  alt="clip"
+                  className="md:w[-1.875rem] h-[1.375rem] w-[1.375rem] md:h-[1.875rem] lg:h-[2.3125rem] lg:w-[2.3125rem]"
+                />
                 <div className="flex flex-1 flex-col overflow-hidden leading-[140%]">
-                  <span className="truncate text-[1.125rem] font-medium text-[var(--color-navyblack)] lg:text-[1.375rem]">
+                  <span className="truncate text-[0.8125rem] font-medium text-[var(--color-navyblack)] md:text-[1rem] lg:text-[1.375rem]">
                     {fileInfo.name}
                   </span>
-                  <span className="text-[0.875rem] font-medium text-[rgba(27,38,52,0.65)] lg:text-[1rem]">
+                  <span className="text-[0.625rem] font-medium text-[rgba(27,38,52,0.65)] md:text-[0.75rem] lg:text-[1rem]">
                     {fileInfo.size}
                   </span>
                 </div>
@@ -94,15 +98,19 @@ const PartSelectionSection = ({
                   type="button"
                   onClick={handleDeleteFile}
                   className="flex shrink-0 cursor-pointer items-center justify-center">
-                  <img src={DeleteIcon} alt="delete" className="aspect-square h-[1.0625rem] w-[1.0625rem]" />
+                  <img
+                    src={DeleteIcon}
+                    alt="delete"
+                    className="aspect-square h-[0.6875rem] w-[0.6875rem] md:h-[0.875rem] md:w-[0.875rem] lg:h-[1.0625rem] lg:w-[1.0625rem]"
+                  />
                 </button>
               </div>
             ) : (
               <button
                 type="button"
                 onClick={handleUploadClick}
-                className="group flex h-[2.5rem] w-full cursor-pointer items-center justify-center rounded-[1rem] border-2 border-[var(--color-blue)] bg-[var(--color-white)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)] transition-all hover:bg-[var(--color-blue)] md:h-[3.625rem] lg:h-[4.1875rem]">
-                <span className="truncate text-[1rem] font-bold text-[var(--color-blue)] group-hover:text-white md:text-[1.25rem] lg:text-[1.75rem]">
+                className="group flex h-[3rem] w-full cursor-pointer items-center justify-center rounded-[1rem] border-2 border-[var(--color-blue)] bg-[var(--color-white)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)] transition-all hover:bg-[var(--color-blue)] md:h-[3.625rem] lg:h-[4.1875rem]">
+                <span className="truncate text-[1.125rem] font-bold text-[var(--color-blue)] group-hover:text-white md:text-[1.375rem] lg:text-[1.75rem]">
                   {PROGRAMMERS_INFO.uploadDefault}
                 </span>
               </button>

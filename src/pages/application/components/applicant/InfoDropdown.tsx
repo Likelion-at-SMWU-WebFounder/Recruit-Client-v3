@@ -28,13 +28,13 @@ const InfoDropdown = ({ label, required, value, options, errorMessage, onChange 
       <div className="relative w-full">
         <div
           onClick={() => setIsOpen(!isOpen)}
-          className={`flex h-[2.5rem] w-full cursor-pointer items-center justify-between rounded-[1rem] bg-[var(--color-white)] px-[0.875rem] py-[0.625rem] transition-all md:h-[3.625rem] md:px-[1.5rem] md:py-[1rem] lg:h-[4.1875rem] lg:px-[1.375rem] lg:py-[1.0625rem] ${
+          className={`flex h-[3rem] w-full cursor-pointer items-center justify-between rounded-[1rem] bg-[var(--color-white)] px-[0.875rem] py-[0.625rem] transition-all md:h-[3.625rem] md:px-[1.5rem] md:py-[1rem] lg:h-[4.1875rem] lg:px-[1.375rem] lg:py-[1.0625rem] ${
             hasError
               ? 'border-2 border-[rgba(255,36,36,0.80)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)]'
               : 'border-2 border-[rgba(27,38,52,0.65)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)]'
           }`}>
           <span
-            className={`text-[1rem] font-medium md:text-[1.25rem] lg:text-[1.75rem] ${
+            className={`text-[1.125rem] font-medium md:text-[1.375rem] lg:text-[1.75rem] ${
               value ? 'text-[var(--color-navyblack)]' : 'text-[rgba(27,38,52,0.45)]'
             }`}>
             {value || '선택'}

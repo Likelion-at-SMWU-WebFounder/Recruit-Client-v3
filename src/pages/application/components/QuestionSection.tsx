@@ -11,7 +11,7 @@ const QuestionSection = ({ answers, onAnswerChange, isSubmitted }: QuestionSecti
   const inputBaseStyle = `
 w-full rounded-[1rem] border-2 bg-[var(--color-white)]
 text-[var(--color-navyblack)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)] transition-all outline-none
-text-[1rem] md:text-[1.375rem] lg:text-[1.75rem]
+text-[1.125rem] md:text-[1.375rem] lg:text-[1.75rem]
 font-medium leading-normal
 placeholder:text-[rgba(27, 38, 52, 0.45)]
 `;
@@ -129,7 +129,7 @@ placeholder:text-[rgba(27, 38, 52, 0.45)]
                 value={answers[q7.id] || ''}
                 onChange={(e) => onAnswerChange(q7.id, e.target.value)}
                 rows={1}
-                className={`${inputBaseStyle} min-h-[4.3rem] overflow-hidden px-[0.875rem] py-[0.5625rem] md:py-[0.9rem] lg:px-[1.375rem] lg:py-[1.0625rem] ${
+                className={`${inputBaseStyle} min-h-[4.3rem] overflow-hidden px-[0.875rem] py-[0.5625rem] md:min-h-[4rem] md:py-[0.9rem] lg:min-h-[5rem] lg:px-[1.375rem] lg:py-[1.0625rem] ${
                   hasError
                     ? 'border-[rgba(255,36,36,0.80)]'
                     : 'border-[rgba(27,38,52,0.65)] focus:border-[var(--color-blue)]'
