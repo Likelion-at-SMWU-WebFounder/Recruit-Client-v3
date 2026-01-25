@@ -54,13 +54,23 @@ const PartSection = () => {
   const gridClassName = combineStyles(PART_SECTION_STYLES.grid);
 
   const scrollToCard = (index: number) => {
-    if (carouselRef.current) {
-      const cardWidth = carouselRef.current.children[0]?.clientWidth || 0;
-      const gap = 16; // 1rem = 16px
-      const scrollPosition = index * (cardWidth + gap);
-      carouselRef.current.scrollTo({ left: scrollPosition, behavior: 'smooth' });
-      setCurrentIndex(index);
-    }
+    const container = carouselRef.current;
+    const target = container?.children[index] as HTMLElement | undefined;
+    if (!container || !target) return;
+    target.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    setCurrentIndex(index);
+  };
+
+  const handleScroll = () => {
+    const container = carouselRef.current;
+    if (!container) return;
+    const children = Array.from(container.children) as HTMLElement[];
+    const closestIndex = children.reduce((bestIdx, el, idx) => {
+      const dist = Math.abs(el.offsetLeft - container.scrollLeft);
+      const bestDist = Math.abs(children[bestIdx].offsetLeft - container.scrollLeft);
+      return dist < bestDist ? idx : bestIdx;
+    }, 0);
+    setCurrentIndex(closestIndex);
   };
 
   const handlePrevious = () => {
@@ -89,7 +99,7 @@ const PartSection = () => {
 
       {/* 모바일: 캐러샐 */}
       <div className={mobileCarouselClassName}>
-        <div ref={carouselRef} className={mobileScrollClassName}>
+        <div ref={carouselRef} className={mobileScrollClassName} onScroll={handleScroll}>
           {PART_DATA.map((data) => (
             <div key={data.id} className="flex-shrink-0 snap-start px-[1rem]">
               <PartCard part={data.part} explain={data.explain} cardImage={data.image} />
