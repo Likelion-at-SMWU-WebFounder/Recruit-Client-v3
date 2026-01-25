@@ -6,7 +6,7 @@ import { SUB_TITLE, TEXT_CONTENT_CLASSES } from '@pages/home/constants/index';
 import { ABOUT_BUTTON_TEXT, ABOUT_CONTENT_TEXT } from '@pages/home/constants/about';
 
 import AboutCard from '@pages/home/components/about/AboutCard';
-import DefaultButtonWhite from '@shared/components/button/DefaultButtonWhite';
+import DefaultButton from '@shared/components/button/DefaultButton';
 
 const DESKTOP_TABLET_SECTION_CLASS =
   'hidden w-full max-w-[100vw] h-[100dvh] pt-[5rem] md:inline-flex md:flex-col md:justify-center md:items-center';
@@ -30,7 +30,9 @@ const AboutSection = () => {
         </div>
         <AboutCard />
         <div className="mt-[2rem]">
-          <DefaultButtonWhite onClick={handleAboutClick}>{ABOUT_BUTTON_TEXT.desktop_tablet}</DefaultButtonWhite>
+          <DefaultButton onClick={handleAboutClick} backgroundType="white">
+            {ABOUT_BUTTON_TEXT.desktop_tablet}
+          </DefaultButton>
         </div>
       </section>
 
@@ -42,7 +44,9 @@ const AboutSection = () => {
           <div className={MOBILE_SUB_CONTENT_CLASSES}>{ABOUT_CONTENT_TEXT.mobile}</div>
         </div>
         <div className="mt-[2.5rem]">
-          <DefaultButtonWhite onClick={handleAboutClick}>{ABOUT_BUTTON_TEXT.mobile}</DefaultButtonWhite>
+          <DefaultButton onClick={handleAboutClick} backgroundType="white">
+            {ABOUT_BUTTON_TEXT.mobile}
+          </DefaultButton>
         </div>
       </section>
     </>
