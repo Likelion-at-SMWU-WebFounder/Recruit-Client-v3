@@ -33,7 +33,7 @@ const ApplicantInfoSection = ({ data, onChange, isSubmitted }: ApplicantInfoSect
   return (
     <section className="flex w-full flex-col items-center gap-[1.5rem] px-4 md:gap-[1.75rem] md:px-0 lg:gap-[2.1875rem]">
       <SectionHeader title="지원자 정보" />
-      <div className="flex w-full flex-wrap justify-center gap-y-[2.5rem] md:w-[52.75rem] md:gap-x-[3.25rem] md:gap-y-[4rem] lg:w-[90.0625rem] lg:gap-x-[8.5625rem] lg:gap-y-[5rem]">
+      <div className="flex w-full flex-wrap justify-center gap-y-[2.12rem] md:w-[52.75rem] md:gap-x-[3.25rem] md:gap-y-[4rem] lg:w-[90.0625rem] lg:gap-x-[8.5625rem] lg:gap-y-[5rem]">
         {APPLICANT_FIELD_CONFIG.map((field) => {
           const commonProps = {
             label: field.label,

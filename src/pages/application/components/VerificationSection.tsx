@@ -21,19 +21,8 @@ const VerificationSection = ({
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
-  // 에러 판별 로직
-  const firstError = isSubmitted
-    ? !password
-      ? VERIFICATION_ERRORS.empty
-      : password.length < 4
-        ? VERIFICATION_ERRORS.length
-        : null
-    : null;
-
-  const secondError = isSubmitted && password !== passwordConfirm ? VERIFICATION_ERRORS.mismatch : null;
-
   const inputContainerStyle = (hasError: boolean) => `
-    relative flex items-center w-full h-[3rem] md:w-[18rem] md:h-[3.75rem] lg:w-[21.9375rem] lg:h-[4.25rem]
+    relative flex items-center w-full h-[2.8rem] md:w-[18rem] md:h-[3.75rem] lg:w-[21.9375rem] lg:h-[4.25rem]
     rounded-[1rem] border-2 transition-all bg-[#F7FAFF]
     ${
       hasError
@@ -50,7 +39,18 @@ const VerificationSection = ({
     placeholder:text-[1.125rem] md:placeholder:text-[1.25rem] lg:placeholder:text-[1.75rem]
   `;
 
-  const errorTextStyle = `mt-[0.5rem] text-[0.8125rem] font-medium text-[var(--Color-error-red,rgba(255,36,36,0.80))] md:text-[1rem] lg:text-[1.25rem] text-right md:text-left`;
+  const errorTextStyle = `mt-[0.5rem] text-[0.8125rem] font-medium text-[var(--Color-error-red,rgba(255,36,36,0.80))] md:text-[1rem] lg:text-[1.25rem] text-left`;
+
+  // 에러 판별 로직
+  const firstError = isSubmitted
+    ? !password
+      ? VERIFICATION_ERRORS.empty
+      : password.length < 4 || !/^\d+$/.test(password)
+        ? VERIFICATION_ERRORS.length
+        : null
+    : null;
+
+  const secondError = isSubmitted && password !== passwordConfirm ? VERIFICATION_ERRORS.mismatch : null;
 
   return (
     <section className="mx-auto flex w-full flex-col items-center self-stretch px-4 md:px-0 lg:w-[98.18744rem]">
@@ -60,7 +60,7 @@ const VerificationSection = ({
       <div className="flex w-full flex-col items-center gap-[3rem] md:gap-[4rem] lg:gap-[5rem]">
         {/* 1. 비밀번호 설정 영역 */}
         <div className="flex w-full flex-col justify-between gap-4 md:flex-row md:items-start lg:w-[90.0625rem] lg:items-center">
-          <label className="text-left text-[1.25rem] font-semibold break-keep text-[var(--color-navyblack)] md:text-[1.5rem] lg:text-[2rem]">
+          <label className="text-left text-[1.125rem] font-semibold break-keep text-[var(--color-navyblack)] md:text-[1.5rem] lg:text-[2rem]">
             {PASSWORD_INFO.label1}
             <span className="ml-[0.39rem] inline-block text-[1.125rem] leading-normal font-bold text-[var(--Color-blue-main,#4284FF)] md:ml-[0.49rem] md:text-[1.3rem] lg:ml-[0.69rem] lg:text-[1.5rem]">
               *
@@ -90,7 +90,7 @@ const VerificationSection = ({
         {/* 2. 비밀번호 확인 영역 */}
         <div className="flex w-full flex-col justify-between gap-4 md:flex-row md:items-start lg:w-[90.0625rem] lg:items-center">
           <div className="flex flex-col gap-1 lg:gap-[0.375rem]">
-            <label className="text-left text-[1.25rem] font-semibold break-keep text-[var(--color-navyblack)] md:text-[1.5rem] lg:text-[2rem]">
+            <label className="text-left text-[1.125rem] font-semibold break-keep text-[var(--color-navyblack)] md:text-[1.5rem] lg:text-[2rem]">
               {PASSWORD_INFO.label2}
               <span className="ml-[0.39rem] inline-block text-[1.125rem] leading-normal font-bold text-[var(--Color-blue-main,#4284FF)] md:ml-[0.49rem] md:text-[1.3rem] lg:ml-[0.69rem] lg:text-[1.5rem]">
                 *
