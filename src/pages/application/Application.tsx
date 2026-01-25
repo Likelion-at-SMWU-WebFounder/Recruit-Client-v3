@@ -90,6 +90,7 @@ const Application = () => {
           </header>
 
           <form
+            id="application-form"
             onSubmit={handleSubmit}
             className="mx-auto flex w-full flex-col items-center pb-[10rem] lg:max-w-[98.2rem]">
             <div className="flex w-full flex-col gap-[11.4375rem]">
