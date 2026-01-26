@@ -12,7 +12,7 @@ interface PeopleCardProps {
 // PeopleCard 스타일 상수화
 const PEOPLE_CARD_STYLES = {
   desktop: {
-    base: 'hidden h-[35.5rem] w-[40rem] flex-col items-start gap-[3rem] rounded-[1.25rem] px-[4.75rem] py-[5.88rem] shadow-default',
+    base: 'hidden cursor-pointer h-[35.5rem] w-[40rem] flex-col items-start gap-[3rem] rounded-[1.25rem] px-[4.75rem] py-[5.88rem] shadow-default',
     desktop: 'lg:flex',
   },
   tabletMobile: {

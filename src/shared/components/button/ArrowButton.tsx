@@ -8,11 +8,11 @@ interface NextArrowBtnProps {
 
 // 스타일 상수화
 const ARROW_BUTTON_STYLES = {
-  base: 'shadow-default cursor-pointer rounded-full bg-white font-semibold transition',
+  base: 'shadow-default cursor-pointer rounded-full bg-white font-semibold transition ease-out duration-300',
   // 반응형 사이즈 (모바일 기본, md: 태블릿, lg: 데스크톱)
   size: 'p-[0.75rem] text-[1.5rem] md:p-[0.8rem] md:text-[1.4rem] lg:p-[1.5rem] lg:text-[2.625rem]',
   color: {
-    gray: 'border border-gray text-gray',
+    gray: 'border border-gray text-gray hover:border-blue hover:text-blue',
     navyblack: 'text-navyblack',
     blue: 'text-blue border border-blue',
   },

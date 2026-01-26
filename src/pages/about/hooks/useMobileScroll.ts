@@ -35,9 +35,9 @@ const useMobileScroll = (totalCards: number, getIdByIndex: GetIdByIndex, setOpen
       const scrollTrigger = ScrollTrigger.create({
         trigger: section,
         start: 'top top',
-        end: `+=${totalCards * 100}%`,
+        end: `+=${totalCards * 150}%`,
         pin: true,
-        scrub: 0.2,
+        scrub: 0.5,
         onUpdate: (self) => {
           if (isClickScrollingRef.current) return;
 
@@ -110,8 +110,10 @@ const useMobileScroll = (totalCards: number, getIdByIndex: GetIdByIndex, setOpen
     gsap.killTweensOf(progressObjRef.current);
     isClickScrollingRef.current = true;
 
-    // 상태는 스크롤 완료 후에 업데이트하여 레이아웃 변동 영향 제거
+    // 즉시 상태 업데이트하여 카드가 빠르게 열리도록 함
     animatedProgressRef.current = cardIndex;
+    const newOpenId = getIdByIndex(cardIndex);
+    setOpenId(newOpenId);
 
     // 다음 프레임에서 스크롤 시작
     requestAnimationFrame(() => {
@@ -122,8 +124,8 @@ const useMobileScroll = (totalCards: number, getIdByIndex: GetIdByIndex, setOpen
 
       gsap.to(window, {
         scrollTo: { y: scrollPosition, autoKill: false },
-        duration: 0.8,
-        ease: 'power2.inOut',
+        duration: 0.35,
+        ease: 'power2.out',
         onComplete: () => {
           requestAnimationFrame(() => {
             // 목표 진행도의 중앙 스냅 기준으로 인덱스 확정
