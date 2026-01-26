@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { combineStyles } from '@shared/utils/combineStyles';
 import Layout from '@shared/components/Layout';
+import HeroSection from '@pages/activity/components/hero/HeroSection';
 
-// Home 페이지 스타일 상수화
-const HOME_STYLES = {
+// Activity 페이지 스타일 상수화
+const ACTIVITY_STYLES = {
   scrollContainer: {
     base: 'scrollbar-hidden h-[100dvh] max-h-[100dvh] w-full snap-y snap-mandatory overflow-y-scroll',
   },
@@ -13,8 +14,8 @@ const HOME_STYLES = {
 } as const;
 
 const Activity = () => {
-  const scrollContainerClassName = combineStyles(HOME_STYLES.scrollContainer);
-  const sectionClassName = combineStyles(HOME_STYLES.section);
+  const scrollContainerClassName = combineStyles(ACTIVITY_STYLES.scrollContainer);
+  const sectionClassName = combineStyles(ACTIVITY_STYLES.section);
 
   const [menuMode, setMenuMode] = useState<'light' | 'dark'>('light');
 
@@ -48,7 +49,9 @@ const Activity = () => {
   return (
     <Layout menuMode={menuMode} footerMode="dark">
       <div className={scrollContainerClassName}>
-        <div id="hero-section" className={sectionClassName}></div>
+        <div id="hero-section" className={sectionClassName}>
+          <HeroSection />
+        </div>
         <div id="doing-section" className={sectionClassName}></div>
         <div id="schedule-section" className={sectionClassName}></div>
       </div>
