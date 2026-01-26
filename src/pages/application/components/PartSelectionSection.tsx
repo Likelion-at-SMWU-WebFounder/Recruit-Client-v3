@@ -10,8 +10,13 @@ import DeleteIcon from '../assets/delete-icon.svg';
 interface PartSelectionSectionProps {
   selectedPart: PartType | null;
   onPartChange: (part: PartType) => void;
+
   programmersCompleted: boolean;
   onProgrammersChange: (completed: boolean) => void;
+
+  /* 실제 파일을 부모(Application)로 전달 */
+  onFileChange: (file?: File) => void;
+
   isSubmitted: boolean;
 }
 
@@ -20,6 +25,7 @@ const PartSelectionSection = ({
   onPartChange,
   programmersCompleted,
   onProgrammersChange,
+  onFileChange,
   isSubmitted,
 }: PartSelectionSectionProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -29,18 +35,24 @@ const PartSelectionSection = ({
   const selectedPartLabel = PART_OPTIONS.find((opt) => opt.value === selectedPart)?.label || '';
 
   const handleUploadClick = () => fileInputRef.current?.click();
+
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const sizeMB = (file.size / (1024 * 1024)).toFixed(0);
       setFileInfo({ name: file.name, size: `${sizeMB}MB` });
+
       onProgrammersChange(true);
+      onFileChange(file); // ✅ 부모로 파일 전달
     }
   };
 
   const handleDeleteFile = () => {
     setFileInfo({ name: '', size: '' });
+
     onProgrammersChange(false);
+    onFileChange(undefined); // ✅ 부모 파일 제거
+
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
@@ -115,6 +127,7 @@ const PartSelectionSection = ({
                 </span>
               </button>
             )}
+
             <p className="text-[0.8125rem] font-medium tracking-[-0.0325rem] break-keep text-[rgba(27,38,52,0.65)] md:text-[1rem] md:tracking-[-0.02rem] lg:text-[1.25rem] lg:tracking-normal">
               {PROGRAMMERS_INFO.description}
             </p>
