@@ -34,6 +34,7 @@ export const postInterviewResult = async (
 ): Promise<ApiResult<InterviewResultResponse>> => {
   try {
     const res = await axios.post<InterviewResultResponse>(`${BASE_URL}/api/recruit/result/interview`, body);
+    console.log(res.data);
     return { ok: true, data: res.data };
   } catch (err) {
     if (axios.isAxiosError(err)) {

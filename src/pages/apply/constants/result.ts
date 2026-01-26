@@ -51,9 +51,9 @@ export const FINAL_RESULT_TEXT = {
   GREETING: '안녕하세요, 숙명여대 멋쟁이사자처럼 입니다.',
   SIGNATURE: '숙명여대 멋쟁이사자처럼 운영진 드림',
   TRACK_NAME: {
-    BACKEND: '백엔드',
-    'PLAN-DESIGN': '기획/디자인',
-    FRONTEND: '프론트엔드',
+    be: '백엔드',
+    pm: '기획/디자인',
+    fe: '프론트엔드',
   } as Record<string, string>,
   PASS: {
     TITLE: '멋쟁이사자처럼에 지원해 주셔서 진심으로 감사드립니다.',
