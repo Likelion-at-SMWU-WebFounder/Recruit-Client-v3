@@ -14,6 +14,8 @@ interface ArrowProps {
   className?: string;
   style?: React.CSSProperties;
   onClick?: () => void;
+  currentSlide?: number;
+  totalSlides?: number;
 }
 
 interface CarouselImageProps {
@@ -67,9 +69,40 @@ const CarouselImage = ({ image, index }: CarouselImageProps) => {
 
 const ProjectCarousel = ({ images }: ProjectCarouselProps) => {
   const carouselImages = images;
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // 이전 화살표 컴포넌트
+  const PrevArrow = ({ style, onClick, currentSlide = 0 }: ArrowProps) => {
+    // 첫 번째 슬라이드일 때 화살표 숨김
+    if (currentSlide === 0) {
+      return null;
+    }
+
+    return (
+      <div
+        className="project-carousel-custom-arrow"
+        style={{
+          ...style,
+          display: 'block',
+          left: '2rem',
+          zIndex: 1,
+          position: 'absolute',
+          top: '50%',
+          transform: 'translateY(-50%)',
+        }}
+        onClick={onClick}>
+        <ArrowButton iconColor="gray" onArrowBtnClick={onClick || (() => {})} direction="left" />
+      </div>
+    );
+  };
 
   // 다음 화살표 컴포넌트
-  const NextArrow = ({ style, onClick }: ArrowProps) => {
+  const NextArrow = ({ style, onClick, currentSlide = 0, totalSlides = 0 }: ArrowProps) => {
+    // 마지막 슬라이드일 때 화살표 숨김
+    if (currentSlide === totalSlides - 1) {
+      return null;
+    }
+
     return (
       <div
         className="project-carousel-custom-arrow"
@@ -99,7 +132,11 @@ const ProjectCarousel = ({ images }: ProjectCarouselProps) => {
     pauseOnHover: true,
     pauseOnFocus: true,
     arrows: true,
-    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow currentSlide={currentSlide} />,
+    nextArrow: <NextArrow currentSlide={currentSlide} totalSlides={carouselImages.length} />,
+    afterChange: (index: number) => {
+      setCurrentSlide(index);
+    },
   };
 
   return (
