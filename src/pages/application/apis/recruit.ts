@@ -16,7 +16,7 @@ export const postApplication = async (request: ApplicationRequest, file?: File) 
   const form = new FormData();
 
   // request: Text(application/json)
-  form.append('request', new Blob([JSON.stringify(request)], { type: 'application/json' }));
+  form.append('request', JSON.stringify(request));
 
   // programmersFile: File(.zip) optional
   if (file) form.append('programmersFile', file);

@@ -3,7 +3,6 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from 'vite-plugin-sitemap';
-import fs from 'fs';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -27,14 +26,6 @@ export default defineConfig({
       '@styles': path.resolve(__dirname, 'src/shared/styles'),
       '@types': path.resolve(__dirname, 'src/shared/types'),
       '@utils': path.resolve(__dirname, 'src/shared/utils'),
-    },
-  },
-  server: {
-    host: 'localhost',
-    port: 5173,
-    https: {
-      key: fs.readFileSync('./certificates/localhost-key.pem'),
-      cert: fs.readFileSync('./certificates/localhost.pem'),
     },
   },
 });

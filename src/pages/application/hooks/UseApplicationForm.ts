@@ -116,6 +116,7 @@ export const useApplicationForm = () => {
         completedSem: Number(applicantInfo.semestersLeft),
         schoolStatus: schoolStatusMapping[applicantInfo.verificationCode] || 'ENROLLED',
         programmers: (programmersCompleted ? 'ENROLLED' : 'NOT_ENROLLED') as ProgrammersStatusType,
+        programmersImg: '',
         password,
         graduatedYear: applicantInfo.graduationYear,
         agreeToTerms: agreements.activityParticipation,
