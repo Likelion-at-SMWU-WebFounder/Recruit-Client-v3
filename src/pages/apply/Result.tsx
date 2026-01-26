@@ -9,7 +9,7 @@ interface LocationState {
   docs?: 'PASS' | 'REJECT';
   interviewTime?: string;
   interview?: 'PASS' | 'REJECT';
-  track?: 'BACKEND' | 'PLAN-DESIGN' | 'FRONTEND';
+  track?: 'pm' | 'fe' | 'be';
 }
 
 const MENU_IMAGES_PATH = import.meta.env.VITE_IMAGE_PATH + '/menu';
@@ -26,6 +26,7 @@ const ApplyResult = () => {
   const isDocument = pathname.includes('document');
   const resultData = isDocument ? DOCUMENT_RESULT_TEXT : FINAL_RESULT_TEXT;
   const isPass = isDocument ? state?.docs === 'PASS' : state?.interview === 'PASS';
+  const trackName = state.track ? FINAL_RESULT_TEXT.TRACK_NAME[state.track] : '';
 
   useEffect(() => {
     if (!state) navigate(isDocument ? '/apply/document' : '/apply/final');
@@ -77,9 +78,7 @@ const ApplyResult = () => {
                 ) : (
                   <>
                     <p className={SECTION_GAP}>
-                      {renderSegments(
-                        FINAL_RESULT_TEXT.PASS.DESCRIPTION(FINAL_RESULT_TEXT.TRACK_NAME[state.track!], state.name)
-                      )}
+                      {renderSegments(FINAL_RESULT_TEXT.PASS.DESCRIPTION(trackName, state.name))}
                     </p>
                     <div className={`flex flex-col ${SECTION_GAP}`}>
                       <p>{FINAL_RESULT_TEXT.PASS.FORM_SECTION}</p>
