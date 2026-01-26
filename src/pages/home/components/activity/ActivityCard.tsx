@@ -92,6 +92,7 @@ export const ActivityImageCard = ({ type }: ActivityCardProps) => {
 export const ActivityCardContainer = () => {
   const [visibleCards, setVisibleCards] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   // 화면 크기 감지
   useEffect(() => {
@@ -103,6 +104,31 @@ export const ActivityCardContainer = () => {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  // IntersectionObserver로 섹션이 뷰포트에 들어오면 애니메이션 시작
+  useEffect(() => {
+    const activitySection = document.getElementById('activity-section');
+    if (!activitySection) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isAnimating) {
+            setIsAnimating(true);
+          }
+        });
+      },
+      {
+        threshold: 0.3, // 30% 이상 보이면 애니메이션 시작
+      }
+    );
+
+    observer.observe(activitySection);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [isAnimating]);
 
   // 카드 시퀀스 정의
   const cardSequence: CardItem[] = isMobile
@@ -120,11 +146,13 @@ export const ActivityCardContainer = () => {
       ];
 
   useEffect(() => {
+    if (!isAnimating) return; // 애니메이션이 시작되지 않았다면 실행하지 않음
+
     const interval = setInterval(() => {
       setVisibleCards((prev) => (prev < cardSequence.length ? prev + 1 : prev));
     }, 1000);
     return () => clearInterval(interval);
-  }, [cardSequence.length]);
+  }, [cardSequence.length, isAnimating]);
 
   // 통합된 렌더링 함수
   const renderCards = (indexKey: 'column' | 'row', indexValue: number) => {

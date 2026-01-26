@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { SUBMIT_MODAL, SUCCESS_MODAL, DUPLICATE_MODAL } from '../constants/index';
 import CloseIcon from '../assets/close-icon.svg';
+import DefaultButton from '@/shared/components/button/DefaultButton';
 
 interface SubmitModalProps {
   isOpen: boolean;
@@ -33,7 +34,7 @@ const SubmitModal = ({ isOpen, onClose, onConfirm, partName, submitStatus }: Sub
         <div className="flex flex-col items-center gap-8 lg:gap-[2.375rem]">
           <div className="flex w-full flex-col gap-6 lg:gap-[2rem]">
             {/* 제목 영역 */}
-            <h2 className="text-[1.75rem] font-semibold break-keep text-[var(--color-navyblack)] md:text-[2rem] lg:text-[2.25rem]">
+            <h2 className="text-[1.375rem] font-semibold break-keep text-[var(--color-navyblack)] md:text-[2rem] lg:text-[2.25rem]">
               {isSuccess ? SUCCESS_MODAL.TITLE : isDuplicate ? DUPLICATE_MODAL.TITLE : SUBMIT_MODAL.TITLE}
             </h2>
             {/* 본문 영역 */}
@@ -93,18 +94,23 @@ const SubmitModal = ({ isOpen, onClose, onConfirm, partName, submitStatus }: Sub
               </div>
             )}
           </div>
-
           {/* 버튼 영역 */}
-          <button
-            onClick={isFinalState ? () => navigate('/home') : onConfirm}
-            disabled={isLoading}
-            className={`group flex items-center justify-center gap-[0.625rem] rounded-[1rem] border-[1.5px] border-[#4284FF] bg-[#F7FAFF] px-[1rem] py-[0.5rem] md:px-[1.875rem] md:py-[0.9375rem] ${isLoading ? 'opacity-50' : 'cursor-pointer hover:bg-[#4284FF]'}`}>
-            <span
-              className={`text-[1rem] font-bold md:text-[1.375rem] lg:text-[1.5rem] ${isLoading ? 'text-[#4284FF]' : 'text-[#4284FF] group-hover:text-white'}`}>
-              {/* 완료 상태면 '홈으로', 그 외엔 '제출하기' */}
+          <div className={isLoading ? 'opacity-50' : ''}>
+            <DefaultButton
+              backgroundType="white"
+              border="solid"
+              isIcon={false}
+              onClick={() => {
+                if (isLoading) return; // 로딩 중일 때는 클릭 무시
+                if (isFinalState) {
+                  navigate('/'); // 완료 상태면 홈으로 이동
+                } else {
+                  onConfirm(); // 제출 대기 상태면 제출 실행
+                }
+              }}>
               {isLoading ? '제출하기' : isFinalState ? SUCCESS_MODAL.BUTTON : SUBMIT_MODAL.BUTTON_TEXT}
-            </span>
-          </button>
+            </DefaultButton>
+          </div>
         </div>
       </div>
     </div>
