@@ -123,7 +123,7 @@ const ProjectCarousel = ({ images }: ProjectCarouselProps) => {
 
   const settings = {
     dots: carouselImages.length > 1,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
