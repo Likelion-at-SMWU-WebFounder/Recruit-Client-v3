@@ -110,8 +110,10 @@ const useDesktopScroll = (totalCards: number, getIdByIndex: GetIdByIndex, setOpe
     gsap.killTweensOf(progressObjRef.current);
     isClickScrollingRef.current = true;
 
-    // 상태 즉시 업데이트
+    // 즉시 상태 업데이트하여 카드가 빠르게 열리도록 함
     animatedProgressRef.current = cardIndex;
+    const newOpenId = getIdByIndex(cardIndex);
+    setOpenId(newOpenId);
 
     // 다음 프레임에서 스크롤 시작
     requestAnimationFrame(() => {
@@ -122,8 +124,8 @@ const useDesktopScroll = (totalCards: number, getIdByIndex: GetIdByIndex, setOpe
 
       gsap.to(window, {
         scrollTo: { y: scrollPosition, autoKill: false },
-        duration: 0.8,
-        ease: 'power2.inOut',
+        duration: 0.35,
+        ease: 'power2.out',
         onComplete: () => {
           requestAnimationFrame(() => {
             // 목표 진행도의 중앙 스냅 기준으로 인덱스 확정
