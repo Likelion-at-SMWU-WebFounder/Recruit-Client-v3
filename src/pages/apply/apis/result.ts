@@ -15,6 +15,7 @@ export type ApiResult<T> = { ok: true; data: T } | { ok: false; error: ResultApi
 export const postDocsResult = async (body: DocsResultRequest): Promise<ApiResult<DocsResultResponse>> => {
   try {
     const res = await axios.post<DocsResultResponse>(`${BASE_URL}/api/recruit/result/docs`, body);
+    console.log(res.data);
     return { ok: true, data: res.data };
   } catch (err) {
     if (axios.isAxiosError(err)) {
