@@ -8,6 +8,7 @@ env:
   NODE_VERSION: '18'
   VITE_SITE_URL: 'https://likelion-smwu.com'
   VITE_IMAGE_PATH: 'https://likelion-smwu.com/assets'
+  VITE_BASE_URL: ${{ secrets.VITE_BASE_URL }}
 
 jobs:
   ci:
