@@ -5,7 +5,7 @@ const ScheduleSection = () => {
   const mobileSchedules = SCHEDULES.slice(0, 4);
 
   return (
-    <section className="flex w-full flex-col items-center justify-center gap-16 bg-[#F0F4FA] px-4 py-20 md:gap-24 md:px-8 md:py-32 lg:gap-[12rem] lg:px-[10rem] lg:py-[19.5rem]">
+    <section className="flex w-full flex-col items-center justify-center gap-16 bg-[var(--color-white-main)] px-4 py-20 md:gap-24 md:px-8 md:py-32 lg:gap-[12rem] lg:px-[10rem] lg:py-[19.5rem]">
       {/* 글씨 박스 */}
       <div className="flex min-w-[17.1875rem] flex-col items-center gap-[1rem]">
         <span className="text-center text-[0.875rem] leading-[140%] font-semibold text-[#1B2634] uppercase opacity-50 md:text-[1rem] lg:text-[1.25rem]">

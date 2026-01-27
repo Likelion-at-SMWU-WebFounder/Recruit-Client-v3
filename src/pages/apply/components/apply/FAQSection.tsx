@@ -9,7 +9,7 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="flex w-full flex-col items-center gap-[0.625rem] bg-[#F0F4FA] px-4 py-16 md:px-8 md:py-24 lg:px-[10rem] lg:py-[8.75rem]">
+    <section className="flex w-full flex-col items-center gap-[0.625rem] bg-[var(--color-white-main)] px-4 py-16 md:px-8 md:py-24 lg:px-[10rem] lg:py-[8.75rem]">
       {/* 글씨 박스 */}
       <div className="flex min-w-[17.1875rem] flex-col items-center gap-[1rem]">
         <span className="text-center text-[0.875rem] leading-[140%] font-semibold text-[#1B2634] uppercase opacity-50 md:text-[1rem] lg:text-[1.25rem]">
@@ -32,7 +32,7 @@ const FAQSection = () => {
                 isOpen ? 'bg-[rgba(66,132,255,0.04)]' : 'bg-[#F7FAFF]'
               }`}>
               {/* 질문 */}
-              <button onClick={() => toggleFAQ(faq.id)} className="flex w-full items-center justify-between gap-4">
+              <button onClick={() => toggleFAQ(faq.id)} className="flex w-full items-start justify-between gap-4">
                 <span className="text-left text-[1rem] leading-[140%] font-semibold text-[#1B2634] md:text-[1.5rem] lg:text-[2rem]">
                   {faq.question}
                 </span>
@@ -43,13 +43,13 @@ const FAQSection = () => {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
 
               {/* 답변 */}
               <div
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                className={`mt-[0.2em] overflow-hidden transition-all duration-300 ease-in-out ${
                   isOpen ? 'mt-4 max-h-[500px] opacity-100 lg:mt-6' : 'max-h-0 opacity-0'
                 }`}>
                 <p className="text-[0.875rem] leading-[170%] font-medium whitespace-pre-line text-[rgba(27,38,52,0.7)] md:text-[1.125rem] lg:text-[1.5rem]">

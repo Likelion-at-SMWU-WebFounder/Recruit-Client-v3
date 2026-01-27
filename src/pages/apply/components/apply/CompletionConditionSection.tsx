@@ -20,7 +20,7 @@ interface EventItem {
 const TW = {
   // layout
   section:
-    'flex h-auto w-full items-center justify-center bg-[#F0F4FA] px-4 py-16 md:px-8 md:py-20 lg:h-[67.5rem] lg:px-[13.09375rem] lg:pt-[8rem] lg:pb-[7.9375rem]',
+    'flex h-auto w-full items-center justify-center bg-[var(--color-white-main)] px-4 py-16 md:px-8 md:py-20 lg:h-[67.5rem] lg:px-[13.09375rem] lg:pt-[8rem] lg:pb-[7.9375rem]',
   container: 'flex w-full flex-col items-center',
 
   // heading
