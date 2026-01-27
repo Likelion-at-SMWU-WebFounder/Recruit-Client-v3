@@ -16,8 +16,8 @@ const Tag = ({ children, mode = 'blue' }: TagProps) => {
   ].join(' ');
 
   const lightDarkModeClasses = [
-    `${mode === 'light' && 'border-navyblack text-navyblack bg-white-opacity12'}`,
-    `${mode === 'dark' && 'border-white text-white bg-none'}`,
+    mode === 'light' ? 'border-navyblack text-navyblack bg-white-opacity12' : '',
+    mode === 'dark' ? 'border-white text-white bg-none' : '',
     'lg:text-[1.5rem] lg:py-[0.3125rem] lg:px-[0.9375rem]',
     'md:text-[0.75rem] md:py-[0.16669rem] md:px-[0.5rem]',
     'text-[0.75rem] py-[0.1875rem] px-[0.5rem]',
