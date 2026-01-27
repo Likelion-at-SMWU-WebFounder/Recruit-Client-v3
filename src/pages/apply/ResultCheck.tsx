@@ -4,6 +4,7 @@ import Layout from '@/shared/components/Layout';
 import ResultBackground from './components/background/ResultBackground';
 import { RESULT_CHECK_CONTENT } from './constants/resultCheck';
 import DefaultButton from '@/shared/components/button/DefaultButton';
+import { postDocsResult, postInterviewResult } from './apis/result';
 
 const INPUT_STYLE = `
   flex w-full items-center rounded-[1rem] border-[1.5px] bg-[#F7FAFF]/01 
@@ -20,11 +21,14 @@ const ERROR_TEXT_STYLE = `
   lg:text-[1.25rem] lg:font-medium
 `;
 
+type ErrorType = 'REQUIRED' | 'NOT_FOUND' | null;
+
 const ResultCheck = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({ name: '', id: '', password: '' });
-  const [errorType, setErrorType] = useState<'REQUIRED' | 'NOT_FOUND' | null>(null);
+  const [errorType, setErrorType] = useState<ErrorType>(null);
 
   const isDocument = pathname === RESULT_CHECK_CONTENT.DOCUMENT.PATH;
   const currentTitle = isDocument ? RESULT_CHECK_CONTENT.DOCUMENT.TITLE : RESULT_CHECK_CONTENT.FINAL.TITLE;
@@ -34,38 +38,35 @@ const ResultCheck = () => {
     if (errorType) setErrorType(null);
   };
 
-  /** 결과 확인 및 페이지 이동 로직 */
+  /* 결과 확인 및 페이지 이동 로직 */
   const handleCheck = async () => {
     if (!formData.name || !formData.id || !formData.password) {
       setErrorType('REQUIRED');
       return;
     }
 
-    try {
-      console.log('데이터 제출:', formData);
+    const body = {
+      name: formData.name,
+      studentId: formData.id,
+      password: formData.password,
+    };
 
-      if (isDocument) {
-        // 1. 서류 심사 결과 데이터 예시
-        const docResult = {
-          name: formData.name,
-          docs: 'PASS',
-          interviewTime: '02.27(목) 10:00~10:40',
-        };
-        navigate(`${RESULT_CHECK_CONTENT.DOCUMENT.PATH}/result`, { state: docResult });
-      } else {
-        // 2. 최종 심사 결과 데이터 예시
-        const finalResult = {
-          name: formData.name,
-          interview: 'REJECT',
-          track: 'FRONTEND',
-        };
-        navigate(`${RESULT_CHECK_CONTENT.FINAL.PATH}/result`, { state: finalResult });
-      }
-    } catch (error) {
-      setErrorType('NOT_FOUND');
-      console.error(error);
+    const res = isDocument ? await postDocsResult(body) : await postInterviewResult(body);
+
+    if (res.ok) {
+      const nextPath = isDocument ? RESULT_CHECK_CONTENT.DOCUMENT.PATH : RESULT_CHECK_CONTENT.FINAL.PATH;
+      navigate(`${nextPath}/result`, { state: res.data.result });
+      return;
     }
+    setErrorType('NOT_FOUND');
   };
+
+  const errorMessage =
+    errorType === 'REQUIRED'
+      ? RESULT_CHECK_CONTENT.ERROR_MESSAGES.REQUIRED
+      : errorType === 'NOT_FOUND'
+        ? RESULT_CHECK_CONTENT.ERROR_MESSAGES.NOT_FOUND
+        : '';
 
   return (
     <Layout menuMode="dark" footerMode="light">
@@ -77,18 +78,10 @@ const ResultCheck = () => {
               <h2 className="text-center text-[1.375rem] font-bold text-[#F7FAFF] md:text-[2rem] lg:text-[2.25rem]">
                 {currentTitle}
               </h2>
-
               <div className="flex min-h-[1.25rem] items-center justify-center md:min-h-[1.75rem] lg:min-h-[2rem]">
-                {errorType && (
-                  <p className={ERROR_TEXT_STYLE}>
-                    {errorType === 'REQUIRED'
-                      ? RESULT_CHECK_CONTENT.ERROR_MESSAGES.REQUIRED
-                      : RESULT_CHECK_CONTENT.ERROR_MESSAGES.NOT_FOUND}
-                  </p>
-                )}
+                {errorType && <p className={ERROR_TEXT_STYLE}>{errorMessage}</p>}
               </div>
             </div>
-
             {/* 입력 리스트 섹션 */}
             <div className="flex w-full flex-col gap-[1.875rem] md:gap-[3.375rem] lg:gap-[2.2rem]">
               {[
