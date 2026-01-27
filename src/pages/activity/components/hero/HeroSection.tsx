@@ -81,17 +81,19 @@ const HeroSection = () => {
             />
           ))}
         </div>
-        <div className={`${heroRowClassName} hero-scroll-left`} style={{ transform: 'translateX(-10%)' }}>
-          {duplicatedSecondRow.map((hero, index) => (
-            <HeroCard
-              key={`second-${index}`}
-              image={hero.image}
-              name={hero.name}
-              batch={hero.batch}
-              part={hero.part as '프론트엔드' | '백엔드' | '기획/디자인'}
-              retro={hero.retro}
-            />
-          ))}
+        <div style={{ transform: 'translateX(-20%)' }}>
+          <div className={`${heroRowClassName} hero-scroll-left`}>
+            {duplicatedSecondRow.map((hero, index) => (
+              <HeroCard
+                key={`second-${index}`}
+                image={hero.image}
+                name={hero.name}
+                batch={hero.batch}
+                part={hero.part as '프론트엔드' | '백엔드' | '기획/디자인'}
+                retro={hero.retro}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
