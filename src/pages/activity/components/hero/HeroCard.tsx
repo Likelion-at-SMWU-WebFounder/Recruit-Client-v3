@@ -17,14 +17,14 @@ const HERO_CARD_STYLES = {
   },
   content: {
     base: 'inline-flex flex-col justify-center items-start ',
-    desktop: 'lg:gap-[0.1.25rem]',
+    desktop: 'lg:gap-[1.25rem]',
     tablet: 'md:gap-[0.67rem]',
     mobile: 'gap-[0.31rem]',
   },
   nameAndTag: {
     base: 'inline-flex flex-row justify-center items-center ',
     desktop: 'lg:gap-[0.62rem]',
-    tablet: 'mg:gap-[0.33rem]',
+    tablet: 'md:gap-[0.33rem]',
     mobile: 'gap-[0.24rem]',
   },
   name: {
