@@ -13,6 +13,10 @@ const Apply = () => {
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, []);
+
+  useEffect(() => {
     // 현재 ref가 가리키는 요소가 있는지 확인
     const currentHero = heroRef.current;
     if (!currentHero) return;
