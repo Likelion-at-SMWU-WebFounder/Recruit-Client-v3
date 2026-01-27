@@ -46,7 +46,7 @@ const TW = {
   mobileCardActiveTitle: 'text-center text-[1.25rem] font-semibold text-[#F7FAFF]',
   mobileCardInactiveWrap: 'relative h-[19.875rem] w-[2.75rem]',
   mobileCardInactiveBtn:
-    'absolute top-0 left-0 flex h-[2.75rem] w-[19.875rem] origin-top-left translate-y-[19.875rem] -rotate-90 items-center justify-center rounded-[1.25rem] bg-[#F7FAFF] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)]',
+    'absolute top-0 left-0 flex h-[2.75rem] w-[19.875rem] origin-top-left translate-y-[19.875rem] -rotate-90 items-center justify-center rounded-[1.25rem] bg-[#F7FAFF] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] cursor-pointer',
   mobileCardInactiveTitle: 'text-center text-[1.25rem] font-semibold text-[#1B2634]',
 
   // desktop tabs
@@ -54,7 +54,7 @@ const TW = {
   desktopBtnBase: 'flex flex-col items-center rounded-[1.25rem] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)]',
   desktopActive:
     'h-auto w-[14rem] gap-6 bg-[#4284FF] p-5 lg:h-[29.0625rem] lg:w-[32.3125rem] lg:p-[3.03125rem_2.3125rem]',
-  desktopInactive: 'h-[5rem] w-[14rem] bg-[#F7FAFF] lg:h-[8.8125rem] lg:w-[32.3125rem]',
+  desktopInactive: 'h-[5rem] w-[14rem] bg-[#F7FAFF] lg:h-[8.8125rem] lg:w-[32.3125rem] cursor-pointer',
   desktopActiveInner: 'flex w-full flex-col items-center gap-6',
   desktopActiveTitle: 'text-center text-[1.5625rem] font-semibold text-[#F7FAFF] lg:text-[2.25rem]',
   desktopInactiveTitle:
