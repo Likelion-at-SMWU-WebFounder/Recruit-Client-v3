@@ -23,7 +23,7 @@ const TITLE_STYLES = {
     desktop: 'lg:text-[2.625rem]',
   },
   description: {
-    base: 'text-gray hd18-semibold',
+    base: 'text-gray hd16-semibold flex-shrink-0',
     tablet: 'md:hd24-semibold',
     desktop: 'lg:hd28-semibold',
     withIcon: 'pl-[0.38rem]',
