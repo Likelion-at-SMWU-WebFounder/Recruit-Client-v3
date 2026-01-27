@@ -49,7 +49,7 @@ export const RECRUIT_INFO_TABS: RecruitInfoTabTypes[] = [
 
 // 지원 자격
 export const QUALIFICATIONS: string[] = [
-  '25년도 기준 숙명여자대학교\n재학생·휴학생·자대 편입생·졸업 유예자\n(졸업생, 타대생 참여 불가)',
+  '26년도 기준 숙명여자대학교\n재학생·휴학생·자대 편입생·졸업 유예자\n(졸업생, 타대생 참여 불가)',
   '1년간 재학·휴학·졸업 유예 상태 유지 가능자',
   '지원서 양식 준수자',
   '멋쟁이사자처럼 공식 행사 및\n정기 세션 참여 가능자',
@@ -73,6 +73,10 @@ export const BONUS_INFO = {
   verifyTitle: '인증 방법',
   verifyMethod: '홈페이지 지원서의\n파일업로드를 통해 수강 인증 가능',
 };
+
+export const BONUS_LINK = {
+  PROGRAMMERS_COURSE: 'https://programmers.co.kr/learn/courses/2',
+} as const;
 
 // 수료 조건
 export const COMPLETION_CONDITIONS = [
