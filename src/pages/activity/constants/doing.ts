@@ -7,7 +7,8 @@ export const DOING_DATA = [
     title: '정기 세미나',
     term: [],
     description: '체계적인 세미나로\n개발의 기초부터 심화까지',
-    icon: `${DOING_ICON_PATH}/seminar_icon.svg`,
+    icon_dark: `${DOING_ICON_PATH}/seminar_icon.svg`,
+    icon_white: `${DOING_ICON_PATH}/seminar_white_icon.svg`,
     image: `${DOING_IMAGE_PATH}/regular_seminar.webp`,
   },
   {
@@ -34,7 +35,8 @@ export const DOING_DATA = [
     title: '연합 해커톤',
     term: [2],
     description: '타대와 함께 팀이 되어 \n협업 경험의 끝을',
-    icon: `${DOING_ICON_PATH}/joint_icon.svg`,
+    icon_dark: `${DOING_ICON_PATH}/joint_icon.svg`,
+    icon_white: `${DOING_ICON_PATH}/joint_white_icon.svg`,
     image: `${DOING_IMAGE_PATH}/joint_hackathon.webp`,
   },
   {
@@ -42,7 +44,8 @@ export const DOING_DATA = [
     title: '파이널 프로젝트',
     term: [2],
     description: '마지막으로..',
-    icon: `${DOING_ICON_PATH}/seminar_icon.svg`, // 파이널 아이콘으로 수정
+    icon_dark: `${DOING_ICON_PATH}/seminar_icon.svg`, // 파이널 아이콘으로 수정
+    icon_white: `${DOING_ICON_PATH}/seminar_white_icon.svg`,
     image: `${DOING_IMAGE_PATH}/final_project.webp`,
   },
 ];
