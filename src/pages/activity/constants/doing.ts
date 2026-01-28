@@ -14,7 +14,7 @@ export const DOING_DATA = [
     id: 2,
     title: '아이디어톤',
     term: [1, 2],
-    description: '',
+    description: '아이디어로 세상을 바꾸다',
     icon_dark: `${DOING_ICON_PATH}/ideathon_icon.svg`,
     icon_white: `${DOING_ICON_PATH}/ideathon_white_icon.svg`,
     image: `${DOING_IMAGE_PATH}/ideathon.webp`,
