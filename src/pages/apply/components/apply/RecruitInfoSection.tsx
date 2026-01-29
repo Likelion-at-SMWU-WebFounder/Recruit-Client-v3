@@ -137,8 +137,8 @@ const RecruitInfoSection = () => {
           <SubTitle
             mode="light"
             align="center"
-            subTitle={SECTION_TITLES.RECRUIT_INFO}
-            subDescription={SECTION_SUB_TITLES.GENERATION}
+            subTitle={SECTION_SUB_TITLES.GENERATION}
+            subDescription={SECTION_TITLES.RECRUIT_INFO}
           />
         </div>
 

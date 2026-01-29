@@ -49,8 +49,10 @@ const InterviewScheduleSection = ({
           <div className="flex items-center gap-[0.25rem] md:gap-[0.5rem]">
             <label className="text-[1.25rem] leading-[140%] font-semibold break-keep text-[var(--color-navyblack)] md:text-[1.5rem] lg:text-[2rem]">
               {question.question}
+              <span className="ml-[0.25rem] inline-block text-[1rem] font-bold text-[var(--color-blue)] md:text-[1.25rem] lg:text-[1.5rem]">
+                *
+              </span>
             </label>
-            <span className="text-[1rem] font-bold text-[var(--color-blue)] md:text-[1.25rem] lg:text-[1.5rem]">*</span>
           </div>
           {hasError && (
             <span className="mt-[0.4rem] text-[0.8125rem] font-medium text-[rgba(255,36,36,0.80)] md:mt-0 md:ml-[1.25rem] md:text-[1rem] lg:text-[1.25rem]">
@@ -60,43 +62,53 @@ const InterviewScheduleSection = ({
         </div>
       </div>
 
-      {/* 2. [모바일] 일정 박스 및 캐러셀 */}
-      <div className="flex flex-col items-start gap-[1.75rem] md:hidden">
-        <div
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-          className="flex h-auto w-[19.375rem] flex-col rounded-[0.875rem] border-2 border-[rgba(27,38,52,0.65)] bg-[var(--color-white)] px-[2.8125rem] py-[1.875rem] shadow-[1px_1px_6.4px_0_rgba(27,38,52,0.10)] transition-all">
-          <div className="mb-[1.25rem] flex w-full justify-end">
-            <div className="flex min-w-[5.5rem] justify-center">
-              <span className="text-[1.25rem] font-semibold text-[var(--color-navyblack)]">
-                {INTERVIEW_SCHEDULE[activeIndex].date}
-              </span>
-            </div>
-          </div>
-          <div className="flex flex-col gap-[0.75rem]">
-            {INTERVIEW_SCHEDULE[activeIndex].times.map((time) => {
-              const checked = isChecked(INTERVIEW_SCHEDULE[activeIndex].date, time);
-              return (
-                <div key={time} className="flex items-center justify-between self-stretch">
-                  <span className="text-[1rem] font-medium text-[var(--color-navyblack)]">{time}</span>
+      {/* 2. [모바일] 일정 박스 및 캐러셀 (애니메이션 적용 버전) */}
+      <div className="flex w-full flex-col items-center gap-[1.75rem] md:hidden">
+        {/* 슬라이더 컨테이너: 넘치는 부분을 가림 */}
+        <div className="w-[19.375rem] overflow-hidden rounded-[0.875rem] border-2 border-[rgba(27,38,52,0.65)] bg-[var(--color-white)] shadow-[1px_1px_6.4px_0_rgba(27,38,52,0.10)]">
+          <div
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+            className="flex transition-transform duration-300 ease-in-out">
+            {/* 데이터 배열을 맵핑하여 가로로 쭉 배치 */}
+            {INTERVIEW_SCHEDULE.map((schedule) => (
+              <div key={schedule.date} className="flex w-full shrink-0 flex-col px-[2.8125rem] py-[1.875rem]">
+                <div className="mb-[1.25rem] flex w-full justify-end">
                   <div className="flex min-w-[5.5rem] justify-center">
-                    <div
-                      onClick={() => onScheduleChange(INTERVIEW_SCHEDULE[activeIndex].date, time, !checked)}
-                      className={`relative flex aspect-square w-[2.125rem] cursor-pointer items-center justify-center rounded-[0.5rem] border-2 transition-all ${
-                        checked
-                          ? 'border-[var(--color-navyblack)] bg-[var(--color-white)] drop-shadow-[1px_1px_8.4px_rgba(27,38,52,0.10)]'
-                          : hasError
-                            ? 'border-[rgba(255,36,36,0.80)] bg-white'
-                            : 'border-[rgba(27,38,52,0.65)] bg-[var(--color-white)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)]'
-                      }`}>
-                      {checked && <CheckMark />}
-                    </div>
+                    <span className="text-[1.25rem] font-semibold text-[var(--color-navyblack)]">{schedule.date}</span>
                   </div>
                 </div>
-              );
-            })}
+
+                <div className="flex flex-col gap-[0.75rem]">
+                  {schedule.times.map((time) => {
+                    const checked = isChecked(schedule.date, time);
+                    return (
+                      <div key={time} className="flex items-center justify-between self-stretch">
+                        <span className="text-[1rem] font-medium text-[var(--color-navyblack)]">{time}</span>
+                        <div className="flex min-w-[5.5rem] justify-center">
+                          <div
+                            onClick={() => onScheduleChange(schedule.date, time, !checked)}
+                            className={`relative flex aspect-square w-[2.125rem] cursor-pointer items-center justify-center rounded-[0.5rem] border-2 transition-all ${
+                              checked
+                                ? 'border-[var(--color-navyblack)] bg-[var(--color-white)] drop-shadow-[1px_1px_8.4px_rgba(27,38,52,0.10)]'
+                                : hasError
+                                  ? 'border-[rgba(255,36,36,0.80)] bg-white'
+                                  : 'border-[rgba(27,38,52,0.65)] bg-[var(--color-white)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)]'
+                            }`}>
+                            {checked && <CheckMark />}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
+
+        {/* 인디케이터 (점) */}
         <div className="flex h-[2.25rem] w-[19.375rem] items-center justify-center gap-[0.5rem]">
           {INTERVIEW_SCHEDULE.map((_, index) => (
             <button

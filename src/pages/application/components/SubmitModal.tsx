@@ -52,7 +52,7 @@ const SubmitModal = ({ isOpen, onClose, onConfirm, partName, submitStatus }: Sub
                   {/* '오픈채팅을 통해 문의' */}
                   <span className="text-[#4284FF]">
                     <a
-                      href="https://open.kakao.com/..." // 실제 링크 삽입
+                      href="https://open.kakao.com/o/sz4wNDdi" // 실제 링크 삽입
                       target="_blank"
                       rel="noopener noreferrer"
                       className="cursor-pointer underline underline-offset-4">

@@ -13,11 +13,11 @@ const initialFormData: ApplicationFormData = {
     major: '',
     semestersLeft: '',
     phone: '',
-    verificationCode: '',
+    verificationCode: '재학',
     graduationYear: '',
     email: '',
   },
-  part: null,
+  part: 'plan-design',
   programmersCompleted: false,
   answers: { q1: '', q2: '', q3: '', q4: '', q5: '', q6: '', q7: '' },
   interviewSchedule: {},
@@ -155,9 +155,9 @@ export const useApplicationForm = () => {
         resetForm();
         return true;
       } catch (error: unknown) {
-        // 백엔드: 중복이면 404
+        // 백엔드: 중복이면 409
         const isDuplicate =
-          axios.isAxiosError(error) && (error.response?.status === 404 || error.response?.data?.code === 404);
+          axios.isAxiosError(error) && (error.response?.status === 409 || error.response?.data?.code === 409);
 
         setSubmitStatus(isDuplicate ? 'duplicate' : 'error');
         console.error('제출 실패:', error);
