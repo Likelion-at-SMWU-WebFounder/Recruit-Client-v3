@@ -9,6 +9,7 @@ export const ROUTER_URL = {
   CHECK_FINAL: '/apply/final',
   RESULT_DOCUMENT: '/apply/document/result',
   RESULT_FINAL: '/apply/final/result',
+  RESULT_UNAVAILABLE: '/result-unavailable',
   ACTIVITY: '/activity',
   WEBFOUNDERS: '/webfounders',
   APPLICATION: '/application',
