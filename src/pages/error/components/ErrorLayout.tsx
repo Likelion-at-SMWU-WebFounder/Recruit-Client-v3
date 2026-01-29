@@ -33,16 +33,11 @@ const ERROR_LAYOUT_STYLES = {
     tablet: 'md:text-[1.5rem]',
     desktop: 'lg:text-[1.75rem] lg:leading-[180%]',
   },
-  lineBreak: {
-    base: 'block',
-    tablet: 'md:hidden',
-  },
 } as const;
 
 export interface ErrorLayoutProps {
   title: string;
-  description?: ReactNode;
-  renderDescription?: (helpers: { lineBreakClassName: string }) => ReactNode;
+  children?: ReactNode;
   buttonText?: string;
   onButtonClick?: () => void;
   scrollTopOnMount?: boolean;
@@ -50,8 +45,7 @@ export interface ErrorLayoutProps {
 
 const ErrorLayout = ({
   title,
-  description,
-  renderDescription,
+  children,
   buttonText = '홈으로 바로가기',
   onButtonClick,
   scrollTopOnMount = true,
@@ -77,7 +71,6 @@ const ErrorLayout = ({
   const messageContainerClassName = combineStyles(ERROR_LAYOUT_STYLES.messageContainer);
   const messageTitleClassName = combineStyles(ERROR_LAYOUT_STYLES.messageTitle);
   const descriptionClassName = combineStyles(ERROR_LAYOUT_STYLES.description);
-  const lineBreakClassName = combineStyles(ERROR_LAYOUT_STYLES.lineBreak);
 
   return (
     <div className={containerClassName}>
@@ -86,11 +79,7 @@ const ErrorLayout = ({
 
         <div className={messageContainerClassName}>
           <h2 className={messageTitleClassName}>{title}</h2>
-          {(renderDescription || description) && (
-            <p className={descriptionClassName}>
-              {renderDescription ? renderDescription({ lineBreakClassName }) : description}
-            </p>
-          )}
+          {children && <p className={descriptionClassName}>{children}</p>}
         </div>
 
         <DefaultButton onClick={handleButtonClick} isIcon={false}>
