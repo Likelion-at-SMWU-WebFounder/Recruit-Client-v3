@@ -63,7 +63,7 @@ export const QUESTIONS: Question[] = [
     question: "다양한 IT 동아리 중에서 '멋쟁이사자처럼 대학 14기'를 선택하고 지원하시게 된 이유를 작성해 주세요.",
     placeholder: '답변을 입력해 주세요.',
     type: 'long',
-    maxLength: 600,
+    maxLength: 700,
     required: true,
   },
   {
@@ -73,7 +73,7 @@ export const QUESTIONS: Question[] = [
       '위의 파트를 선택한 이유와 관련 경험을 해본 적이 있는지, 그리고 이 파트를 통해 어떠한 성장을 희망하시는지 작성해 주세요.',
     placeholder: '답변을 입력해 주세요.',
     type: 'long',
-    maxLength: 600,
+    maxLength: 700,
     required: true,
   },
   {
@@ -83,7 +83,7 @@ export const QUESTIONS: Question[] = [
       '멋쟁이사자처럼 대학에서 한 학기 동안 배운 것을 바탕으로 한 달 동안 팀을 구성해 웹 서비스를 배포해야 합니다. 개발하고 싶었던 웹 서비스가 있나요? 있다면, 아이디어에 대해 설명해 주세요.',
     placeholder: '답변을 입력해 주세요.',
     type: 'long',
-    maxLength: 600,
+    maxLength: 700,
     required: true,
   },
   {
@@ -92,7 +92,7 @@ export const QUESTIONS: Question[] = [
     question: '자신의 강점이 무엇인가요? 그 강점이 돋보였던 상황을 구체적으로 설명해 주세요.',
     placeholder: '답변을 입력해 주세요.',
     type: 'long',
-    maxLength: 600,
+    maxLength: 700,
     required: true,
   },
   {
@@ -101,7 +101,7 @@ export const QUESTIONS: Question[] = [
     question: '열정을 다해서 도전을 해본 경험이 있다면, 도전의 경험을 구체적으로 설명해 주세요.',
     placeholder: '답변을 입력해 주세요.',
     type: 'long',
-    maxLength: 600,
+    maxLength: 700,
     required: true,
   },
   {
@@ -111,7 +111,7 @@ export const QUESTIONS: Question[] = [
       '멋쟁이사자처럼 대학은 협업과 팀워크를 중요한 가치로 생각하는 공동체입니다. 협업 경험에서 자신이 잘했다고 생각하는 점과 아쉽다고 생각하는 점을 이유와 함께 작성해 주세요.',
     placeholder: '답변을 입력해 주세요.',
     type: 'long',
-    maxLength: 600,
+    maxLength: 700,
     required: true,
   },
   {
@@ -166,7 +166,7 @@ export const INTERVIEW_SCHEDULE: InterviewScheduleOption[] = [
 
 export const AGREEMENT_INFO = {
   activityParticipation: {
-    title: '[숙명여대 멋사 필수 참여 행사]',
+    title: '[숙명여대 멋사 필수 참여 행사]\n불참 시 합격이 취소될 수 있으며, 활동 수료에 제한이 있을 수 있습니다.',
     content: `숙명여대 멋사 OT: 03.08(금) 19:00~21:00 (대면 진행, 불참 시 합격 취소)
 멋사 중앙 OT: 03.21(수) 19:00 (온라인 진행, 불참 시 합격 취소)
 중앙 아이디어톤: 6월 중 진행 (수료 요건)
@@ -178,9 +178,9 @@ export const AGREEMENT_INFO = {
   },
   photoUsage: {
     title: '[서류 제출 유의사항]',
-    content: `서류 제출은 1개 학번 당 1번 제출만 가능합니다.
-서버 불안정 등 예상치 못한 상황에 대비하여 답변 내용을 별도로 백업하신 후 제출해 주시기 바랍니다.
-제출 완료 후 랜딩되는 페이지를 시간이 보이는 전체 화면으로 캡쳐해 두시면 추후 증빙 자료로 활용될 수 있습니다.`,
+    content: `서류 제출은 1개 학번 당 1번 제출만 가능하도록 중복 제출 방지가 되어있습니다. 이점 유의하시어 제출해 주시기 바랍니다.
+서버 불안정 등 예상치 못한 상황에 대비하여 답변 내용을 별도로 백업하신 후, 지원서를 제출해 주시기 바랍니다.
+제출하기 버튼을 누른 후 랜딩 되는 제출 완료 페이지를 시간이 보이는 전체 화면으로 꼭 캡쳐해 주시기 바랍니다. 추후 서류 누락으로 서류 면접에 불이익 발생 시, 증빙자료로 인정될 수 있습니다.`,
     checkbox: '위 내용을 확인하였습니다.',
   },
   eventParticipation: {
@@ -214,7 +214,7 @@ export const AGREEMENT_INFO = {
 
   ▣ 동의를 거부할 권리 및 동의를 거부할 경우의 불이익
   위 제3자에 대한 개인 정보의 제공에 관한 동의를 거부할 수 있으나 본 프로그램 참가를 위해 필수적이므로 위 사항에 동의하셔야만 참가 및 활동이 가능합니다.`,
-    checkbox: '위의 정보 수집/이용에 동의합니다.',
+    checkbox: '개인정보 수집/이용에 동의합니다.',
   },
 };
 
@@ -231,8 +231,10 @@ export const PASSWORD_INFO = {
 export const APPLICANT_ERRORS = {
   name: '이름을 입력해주세요.',
   studentId: '학번을 입력해주세요.',
+  studentIdFormat: '학번은 형식이 올바르지 않습니다.',
   major: '전공을 입력해주세요.',
   semestersLeft: '수료 학기를 입력해주세요.',
+  semestersLeftFormat: '수료 학기 형식이 올바르지 않습니다.',
   graduationYear: '졸업 예정 연도를 입력해주세요.',
   phone: '전화번호를 입력해주세요.',
   phoneFormat: '전화번호 형식이 올바르지 않습니다.',

@@ -26,6 +26,13 @@ const Application = () => {
     submitForm,
   } = useApplicationForm();
 
+  const applicantRef = useRef<HTMLDivElement>(null);
+  const partRef = useRef<HTMLDivElement>(null);
+  const questionsRef = useRef<HTMLDivElement>(null);
+  const interviewRef = useRef<HTMLDivElement>(null);
+  const agreementRef = useRef<HTMLDivElement>(null);
+  const verificationRef = useRef<HTMLDivElement>(null);
+
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [programmersFile, setProgrammersFile] = useState<File | undefined>(undefined);
@@ -35,6 +42,9 @@ const Application = () => {
     setIsSubmitted(true);
 
     const isApplicantValid = Object.values(formData.applicantInfo).every((v) => v.trim() !== '');
+    const numberOnlyRegex = /^\d+$/;
+    const isStudentIdFormatValid = numberOnlyRegex.test(formData.applicantInfo.studentId);
+    const isSemestersFormatValid = numberOnlyRegex.test(formData.applicantInfo.semestersLeft);
     const isPhoneValid = /^010-\d{3,4}-\d{4}$/.test(formData.applicantInfo.phone);
     const isEmailValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.applicantInfo.email);
     const isPartValid = !!formData.part;
@@ -45,6 +55,8 @@ const Application = () => {
 
     if (
       isApplicantValid &&
+      isStudentIdFormatValid &&
+      isSemestersFormatValid &&
       isPhoneValid &&
       isEmailValid &&
       isPartValid &&
@@ -55,7 +67,36 @@ const Application = () => {
     ) {
       setIsModalOpen(true);
     } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      let errorSectionRef: React.RefObject<HTMLDivElement | null> | null = null;
+
+      if (!isApplicantValid || !isStudentIdFormatValid || !isSemestersFormatValid || !isPhoneValid || !isEmailValid) {
+        errorSectionRef = applicantRef;
+      } else if (!isPartValid) {
+        errorSectionRef = partRef;
+      } else if (!isQuestionsValid) {
+        errorSectionRef = questionsRef;
+      } else if (!isInterviewValid) {
+        errorSectionRef = interviewRef;
+      } else if (!isAgreementsValid) {
+        errorSectionRef = agreementRef;
+      } else if (!isPasswordValid) {
+        errorSectionRef = verificationRef;
+      }
+
+      if (errorSectionRef && errorSectionRef.current) {
+        const element = errorSectionRef.current;
+        const offset = 80;
+
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = element.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        });
+      }
     }
   };
 
@@ -150,43 +191,55 @@ const Application = () => {
             id="application-form"
             onSubmit={handleSubmit}
             className="mx-auto flex w-full flex-col items-center pb-[10rem] lg:max-w-[98.2rem]">
-            <div className="flex w-full flex-col gap-[11.4375rem]">
-              <ApplicantInfoSection
-                data={formData.applicantInfo}
-                onChange={updateApplicantInfo}
-                isSubmitted={isSubmitted}
-              />
+            <div className="flex w-full flex-col gap-[6.25rem] md:gap-[8.75rem] lg:gap-[11.4375rem]">
+              <div ref={applicantRef}>
+                <ApplicantInfoSection
+                  data={formData.applicantInfo}
+                  onChange={updateApplicantInfo}
+                  isSubmitted={isSubmitted}
+                />
+              </div>
 
-              <PartSelectionSection
-                selectedPart={formData.part}
-                onPartChange={updatePart}
-                programmersCompleted={formData.programmersCompleted}
-                onProgrammersChange={updateProgrammersCompleted}
-                onFileChange={setProgrammersFile}
-                isSubmitted={isSubmitted}
-              />
+              <div ref={partRef}>
+                <PartSelectionSection
+                  selectedPart={formData.part}
+                  onPartChange={updatePart}
+                  programmersCompleted={formData.programmersCompleted}
+                  onProgrammersChange={updateProgrammersCompleted}
+                  onFileChange={setProgrammersFile}
+                  isSubmitted={isSubmitted}
+                />
+              </div>
 
-              <QuestionSection answers={formData.answers} onAnswerChange={updateAnswer} isSubmitted={isSubmitted} />
+              <div ref={questionsRef}>
+                <QuestionSection answers={formData.answers} onAnswerChange={updateAnswer} isSubmitted={isSubmitted} />
+              </div>
 
-              <InterviewScheduleSection
-                selectedSchedule={formData.interviewSchedule}
-                onScheduleChange={updateInterviewSchedule}
-                isSubmitted={isSubmitted}
-              />
+              <div ref={interviewRef}>
+                <InterviewScheduleSection
+                  selectedSchedule={formData.interviewSchedule}
+                  onScheduleChange={updateInterviewSchedule}
+                  isSubmitted={isSubmitted}
+                />
+              </div>
 
-              <AgreementSection
-                agreements={formData.agreements}
-                onAgreementChange={updateAgreement}
-                isSubmitted={isSubmitted}
-              />
+              <div ref={agreementRef}>
+                <AgreementSection
+                  agreements={formData.agreements}
+                  onAgreementChange={updateAgreement}
+                  isSubmitted={isSubmitted}
+                />
+              </div>
 
-              <VerificationSection
-                password={formData.password}
-                passwordConfirm={formData.passwordConfirm}
-                onPasswordChange={updatePassword}
-                onPasswordConfirmChange={updatePasswordConfirm}
-                isSubmitted={isSubmitted}
-              />
+              <div ref={verificationRef}>
+                <VerificationSection
+                  password={formData.password}
+                  passwordConfirm={formData.passwordConfirm}
+                  onPasswordChange={updatePassword}
+                  onPasswordConfirmChange={updatePasswordConfirm}
+                  isSubmitted={isSubmitted}
+                />
+              </div>
             </div>
 
             <div className="mt-[10.75rem]">

@@ -98,7 +98,7 @@ const FAQSection = () => {
       {/* footer */}
       <div className={TW.footer}>
         기타 문의사항은{' '}
-        <a href="https://open.kakao.com/o/sExample" target="_blank" rel="noopener noreferrer" className={TW.footerLink}>
+        <a href="https://open.kakao.com/o/sz4wNDdi" target="_blank" rel="noopener noreferrer" className={TW.footerLink}>
           오픈채팅
         </a>
         으로 연락해주세요!
