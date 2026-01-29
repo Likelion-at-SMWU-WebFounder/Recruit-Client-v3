@@ -16,6 +16,14 @@ const InfoDropdown = ({ label, required, value, options, errorMessage, onChange 
 
   return (
     <div className="flex w-full flex-col gap-[1rem] md:w-[24.75rem] md:gap-[1.375rem] lg:w-[40.3125rem]">
+      {isOpen && (
+        <div
+          className="fixed inset-0 z-10 md:hidden"
+          style={{ backgroundColor: '#4D4D4E', opacity: 0.65 }}
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
       <div className="flex items-end gap-[0.5rem] md:gap-[0.8125rem]">
         <span className="text-[1.25rem] font-semibold text-[var(--color-navyblack)] md:text-[1.5rem] lg:text-[2rem]">
           {label}
@@ -28,7 +36,7 @@ const InfoDropdown = ({ label, required, value, options, errorMessage, onChange 
       <div className="relative w-full">
         <div
           onClick={() => setIsOpen(!isOpen)}
-          className={`flex h-[2.8rem] w-full cursor-pointer items-center justify-between rounded-[1rem] bg-[var(--color-white)] px-[0.875rem] py-[0.625rem] transition-all md:h-[3.625rem] md:px-[1.5rem] md:py-[1rem] lg:h-[4.1875rem] lg:px-[1.375rem] lg:py-[1.0625rem] ${
+          className={`relative z-20 flex h-[2.8rem] w-full cursor-pointer items-center justify-between rounded-[1rem] bg-[var(--color-white)] px-[0.875rem] py-[0.625rem] transition-all md:h-[3.625rem] md:px-[1.5rem] md:py-[1rem] lg:h-[4.1875rem] lg:px-[1.375rem] lg:py-[1.0625rem] ${
             hasError
               ? 'border-2 border-[rgba(255,36,36,0.80)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)]'
               : 'border-2 border-[rgba(27,38,52,0.65)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)]'

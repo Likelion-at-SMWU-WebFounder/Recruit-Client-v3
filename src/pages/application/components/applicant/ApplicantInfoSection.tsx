@@ -18,6 +18,18 @@ const ApplicantInfoSection = ({ data, onChange, isSubmitted }: ApplicantInfoSect
     if (!isSubmitted) return '';
     if (isEmpty) return APPLICANT_ERRORS[fieldId];
 
+    const numberOnlyRegex = /^\d+$/;
+
+    // 학번 숫자 유효성 검사
+    if (fieldId === 'studentId') {
+      if (!numberOnlyRegex.test(value)) return APPLICANT_ERRORS.studentIdFormat;
+    }
+
+    // 수료 학기 숫자 유효성 검사
+    if (fieldId === 'semestersLeft') {
+      if (!numberOnlyRegex.test(value)) return APPLICANT_ERRORS.semestersLeftFormat;
+    }
+
     if (fieldId === 'phone') {
       const phoneRegex = /^010-\d{3,4}-\d{4}$/;
       if (!phoneRegex.test(value)) return APPLICANT_ERRORS.phoneFormat;
