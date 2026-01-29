@@ -95,7 +95,7 @@ const ProjectCard = ({ thumbnail, title, summary, no, category, onClick, isFirst
   };
 
   return (
-    <div onClick={onClick} className={containerClassName}>
+    <div onClick={onClick} className={`project-card ${containerClassName}`} data-project-name={title}>
       <div className={thumbnailWrapperClassName}>
         {!isImageLoaded && (
           <div className="absolute inset-0">
