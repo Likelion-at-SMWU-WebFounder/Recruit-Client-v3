@@ -19,4 +19,4 @@ export const ROUTER_URL = {
 
 export const GITHUB_URL = 'https://github.com/Likelion-at-SMWU-13th';
 export const INSTAGRAM_URL = 'https://www.instagram.com/sookmyung_likelion/';
-export const KAKAOTALK_URL = 'https://open.kakao.com/'; // 오픈 카카오톡 문의 방 생성 후 수정 필요
+export const KAKAOTALK_URL = 'https://open.kakao.com/o/sz4wNDdi';
