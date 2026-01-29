@@ -95,7 +95,9 @@ const ProjectCard = ({ thumbnail, title, summary, no, category, onClick, isFirst
   };
 
   return (
-    <div onClick={onClick} className={containerClassName}>
+    // project-card는 GA4 이벤트 추적을 위한 클래스명
+    // data-project-name은 GA4 이벤트 추적을 위한 프로젝트 이름
+    <div onClick={onClick} className={`project-card ${containerClassName}`} data-project-name={title}>
       <div className={thumbnailWrapperClassName}>
         {!isImageLoaded && (
           <div className="absolute inset-0">
