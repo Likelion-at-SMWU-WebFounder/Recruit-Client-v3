@@ -323,6 +323,23 @@
     animation: drawReverse 1.2s ease-out forwards;
   }
 
+  /* Filter Bar 플로팅 애니메이션 */
+  @keyframes floatIn {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .filter-float-in {
+    animation: floatIn 0.4s ease-out forwards;
+    opacity: 0;
+  }
+
   /* project 무한 스크롤 애니메이션 */
   @keyframes scrollRight {
     0% {
