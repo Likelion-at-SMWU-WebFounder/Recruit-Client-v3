@@ -71,7 +71,8 @@ export const BONUS_INFO = {
   courseLink: '프로그래머스 파이썬 입문 강의',
   courseNote: '파트 1~8, 10~11 수강시 가산점 부여',
   verifyTitle: '인증 방법',
-  verifyMethod: '홈페이지 지원서의\n파일업로드를 통해 수강 인증 가능',
+  verifyMethod: '홈페이지 지원서의',
+  verifyFile: '파일업로드를 통해 수강 인증 가능',
 };
 
 export const BONUS_LINK = {

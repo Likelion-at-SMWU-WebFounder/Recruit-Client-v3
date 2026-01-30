@@ -42,12 +42,13 @@ export const TW = {
 
   // card text
   textWrap: 'relative z-10',
-  titleMobile: 'text-[1.5rem] font-semibold text-[var(--color-navyblack-main)]',
-  titleDesktop: 'text-[1.5rem] font-semibold text-[var(--color-navyblack-main)] lg:text-[2.25rem]',
+  titleMobile: 'text-[1.5rem] font-semibold text-[var(--color-navyblack-main)] leading-[120%]',
+  titleDesktop: 'text-[1.5rem] font-semibold text-[var(--color-navyblack-main)] lg:text-[2.25rem] leading-[120%]',
 
-  skillsMobile: 'mt-[0.5rem] text-[0.875rem] font-medium text-[#1B2634]/60',
+  skillsMobile: 'mt-[0.5rem] text-[0.875rem] font-medium text-[#1B2634]/60 leading-[120%]',
   skillsFolded: 'lg:mt-[0.625rem] md:mt-[0.5rem] text-[0.875rem] font-medium text-[#1B2634]/60 lg:text-[1.25rem]',
-  skillsExpanded: 'lg:mt-[0.625rem] mt:[0.5rem] text-[0.875rem] font-medium text-[#1B2634]/60 lg:text-[1.25rem]',
+  skillsExpanded:
+    'lg:mt-[0.625rem] mt:[0.5rem] text-[0.875rem] font-medium text-[#1B2634]/60 lg:text-[1.25rem] leading-[120%]',
 
   descMobile:
     'mt-[1.3125rem] text-[0.9375rem] leading-[180%] font-medium text-[var(--color-navyblack-main)] break-keep whitespace-pre-line',
