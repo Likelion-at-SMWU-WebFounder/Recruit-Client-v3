@@ -55,7 +55,7 @@ const DefaultButton = ({
   return (
     <button
       type="button"
-      className={`${baseClasses} ${sizeClassName} ${borderClassName} ${className}`}
+      className={`${baseClasses} ${sizeClassName} ${borderClassName} ${className ?? ''}`}
       onClick={onClick}
       {...props}>
       {children}
