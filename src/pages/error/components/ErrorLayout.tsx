@@ -1,12 +1,12 @@
-import { useEffect } from 'react';
+import { type ReactNode, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { combineStyles } from '@shared/utils/combineStyles';
 import DefaultButton from '@shared/components/button/DefaultButton';
 import { ROUTER_URL } from '@shared/constants/url';
-import errorIcon from './assets/error-icon.svg';
+import errorIcon from '../assets/error-icon.svg';
 
-// Not Found 페이지 스타일 상수화
-const NOT_FOUND_STYLES = {
+// 에러 레이아웃 스타일 상수화
+const ERROR_LAYOUT_STYLES = {
   container: {
     base: 'flex h-[100dvh] flex-col items-center justify-center',
   },
@@ -33,54 +33,61 @@ const NOT_FOUND_STYLES = {
     tablet: 'md:text-[1.5rem]',
     desktop: 'lg:text-[1.75rem] lg:leading-[180%]',
   },
-  lineBreak: {
-    base: 'block',
-    tablet: 'md:hidden',
-  },
 } as const;
 
-const NotFound = () => {
+export interface ErrorLayoutProps {
+  title: string;
+  children?: ReactNode;
+  buttonText?: string;
+  onButtonClick?: () => void;
+  scrollTopOnMount?: boolean;
+}
+
+const ErrorLayout = ({
+  title,
+  children,
+  buttonText = '홈으로 바로가기',
+  onButtonClick,
+  scrollTopOnMount = true,
+}: ErrorLayoutProps) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (!scrollTopOnMount) return;
     window.scrollTo(0, 0);
-  }, []);
+  }, [scrollTopOnMount]);
 
-  const handleGoHome = () => {
+  const handleButtonClick = () => {
+    if (onButtonClick) {
+      onButtonClick();
+      return;
+    }
     navigate(ROUTER_URL.HOME);
   };
 
-  const containerClassName = combineStyles(NOT_FOUND_STYLES.container);
-  const contentClassName = combineStyles(NOT_FOUND_STYLES.content);
-  const errorIconClassName = combineStyles(NOT_FOUND_STYLES.errorIcon);
-  const messageContainerClassName = combineStyles(NOT_FOUND_STYLES.messageContainer);
-  const messageTitleClassName = combineStyles(NOT_FOUND_STYLES.messageTitle);
-  const descriptionClassName = combineStyles(NOT_FOUND_STYLES.description);
-  const lineBreakClassName = combineStyles(NOT_FOUND_STYLES.lineBreak);
+  const containerClassName = combineStyles(ERROR_LAYOUT_STYLES.container);
+  const contentClassName = combineStyles(ERROR_LAYOUT_STYLES.content);
+  const errorIconClassName = combineStyles(ERROR_LAYOUT_STYLES.errorIcon);
+  const messageContainerClassName = combineStyles(ERROR_LAYOUT_STYLES.messageContainer);
+  const messageTitleClassName = combineStyles(ERROR_LAYOUT_STYLES.messageTitle);
+  const descriptionClassName = combineStyles(ERROR_LAYOUT_STYLES.description);
 
   return (
     <div className={containerClassName}>
       <div className={contentClassName}>
-        {/* 404 에러 아이콘 */}
         <img src={errorIcon} alt="에러 아이콘" className={errorIconClassName} />
 
-        {/* 에러 메시지 */}
         <div className={messageContainerClassName}>
-          <h2 className={messageTitleClassName}>잘못된 접근입니다.</h2>
-          <p className={descriptionClassName}>
-            방문하시려는 페이지의 주소가 잘못 입력되었거나,
-            <br />
-            페이지의 주소가 변경 혹은 삭제되어 <br className={lineBreakClassName} /> 요청하신 페이지를 찾을 수 없습니다.
-          </p>
+          <h2 className={messageTitleClassName}>{title}</h2>
+          {children && <p className={descriptionClassName}>{children}</p>}
         </div>
 
-        {/* 홈으로 가기 버튼 */}
-        <DefaultButton onClick={handleGoHome} isIcon={false}>
-          홈으로 바로가기
+        <DefaultButton onClick={handleButtonClick} isIcon={false}>
+          {buttonText}
         </DefaultButton>
       </div>
     </div>
   );
 };
 
-export default NotFound;
+export default ErrorLayout;
