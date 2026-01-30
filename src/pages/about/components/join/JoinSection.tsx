@@ -62,7 +62,9 @@ const JoinSection = () => {
         <div className={overlayClassName} />
 
         <div className={overlayButtonClassName}>
-          <DefaultButton onClick={handleJoinClick} backgroundType="blue">
+          <DefaultButton onClick={handleJoinClick} backgroundType="blue" className="cta-guide">
+            {' '}
+            {/* cta-guide: GA4 트리거 적용 */}
             {JOIN_BUTTON_TEXT}
           </DefaultButton>
         </div>
@@ -70,7 +72,9 @@ const JoinSection = () => {
 
       {/* tablet, mobile 버튼 */}
       <div className={mobileButtonClassName}>
-        <DefaultButton onClick={handleJoinClick} backgroundType="blue">
+        <DefaultButton onClick={handleJoinClick} backgroundType="blue" className="cta-guide">
+          {' '}
+          {/* cta-guide: GA4 트리거 적용 */}
           {JOIN_BUTTON_TEXT}
         </DefaultButton>
       </div>
