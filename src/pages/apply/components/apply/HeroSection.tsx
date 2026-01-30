@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RECRUITMENT_PHASES, HERO_PHASE_CONTENT, type RecruitmentPhase } from '../../constants/heroSection';
 import ReusableBackground from '../background/ReusableBackground';
-import DefaultButton from '@/shared/components/button/DefaultButton';
+import HeroButton from '../button/HeroButton';
 import '../../styles/HomeSection.css';
 
 const CURRENT_MODE = 2;
@@ -111,9 +111,7 @@ const HeroSection = () => {
           </div>
 
           {currentContent.BUTTON_TEXT && (
-            <DefaultButton onClick={handleApplyClick} backgroundType="white" border="none" isIcon={true} id="cta-apply">
-              {currentContent.BUTTON_TEXT}
-            </DefaultButton>
+            <HeroButton onClick={handleApplyClick}>{currentContent.BUTTON_TEXT}</HeroButton>
           )}
         </div>
       </ReusableBackground>
