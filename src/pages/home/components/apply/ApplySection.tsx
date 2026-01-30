@@ -47,7 +47,9 @@ const ApplySection = () => {
       <div className={contentClassName}>
         <SubTitle subTitle={SUB_TITLE.SUB_TITLE_6} subDescription={SUB_TITLE.SUB_DESCRIPTION_6} mode="dark" />
 
-        <DefaultButton onClick={handleApplyClick} backgroundType="white">
+        <DefaultButton onClick={handleApplyClick} backgroundType="white" className="cta-guide">
+          {' '}
+          {/* cta-guide: GA4 트리거 적용 */}
           {APPLY_BUTTON_TEXT}
         </DefaultButton>
       </div>
