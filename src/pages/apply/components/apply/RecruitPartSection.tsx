@@ -104,10 +104,6 @@ const RecruitPartSection = () => {
           onMouseEnter={handleEnter}
           onMouseLeave={handleLeave}
           onClick={handleToggleTablet}
-          onTouchEnd={(e) => {
-            e.preventDefault();
-            handleToggleTablet();
-          }}
           role="button"
           tabIndex={0}
           onKeyDown={(e) => {

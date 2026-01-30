@@ -25,7 +25,7 @@ export const TW = {
 
   // shared card
   cardBase:
-    'overflow-hidden rounded-[1.25rem] px-[0.81rem] py-[3rem] shadow-[1px_1px_25.5px_4px_rgba(27,38,52,0.12)] lg:px-[2.31rem] lg:py-[4.38rem] transition-all duration-500 ease-in-out',
+    'overflow-hidden rounded-[1.25rem] px-[0.81rem] py-[3rem] shadow-[1px_1px_25.5px_4px_rgba(27,38,52,0.12)] lg:px-[2.31rem] lg:py-[4.38rem] transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1)',
   cardSizeDesktop: 'h-[23.125rem] w-[18rem] lg:h-[36.375rem] lg:w-[32.3125rem]',
   cardSizeMobile: 'h-[23.125rem] w-[18rem]',
 
