@@ -28,7 +28,7 @@ export const RECRUIT_PARTS: RecruitPartTypes[] = [
     skills: 'JavaScript, React',
     description:
       '사용자 인터페이스(UI)와 사용자 경험(UX)에 초점을 두며, WEB과 사용자가 직접적으로 맞닿아 있는 인터페이스를 구축합니다.',
-    cta: '사용자가 직접 사용하는 화면을 개발해보고 싶다면 프론트엔드\n 파트에 지원하세요!',
+    cta: '사용자가 직접 사용하는 화면을\n 개발해보고 싶다면 프론트엔드\n 파트에 지원하세요!',
   },
   {
     id: 'backend',

@@ -51,6 +51,9 @@ const RecruitPartSection = () => {
     if (isMdUp && !isLgUp) setIsExpanded((v) => !v);
   };
 
+  // 회전 각도 설정
+  const ROTATIONS = [-18.63, 0, 18.63];
+
   return (
     <section className={TW.section}>
       <div className={TW.container}>
@@ -101,25 +104,26 @@ const RecruitPartSection = () => {
           onMouseEnter={handleEnter}
           onMouseLeave={handleLeave}
           onClick={handleToggleTablet}
-          onTouchStart={handleToggleTablet}
+          onTouchEnd={(e) => {
+            e.preventDefault();
+            handleToggleTablet();
+          }}
           role="button"
           tabIndex={0}
           onKeyDown={(e) => {
             if (e.key === 'Enter' || e.key === ' ') handleToggleTablet();
           }}>
-          {!isExpanded ? (
-            <div className={TW.foldedStage}>
-              {RECRUIT_PARTS.map((part, idx) => (
-                <RecruitPartCard key={part.id} partIndex={idx} variant="folded" TW={TW} images={PART_IMAGES} />
-              ))}
-            </div>
-          ) : (
-            <div className={TW.expandedStage}>
-              {RECRUIT_PARTS.map((part, idx) => (
-                <RecruitPartCard key={part.id} partIndex={idx} variant="expanded" TW={TW} images={PART_IMAGES} />
-              ))}
-            </div>
-          )}
+          {RECRUIT_PARTS.map((part, idx) => (
+            <RecruitPartCard
+              key={part.id}
+              partIndex={idx}
+              variant={isExpanded ? 'expanded' : 'folded'}
+              isExpanded={isExpanded}
+              rotation={ROTATIONS[idx]}
+              TW={TW}
+              images={PART_IMAGES}
+            />
+          ))}
         </div>
       </div>
     </section>
