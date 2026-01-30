@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import FilterButton from '@shared/components/filter/FilterButton';
 import { combineStyles } from '@shared/utils/combineStyles';
 import { MdOutlineMoreHoriz } from 'react-icons/md';
@@ -9,7 +9,7 @@ interface FilterBarProps {
   onChange: (value: string) => void;
   options: FilterOptionType[];
   mode?: FilterModeType; // project: 프로젝트 페이지, webFounders: 웹파운더즈 페이지
-  showMoreThreshold?: number; // 더보기 버튼을 표시할 최소 옵션 개수 (기본값: 4)
+  showMoreThreshold?: number; // 처음에 보여줄 옵션의 마지막 인덱스 (기본값: 3, 인덱스 0~3까지 표시)
 }
 
 // 필터 바 스타일 상수화
@@ -34,13 +34,26 @@ const FILTER_BAR_STYLES = {
   },
 } as const;
 
-const FilterBar = ({ value, onChange, options, mode = 'project', showMoreThreshold = 4 }: FilterBarProps) => {
-  const [showMore, setShowMore] = useState(false);
+const FilterBar = ({ value, onChange, options, mode = 'project', showMoreThreshold = 3 }: FilterBarProps) => {
+  // 현재 선택된 필터의 인덱스 확인
+  const selectedOptionIndex = options.findIndex((option) => option.filterValue === value);
+  const shouldShowMoreInitially = selectedOptionIndex > showMoreThreshold;
+
+  const [showMore, setShowMore] = useState(shouldShowMoreInitially);
+
+  // value가 변경될 때 선택된 필터가 더보기 영역에 있으면 자동으로 열기
+  useEffect(() => {
+    if (selectedOptionIndex > showMoreThreshold) {
+      setShowMore(true);
+    }
+  }, [value, selectedOptionIndex, showMoreThreshold]);
 
   // 더보기 기능이 필요한 경우 (project 모드에서만 사용)
   const hasMoreOptions = mode === 'project' && options.length > showMoreThreshold;
-  const visibleOptions =
-    hasMoreOptions && !showMore ? options.filter((option) => option.id <= showMoreThreshold) : options;
+
+  // 더보기 버튼 클릭 전: 인덱스 0부터 showMoreThreshold까지의 옵션만 표시
+  // 더보기 버튼 클릭 후: 모든 옵션 표시
+  const visibleOptions = hasMoreOptions && !showMore ? options.slice(0, showMoreThreshold + 1) : options;
 
   const containerClassName = combineStyles(FILTER_BAR_STYLES.container[mode]);
   const moreButtonClassName = [
