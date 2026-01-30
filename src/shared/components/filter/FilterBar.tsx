@@ -52,7 +52,7 @@ const FilterBar = ({ value, onChange, options, mode = 'project', showMoreThresho
 
   // 더보기 기능이 필요한 경우 (project 모드에서만 사용)
   // 옵션 개수가 showMoreThreshold보다 많을 때만 더보기 버튼 표시
-  const hasMoreOptions = mode === 'project' && options.length > showMoreThreshold;
+  const hasMoreOptions = mode === 'project' && options.length > showMoreThreshold + 1;
 
   // 더보기 버튼 클릭 전: 인덱스 0부터 showMoreThreshold까지의 옵션만 표시
   // 더보기 버튼 클릭 후: 모든 옵션 표시
