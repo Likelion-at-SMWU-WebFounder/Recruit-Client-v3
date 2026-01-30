@@ -17,8 +17,7 @@ interface ProjectCardProps {
 const CARD_STYLES = {
   container: {
     base: 'group flex cursor-pointer transition-all duration-300 ease-in-out',
-    mobile:
-      'flex-row items-end gap-[0.75rem] rounded-[0.75rem] bg-white px-[0.875rem] py-[1.25rem] [box-shadow:1px_1px_8.4px_0_rgba(27,38,52,0.10)]',
+    mobile: 'flex-row items-end gap-[0.75rem] rounded-[0.75rem] bg-white px-[0.875rem] py-[1.25rem] shadow-sub',
     tablet:
       'md:max-h-[28.9375rem] md:min-h-[27.125rem] md:w-[27.5rem] md:flex-col md:items-start md:gap-[2.625rem] md:rounded-none md:bg-transparent md:p-0 md:shadow-none',
     desktop: 'lg:max-h-[33.3125rem] lg:min-h-[31.0625rem] lg:w-[32.375rem]',
