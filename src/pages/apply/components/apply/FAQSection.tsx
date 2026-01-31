@@ -1,46 +1,54 @@
 import { useState } from 'react';
-import { SECTION_TITLES, SECTION_SUB_TITLES, FAQS } from '../../constants';
+import { SECTION_TITLES, SECTION_SUB_TITLES, FAQS, CONTACT_INFO } from '../../constants';
 import SubTitle from '@/shared/components/SubTitle';
 
 const TW = {
   /* layout */
   section:
-    'flex w-full flex-col items-center gap-[0.625rem] bg-[var(--color-white-main)] px-4 py-16 md:px-8 md:py-24 lg:px-[10rem] lg:py-[8.75rem]',
-
-  /* heading */
-  headingBox: 'flex min-w-[17.1875rem] flex-col items-center gap-[1rem]',
+    'flex w-full flex-col items-center gap-[3.88rem] md:gap-[3.99rem] lg:gap-[5rem] bg-[var(--color-white-main)] px-[1rem] py-[10rem] md:px-[4rem] md:py-[10.53225rem] lg:px-[10rem] lg:py-[8.75rem]',
 
   /* list */
-  listWrap:
-    'mt-10 flex w-full flex-col items-start gap-6 self-stretch md:mt-16 md:gap-8 lg:mt-[5rem] lg:gap-[2.4375rem]',
+  listWrap: 'flex w-full flex-col items-start gap-[1.125rem] self-stretch md:gap-[1.75rem] lg:gap-[2.4375rem]',
 
-  /* card */
-  cardBase:
-    'flex w-full flex-col justify-center rounded-[1.25rem] px-[1rem] py-[1rem] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] transition-colors duration-300 md:px-[1.75rem] md:py-[2.125rem] lg:w-[100rem] lg:px-[2.75rem] lg:py-[2.8125rem]',
+  /* card (Container) */
+  cardBase: `
+    flex w-full flex-col justify-center rounded-[0.75rem] md:rounded-[1.25rem] transition-colors duration-300 shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)]
+    px-[1rem] py-[1rem] md:px-[2.125rem] md:py-[1.75rem] lg:px-[2.75rem] lg:py-[2.8125rem]
+  `,
   cardOpen: 'bg-[rgba(66,132,255,0.04)]',
-  cardClosed: 'bg-[#F7FAFF]',
+  cardClosed: 'bg-[var(--color-white-main)]',
 
-  /* question */
-  questionBtn: 'flex w-full items-start justify-between cursor-pointer gap-2',
-  questionContent: 'flex items-start gap-1.5 md:gap-2',
-  questionPrefix: 'shrink-0 font-bold text-[#1B2634] text-[1rem] md:text-[1.5rem] lg:text-[2rem]',
+  /* question (Trigger) */
+  questionBtn: 'flex w-full items-start justify-between cursor-pointer group',
+  questionContent: 'flex items-start gap-[0.375rem] md:gap-[0.75rem] lg:gap-[0.875rem]',
+  questionPrefix:
+    'shrink-0 font-semibold text-[var(--color-navyblack-main)] text-[1.0625rem] md:text-[1.625rem] lg:text-[2.5rem] leading-[120%] md:leading-[140%] lg:leading-[120%]',
   questionText:
-    'text-left text-[1rem] leading-[1.4] font-semibold text-[#1B2634] md:text-[1.5rem] lg:text-[2rem] break-keep',
+    'text-left text-[1rem] leading-[120%] md:leading-[140%] font-semibold text-[var(--color-navyblack-main)] md:text-[1.5rem] lg:text-[2rem] break-keep',
 
+  /* arrow icon */
   arrow:
-    'h-[1.25rem] w-[1.25rem] flex-shrink-0 text-[#1B2634] transition-transform duration-300 md:h-[1.9375rem] md:w-[1.9375rem] lg:h-[3rem] lg:w-[3rem]',
+    'h-[1.25rem] w-[1.25rem] flex-shrink-0 text-[var(--color-navyblack-main)] transition-transform duration-500 md:h-[1.9375rem] md:w-[1.9375rem] lg:h-[3rem] lg:w-[3rem]',
   arrowOpen: 'rotate-180',
 
   /* answer */
-  answerWrap: 'overflow-hidden transition-all duration-300 ease-in-out',
-  answerOpen: 'mt-4 opacity-100 lg:mt-6',
-  answerClosed: 'max-h-0 opacity-0',
-  answerText:
-    'text-[0.875rem] leading-[170%] font-medium whitespace-pre-line text-[rgba(27,38,52,0.7)] md:text-[1.125rem] lg:text-[1.5rem] lg:px-[2.125rem] md:px-[1.675rem] px-[1.125rem] break-keep',
+  answerWrap: 'grid transition-all duration-300 ease-in-out',
+  answerOpen: 'grid-rows-[1fr] opacity-100',
+  answerClosed: 'grid-rows-[0fr] opacity-0',
+
+  answerInner: 'overflow-hidden transition-all duration-300 ease-in-out',
+  answerInnerOpen: 'pt-[0.625rem] md:pt-[1rem] lg:pt-[1.875rem]',
+  answerInnerClosed: 'pt-0',
+
+  answerText: `
+    font-medium whitespace-pre-line text-[rgba(27,38,52,0.7)] leading-[170%] break-keep
+    text-[0.875rem] px-[1.4375rem] md:text-[1.125rem] md:px-[2.375rem] lg:text-[1.5rem] lg:px-[3.375rem]
+  `,
 
   /* footer */
-  footer: 'mt-10 text-center text-[0.875rem] font-medium text-[#899099] md:text-[1.125rem] lg:mt-16 lg:text-[1.5rem]',
-  footerLink: 'font-semibold text-[#4284FF] underline',
+  footer:
+    'mt-[1.875rem] text-center text-[0.875rem] font-medium text-[#899099] md:mt-[3.75rem] md:text-[1.125rem] lg:mt-[5rem] lg:text-[1.5rem] leading-[120%]',
+  footerLink: 'font-semibold text-[var(--color-blue-main)] underline underline-offset-4',
 } as const;
 
 const cx = (...classes: Array<string | false | null | undefined>) => classes.filter(Boolean).join(' ');
@@ -54,8 +62,7 @@ const FAQSection = () => {
 
   return (
     <section className={TW.section}>
-      {/* heading */}
-      <div className={TW.headingBox}>
+      <div className="flex flex-col items-center">
         <SubTitle
           mode="light"
           align="center"
@@ -64,14 +71,12 @@ const FAQSection = () => {
         />
       </div>
 
-      {/* FAQ list */}
       <div className={TW.listWrap}>
         {FAQS.map((faq) => {
           const isOpen = openId === faq.id;
 
           return (
             <div key={faq.id} className={cx(TW.cardBase, isOpen ? TW.cardOpen : TW.cardClosed)}>
-              {/* question */}
               <button onClick={() => toggleFAQ(faq.id)} className={TW.questionBtn}>
                 <div className={TW.questionContent}>
                   <span className={TW.questionPrefix}>Q.</span>
@@ -79,29 +84,33 @@ const FAQSection = () => {
                 </div>
                 <svg
                   className={cx(TW.arrow, isOpen && TW.arrowOpen)}
+                  viewBox="0 0 48 48"
                   fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M14 24L24.1862 32.149L34.8817 24"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </button>
-
-              {/* answer */}
               <div className={cx(TW.answerWrap, isOpen ? TW.answerOpen : TW.answerClosed)}>
-                <p className={TW.answerText}>{faq.answer}</p>
+                <div className={cx(TW.answerInner, isOpen ? TW.answerInnerOpen : TW.answerInnerClosed)}>
+                  <p className={TW.answerText}>{faq.answer}</p>
+                </div>
               </div>
             </div>
           );
         })}
       </div>
-
-      {/* footer */}
       <div className={TW.footer}>
-        기타 문의사항은{' '}
-        <a href="https://open.kakao.com/o/sz4wNDdi" target="_blank" rel="noopener noreferrer" className={TW.footerLink}>
-          오픈채팅
+        {CONTACT_INFO.FOOTER_MESSAGE_PREFIX}
+        <a href={CONTACT_INFO.KAKAOTALK_CHAT_LINK} target="_blank" rel="noopener noreferrer" className={TW.footerLink}>
+          {CONTACT_INFO.KAKAOTALK_CHAT_NAME}
         </a>
-        으로 연락해주세요!
+        {CONTACT_INFO.FOOTER_MESSAGE_SUFFIX}
       </div>
     </section>
   );

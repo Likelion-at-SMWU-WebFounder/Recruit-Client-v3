@@ -11,13 +11,23 @@ interface RecruitPartCardProps {
   slideTransform?: string;
   TW: TwTokens;
   images: readonly string[];
+  isExpanded?: boolean;
+  rotation?: number;
 }
 
 const foldedGradByIndex = ['gradB', 'gradA', 'gradC'] as const;
 const foldedImgPosByIndex = ['imgFoldedLeft', 'imgFoldedCenter', 'imgFoldedCenter'] as const;
-const foldedPosByIndex = ['left', 'center', 'right'] as const;
 
-const RecruitPartCard = ({ partIndex, variant, isActive, slideTransform, TW, images }: RecruitPartCardProps) => {
+const RecruitPartCard = ({
+  partIndex,
+  variant,
+  isActive,
+  slideTransform,
+  TW,
+  images,
+  isExpanded,
+  rotation,
+}: RecruitPartCardProps) => {
   const part = RECRUIT_PARTS[partIndex];
 
   if (variant === 'mobile') {
@@ -39,31 +49,56 @@ const RecruitPartCard = ({ partIndex, variant, isActive, slideTransform, TW, ima
     );
   }
 
-  if (variant === 'folded') {
-    const posKey = foldedPosByIndex[partIndex];
-    const gradKey = foldedGradByIndex[partIndex];
-    const imgKey = foldedImgPosByIndex[partIndex];
+  const gradKey = foldedGradByIndex[partIndex];
+  const imgKey = foldedImgPosByIndex[partIndex];
 
-    return (
-      <div className={cx(TW.foldedPos[posKey], TW.cardBase, TW.cardSizeDesktop, TW[gradKey])}>
-        <h3 className={TW.titleDesktop}>{part.title}</h3>
-        <p className={TW.skillsFolded}>{part.skills}</p>
-        <img src={images[partIndex]} alt="" className={cx('absolute', TW.imgBase, TW[imgKey])} />
-      </div>
-    );
-  }
-
-  // expanded
   return (
-    <div className={cx('relative', TW.cardBase, TW.cardSizeDesktop, TW.gradB)}>
+    <div
+      className={cx(
+        'relative',
+        TW.cardBase,
+        TW.cardSizeDesktop,
+        isExpanded ? TW.cardExpanded : TW.cardFolded,
+        TW[gradKey]
+      )}
+      style={
+        {
+          '--r': isExpanded ? 0 : rotation,
+          zIndex: isExpanded ? 10 : partIndex === 2 ? 20 : partIndex === 1 ? 10 : 0,
+        } as React.CSSProperties
+      }>
       <div className={TW.textWrap}>
         <h3 className={TW.titleDesktop}>{part.title}</h3>
-        <p className={TW.skillsExpanded}>{part.skills}</p>
-        <p className={TW.descExpanded}>{part.description}</p>
-        <p className={TW.ctaExpanded}>{part.cta}</p>
+
+        {/* 접혔을 때 스킬 */}
+        <p
+          className={cx(
+            TW.skillsFolded,
+            'transition-all duration-300',
+            isExpanded ? 'invisible h-0 opacity-0' : 'visible opacity-100'
+          )}>
+          {part.skills}
+        </p>
+
+        {/* 펼쳐졌을 때 상세 내용*/}
+        <div
+          className={cx(
+            'transition-all delay-100 duration-500',
+            isExpanded ? 'relative h-auto translate-y-0 opacity-100' : 'h-0 translate-y-4 overflow-hidden opacity-0'
+          )}>
+          <div className="w-[16.38rem] lg:w-[27.0675rem]">
+            <p className={TW.skillsExpanded}>{part.skills}</p>
+            <p className={TW.descExpanded}>{part.description}</p>
+            <p className={TW.ctaExpanded}>{part.cta}</p>
+          </div>
+        </div>
       </div>
 
-      <img src={images[partIndex]} alt="" className={cx('absolute', TW.imgBase, TW.imgExpanded)} />
+      <img
+        src={images[partIndex]}
+        alt=""
+        className={cx('absolute transition-all duration-500', TW.imgBase, isExpanded ? TW.imgExpanded : TW[imgKey])}
+      />
     </div>
   );
 };
