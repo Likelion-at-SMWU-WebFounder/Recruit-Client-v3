@@ -60,7 +60,7 @@ const DoingCardFront = ({ icon_dark, term, title, shortDescription, onFlip }: Do
   const descriptionClassName = combineStyles(DOING_CARD_FRONT_STYLES.description);
 
   return (
-    <div className={cardContainerClassName} onClick={onFlip}>
+    <button className={cardContainerClassName} onClick={onFlip}>
       <img className={iconClassName} src={icon_dark} alt={title} />
 
       <div className={bottomClassName}>
@@ -77,7 +77,7 @@ const DoingCardFront = ({ icon_dark, term, title, shortDescription, onFlip }: Do
           <div className={descriptionClassName}>{shortDescription}</div>
         </div>
       </div>
-    </div>
+    </button>
   );
 };
 
