@@ -13,7 +13,7 @@ interface DoingCardBackProps {
 // DoingCardBack 스타일 상수화
 const DOING_CARD_BACK_STYLES = {
   cardContainer: {
-    base: 'absolute inset-0 flex flex-col shrink-0 rounded-[1.25rem] bg-cover bg-bottom bg-no-repeat shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] [transform:rotateY(180deg)] [-webkit-backface-visibility:hidden] [backface-visibility:hidden]',
+    base: 'absolute inset-0 flex flex-col shrink-0 rounded-[1.25rem] bg-cover bg-center bg-no-repeat shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] [transform:rotateY(180deg)] [-webkit-backface-visibility:hidden] [backface-visibility:hidden]',
     desktop: 'lg:w-[23.875rem] lg:h-[36.375rem] lg:p-[2.7rem]  lg:pb-[2.5rem]',
     tablet: 'md:w-[12.73331rem] md:h-[19.4rem] md:p-[1.4rem]',
   },
@@ -48,7 +48,7 @@ const DOING_CARD_BACK_STYLES = {
   description: {
     base: 'font-[500] whitespace-pre-line whitespace-nowrap leading-[180%] text-white',
     desktop: 'lg:text-[1.5rem]',
-    mobile: 'text-[0.875rem]',
+    tablet: 'text-[0.875rem]',
   },
 } as const;
 
