@@ -45,7 +45,7 @@ export const DOING_DATA = [
     term: [2],
     description: [
       '타대와 함께 팀이 되어 \n협업 경험의 끝을',
-      '여성·4호선 대학 연합을 통해\n타 학교와 협업하며\n서비스를 배포하고, 성장합니다 ',
+      '여성·4호선 대학 연합을 통해\n타 학교와 협업하며\n서비스를 배포하고, 성장합니다',
     ],
     icon_dark: `${DOING_ICON_PATH}/joint_icon.svg`,
     icon_white: `${DOING_ICON_PATH}/joint_white_icon.svg`,
