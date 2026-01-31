@@ -37,7 +37,9 @@ const DOING_SECTION_STYLES = {
     base: 'pointer-events-none absolute inset-y-0 right-0 flex h-full w-[17rem] items-center justify-end bg-gradient-to-l from-[#F7FAFF] to-transparent',
   },
   desktopTabletArrow: {
-    base: 'absolute inset-y-0 right-[5rem] flex items-center justify-end px-[0.5rem]',
+    base: 'absolute inset-y-0 flex items-center justify-end px-[0.5rem]',
+    desktop: 'lg:right-[5rem]',
+    tablet: 'md:right-[8rem]',
   },
   // 모바일 캐러셀
   mobile: {
