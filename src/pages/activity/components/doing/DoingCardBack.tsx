@@ -51,7 +51,7 @@ const DOING_CARD_BACK_STYLES = {
     mobile: 'text-[1.125rem]',
   },
   description: {
-    base: 'font-[500] whitespace-pre-line whitespace-nowrap leading-[180%] text-white',
+    base: 'font-[500] whitespace-pre-line leading-[180%] text-white',
     desktop: 'lg:text-[1.5rem]',
     tablet: 'text-[0.875rem]',
   },

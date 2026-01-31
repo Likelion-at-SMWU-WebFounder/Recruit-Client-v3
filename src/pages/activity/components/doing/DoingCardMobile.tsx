@@ -41,7 +41,7 @@ const DOING_CARD_MOBILE_STYLES = {
     base: 'hd18 leading-[140%] text-white',
   },
   description: {
-    base: 'font-[500] whitespace-pre-line whitespace-nowrap leading-[180%] text-white',
+    base: 'font-[500] whitespace-pre-line leading-[180%] text-white',
     mobile: 'text-[0.875rem]',
   },
 } as const;
