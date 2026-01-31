@@ -28,7 +28,7 @@ export const RECRUIT_PARTS: RecruitPartTypes[] = [
     skills: 'JavaScript, React',
     description:
       '사용자 인터페이스(UI)와 사용자 경험(UX)에 초점을 두며, WEB과 사용자가 직접적으로 맞닿아 있는 인터페이스를 구축합니다.',
-    cta: '사용자가 직접 사용하는 화면을 개발해보고 싶다면 프론트엔드\n 파트에 지원하세요!',
+    cta: '사용자가 직접 사용하는 화면을\n 개발해보고 싶다면 프론트엔드\n 파트에 지원하세요!',
   },
   {
     id: 'backend',
@@ -71,7 +71,8 @@ export const BONUS_INFO = {
   courseLink: '프로그래머스 파이썬 입문 강의',
   courseNote: '파트 1~8, 10~11 수강시 가산점 부여',
   verifyTitle: '인증 방법',
-  verifyMethod: '홈페이지 지원서의\n파일업로드를 통해 수강 인증 가능',
+  verifyMethod: '홈페이지 지원서의',
+  verifyFile: '파일업로드를 통해 수강 인증 가능',
 };
 
 export const BONUS_LINK = {
@@ -120,37 +121,37 @@ export const COMPLETION_CONDITIONS = [
 export const SCHEDULES: ScheduleTypes[] = [
   {
     id: 's1',
-    dateRange: '02.14(금)~02.21(금)',
-    dateRangeMobile: '02.14~02.21',
+    dateRange: '02.14(금)~02.18(금)',
+    dateRangeMobile: '02.14~02.18',
     label: '서류 접수',
     status: 'current',
   },
   {
     id: 's2',
-    dateRange: '02.25(화)',
-    dateRangeMobile: '02.25',
+    dateRange: '02.22(화)',
+    dateRangeMobile: '02.22',
     label: '서류 발표',
     status: 'upcoming',
   },
   {
     id: 's3',
-    dateRange: '02.27(목)~02.28(금)',
-    dateRangeMobile: '02.27~02.28',
+    dateRange: '02.24(목)~02.25(금)',
+    dateRangeMobile: '02.24~02.25',
     label: '면접',
     status: 'upcoming',
   },
   {
     id: 's4',
-    dateRange: '03.02(일)',
-    dateRangeMobile: '03.02',
+    dateRange: '02.28(토)',
+    dateRangeMobile: '02.28',
     label: '합격자 발표',
     labelDesktop: '최종 합격자 발표',
     status: 'upcoming',
   },
   {
     id: 's5',
-    dateRange: '03.08(금)',
-    dateRangeMobile: '03.08',
+    dateRange: '03.03(화)',
+    dateRangeMobile: '03.03',
     label: '숙멋 OT',
     status: 'upcoming',
   },
@@ -205,3 +206,10 @@ export const FAQS: FAQTypes[] = [
       '중앙 멋쟁이사자처럼 수료 조건: 정기 세션, 중앙 아이디어톤, 중앙 해커톤 참여\n숙명여대 멋쟁이사자처럼 수료 조건: 중앙 멋쟁이사자처럼 수료 조건 + 연합 해커톤 및 파이널 프로젝트 참여',
   },
 ];
+
+export const CONTACT_INFO = {
+  KAKAOTALK_CHAT_NAME: '오픈채팅',
+  KAKAOTALK_CHAT_LINK: 'https://open.kakao.com/o/sz4wNDdi',
+  FOOTER_MESSAGE_PREFIX: '기타 문의사항은 ',
+  FOOTER_MESSAGE_SUFFIX: '으로 연락해주세요!',
+} as const;

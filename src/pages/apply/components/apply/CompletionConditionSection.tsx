@@ -20,42 +20,45 @@ interface EventItem {
   date: string;
 }
 
+const cx = (...classes: Array<string | false | null | undefined>) => classes.filter(Boolean).join(' ');
+
 const TW = {
   // layout
   section:
-    'flex h-auto w-full items-center justify-center bg-[var(--color-white-main)] px-[1rem] py-[10rem] md:px-[4.0625rem] md:py-[12.04488rem] lg:px-[13.09375rem] lg:py-[8rem]',
+    'flex h-auto w-full items-center justify-center bg-[var(--color-white-main)] py-[10rem] md:py-[12.04488rem] lg:py-[8rem]',
   container: 'flex w-full flex-col items-center',
 
   // heading
-  headingBox: 'mb-[4.5rem] flex flex-col items-center gap-[1rem] md:mb-[6.89rem] lg:mb-[5.44rem]',
+  headingBox: 'mb-[4.5rem] flex flex-col items-center gap-[1rem] md:mb-[6.89rem] lg:mb-[4.19rem]',
 
   // mobile wrapper
-  mobileWrap: 'relative w-[22.5625rem] md:hidden',
+  mobileWrap: 'relative w-[22.5625rem] md:hidden ',
 
   // mobile cards (fronts)
   mobileCardBase:
-    'relative h-[20.8125rem] w-[22.5625rem] overflow-hidden rounded-[1.25rem] p-[1.8rem] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)]',
-  mobileCardLight: 'bg-[var(--color-white-main)]',
-  mobileCardBlue: 'bg-[var(--color-blue-main)]',
+    'relative h-[20.8125rem] w-[22.5625rem] overflow-hidden rounded-[1.25rem] px-[1.69rem] py-[1.94rem] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] cursor-pointer',
+  mobileCardLight:
+    'bg-[linear-gradient(216deg,rgba(247,250,255,0.10)_7.92%,rgba(255,255,255,0.65)_26.31%,rgba(255,255,255,0.85)_80.33%)]',
+  mobileCardBlue: 'bg-[linear-gradient(180deg,rgba(66,132,255,0.90)_5.26%,rgba(66,132,255,1)_100%)]',
 
   // mobile contents
-  mobileLightTitle: 'mb-[1.25rem] text-[1.25rem] font-semibold text-[var(--color-navyblack-main)]',
-  mobileBlueTitle: 'mb-3 text-[1.25rem] font-semibold text-[var(--color-white-main)]',
-  mobileRow: 'flex items-center gap-[0.625rem]',
-  mobileLightNum: 'text-[1.125rem] font-semibold text-[var(--color-navyblack-main)]',
-  mobileBlueNum: 'text-[1.125rem] font-semibold text-[var(--color-white-main)]',
-  mobileLightLabel: 'text-[1rem] font-medium text-[var(--color-navyblack-main)]',
-  mobileBlueLabel: 'text-[1rem] font-medium text-[var(--color-white-main)]',
-  mobileBlueDate: 'text-[0.875rem] font-medium text-[#F7FAFF]/75',
-  mobileLightDetail: 'text-[0.875rem] font-medium text-[#1B2634]/70',
+  mobileLightTitle: 'mb-[1.25rem] text-[1.25rem] font-semibold text-[var(--color-navyblack-main)] leading-[120%]',
+  mobileBlueTitle: 'mb-[1.25rem] text-[1.25rem] font-semibold text-[var(--color-white-main)] leading-[120%]',
+  mobileRow: 'flex items-center gap-[0.875rem]',
+  mobileLightNum: 'text-[1.125rem] font-semibold text-[var(--color-navyblack-main)] leading-[120%]',
+  mobileBlueNum: 'text-[1.125rem] font-semibold text-[var(--color-white-main)] leading-[120%]',
+  mobileLightLabel: 'text-[1rem] font-medium text-[var(--color-navyblack-main) leading-[120%]]',
+  mobileBlueLabel: 'text-[1rem] font-medium text-[var(--color-white-main)] leading-[120%]',
+  mobileBlueDate: 'text-[0.875rem] font-medium text-[#F7FAFF]/75 leading-[120%]',
+  mobileLightDetail: 'text-[0.875rem] font-medium text-[#1B2634]/70 leading-[120%]',
 
   // mobile image
-  mobileImgLight: 'absolute -right-[25%] -bottom-[40%] h-[130%] w-auto object-contain opacity-35 scale-[1.7]',
-  mobileImgBlue: 'absolute -right-[25%] -bottom-[25%] h-[120%] w-auto object-contain opacity-35 scale-[1.3]',
+  mobileImgLight: 'absolute -right-[25%] -bottom-[40%] h-[130%] w-auto object-contain opacity-20 scale-[1.7] z-0 ',
+  mobileImgBlue: 'absolute -right-[25%] -bottom-[25%] h-[120%] w-auto object-contain opacity-20 scale-[1.3] z-0',
 
   // mobile arrow button
   arrowBtnBase:
-    'absolute right-0 bottom-0 flex h-[2.5625rem] w-[2.5625rem] items-center justify-center rounded-tl-[1.25rem] rounded-br-[0.625rem]',
+    'absolute right-0 bottom-0 flex h-[2.5625rem] w-[2.5625rem] items-center justify-center rounded-tl-[1.25rem] rounded-br-[0.625rem] cursor-pointer',
   arrowBtnOnLight: 'bg-[var(--color-blue-main)]',
   arrowBtnOnBlue: 'bg-[var(--color-white-main)]',
   arrowIconBase: 'h-[1.5rem] w-[1.5rem]',
@@ -64,7 +67,7 @@ const TW = {
 
   // desktop/tablet wrapper
   desktopWrap:
-    'hidden w-full flex-col items-center justify-center md:flex md:flex-row md:gap-[1rem] md:w-[56rem] md:h-[26.375rem] lg:h-[44.3125rem] lg:w-[93.8125rem] lg:gap-[6.25rem] lg:p-[3.375rem_2.96875rem_3.375rem_2.96875rem]',
+    'hidden w-full flex-col items-center justify-center md:flex md:flex-row md:gap-[1rem] md:w-[56rem] md:h-[25.375rem] lg:h-[37.625rem] lg:w-[87.875rem] lg:gap-[6.25rem]',
 
   // flip container
   flipOuter: 'md:h-[25.375rem] md:w-[27.5rem] cursor-pointer [perspective:1000px] lg:h-[37.625rem] lg:w-[40.8125rem]',
@@ -72,41 +75,44 @@ const TW = {
   // front face (light)
   faceBase:
     'absolute inset-0 overflow-hidden rounded-[1.25rem] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] [backface-visibility:hidden]',
-  frontFace: 'bg-[var(--color-white-main)]',
+  frontFace:
+    'bg-[linear-gradient(216deg,rgba(247,250,255,0.10)_7.92%,rgba(255,255,255,0.65)_26.31%,rgba(255,255,255,0.85)_80.33%)]',
   frontTitle:
-    'absolute top-6 left-6 text-[1.5rem] font-semibold text-[var(--color-navyblack-main)] lg:top-[4.38rem] lg:left-[5.13rem] lg:text-[2.25rem]',
+    'absolute top-[2.06rem] left-[2.5rem] text-[1.5rem] font-semibold text-[var(--color-navyblack-main)] lg:top-[4.37rem] lg:left-[5.12rem] lg:text-[2.25rem] leading-[120%]',
   frontImgBase: 'absolute object-contain',
   frontImg0:
-    '-right-[23%] -bottom-[35%] h-[130%] w-auto lg:-right-[23%] lg:-bottom-[60%] lg:h-[170%] opacity-35 scale-[1.7]',
+    '-right-[23%] -bottom-[35%] h-[130%] w-auto lg:-right-[23%] lg:-bottom-[60%] lg:h-[170%] opacity-20 scale-[1.7]',
   frontImg1:
-    '-right-[21%] -bottom-[33%] h-[120%] w-auto lg:-right-[21%] lg:-bottom-[55%] lg:h-[160%] opacity-35 scale-[1.3]',
+    '-right-[21%] -bottom-[33%] h-[120%] w-auto lg:-right-[21%] lg:-bottom-[55%] lg:h-[160%] opacity-20 scale-[1.3]',
 
   // back face (blue)
-  backFace:
-    'absolute inset-0 [transform:rotateY(180deg)] overflow-hidden rounded-[1.25rem] bg-[#4284FF] p-6 shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] [backface-visibility:hidden] lg:p-[3rem_4rem]',
+  backFace: cx(
+    'absolute inset-0 [transform:rotateY(180deg)] overflow-hidden rounded-[1.25rem] px-[2.5rem] py-[2.06rem] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] [backface-visibility:hidden] lg:py-[4.38rem] lg:px-[5.13rem]',
+    'bg-[linear-gradient(180deg,rgba(66,132,255,0.90)_5.26%,rgba(66,132,255,1)_100%)]'
+  ),
 
   // back content (white text)
   backTitle:
-    'font-semibold text-[var(--color-white-main)] md:mb-[1.25rem] md:text-[1.5rem] lg:mb-[1.5rem] lg:text-[2.25rem]',
-  backAttendanceWrap: 'flex flex-col md:gap-[1.9375rem] lg:gap-[2.3125rem]',
-  backEventWrap: 'flex flex-col md:gap-[0.75rem] lg:gap-[1rem]',
-  backItemRow: 'flex items-center md:gap-[0.625rem] lg:gap-[0.625rem]',
-  backNum: 'font-semibold text-[#F7FAFF] md:text-[1.375rem] lg:text-[2rem]',
-  backItemTitleAttendance: 'font-medium text-[#F7FAFF] md:text-[1.25rem] lg:text-[1.5rem]',
-  backItemTitleEvent: 'font-medium text-[#F7FAFF] md:text-[1.25rem] lg:text-[1.5rem]',
-  backDate: 'font-medium text-[#F7FAFF]/75 md:text-[1.125rem] lg:text-[1.5rem]',
-  backDetail: 'font-medium text-[#F7FAFF] md:text-[1.125rem] lg:text-[1.5rem] lg:pl-[2.875rem] md:pl-[2.175rem]',
-  backDetailsWrap: 'flex flex-col md:gap-[0.125rem] lg:gap-[0.5rem]',
+    'font-semibold text-[var(--color-white-main)] md:mb-[1.94rem] md:text-[1.5rem] lg:mb-[2.81rem] lg:text-[2.25rem] leading-[120%] relative z-10',
+  backAttendanceWrap: 'flex flex-col md:gap-[1.9375rem] lg:gap-[2.3125rem] relative z-10',
+  backEventWrap: 'flex flex-col md:gap-[1rem] lg:gap-[1.125rem] relative z-10',
+  backItemRow: 'flex items-center gap-[1rem]',
+  backNum: 'font-semibold text-[var(--color-white-main)] md:text-[1.375rem] lg:text-[2rem] leading-[120%]',
+  backItemTitleAttendance:
+    'font-medium text-[var(--color-white-main)] md:text-[1.25rem] lg:text-[1.75rem] leading-[120%] mb-[0.75rem]',
+  backItemTitleEvent: 'font-medium text-[var(--color-white-main)] md:text-[1.25rem] lg:text-[1.75rem] leading-[120%]',
+  backDate: 'font-medium text-[var(--color-white-main)]/75 md:text-[1.125rem] lg:text-[1.5rem] leading-[120%]',
+  backDetail:
+    'font-medium text-[var(--color-white-main)] md:text-[1.125rem] lg:text-[1.5rem] lg:pl-[3.625rem] md:pl-[2.875rem] leading-[120%]',
+  backDetailsWrap: 'flex flex-col md:gap-[0.375rem] lg:gap-[0.5rem]',
 
   // back image
   backImgBase: 'absolute object-contain opacity-30',
   backImg0:
-    '-right-[23%] -bottom-[35%] h-[130%] w-auto lg:-right-[23%] lg:-bottom-[60%] lg:h-[170%] opacity-35 scale-[1.7]',
+    '-right-[23%] -bottom-[35%] h-[130%] w-auto lg:-right-[23%] lg:-bottom-[60%] lg:h-[170%] opacity-20 scale-[1.7]',
   backImg1:
-    '-right-[21%] -bottom-[33%] h-[120%] w-auto lg:-right-[21%] lg:-bottom-[55%] lg:h-[160%] opacity-35 scale-[1.3]',
+    '-right-[21%] -bottom-[33%] h-[120%] w-auto lg:-right-[21%] lg:-bottom-[55%] lg:h-[160%] opacity-20 scale-[1.3]',
 } as const;
-
-const cx = (...classes: Array<string | false | null | undefined>) => classes.filter(Boolean).join(' ');
 
 const CompletionConditionSection = () => {
   const [flippedCard, setFlippedCard] = useState<string | null>(null);
@@ -183,32 +189,36 @@ const CompletionConditionSection = () => {
         {/* mobile carousel */}
         <div className={TW.mobileWrap}>
           {mobileCardIndex === 0 && (
-            <div className={cx(TW.mobileCardBase, TW.mobileCardLight)}>
-              <h3 className={TW.mobileLightTitle}>{COMPLETION_CONDITIONS[0].title}</h3>
+            <div className={cx(TW.mobileCardBase, TW.mobileCardLight)} onClick={handleMobileNext}>
+              <div className="relative z-10">
+                <h3 className={TW.mobileLightTitle}>{COMPLETION_CONDITIONS[0].title}</h3>
+                <div className="flex flex-col gap-[1.5rem]">
+                  {(COMPLETION_CONDITIONS[0].items as AttendanceItem[]).map((item) => (
+                    <div key={item.number}>
+                      <div className="mb-[0.625rem] flex items-baseline gap-[1rem]">
+                        <span className={TW.mobileLightNum}>{item.number}</span>
+                        <span className={TW.mobileLightLabel}>{item.title}</span>
+                      </div>
 
-              <div className="flex flex-col gap-3">
-                {(COMPLETION_CONDITIONS[0].items as AttendanceItem[]).map((item) => (
-                  <div key={item.number}>
-                    <div className="mb-1 flex items-baseline gap-2">
-                      <span className={TW.mobileLightNum}>{item.number}</span>
-                      <span className={TW.mobileLightLabel}>{item.title}</span>
+                      <div className="flex flex-col gap-[0.25rem] pl-[2.25rem]">
+                        {item.details.map((detail, idx) => (
+                          <p key={idx} className={TW.mobileLightDetail}>
+                            {detail}
+                          </p>
+                        ))}
+                      </div>
                     </div>
-
-                    <div className="flex flex-col gap-0.5 pl-7">
-                      {item.details.map((detail, idx) => (
-                        <p key={idx} className={TW.mobileLightDetail}>
-                          {detail}
-                        </p>
-                      ))}
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
 
               <img src={CARD_IMAGES[0]} alt="" className={TW.mobileImgLight} />
 
               <button
-                onClick={handleMobileNext}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleMobileNext();
+                }}
                 className={cx(TW.arrowBtnBase, TW.arrowBtnOnLight)}
                 aria-label="다음 카드">
                 <svg className={cx(TW.arrowIconBase, TW.arrowIconOnLight)} fill="none" viewBox="0 0 24 24">
@@ -219,23 +229,28 @@ const CompletionConditionSection = () => {
           )}
 
           {mobileCardIndex === 1 && (
-            <div className={cx(TW.mobileCardBase, TW.mobileCardBlue)}>
-              <h3 className={TW.mobileBlueTitle}>{COMPLETION_CONDITIONS[1].title}</h3>
+            <div className={cx(TW.mobileCardBase, TW.mobileCardBlue)} onClick={handleMobileNext}>
+              <div className="relative z-10">
+                <h3 className={TW.mobileBlueTitle}>{COMPLETION_CONDITIONS[1].title}</h3>
 
-              <div className="flex flex-col gap-2">
-                {(COMPLETION_CONDITIONS[1].items as EventItem[]).map((item) => (
-                  <div key={item.number} className={TW.mobileRow}>
-                    <span className={TW.mobileBlueNum}>{item.number}</span>
-                    <span className={TW.mobileBlueLabel}>{item.title}</span>
-                    <span className={TW.mobileBlueDate}>{item.date}</span>
-                  </div>
-                ))}
+                <div className="flex flex-col gap-[0.8125rem]">
+                  {(COMPLETION_CONDITIONS[1].items as EventItem[]).map((item) => (
+                    <div key={item.number} className={TW.mobileRow}>
+                      <span className={TW.mobileBlueNum}>{item.number}</span>
+                      <span className={TW.mobileBlueLabel}>{item.title}</span>
+                      <span className={TW.mobileBlueDate}>{item.date}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               <img src={CARD_IMAGES[1]} alt="" className={TW.mobileImgBlue} />
 
               <button
-                onClick={handleMobileNext}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleMobileNext();
+                }}
                 className={cx(TW.arrowBtnBase, TW.arrowBtnOnBlue)}
                 aria-label="다음 카드">
                 <svg className={cx(TW.arrowIconBase, TW.arrowIconOnBlue)} fill="none" viewBox="0 0 24 24">
