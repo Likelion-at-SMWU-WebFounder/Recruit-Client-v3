@@ -8,10 +8,13 @@ export const TITLE = {
 export const SUB_TITLE = {
   SUB_TITLE_1: 'what we do',
   SUB_DESCRIPTION_1: '숙명여대 멋사에서 함께 배우고 성장해요',
+  SUB_DESCRIPTION_1_MOBILE: '주요 활동',
   SUB_TITLE_2: 'annual schedule',
   SUB_DESCRIPTION_2: '도전과 배움으로 가득 채워진 시간',
+  SUB_DESCRIPTION_2_MOBILE: '연간 일정',
   SUB_TITLE_3: 'curriculum',
   SUB_DESCRIPTION_3: '기초부터 실전까지 체계적으로 학습해요',
+  SUB_DESCRIPTION_3_MOBILE: '커리큘럼',
   SUB_TITLE_4: 'retrospect',
   SUB_DESCRIPTION_4_PM_PD: '기획・디자인\n운영진 회고',
   SUB_DESCRIPTION_4_FRONT: '프론트엔드\n운영진 회고',
