@@ -1,4 +1,8 @@
 import { useState } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import '@pages/activity/styles/doing-carousel.css';
 import ArrowButton from '@shared/components/button/ArrowButton';
 import SubTitle from '@shared/components/SubTitle';
 import DoingCard from '@pages/activity/components/doing/DoingCard';
@@ -37,11 +41,18 @@ const DOING_SECTION_STYLES = {
   },
   // 모바일 캐러셀
   mobile: {
-    base: 'relative flex justify-center items-center w-full max-w-[100dvw]',
+    base: 'w-full relative flex flex-col items-center px-4',
     tablet: 'md:hidden',
   },
-  mobileCarousel: {
-    base: 'h-[25rem] items-center scrollbar-hidden flex snap-x snap-mandatory flex-row gap-[1.5rem] overflow-x-auto scroll-smooth',
+  mobileSliderContainer: {
+    base: 'w-full h-[15rem]',
+  },
+  mobileDots: {
+    base: 'flex justify-center gap-2 mt-4',
+  },
+  mobileDot: {
+    base: 'w-2 h-2 rounded-full bg-gray-300 cursor-pointer transition-colors',
+    active: 'bg-blue',
   },
 } as const;
 
@@ -60,15 +71,16 @@ const DesktopDoingSection = ({
 }) => {
   const { carouselRef, scrollToNextCard, isLastCard } = useXPositionDrag();
 
-  const sectionClassName = combineStyles(DOING_SECTION_STYLES.section);
   const desktopTabletClassName = combineStyles(DOING_SECTION_STYLES.desktopTablet);
   const desktopTabletContainerClassName = combineStyles(DOING_SECTION_STYLES.desktopTabletContainer);
   const desktopTabletCarouselClassName = combineStyles(DOING_SECTION_STYLES.desktopTabletCarousel);
   const desktopTabletGradientClassName = combineStyles(DOING_SECTION_STYLES.desktopTabletGradient);
   const desktopTabletArrowClassName = combineStyles(DOING_SECTION_STYLES.desktopTabletArrow);
   return (
-    <section className={sectionClassName}>
-      <SubTitle subTitle={SUB_TITLE.SUB_TITLE_1} subDescription={SUB_TITLE.SUB_DESCRIPTION_1} />
+    <>
+      <div className="hidden md:block">
+        <SubTitle subTitle={SUB_TITLE.SUB_TITLE_1} subDescription={SUB_TITLE.SUB_DESCRIPTION_1} />
+      </div>
       <div className={desktopTabletClassName}>
         <div className={desktopTabletContainerClassName}>
           <div
@@ -109,7 +121,7 @@ const DesktopDoingSection = ({
           )}
         </div>
       </div>
-    </section>
+    </>
   );
 };
 
@@ -117,10 +129,12 @@ const DesktopDoingSection = ({
 const MobileDoingSection = () => {
   const [hoveredCardIndex, setHoveredCardIndex] = useState<number | null>(null);
   const [hasEverHovered, setHasEverHovered] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  const sectionClassName = combineStyles(DOING_SECTION_STYLES.section);
+  const totalCards = DOING_DATA.length;
+
   const mobileClassName = combineStyles(DOING_SECTION_STYLES.mobile);
-  const mobileScrollClassName = combineStyles(DOING_SECTION_STYLES.mobileCarousel);
+  const mobileSliderContainerClassName = combineStyles(DOING_SECTION_STYLES.mobileSliderContainer);
 
   const handleCardHover = (index: number | null) => {
     if (index !== null && !hasEverHovered) {
@@ -129,30 +143,57 @@ const MobileDoingSection = () => {
     setHoveredCardIndex(index);
   };
 
+  const settings = {
+    dots: totalCards > 1,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1.3,
+    slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: '7rem',
+    // autoplay: true,
+    // autoplaySpeed: 2000,
+    arrows: false,
+    afterChange: (index: number) => {
+      setCurrentSlide(index);
+    },
+    customPaging: (i: number) => (
+      <button
+        className={`h-2 w-2 rounded-full transition-colors ${i === currentSlide ? 'bg-blue' : 'bg-gray-300'}`}
+        aria-label={`${i + 1}번째 카드로 이동`}
+      />
+    ),
+    dotsClass: 'slick-dots',
+  };
+
   return (
-    <section className={sectionClassName}>
-      <SubTitle subTitle={SUB_TITLE.SUB_TITLE_1} subDescription={SUB_TITLE.SUB_DESCRIPTION_1} />
-      {/* 모바일: 기본 스크롤 캐러셀 */}
+    <>
+      <div className="md:hidden">
+        <SubTitle subTitle={SUB_TITLE.SUB_TITLE_1} subDescription={SUB_TITLE.SUB_DESCRIPTION_1_MOBILE} />
+      </div>
       <div className={mobileClassName}>
-        <div className={mobileScrollClassName}>
-          {DOING_DATA.map((doing, index) => (
-            <DoingCard
-              key={doing.id}
-              icon_dark={doing.icon_dark}
-              icon_white={doing.icon_white}
-              term={doing.term}
-              title={doing.title}
-              description={doing.description}
-              image={doing.image}
-              index={index}
-              hoveredCardIndex={hoveredCardIndex}
-              hasEverHovered={hasEverHovered}
-              onCardHover={handleCardHover}
-            />
-          ))}
+        <div className={`${mobileSliderContainerClassName} doing-carousel`}>
+          <Slider {...settings}>
+            {DOING_DATA.map((doing, index) => (
+              <div key={doing.id}>
+                <DoingCard
+                  icon_dark={doing.icon_dark}
+                  icon_white={doing.icon_white}
+                  term={doing.term}
+                  title={doing.title}
+                  description={doing.description}
+                  image={doing.image}
+                  index={index}
+                  hoveredCardIndex={hoveredCardIndex}
+                  hasEverHovered={hasEverHovered}
+                  onCardHover={handleCardHover}
+                />
+              </div>
+            ))}
+          </Slider>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 
@@ -160,6 +201,8 @@ const MobileDoingSection = () => {
 const DoingSection = () => {
   const [hoveredCardIndex, setHoveredCardIndex] = useState<number | null>(null);
   const [hasEverHovered, setHasEverHovered] = useState(false);
+
+  const sectionClassName = combineStyles(DOING_SECTION_STYLES.section);
 
   const handleCardHover = (index: number | null) => {
     if (index !== null && !hasEverHovered) {
@@ -170,12 +213,14 @@ const DoingSection = () => {
 
   return (
     <>
-      <DesktopDoingSection
-        hoveredCardIndex={hoveredCardIndex}
-        hasEverHovered={hasEverHovered}
-        onCardHover={handleCardHover}
-      />
-      <MobileDoingSection />
+      <section className={sectionClassName}>
+        <DesktopDoingSection
+          hoveredCardIndex={hoveredCardIndex}
+          hasEverHovered={hasEverHovered}
+          onCardHover={handleCardHover}
+        />
+        <MobileDoingSection />
+      </section>
     </>
   );
 };
