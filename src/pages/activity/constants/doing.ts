@@ -12,7 +12,7 @@ export const DOING_DATA = [
     ],
     icon_dark: `${DOING_ICON_PATH}/seminar_icon.svg`,
     icon_white: `${DOING_ICON_PATH}/seminar_white_icon.svg`,
-    image: `${DOING_IMAGE_PATH}/regular_seminar.webp`,
+    image: `${DOING_IMAGE_PATH}/seminar.webp`,
   },
   {
     id: 2,
@@ -36,7 +36,7 @@ export const DOING_DATA = [
     ],
     icon_dark: `${DOING_ICON_PATH}/hackathon_icon.svg`,
     icon_white: `${DOING_ICON_PATH}/hackathon_white_icon.svg`,
-    image: `${DOING_IMAGE_PATH}/central_hackathon.webp`,
+    image: `${DOING_IMAGE_PATH}/hackathon.webp`,
   },
 
   {
@@ -49,7 +49,7 @@ export const DOING_DATA = [
     ],
     icon_dark: `${DOING_ICON_PATH}/joint_icon.svg`,
     icon_white: `${DOING_ICON_PATH}/joint_white_icon.svg`,
-    image: `${DOING_IMAGE_PATH}/joint_hackathon.webp`,
+    image: `${DOING_IMAGE_PATH}/joint.webp`,
   },
   {
     id: 5,
@@ -61,7 +61,7 @@ export const DOING_DATA = [
     ],
     icon_dark: `${DOING_ICON_PATH}/final_icon.svg`,
     icon_white: `${DOING_ICON_PATH}/final_white_icon.svg`,
-    image: `${DOING_IMAGE_PATH}/final_project.webp`,
+    image: `${DOING_IMAGE_PATH}/final.webp`,
   },
   {
     id: 6,
@@ -85,7 +85,7 @@ export const DOING_DATA = [
     ],
     icon_dark: `${DOING_ICON_PATH}/senior_icon.svg`,
     icon_white: `${DOING_ICON_PATH}/senior_white_icon.svg`,
-    image: `${DOING_IMAGE_PATH}/talk_with_senior.webp`,
+    image: `${DOING_IMAGE_PATH}/senior.webp`,
   },
   {
     id: 8,
