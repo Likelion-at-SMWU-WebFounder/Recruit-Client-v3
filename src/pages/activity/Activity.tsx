@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { combineStyles } from '@shared/utils/combineStyles';
 import Layout from '@shared/components/Layout';
 import HeroSection from '@pages/activity/components/hero/HeroSection';
+import DoingSection from '@pages/activity/components/doing/DoingSection';
 
 // Activity 페이지 스타일 상수화
 const ACTIVITY_STYLES = {
@@ -52,7 +53,9 @@ const Activity = () => {
         <div id="hero-section" className={sectionClassName}>
           <HeroSection />
         </div>
-        <div id="doing-section" className={sectionClassName}></div>
+        <div id="doing-section" className={sectionClassName}>
+          <DoingSection />
+        </div>
         <div id="schedule-section" className={sectionClassName}></div>
       </div>
       <div id="curriculum-section" className={sectionClassName}></div>
