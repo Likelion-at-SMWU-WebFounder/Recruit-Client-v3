@@ -15,7 +15,7 @@ const DOING_CARD_BACK_STYLES = {
   cardContainer: {
     base: 'absolute inset-0 flex flex-col shrink-0 rounded-[1.25rem] bg-cover bg-center bg-no-repeat overflow-hidden shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] [transform:rotateY(180deg)] [-webkit-backface-visibility:hidden] [backface-visibility:hidden]',
     desktop: 'lg:w-[23.875rem] lg:h-[36.375rem]',
-    tablet: 'md:w-[12.73331rem] md:h-[19.4rem]',
+    tablet: 'md:w-[13.5rem] md:h-[20rem]',
   },
   overlay: {
     base: 'absolute inset-0 bg-blue/80 rounded-[1.25rem]',

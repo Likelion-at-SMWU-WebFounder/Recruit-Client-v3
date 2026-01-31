@@ -14,7 +14,7 @@ const DOING_CARD_FRONT_STYLES = {
   cardContainer: {
     base: 'absolute inset-0 flex flex-col shrink-0 rounded-[1.25rem] bg-white [transform:rotateY(0deg)] [-webkit-backface-visibility:hidden] [backface-visibility:hidden]',
     desktop: 'lg:w-[23.875rem] lg:h-[36.375rem] lg:p-[2.7rem] lg:pb-[2.5rem] lg:shadow-default',
-    tablet: 'md:w-[12.73331rem] md:h-[19.4rem] md:p-[1.4rem] shadow-sub',
+    tablet: 'md:w-[13.5rem] md:h-[20rem] md:p-[1.4rem] shadow-sub',
   },
   icon: {
     base: 'z-10 aspect-square',

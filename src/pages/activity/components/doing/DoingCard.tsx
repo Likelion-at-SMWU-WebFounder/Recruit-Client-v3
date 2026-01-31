@@ -43,7 +43,7 @@ const DOING_CARD_STYLES = {
   flipContainer: {
     base: 'relative cursor-pointer [perspective:1000px] hidden md:flex',
     desktop: 'lg:w-[23.875rem] lg:h-[36.375rem]',
-    tablet: 'md:w-[12.73331rem] md:h-[19.4rem]',
+    tablet: 'md:w-[13.5rem] md:h-[20rem]',
   },
   flipInner: {
     base: 'relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d]',
