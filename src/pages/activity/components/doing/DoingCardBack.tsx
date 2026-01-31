@@ -71,10 +71,7 @@ const DoingCardBack = ({ icon_white, term, title, fullDescription, image, onFlip
   const descriptionClassName = combineStyles(DOING_CARD_BACK_STYLES.description);
 
   return (
-    <div
-      className={cardContainerClassName}
-      onClick={onFlipBack}
-      style={{ backgroundImage: `url(${image})`, backgroundSize: '100% 100%' }}>
+    <div className={cardContainerClassName} onClick={onFlipBack} style={{ backgroundImage: `url(${image})` }}>
       <div className={overlayClassName} />
 
       <div className={contentWrapperName}>

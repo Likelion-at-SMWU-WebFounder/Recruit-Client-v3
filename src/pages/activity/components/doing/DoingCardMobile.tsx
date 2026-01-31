@@ -60,7 +60,7 @@ const DoingCardMobile = ({ icon_white, term, title, fullDescription, image }: Do
   const descriptionClassName = combineStyles(DOING_CARD_MOBILE_STYLES.description);
 
   return (
-    <div className={cardContainerClassName} style={{ backgroundImage: `url(${image})`, backgroundSize: '100% 100%' }}>
+    <div className={cardContainerClassName} style={{ backgroundImage: `url(${image})` }}>
       <div className={overlayClassName} />
 
       <div className={contentWrapperClassName}>
