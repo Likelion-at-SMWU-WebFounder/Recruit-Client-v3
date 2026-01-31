@@ -11,7 +11,7 @@
 
 .doing-carousel .slick-list {
   margin-left: 0;
-  overflow: visible;
+  overflow: hidden;
   max-height: 13rem;
 }
 
@@ -21,7 +21,6 @@
   align-items: center;
   padding: 0 0.5rem;
   position: relative;
-  padding-right: 10rem;
   transition:
     transform 0.3s ease,
     opacity 0.3s ease;
@@ -102,11 +101,18 @@
 
   .doing-carousel .slick-slide {
     padding: 0 0.5rem;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
   }
 
   .doing-carousel .slick-slide:not(.slick-center) {
     opacity: 0.4;
     transform: scale(0.75);
+  }
+
+  .doing-carousel .slick-slide.slick-center {
+    transform: translateX(0) scale(1);
   }
 
   .doing-carousel .slick-dots {

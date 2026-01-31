@@ -45,7 +45,7 @@ const DOING_SECTION_STYLES = {
     tablet: 'md:hidden',
   },
   mobileSliderContainer: {
-    base: 'w-full h-[15rem]',
+    base: 'w-[20rem] h-[15rem]',
   },
   mobileDots: {
     base: 'flex justify-center gap-2 mt-4',
@@ -147,10 +147,10 @@ const MobileDoingSection = () => {
     dots: totalCards > 1,
     infinite: true,
     speed: 500,
-    slidesToShow: 1.3,
+    slidesToShow: 1,
     slidesToScroll: 1,
     centerMode: true,
-    centerPadding: '7rem',
+    centerPadding: '0px',
     // autoplay: true,
     // autoplaySpeed: 2000,
     arrows: false,
