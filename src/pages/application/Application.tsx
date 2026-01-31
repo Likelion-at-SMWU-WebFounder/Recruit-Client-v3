@@ -11,6 +11,31 @@ import { PAGE_TITLE, PAGE_SUBTITLE, QUESTIONS } from './constants/index';
 import DefaultButton from '@/shared/components/button/DefaultButton';
 import Layout from '@/shared/components/Layout';
 
+const TW = {
+  /* layout */
+  container:
+    'flex w-full flex-col items-center overflow-x-hidden bg-[var(--color-white-main)] px-[1.53rem] md:px-[4.44rem] lg:px-[10.91rem]',
+  main: 'w-full',
+
+  /* header section */
+  header: `
+    mx-auto flex flex-col items-center lg:gap-[1.5625rem] md:gap-[1.375rem] gap-[0.75rem]
+    mt-[16.4rem] mb-[9.44rem] 
+    md:mt-[18.5rem] md:mb-[11.25rem] 
+    lg:mt-[22.8rem] lg:mb-[15.94rem]
+  `,
+  title: 'text-center text-[1.375rem] font-semibold break-keep md:text-[1.875rem] lg:text-[2.625rem] leading-[140%]',
+  subTitle:
+    'text-center text-[0.875rem] font-semibold text-[var(--color-blue-main)] md:text-[1.125rem] lg:text-[1.25rem] leading-[120%] md:leading-[140%]',
+
+  /* form & section layout */
+  form: 'mx-auto flex w-full flex-col items-center lg:pb-[6.56rem] md:pb-[2.81rem] pb-[10.875rem]',
+  sectionList: 'flex w-full flex-col gap-[6.25rem] md:gap-[8.75rem] lg:gap-[11.4375rem]',
+
+  /* footer / submit button area */
+  submitWrapper: 'lg:mt-[10.75rem] md:mt-[6.5625rem] mt-[4.5625rem]',
+} as const;
+
 const Application = () => {
   const {
     formData,
@@ -176,22 +201,17 @@ const Application = () => {
 
   return (
     <Layout menuMode="light" footerMode="light">
-      <div className="flex min-h-screen w-full flex-col items-center overflow-x-hidden bg-[var(--color-white)] px-4 md:px-8">
-        <main className="w-full lg:max-w-[120rem]">
-          <header className="mx-auto mt-[13.38rem] mb-[9.38rem] flex flex-col items-center gap-[1.5625rem] md:mt-[15.87rem] md:mb-[11.87rem] lg:mt-[20.69rem] lg:mb-[16.69rem]">
-            <h1 className="text-center text-[1.5rem] font-bold break-keep md:text-[2rem] lg:text-[2.625rem]">
-              {PAGE_TITLE}
-            </h1>
-            <p className="text-center text-[0.875rem] font-semibold text-[var(--color-blue)] uppercase lg:text-[1.25rem]">
-              {PAGE_SUBTITLE}
-            </p>
+      <div className={TW.container}>
+        <main className={TW.main}>
+          {/* 헤더 섹션 */}
+          <header className={TW.header}>
+            <h1 className={TW.title}>{PAGE_TITLE}</h1>
+            <p className={TW.subTitle}>{PAGE_SUBTITLE}</p>
           </header>
 
-          <form
-            id="application-form"
-            onSubmit={handleSubmit}
-            className="mx-auto flex w-full flex-col items-center pb-[10rem] lg:max-w-[98.2rem]">
-            <div className="flex w-full flex-col gap-[6.25rem] md:gap-[8.75rem] lg:gap-[11.4375rem]">
+          <form id="application-form" onSubmit={handleSubmit} className={TW.form}>
+            {/* 개별 섹션 리스트 */}
+            <div className={TW.sectionList}>
               <div ref={applicantRef}>
                 <ApplicantInfoSection
                   data={formData.applicantInfo}
@@ -242,7 +262,8 @@ const Application = () => {
               </div>
             </div>
 
-            <div className="mt-[10.75rem]">
+            {/* 제출 버튼 영역 */}
+            <div className={TW.submitWrapper}>
               <DefaultButton backgroundType="white" isIcon={false} border="solid" onClick={() => handleSubmit()}>
                 제출하기
               </DefaultButton>
