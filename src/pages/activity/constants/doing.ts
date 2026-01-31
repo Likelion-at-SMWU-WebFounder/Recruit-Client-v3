@@ -31,7 +31,7 @@ export const DOING_DATA = [
     title: '중앙 해커톤',
     term: [1],
     description: [
-      '전국 규모 무대에서\n우리의 서비스를 증명하다 ',
+      '전국 규모 무대에서\n우리의 서비스를 증명하다',
       '교내에서 총 세 팀을 이루어\n연 1,600명 참여의 해커톤에서\n실제 서비스를 배포합니다',
     ],
     icon_dark: `${DOING_ICON_PATH}/hackathon_icon.svg`,
