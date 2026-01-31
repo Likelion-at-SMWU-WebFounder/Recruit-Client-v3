@@ -13,11 +13,15 @@ const ACTIVITY_STYLES = {
   section: {
     base: 'relative h-[100dvh] snap-start overflow-hidden',
   },
+  sectionWithouthHeight: {
+    base: 'relative snap-start overflow-hidden',
+  },
 } as const;
 
 const Activity = () => {
   const scrollContainerClassName = combineStyles(ACTIVITY_STYLES.scrollContainer);
   const sectionClassName = combineStyles(ACTIVITY_STYLES.section);
+  const sectionWithouthHeightClassName = combineStyles(ACTIVITY_STYLES.sectionWithouthHeight);
 
   const [menuMode, setMenuMode] = useState<'light' | 'dark'>('light');
 
@@ -57,11 +61,11 @@ const Activity = () => {
         <div id="doing-section" className={sectionClassName}>
           <DoingSection />
         </div>
-        <div id="schedule-section" className={sectionClassName}>
+        <div id="schedule-section" className={sectionWithouthHeightClassName}>
           <ScheduleSection />
         </div>
       </div>
-      <div id="curriculum-section" className={sectionClassName}></div>
+      <div id="curriculum-section" className={sectionWithouthHeightClassName}></div>
     </Layout>
   );
 };
