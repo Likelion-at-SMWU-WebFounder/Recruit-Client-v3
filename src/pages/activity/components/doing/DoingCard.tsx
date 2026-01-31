@@ -53,7 +53,7 @@ const DOING_CARD_STYLES = {
     base: 'md:hidden w-full h-full flex items-center justify-center',
   },
   mobileInner: {
-    base: 'w-[100dvw] h-fit gap-[0.1rem] flex items-center justify-center',
+    base: 'w-[100dvw] h-fit flex items-center justify-center',
   },
 } as const;
 

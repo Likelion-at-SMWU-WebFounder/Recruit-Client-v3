@@ -13,20 +13,25 @@ interface DoingCardBackProps {
 // DoingCardBack 스타일 상수화
 const DOING_CARD_BACK_STYLES = {
   cardContainer: {
-    base: 'absolute inset-0 flex flex-col shrink-0 rounded-[1.25rem] bg-cover bg-center bg-no-repeat shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] [transform:rotateY(180deg)] [-webkit-backface-visibility:hidden] [backface-visibility:hidden]',
-    desktop: 'lg:w-[23.875rem] lg:h-[36.375rem] lg:p-[2.7rem]  lg:pb-[2.5rem]',
-    tablet: 'md:w-[12.73331rem] md:h-[19.4rem] md:p-[1.4rem]',
+    base: 'absolute inset-0 flex flex-col shrink-0 rounded-[1.25rem] bg-cover bg-center bg-no-repeat overflow-hidden shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] [transform:rotateY(180deg)] [-webkit-backface-visibility:hidden] [backface-visibility:hidden]',
+    desktop: 'lg:w-[23.875rem] lg:h-[36.375rem]',
+    tablet: 'md:w-[12.73331rem] md:h-[19.4rem]',
   },
   overlay: {
     base: 'absolute inset-0 bg-blue/80 rounded-[1.25rem]',
   },
+  contentWrapper: {
+    base: 'relative z-10 flex flex-col h-full',
+    desktop: 'lg:p-[2.7rem]  lg:pb-[2.5rem]',
+    tablet: 'md:p-[1.4rem]',
+  },
   icon: {
-    base: 'z-10 aspect-square',
+    base: 'aspect-square',
     desktop: 'lg:w-[2.875rem] lg:h-[2.875rem]',
     mobile: 'w-[1.5rem] h-[1.5rem]',
   },
   bottom: {
-    base: 'flex flex-col mt-auto z-10',
+    base: 'flex flex-col mt-auto',
     desktop: 'lg:gap-[0.63rem]',
     tablet: 'md:gap-[0.33rem]',
   },
@@ -57,6 +62,7 @@ const DoingCardBack = ({ icon_white, term, title, fullDescription, image, onFlip
 
   const cardContainerClassName = combineStyles(DOING_CARD_BACK_STYLES.cardContainer);
   const overlayClassName = combineStyles(DOING_CARD_BACK_STYLES.overlay);
+  const contentWrapperName = combineStyles(DOING_CARD_BACK_STYLES.contentWrapper);
   const iconClassName = combineStyles(DOING_CARD_BACK_STYLES.icon);
   const bottomClassName = combineStyles(DOING_CARD_BACK_STYLES.bottom);
   const textContainerClassName = combineStyles(DOING_CARD_BACK_STYLES.textContainer);
@@ -65,23 +71,28 @@ const DoingCardBack = ({ icon_white, term, title, fullDescription, image, onFlip
   const descriptionClassName = combineStyles(DOING_CARD_BACK_STYLES.description);
 
   return (
-    <div className={cardContainerClassName} onClick={onFlipBack} style={{ backgroundImage: `url(${image})` }}>
+    <div
+      className={cardContainerClassName}
+      onClick={onFlipBack}
+      style={{ backgroundImage: `url(${image})`, backgroundSize: '100% 100%' }}>
       <div className={overlayClassName} />
 
-      <img className={iconClassName} src={icon_white} alt={title} />
+      <div className={contentWrapperName}>
+        <img className={iconClassName} src={icon_white} alt={title} />
 
-      <div className={bottomClassName}>
-        <div className={termTagContainerClassName}>
-          {!isTermEmpty &&
-            term.map((termItem) => (
-              <Tag key={termItem} mode="dark">
-                {termItem}학기
-              </Tag>
-            ))}
-        </div>
-        <div className={textContainerClassName}>
-          <div className={titleClassName}>{title}</div>
-          <div className={descriptionClassName}>{fullDescription}</div>
+        <div className={bottomClassName}>
+          <div className={termTagContainerClassName}>
+            {!isTermEmpty &&
+              term.map((termItem) => (
+                <Tag key={termItem} mode="dark">
+                  {termItem}학기
+                </Tag>
+              ))}
+          </div>
+          <div className={textContainerClassName}>
+            <div className={titleClassName}>{title}</div>
+            <div className={descriptionClassName}>{fullDescription}</div>
+          </div>
         </div>
       </div>
     </div>
