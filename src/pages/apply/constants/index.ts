@@ -206,3 +206,10 @@ export const FAQS: FAQTypes[] = [
       '중앙 멋쟁이사자처럼 수료 조건: 정기 세션, 중앙 아이디어톤, 중앙 해커톤 참여\n숙명여대 멋쟁이사자처럼 수료 조건: 중앙 멋쟁이사자처럼 수료 조건 + 연합 해커톤 및 파이널 프로젝트 참여',
   },
 ];
+
+export const CONTACT_INFO = {
+  KAKAOTALK_CHAT_NAME: '오픈채팅',
+  KAKAOTALK_CHAT_LINK: 'https://open.kakao.com/o/sz4wNDdi',
+  FOOTER_MESSAGE_PREFIX: '기타 문의사항은 ',
+  FOOTER_MESSAGE_SUFFIX: '으로 연락해주세요!',
+} as const;
