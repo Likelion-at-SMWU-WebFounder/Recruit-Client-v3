@@ -58,8 +58,8 @@ const RecruitPartSection = () => {
           <SubTitle
             mode="light"
             align="center"
-            subTitle={SECTION_TITLES.RECRUIT_PART}
-            subDescription={SECTION_SUB_TITLES.GENERATION}
+            subTitle={SECTION_SUB_TITLES.GENERATION}
+            subDescription={SECTION_TITLES.RECRUIT_PART}
           />
         </div>
 

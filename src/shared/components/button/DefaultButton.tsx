@@ -13,6 +13,8 @@ export interface DefaultButtonProps {
   /** 버튼 배경 타입 (white: 하얀 버튼, blue: 파란 버튼) */
   backgroundType?: 'white' | 'blue';
   id?: string;
+  /** 버튼 클래스 -> cta-guide: 가이드 버튼 스타일 적용을 위한 클래스 */
+  className?: string;
 }
 
 const DefaultButton = ({
@@ -21,6 +23,7 @@ const DefaultButton = ({
   isIcon = true,
   onClick,
   backgroundType = 'white',
+  className,
   ...props
 }: DefaultButtonProps) => {
   // 배경 타입에 따른 기본 스타일
@@ -50,7 +53,11 @@ const DefaultButton = ({
   const borderClassName = borderAndEffectClasses[border];
 
   return (
-    <button type="button" className={`${baseClasses} ${sizeClassName} ${borderClassName}`} onClick={onClick} {...props}>
+    <button
+      type="button"
+      className={`${baseClasses} ${sizeClassName} ${borderClassName} ${className ?? ''}`}
+      onClick={onClick}
+      {...props}>
       {children}
       {isIcon && <ArrowUpRight className={iconSizeClasses} />}
     </button>

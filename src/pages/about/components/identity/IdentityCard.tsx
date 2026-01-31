@@ -22,7 +22,7 @@ const IDENTITY_CARD_STYLES = {
     tablet: 'md:gap-[3.12rem]',
   }, // IdentityCard 열림 상태 스타일
   closed: {
-    base: 'bg-white text-navyblack gap-0 shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)]',
+    base: 'bg-white text-navyblack gap-0 shadow-default',
   }, // IdentityCard 닫힘 상태 스타일
   identity: {
     open: {

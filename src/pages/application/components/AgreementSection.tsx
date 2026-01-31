@@ -36,7 +36,7 @@ const AgreementSection = ({ agreements, onAgreementChange, isSubmitted }: Agreem
             className="flex max-h-[25.375rem] w-full flex-col items-center self-stretch overflow-hidden rounded-[1.25rem] bg-[#F0F5FA] p-[1.5625rem_1.25rem_1.5625rem_1.3125rem] shadow-[1px_1px_6.4px_0_rgba(27,38,52,0.10)] md:max-h-[29.25rem] md:p-[2.5rem_4.8125rem_2.5rem_3.75rem] lg:max-h-[35rem] lg:w-[98.18744rem] lg:p-[3rem_3.71875rem]">
             {/* 1. 타이틀 영역 */}
             <div className="flex w-full shrink-0 justify-center">
-              <h4 className="w-full text-left text-[1.25rem] font-semibold text-[var(--color-navyblack)] md:text-[1.5rem] lg:w-[90.0625rem] lg:text-[2rem]">
+              <h4 className="w-full text-left text-[1.125rem] font-semibold whitespace-pre-line text-[var(--color-navyblack)] md:text-[1.625rem] lg:w-[90.0625rem] lg:text-[2rem]">
                 {info.title}
               </h4>
             </div>
@@ -72,7 +72,7 @@ const AgreementSection = ({ agreements, onAgreementChange, isSubmitted }: Agreem
                   className="inline-flex cursor-pointer items-start gap-[0.8125rem] md:items-center"
                   onClick={() => onAgreementChange(key, !agreements[key])}>
                   <div
-                    className={`flex aspect-square h-[1.75rem] w-[1.75rem] shrink-0 items-center justify-center rounded-[0.5rem] border-2 transition-all md:h-[2.2rem] md:w-[2.2rem] md:rounded-[0.75rem] lg:h-[2.8125rem] lg:w-[2.8125rem] lg:rounded-[1rem] ${
+                    className={`flex aspect-square h-[1.5625rem] w-[1.5625rem] shrink-0 items-center justify-center rounded-[0.5rem] border-2 transition-all md:h-[2.3125rem] md:w-[2.3125rem] md:rounded-[0.75rem] lg:h-[2.8125rem] lg:w-[2.8125rem] lg:rounded-[1rem] ${
                       agreements[key]
                         ? 'border-[var(--color-navyblack)] bg-[var(--color-white)] drop-shadow-[1px_1px_8.4px_rgba(27,38,52,0.10)]'
                         : hasError
@@ -85,7 +85,7 @@ const AgreementSection = ({ agreements, onAgreementChange, isSubmitted }: Agreem
                   {/* 텍스트/에러 메시지 */}
                   <div className="flex flex-col items-start md:flex-row md:items-center">
                     <div className="flex items-center gap-[0.39rem] md:gap-[0.49rem] lg:gap-[0.69rem]">
-                      <span className="text-[1rem] font-medium text-[var(--color-navyblack)] md:text-[1.25rem] lg:text-[1.75rem]">
+                      <span className="text-[1rem] font-medium text-[var(--color-navyblack)] md:text-[1.5rem] lg:text-[1.75rem]">
                         {info.checkbox}
                       </span>
                       <span className="text-[1.125rem] leading-normal font-bold text-[var(--Color-blue-main,#4284FF)] md:text-[1.3rem] lg:text-[1.5rem]">

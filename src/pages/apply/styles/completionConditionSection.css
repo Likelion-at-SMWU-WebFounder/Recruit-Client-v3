@@ -1,0 +1,29 @@
+.flipCard {
+  background-color: transparent;
+  perspective: 1000px;
+}
+
+.flipCardInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flipCardInner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.flipCardFace {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flipCardBack {
+  transform: rotateY(180deg);
+}

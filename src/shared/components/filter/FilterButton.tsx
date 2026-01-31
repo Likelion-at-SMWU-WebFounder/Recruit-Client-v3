@@ -6,6 +6,8 @@ interface FilterButtonProps {
   onClick: () => void;
   active: boolean;
   mode?: FilterModeType;
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 // 필터 버튼 스타일 상수화
@@ -30,14 +32,21 @@ const FILTER_BUTTON_STYLES = {
   },
 } as const;
 
-const FilterButton = ({ children, onClick, active, mode = 'project' }: FilterButtonProps) => {
+const FilterButton = ({
+  children,
+  onClick,
+  active,
+  mode = 'project',
+  className: additionalClassName,
+  style,
+}: FilterButtonProps) => {
   const buttonClassName = combineStyles(FILTER_BUTTON_STYLES.button);
   const stateClassName = active ? FILTER_BUTTON_STYLES.active[mode] : FILTER_BUTTON_STYLES.inactive[mode];
   const hoverClassName = !active ? FILTER_BUTTON_STYLES.hover[mode] : '';
-  const className = `${hoverClassName} ${buttonClassName} ${stateClassName}`;
+  const className = `${hoverClassName} ${buttonClassName} ${stateClassName} ${additionalClassName || ''}`.trim();
 
   return (
-    <button type="button" className={className} onClick={onClick} aria-label={`${children} 필터 선택`}>
+    <button type="button" className={className} onClick={onClick} style={style} aria-label={`${children} 필터 선택`}>
       {children}
     </button>
   );
