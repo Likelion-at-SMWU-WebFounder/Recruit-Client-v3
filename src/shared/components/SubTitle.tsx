@@ -30,7 +30,7 @@ const SubTitle = ({ mode = 'light', subTitle, subDescription, align = 'center', 
   return (
     <div className={`${baseClass} ${alignClass[align]}`} {...props}>
       <div className={`${subTitleClass[mode]} uppercase`}>{subTitle}</div>
-      <div className={`${subDescriptionClass[mode]}`}>{subDescription}</div>
+      <div className={`${subDescriptionClass[mode]} whitespace-pre-line`}>{subDescription}</div>
     </div>
   );
 };
