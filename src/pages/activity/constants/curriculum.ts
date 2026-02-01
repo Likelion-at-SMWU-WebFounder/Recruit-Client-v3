@@ -18,7 +18,7 @@ const MANAGEMENT_RETROSPECT = {
     part: '기획・디자인',
     retrospect:
       '기디로서 필요한 소양을 탄탄히 다질 수 있던 뜻깊은 시간이었습니다. 체계적인 커리큘럼과 파트 내 활발한 피드백을 통해 밀도있는 배움을 얻을 수 있었습니다.',
-    commont_retrospect:
+    common_retrospect:
       '처음 시작하는 아기사자에게 든든한 세미나였습니다. 기디로서 개발세미나를 들을 때는 낯설고 어렵기도 했지만 추후 개발 파트들과의 협업에 큰 도움이 되었습니다. ',
     image: `${CURRICULUM_IMAGE_PATH}/pmpd_김민서.webp`,
   },
