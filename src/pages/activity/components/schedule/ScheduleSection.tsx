@@ -77,7 +77,9 @@ const ScheduleSection = ({ scrollContainerRef }: { scrollContainerRef: React.Ref
       }
     );
 
-    itemRefs.current.forEach((el) => el && observer.observe(el));
+    itemRefs.current.forEach((el) => {
+      if (el) observer.observe(el);
+    });
     return () => observer.disconnect();
   }, []);
 
