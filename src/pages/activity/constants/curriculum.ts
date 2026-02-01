@@ -1,3 +1,14 @@
+// 타입 정의
+export type PartType = 'common' | 'frontend' | 'backend' | 'pm_pd';
+export type TermType = '1학기' | '2학기';
+
+export const parts = [
+  { id: 'common', name: '공통' },
+  { id: 'pm_pd', name: '기획 · 디자인' },
+  { id: 'frontend', name: '프론트엔드' },
+  { id: 'backend', name: '백엔드' },
+] as const;
+
 const CURRICULUM_IMAGE_PATH = import.meta.env.VITE_IMAGE_PATH + '/activity/curriculum';
 
 const MANAGEMENT_RETROSPECT = {
@@ -104,20 +115,20 @@ const MANAGEMENT_RETROSPECT = {
 const COMMON_CURRICULUM = {
   '1학기': [
     {
-      tool: 'Figma, Notion',
-      content: '기획/Figma 기초',
-    },
-    {
-      tool: 'Figma, Notion',
-      content: 'UIUX 개념, 프로토타입',
+      tool: 'Github',
+      content: 'Github 세팅 및 개념, 충돌 실습',
     },
     {
       tool: 'Figma',
-      content: 'Figma 심화1',
+      content: 'Figma 기초 - 기획 및 디자인',
     },
     {
-      tool: 'Figma',
-      content: 'Figma 심화2',
+      tool: 'HTML/CSS/JS',
+      content: 'HTML/CSS/JS - 프론트',
+    },
+    {
+      tool: 'Django',
+      content: 'Django 기초 및 연동 - 백/프론트',
     },
   ],
 };
