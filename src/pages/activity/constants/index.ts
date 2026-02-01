@@ -19,4 +19,5 @@ export const SUB_TITLE = {
   SUB_DESCRIPTION_4_PM_PD: '기획・디자인\n운영진 회고',
   SUB_DESCRIPTION_4_FRONT: '프론트엔드\n운영진 회고',
   SUB_DESCRIPTION_4_BACK: '백엔드\n운영진 회고',
+  SUB_DESCRIPTION_4_MOBILE: '운영진 회고',
 };
