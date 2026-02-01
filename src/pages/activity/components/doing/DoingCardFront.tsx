@@ -27,7 +27,7 @@ const DOING_CARD_FRONT_STYLES = {
     tablet: 'md:gap-[0.33rem]',
   },
   textContainer: {
-    base: 'flex flex-col',
+    base: 'flex flex-col justify-start items-start text-left',
     desktop: 'lg:gap-[0.63rem]',
   },
   termTagContainer: {
