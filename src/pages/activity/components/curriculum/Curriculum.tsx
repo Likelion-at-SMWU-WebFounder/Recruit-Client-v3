@@ -10,7 +10,7 @@ interface CurriculumProps {
   onChangeTerm: (term: TermType) => void;
 }
 
-interface CurriculumItem {
+export interface CurriculumItem {
   week?: number;
   tool: string;
   content: string;
