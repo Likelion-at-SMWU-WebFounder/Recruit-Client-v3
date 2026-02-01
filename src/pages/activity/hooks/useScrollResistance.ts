@@ -23,8 +23,8 @@ const useScrollResistance = (strength: number = 0.3, scrollContainerRef: React.R
         return;
       }
 
-      const atTopEdge = sectionRect.top >= containerRect.top;
-      const atBottomEdge = sectionRect.bottom <= containerRect.bottom;
+      const atTopEdge = Math.abs(sectionRect.top - containerRect.top) < 1;
+      const atBottomEdge = Math.abs(sectionRect.bottom - containerRect.bottom) < 1;
 
       // ⬆️ 섹션 맨 위에서 위로 → 탈출 허용
       if (isScrollingUp && atTopEdge) {
