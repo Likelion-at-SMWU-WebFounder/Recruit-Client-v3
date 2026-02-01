@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'react';
 
-const useScrollResistance = (strength: number = 0.3, scrollContainer: HTMLElement | null) => {
+const useScrollResistance = (strength: number = 0.3, scrollContainerRef: React.RefObject<HTMLElement | null>) => {
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const el = ref.current;
-    const container = scrollContainer;
+    const container = scrollContainerRef.current;
     if (!el || !container) return;
 
     const onWheel = (e: WheelEvent) => {
@@ -52,7 +52,7 @@ const useScrollResistance = (strength: number = 0.3, scrollContainer: HTMLElemen
     return () => {
       container.removeEventListener('wheel', onWheel);
     };
-  }, [strength, scrollContainer]);
+  }, [strength, scrollContainerRef]);
 
   return ref;
 };
