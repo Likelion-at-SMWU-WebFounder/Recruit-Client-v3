@@ -37,7 +37,7 @@ const SCHEDULE_BOX_STYLE = {
   },
   imageContainer: {
     base: 'inline-flex items-center overflow-hidden',
-    left: 'justify-end algin-right',
+    left: 'justify-end',
     right: 'justify-start',
     desktop: 'lg:flex-row lg:gap-[1.25rem]',
     tablet: 'md:flex-row md:gap-[0.67rem]',
