@@ -16,6 +16,7 @@ export const SUB_TITLE = {
   SUB_DESCRIPTION_3: '기초부터 실전까지 체계적으로 학습해요',
   SUB_DESCRIPTION_3_MOBILE: '커리큘럼',
   SUB_TITLE_4: 'retrospect',
+  SUB_DESCRIPTION_4_COMMON: '공통\n운영진 회고',
   SUB_DESCRIPTION_4_PM_PD: '기획・디자인\n운영진 회고',
   SUB_DESCRIPTION_4_FRONT: '프론트엔드\n운영진 회고',
   SUB_DESCRIPTION_4_BACK: '백엔드\n운영진 회고',
