@@ -2,7 +2,7 @@ import { combineStyles } from '@shared/utils/combineStyles';
 import { CURRICULUM_DATA } from '@pages/activity/constants/curriculum';
 import type { PartType, TermType } from '@pages/activity/constants/curriculum';
 import { WiSnowflakeCold } from 'react-icons/wi';
-import '@pages/activity/styles/snowflacke.css';
+import '@pages/activity/styles/snowflake.css';
 
 interface CurriculumProps {
   selectedPart: PartType;
