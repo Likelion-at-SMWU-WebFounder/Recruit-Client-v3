@@ -12,8 +12,8 @@
 /* 데스크톱 크기 이상 */
 @media (min-width: 1024px) {
   .snowflake {
-    width: 2rem;
-    height: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }
 
