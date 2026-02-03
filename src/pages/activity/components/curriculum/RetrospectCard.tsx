@@ -13,7 +13,7 @@ const RECTROSPECT_CARD_STYLES = {
     base: 'flex flex-col items-center bg-white',
     desktop: 'lg:w-[23.875rem] lg:min-h-[36.25rem] lg:rounded-[1.25rem]',
     tablet: 'md:w-[13.25rem] md:min-h-[20rem] md:rounded-[0.69369rem]',
-    mobile: 'w-[9.71469rem] min-h-[17rem] rounded-[0.50863rem]',
+    mobile: 'w-[9.71469rem] min-h-[18rem] rounded-[0.50863rem]',
   },
   cardImage: {
     base: 'relative bg-cover bg-center flex flex-col justify-end items-start w-full bg-cover bg-center',
