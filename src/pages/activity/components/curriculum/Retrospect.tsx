@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react';
 import type { PartType } from '@pages/activity/constants/curriculum';
 import SubTitle from '@/shared/components/SubTitle';
 import { SUB_TITLE } from '@pages/activity/constants/index';
@@ -49,6 +50,15 @@ const Retrospect = ({ selectedPart }: RetrospectProps) => {
     }
   };
 
+  // selectedPart가 변경될 때마다 스크롤 위치를 맨 앞으로 이동
+  const rowRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (rowRef.current) {
+      rowRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+    }
+  }, [selectedPart]);
+
   return (
     <>
       <div className={retrospectClassName}>
@@ -66,7 +76,7 @@ const Retrospect = ({ selectedPart }: RetrospectProps) => {
         </div>
 
         <div className={retrospectCardContainerClassName}>
-          <div className={retrospectCardRowClassName}>
+          <div ref={rowRef} className={retrospectCardRowClassName}>
             {CURRICULUM_RETROSPECT[selectedPart].map((retrospect, index) => (
               <div key={index}>
                 <RetrospectCard
