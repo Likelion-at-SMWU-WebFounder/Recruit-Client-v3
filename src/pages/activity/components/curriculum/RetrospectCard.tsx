@@ -31,7 +31,7 @@ const RECTROSPECT_CARD_STYLES = {
     base: 'z-100 flex flex-col justify-start items-start w-full',
     desktop: 'lg:gap-[0.75rem] lg:pb-[1.2rem] lg:pl-[1.87rem]',
     tablet: 'md:gap-[0.38rem] md:pb-[0.14rem] md:pl-[1.04rem]',
-    mobile: 'gap-[0.31rem] md:pb-[0.4rem] pl-[0.76rem]',
+    mobile: 'gap-[0.31rem] pb-[0.4rem] pl-[0.76rem]',
   },
   tag: {
     base: 'flex justify-center items-center bg-white/20 backdrop-blur text-white border-1 border-white',
