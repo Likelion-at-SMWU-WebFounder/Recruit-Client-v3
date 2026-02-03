@@ -54,7 +54,7 @@ const Activity = () => {
         });
       },
       {
-        threshold: 0.1, // 90% 이상 보이면 감지
+        threshold: 0.1, // 10% 이상 보이면 감지
       }
     );
 
