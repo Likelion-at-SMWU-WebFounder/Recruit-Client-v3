@@ -61,8 +61,8 @@ const CURRICULUM_STYLES = {
   tool: {
     base: 'text-navyblack ',
     desktop: 'lg:bd28',
-    tablet: 'md:bd17',
-    mobile: 'bd13 ml-[-1rem]',
+    tablet: 'md:bd17 md:ml-0 md:mr-[-2rem]',
+    mobile: 'bd13 ml-[-2rem] mr-[-2rem]',
   },
   content: {
     base: 'text-navyblack',
