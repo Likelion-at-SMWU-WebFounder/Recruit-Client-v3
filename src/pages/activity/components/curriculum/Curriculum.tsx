@@ -26,7 +26,7 @@ const CURRICULUM_STYLES = {
   },
   termContainer: {
     base: 'flex items-end justify-start border-b border-gray-300',
-    desktop: 'lg:gap-[3.375rem] lg:pt-[1rem] lg:pl-[3.38rem] lg:pb-[0rem',
+    desktop: 'lg:gap-[3.375rem] lg:pt-[1rem] lg:pl-[3.38rem] lg:pb-[0rem]',
     tablet: 'md:gap-[2.28rem] md:pt-[0.5rem] md:pl-[2.12rem] md:pb-[0.6rem]',
     mobile: 'gap-[1.09rem] pt-[0.6rem] pl-[1.53rem] pb-[0.69rem]',
   },
