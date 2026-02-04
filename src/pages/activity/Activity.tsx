@@ -4,6 +4,7 @@ import Layout from '@shared/components/Layout';
 import HeroSection from '@pages/activity/components/hero/HeroSection';
 import DoingSection from '@pages/activity/components/doing/DoingSection';
 import ScheduleSection from '@pages/activity/components/schedule/ScheduleSection';
+import CurriculumSection from '@pages/activity/components/curriculum/CurriculumSection';
 
 // Activity 페이지 스타일 상수화
 const ACTIVITY_STYLES = {
@@ -49,11 +50,11 @@ const Activity = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          setMenuMode(entry.isIntersecting ? 'light' : 'dark');
+          setMenuMode(entry.isIntersecting ? 'dark' : 'light');
         });
       },
       {
-        threshold: 0.9, // 90% 이상 보이면 감지
+        threshold: 0.1, // 10% 이상 보이면 감지
       }
     );
 
@@ -77,7 +78,9 @@ const Activity = () => {
           <ScheduleSection scrollContainerRef={scrollRef} />
         </div>
       </div>
-      <div id="curriculum-section" className={sectionWithouthHeightClassName}></div>
+      <div id="curriculum-section" className={sectionWithouthHeightClassName}>
+        <CurriculumSection />
+      </div>
     </Layout>
   );
 };
