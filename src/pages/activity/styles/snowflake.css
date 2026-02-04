@@ -1,0 +1,28 @@
+@layer components {
+  .snowflake {
+    width: 1rem;
+    height: 1rem;
+  }
+  .snowflake-move {
+    animation: snowflakeMove 1.6s ease-in-out infinite;
+    will-change: transform;
+  }
+}
+
+/* 데스크톱 크기 이상 */
+@media (min-width: 1024px) {
+  .snowflake {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+@keyframes snowflakeMove {
+  0%,
+  100% {
+    transform: translateY(-10%);
+  }
+  50% {
+    transform: translateY(calc(-10% - 2px));
+  }
+}
