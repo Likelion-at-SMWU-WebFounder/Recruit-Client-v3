@@ -7,8 +7,8 @@ import DefaultButton from '@shared/components/button/DefaultButton';
 
 import { combineStyles } from '@shared/utils/combineStyles';
 import { SUB_TITLE } from '@pages/home/constants/index';
-import { PROJECT_BUTTON_TEXT } from '@/pages/home/constants/project';
-import { getProjectImages, splitImagesIntoTwoRows } from '@/pages/home/utils/getProjectImages';
+import { PROJECT_BUTTON_TEXT, PROJECT_IMAGES } from '@/pages/home/constants/project';
+import { allProjectsData } from '@pages/project/constants/project/allProjectData';
 
 // ProjectSection 스타일 상수화
 const PROJECT_SECTION_STYLES = {
@@ -83,7 +83,48 @@ const ProjectSection = () => {
     navigate(ROUTER_URL.PROJECT);
   };
 
-  // 프로젝트 이미지들을 가져와서 두 줄로 분할
+  // 이미지 경로를 기반으로 프로젝트 ID를 찾는 함수
+  const getProjectIdByImage = (imagePath: string): string | null => {
+    for (const project of allProjectsData) {
+      const projectWithImages = project as typeof project & { images?: string[] };
+      if (projectWithImages.images?.includes(imagePath)) {
+        return project.id;
+      }
+    }
+    return null;
+  };
+
+  // 프로젝트 상세 페이지로 이동하는 함수
+  const handleProjectClick = (imagePath: string) => {
+    const projectId = getProjectIdByImage(imagePath);
+    if (projectId) {
+      navigate(ROUTER_URL.PROJECT_DETAIL.replace(':projectId', projectId));
+    } else {
+      // 프로젝트를 찾을 수 없으면 프로젝트 목록 페이지로 이동
+      navigate(ROUTER_URL.PROJECT);
+    }
+  };
+
+  // 상수에서 프로젝트 이미지들을 가져와서 두 줄로 분할
+  const getProjectImages = (): string[] => {
+    const images: string[] = [];
+    // 모든 기수와 카테고리의 이미지들을 플랫한 배열로 변환
+    Object.values(PROJECT_IMAGES).forEach((generation) => {
+      Object.values(generation).forEach((category) => {
+        images.push(...category);
+      });
+    });
+    return images;
+  };
+
+  // 배열을 두 부분으로 나누는 함수
+  const splitImagesIntoTwoRows = (images: string[]): [string[], string[]] => {
+    const mid = Math.ceil(images.length / 2);
+    const firstRow = images.slice(0, mid);
+    const secondRow = images.slice(mid);
+    return [firstRow, secondRow];
+  };
+
   const projectImages = getProjectImages();
   const [firstRowImages, secondRowImages] = splitImagesIntoTwoRows(projectImages);
 
@@ -103,7 +144,7 @@ const ProjectSection = () => {
               key={`first-${index}-${imagePath}`}
               className={projectCardClassName}
               style={{ backgroundImage: `url(${imagePath})` }}
-              onClick={handlePartClick}
+              onClick={() => handleProjectClick(imagePath)}
             />
           ))}
         </div>
@@ -115,7 +156,7 @@ const ProjectSection = () => {
               key={`second-${index}-${imagePath}`}
               className={projectCardClassName}
               style={{ backgroundImage: `url(${imagePath})` }}
-              onClick={handlePartClick}
+              onClick={() => handleProjectClick(imagePath)}
             />
           ))}
         </div>
