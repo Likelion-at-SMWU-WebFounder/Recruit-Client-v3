@@ -14,8 +14,8 @@ import { PART_DATA, PART_BUTTON_TEXT } from '@/pages/home/constants/part';
 // PartSection 스타일 상수화
 const PART_SECTION_STYLES = {
   section: {
-    base: 'w-full max-w-[100vw] flex flex-col justify-center items-center py-[6.25rem]',
-    desktop: 'lg:gap-[3.25rem]',
+    base: 'w-full max-w-[100vw] flex flex-col justify-between items-center pt-[10rem] pb-[5rem]',
+    desktop: 'lg:gap-[2rem]',
     tablet: 'md:gap-[8.5rem]',
     mobile: 'gap-[1rem]',
   },

@@ -38,7 +38,7 @@ const AboutSection = () => {
 
       {/* 모바일 */}
       <section className={MOBILE_SECTION_CLASS}>
-        <div className="inline-flex flex-col items-center justify-center gap-[3.125rem]">
+        <div className="inline-flex flex-col items-center justify-between py-[3rem]">
           <SubTitle subTitle={SUB_TITLE.SUB_TITLE_1} subDescription={SUB_TITLE.SUB_DESCRIPTION_1} />
           <AboutCard />
           <div className={MOBILE_SUB_CONTENT_CLASSES}>{ABOUT_CONTENT_TEXT.mobile}</div>

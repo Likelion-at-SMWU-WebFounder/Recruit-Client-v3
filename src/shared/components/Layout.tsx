@@ -6,15 +6,16 @@ export interface LayoutProps {
   menuMode?: 'light' | 'dark';
   footerMode?: 'light' | 'dark';
   footerBgColor?: string;
+  withoutFooter?: boolean;
   children: ReactNode;
 }
 
-const Layout = ({ menuMode, footerMode, footerBgColor, children }: LayoutProps) => {
+const Layout = ({ menuMode, footerMode, footerBgColor, withoutFooter = false, children }: LayoutProps) => {
   return (
     <div className="relative flex min-h-screen flex-col">
       <Menu mode={menuMode} />
       <main className="flex-1">{children}</main>
-      <Footer mode={footerMode} bgColor={footerBgColor} />
+      {!withoutFooter && <Footer mode={footerMode} bgColor={footerBgColor} />}
     </div>
   );
 };

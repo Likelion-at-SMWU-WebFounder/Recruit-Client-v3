@@ -8,12 +8,12 @@ import DefaultButton from '@shared/components/button/DefaultButton';
 import { combineStyles } from '@shared/utils/combineStyles';
 import { SUB_TITLE } from '@pages/home/constants/index';
 import { PROJECT_BUTTON_TEXT } from '@/pages/home/constants/project';
-import { getProjectImages, splitImagesIntoTwoRows } from '@/pages/home/utils/getProjectImages';
+import { allProjectsData } from '@pages/project/constants/project/allProjectData';
 
 // ProjectSection 스타일 상수화
 const PROJECT_SECTION_STYLES = {
   section: {
-    base: 'w-full max-w-[100vw] flex flex-col justify-center items-center py-[6.25rem] overflow-hidden',
+    base: 'w-full max-w-[100vw] flex flex-col justify-between items-center pt-[10rem] overflow-hidden',
     desktop: 'lg:gap-[3.25rem]',
     tablet: 'md:gap-[7rem]',
     mobile: 'gap-[2.5rem]',
@@ -80,16 +80,62 @@ const ProjectSection = () => {
 
   const navigate = useNavigate();
   const handlePartClick = () => {
-    navigate(ROUTER_URL.ACTIVITY);
+    navigate(ROUTER_URL.PROJECT);
   };
 
-  // 프로젝트 이미지들을 가져와서 두 줄로 분할
+  // 대표 이미지 경로를 기반으로 프로젝트 ID를 찾는 함수
+  const getProjectIdByImage = (imagePath: string): string | null => {
+    for (const project of allProjectsData) {
+      if (project.images && project.images[0] === imagePath) {
+        return project.id;
+      }
+    }
+    return null;
+  };
+
+  // 프로젝트 상세 페이지로 이동하는 함수
+  const handleProjectClick = (imagePath: string) => {
+    const projectId = getProjectIdByImage(imagePath);
+    if (projectId) {
+      navigate(ROUTER_URL.PROJECT_DETAIL.replace(':projectId', projectId));
+    } else {
+      // 프로젝트를 찾을 수 없으면 프로젝트 목록 페이지로 이동
+      navigate(ROUTER_URL.PROJECT);
+    }
+  };
+
+  // 상수에서 프로젝트 이미지들을 가져와서 두 줄로 분할
+  const getProjectImages = (): string[] => {
+    const images: string[] = [];
+    // allProjectsData에서 모든 프로젝트의 대표 이미지(첫 번째 이미지)를 가져옴
+    allProjectsData.forEach((project) => {
+      if (project.images && project.images.length > 0) {
+        images.push(project.images[0]);
+      }
+    });
+
+    // 이미지가 부족하면 반복해서 추가 (최소 20개 확보)
+    while (images.length < 20) {
+      images.push(...images.slice(0, Math.min(images.length, 20 - images.length)));
+    }
+
+    return images;
+  };
+
+  // 배열을 두 부분으로 나누는 함수
+  const splitImagesIntoTwoRows = (images: string[]): [string[], string[]] => {
+    const mid = Math.ceil(images.length / 2);
+    const firstRow = images.slice(0, mid);
+    const secondRow = images.slice(mid);
+    return [firstRow, secondRow];
+  };
+
   const projectImages = getProjectImages();
   const [firstRowImages, secondRowImages] = splitImagesIntoTwoRows(projectImages);
 
-  // 무한 스크롤을 위해 이미지들을 3번 복제 (연속성 확보)
-  const duplicatedFirstRow = [...firstRowImages, ...firstRowImages, ...firstRowImages];
-  const duplicatedSecondRow = [...secondRowImages, ...secondRowImages, ...secondRowImages];
+  // 무한 스크롤을 위해 이미지들을 5번 복제 (연속성 확보 및 빈 공간 방지)
+  const duplicatedFirstRow = Array(5).fill(firstRowImages).flat();
+  const duplicatedSecondRow = Array(5).fill(secondRowImages).flat();
 
   return (
     <section className={sectionClassName}>
@@ -103,7 +149,7 @@ const ProjectSection = () => {
               key={`first-${index}-${imagePath}`}
               className={projectCardClassName}
               style={{ backgroundImage: `url(${imagePath})` }}
-              onClick={handlePartClick}
+              onClick={() => handleProjectClick(imagePath)}
             />
           ))}
         </div>
@@ -115,7 +161,7 @@ const ProjectSection = () => {
               key={`second-${index}-${imagePath}`}
               className={projectCardClassName}
               style={{ backgroundImage: `url(${imagePath})` }}
-              onClick={handlePartClick}
+              onClick={() => handleProjectClick(imagePath)}
             />
           ))}
         </div>
