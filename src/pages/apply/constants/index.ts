@@ -50,7 +50,7 @@ export const RECRUIT_INFO_TABS: RecruitInfoTabTypes[] = [
 // 지원 자격
 export const QUALIFICATIONS: string[] = [
   '26년도 기준 숙명여자대학교\n재학생·휴학생·자대 편입생·졸업 유예자\n(졸업생, 타대생 참여 불가)',
-  '1년간 재학·휴학·졸업 유예 상태 유지 가능자',
+  '1년간 재학·휴학·졸업 유예 상태 \n유지 가능자',
   '지원서 양식 준수자',
   '멋쟁이사자처럼 공식 행사 및\n정기 세션 참여 가능자',
 ];
