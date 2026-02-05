@@ -64,7 +64,6 @@ const Application = () => {
 
   const handleSubmit = (e?: React.FormEvent) => {
     e?.preventDefault();
-    setIsSubmitted(true);
 
     const isApplicantValid = Object.values(formData.applicantInfo).every((v) => v.trim() !== '');
     const numberOnlyRegex = /^\d+$/;
@@ -90,8 +89,11 @@ const Application = () => {
       isAgreementsValid &&
       isPasswordValid
     ) {
+      setIsSubmitted(false);
       setIsModalOpen(true);
     } else {
+      setIsSubmitted(true);
+
       let errorSectionRef: React.RefObject<HTMLDivElement | null> | null = null;
 
       if (!isApplicantValid || !isStudentIdFormatValid || !isSemestersFormatValid || !isPhoneValid || !isEmailValid) {
