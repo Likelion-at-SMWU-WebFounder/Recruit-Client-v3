@@ -28,7 +28,7 @@ const STYLES = {
 
   // 텍스트 스타일
   title:
-    'text-[1.375rem] font-semibold break-keep text-[var(--color-navyblack)] md:text-[2rem] lg:text-[2.25rem] leading-[120%]',
+    'text-[1.375rem] font-bold md:font-semibold break-keep text-[var(--color-navyblack)] md:text-[2rem] lg:text-[2.25rem] leading-[120%]',
   description: `
     text-[0.875rem] leading-[160%] font-medium break-keep text-[#899099] 
     md:text-[1.25rem] lg:text-[1.375rem]
