@@ -43,7 +43,7 @@ const AboutSection = () => {
           <AboutCard />
           <div className={MOBILE_SUB_CONTENT_CLASSES}>{ABOUT_CONTENT_TEXT.mobile}</div>
         </div>
-        <div className="mt-[2.5rem]">
+        <div className="mt-[1rem]">
           <DefaultButton onClick={handleAboutClick} backgroundType="white">
             {ABOUT_BUTTON_TEXT.mobile}
           </DefaultButton>

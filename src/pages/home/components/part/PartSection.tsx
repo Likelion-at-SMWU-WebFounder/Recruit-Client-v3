@@ -14,10 +14,10 @@ import { PART_DATA, PART_BUTTON_TEXT } from '@/pages/home/constants/part';
 // PartSection 스타일 상수화
 const PART_SECTION_STYLES = {
   section: {
-    base: 'w-full max-w-[100vw] flex flex-col justify-between items-center pt-[10rem] pb-[5rem]',
+    base: 'w-full max-w-[100vw] flex flex-col justify-center items-center',
     desktop: 'lg:gap-[2rem]',
-    tablet: 'md:gap-[8.5rem]',
-    mobile: 'gap-[1rem]',
+    tablet: 'md:gap-[8.5rem] md:pt-[10rem] md:pb-[5rem]',
+    mobile: 'gap-[1rem] pt-[5rem]',
   },
   mobileCarousel: {
     base: 'relative flex justify-center items-center w-[22rem] h-[25rem] p-[1rem] ',
@@ -130,7 +130,7 @@ const PartSection = () => {
         </div>
       </div>
 
-      <div className="mt-[2.5rem]">
+      <div className="md:mt-[2.5rem]">
         <DefaultButton onClick={handlePartClick} backgroundType="white">
           {PART_BUTTON_TEXT}
         </DefaultButton>
