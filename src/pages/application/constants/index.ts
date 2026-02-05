@@ -117,14 +117,24 @@ export const QUESTIONS: Question[] = [
   {
     id: 'q7',
     number: 7,
+    question:
+      '제한된 시간 안에 문제를 해결해야 했던 경험이 있다면, 당시 우선순위를 어떻게 설정했고, 어떤 부분을 포기하거나 대체했는지 구체적으로 작성해 주세요.',
+    placeholder: '답변을 입력해 주세요.',
+    type: 'long',
+    maxLength: 700,
+    required: true,
+  },
+  {
+    id: 'q8',
+    number: 8,
     question: '만약 기술 블로그, GitHub, 포트폴리오 등 제출하시고 싶은 자료가 있다면 링크를 기재해 주세요.',
     placeholder: '포트폴리오 링크가 외부에서 접근 가능한 상태인지 확인 후 입력해 주세요.',
     type: 'short',
     required: false,
   },
   {
-    id: 'q8',
-    number: 8,
+    id: 'q9',
+    number: 9,
     question: '면접 가능 일자에 모두 체크해주세요.',
     placeholder: '',
     type: 'special',
