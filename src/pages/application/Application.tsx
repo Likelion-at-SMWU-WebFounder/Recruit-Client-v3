@@ -13,8 +13,7 @@ import Layout from '@/shared/components/Layout';
 
 const TW = {
   /* layout */
-  container:
-    'flex w-full flex-col items-center overflow-x-hidden bg-[var(--color-white-main)] px-[1.53rem] md:px-[4.44rem] lg:px-[10.91rem]',
+  container: 'flex w-full flex-col items-center overflow-x-hidden bg-[var(--color-white-main)] ',
   main: 'w-full',
 
   /* header section */

@@ -231,7 +231,7 @@ export const PASSWORD_INFO = {
 export const APPLICANT_ERRORS = {
   name: '이름을 입력해주세요.',
   studentId: '학번을 입력해주세요.',
-  studentIdFormat: '학번은 형식이 올바르지 않습니다.',
+  studentIdFormat: '학번 형식이 올바르지 않습니다.',
   major: '전공을 입력해주세요.',
   semestersLeft: '수료 학기를 입력해주세요.',
   semestersLeftFormat: '수료 학기 형식이 올바르지 않습니다.',
