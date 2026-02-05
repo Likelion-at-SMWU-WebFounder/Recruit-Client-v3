@@ -19,7 +19,7 @@ const CURRICULUM_SECTION_STYLES = {
     mobile: 'py-[4rem] gap-[1.5rem]',
   },
   content: {
-    base: 'relative w-full h-scroll flex flex-col justify-center items-center',
+    base: 'relative w-full h-scroll flex flex-col justify-center items-center overflow-x-hidden',
   },
   curriculumContainer: {
     base: 'w-full flex flex-col items-center justify-center',
@@ -60,11 +60,19 @@ const CurriculumSection = () => {
       </div>
 
       <div className={contentClassName}>
-        <div className={curriculumContainerClassName}>
-          <PartButton selectedPart={selectedPart} onChange={handleChangePart} />
-          <Curriculum selectedPart={selectedPart} selectedTerm={selectedTerm} onChangeTerm={setSelectedTerm} />
+        {/* 공통 기준 컨테이너 */}
+        <div className="flex w-full max-w-[22.5625rem] flex-col items-start md:max-w-[41.68456rem] lg:max-w-[66rem]">
+          {/* 위: 커리큘럼 (가운데 보이게 하고 싶으면 내부에서 center) */}
+          <div className={curriculumContainerClassName}>
+            <PartButton selectedPart={selectedPart} onChange={handleChangePart} />
+            <Curriculum selectedPart={selectedPart} selectedTerm={selectedTerm} onChangeTerm={setSelectedTerm} />
+          </div>
+
+          {/* 아래: 회고 */}
+          <div className="w-screen items-start">
+            <Retrospect selectedPart={selectedPart} />
+          </div>
         </div>
-        <Retrospect selectedPart={selectedPart} />
       </div>
     </section>
   );

@@ -1,9 +1,7 @@
-import Tag from '@/shared/components/Tag';
 import { combineStyles } from '@shared/utils/combineStyles';
 
 interface DoingCardBackProps {
   icon_white?: string;
-  term: number[];
   title: string;
   fullDescription: string;
   image: string;
@@ -57,16 +55,13 @@ const DOING_CARD_BACK_STYLES = {
   },
 } as const;
 
-const DoingCardBack = ({ icon_white, term, title, fullDescription, image, onFlipBack }: DoingCardBackProps) => {
-  const isTermEmpty = term.length === 0;
-
+const DoingCardBack = ({ icon_white, title, fullDescription, image, onFlipBack }: DoingCardBackProps) => {
   const cardContainerClassName = combineStyles(DOING_CARD_BACK_STYLES.cardContainer);
   const overlayClassName = combineStyles(DOING_CARD_BACK_STYLES.overlay);
   const contentWrapperName = combineStyles(DOING_CARD_BACK_STYLES.contentWrapper);
   const iconClassName = combineStyles(DOING_CARD_BACK_STYLES.icon);
   const bottomClassName = combineStyles(DOING_CARD_BACK_STYLES.bottom);
   const textContainerClassName = combineStyles(DOING_CARD_BACK_STYLES.textContainer);
-  const termTagContainerClassName = combineStyles(DOING_CARD_BACK_STYLES.termTagContainer);
   const titleClassName = combineStyles(DOING_CARD_BACK_STYLES.title);
   const descriptionClassName = combineStyles(DOING_CARD_BACK_STYLES.description);
 
@@ -78,14 +73,6 @@ const DoingCardBack = ({ icon_white, term, title, fullDescription, image, onFlip
         <img className={iconClassName} src={icon_white} alt={title} />
 
         <div className={bottomClassName}>
-          <div className={termTagContainerClassName}>
-            {!isTermEmpty &&
-              term.map((termItem) => (
-                <Tag key={termItem} mode="dark">
-                  {termItem}학기
-                </Tag>
-              ))}
-          </div>
           <div className={textContainerClassName}>
             <div className={titleClassName}>{title}</div>
             <div className={descriptionClassName}>{fullDescription}</div>
