@@ -24,44 +24,17 @@ const Home = () => {
   const sectionClassName = combineStyles(HOME_STYLES.section);
 
   const [menuMode, setMenuMode] = useState<'light' | 'dark'>('dark');
-  const DARK_SECTIONS = ['hero-section', 'apply-section'];
 
-  const intersectionRatios = useRef(new Map<string, number>());
+  const scrollRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
-    const sectionIds = [
-      'hero-section',
-      'about-section',
-      'activity-section',
-      'year-section',
-      'part-section',
-      'project-section',
-      'apply-section',
-    ];
+    const container = scrollRef.current;
+    if (!container) return;
 
-    for (const id of sectionIds) {
-      const el = document.getElementById(id);
-      if (!el) continue;
-
-      const rect = el.getBoundingClientRect();
-      const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-
-      if (isVisible) {
-        if (['hero-section', 'apply-section'].includes(id)) {
-          setMenuMode('dark');
-        } else {
-          setMenuMode('light');
-        }
-        break;
-      }
-    }
-  }, []);
-
-  useEffect(() => {
     const sectionIds = [
       'hero-section',
       'about-section',
@@ -74,29 +47,32 @@ const Home = () => {
 
     const sections = sectionIds.map((id) => document.getElementById(id)).filter((el): el is HTMLElement => Boolean(el));
 
-    if (sections.length === 0) return;
+    const onScroll = () => {
+      const scrollTop = container.scrollTop;
+      const containerHeight = container.clientHeight;
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        intersectionRatios.current.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0);
-      });
+      const index = Math.round(scrollTop / containerHeight);
+      const currentId = sections[index]?.id;
 
-      const [id, ratio] = [...intersectionRatios.current.entries()].sort((a, b) => b[1] - a[1])[0] ?? [];
-      if (!id || ratio === 0) return;
+      if (!currentId) return;
 
-      setMenuMode(DARK_SECTIONS.includes(id) ? 'dark' : 'light');
-    });
+      if (currentId === 'hero-section' || currentId === 'apply-section') {
+        setMenuMode('dark');
+      } else {
+        setMenuMode('light');
+      }
+    };
 
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
+    // 최초 1회
+    onScroll();
 
-    return () => observer.disconnect();
+    container.addEventListener('scroll', onScroll, { passive: true });
+    return () => container.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
     <Layout menuMode={menuMode} footerMode="light">
-      <div className={scrollContainerClassName}>
+      <div ref={scrollRef} className={scrollContainerClassName}>
         <div id="hero-section" className={sectionClassName}>
           <HeroSection />
         </div>
@@ -115,9 +91,9 @@ const Home = () => {
         <div id="project-section" className={sectionClassName}>
           <ProjectSection />
         </div>
-      </div>
-      <div id="apply-section" className={sectionClassName}>
-        <ApplySection />
+        <div id="apply-section" className={sectionClassName}>
+          <ApplySection />
+        </div>
       </div>
     </Layout>
   );
