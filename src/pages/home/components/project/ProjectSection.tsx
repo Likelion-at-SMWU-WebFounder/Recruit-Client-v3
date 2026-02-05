@@ -114,6 +114,10 @@ const ProjectSection = () => {
       }
     });
 
+    if (images.length === 0) {
+      return [];
+    }
+
     // 이미지가 부족하면 반복해서 추가 (최소 20개 확보)
     while (images.length < 20) {
       images.push(...images.slice(0, Math.min(images.length, 20 - images.length)));
