@@ -3,12 +3,64 @@ import { AGREEMENT_INFO, AGREEMENT_ERRORS } from '../constants/index';
 import CheckMark from './icon/CheckMark';
 import bulletIcon from '../assets/bullet-icon.svg';
 import type { AgreementKey, AgreementsState } from '../types/index';
+import { Fragment } from 'react';
 
 interface AgreementSectionProps {
   agreements: AgreementsState;
   onAgreementChange: (field: AgreementKey, checked: boolean) => void;
   isSubmitted: boolean;
 }
+
+// 스타일 토큰 정의
+const STYLES = {
+  // 최상위 레이아웃
+  section: 'flex w-full flex-col items-center gap-[1.5rem] md:gap-[2.0625rem] lg:gap-[2.1875rem]',
+
+  // 중앙 컨테이너
+  container: 'flex w-full flex-col items-center gap-[2.625rem] md:gap-[4.375rem] md:w-[54.75rem] lg:w-[97.5rem]',
+
+  // 개별 카드: 부모 컨테이너 너비를 100% 사용
+  card: 'flex max-h-[28.75rem] w-full flex-col items-center self-stretch overflow-hidden rounded-[1.25rem] bg-[#F0F5FA] p-[1.5625rem_1.25rem_1.5625rem_1.3125rem] shadow-[1px_1px_6.4px_0_rgba(27,38,52,0.10)] md:max-h-[29.25rem] md:p-[2.5rem_4.8125rem_2.5rem_3.75rem] lg:max-h-[35rem] lg:p-[3rem_3.71875rem]',
+
+  // 타이틀 영역
+  titleWrapper: 'flex w-full shrink-0 justify-center',
+  titleText:
+    'w-full text-left text-[1.125rem] font-semibold text-[var(--color-navyblack-main)] break-keep ' +
+    'md:text-[1.625rem] lg:text-[2rem] leading-[120%]',
+
+  // 본문 스크롤 영역
+  contentWrapper: 'flex min-h-0 w-full flex-1 justify-center overflow-hidden',
+  scrollArea:
+    'custom-scrollbar w-full overflow-y-auto pr-2 text-left text-[0.875rem] font-medium text-[rgba(27,38,52,0.70)] md:text-[1rem] lg:text-[1.5rem] lg:leading-[160%] break-keep',
+
+  // 사진 활용 동의 특수 리스트 스타일
+  photoUsageBox: 'flex flex-col gap-y-[0.75rem] pl-[0.5rem] md:pl-[1rem] lg:pl-0',
+  bulletItem: 'flex items-start gap-x-[0.5rem] lg:gap-x-[0.8125rem]',
+  bulletIcon:
+    'mt-[0.25rem] aspect-square h-[0.75rem] w-[0.75rem] shrink-0 object-contain lg:mt-[0.65rem] lg:h-[1.0625rem] lg:w-[1.0625rem]',
+
+  // 하단 체크박스 영역
+  footerWrapper: 'flex w-full shrink-0 justify-center',
+  footerContent: 'flex w-full items-center justify-start pl-[0.5rem] md:pl-[1rem] lg:pl-0',
+  label: 'inline-flex cursor-pointer items-start gap-[0.8125rem] md:items-center',
+
+  // 체크박스 커스텀 사각형
+  checkboxBox:
+    'flex aspect-square h-[1.5625rem] w-[1.5625rem] shrink-0 items-center justify-center rounded-[0.5rem] border-2 transition-all md:h-[2.3125rem] md:w-[2.3125rem] md:rounded-[0.75rem] lg:h-[2.8125rem] lg:w-[2.8125rem] lg:rounded-[1rem]',
+
+  // 라벨 및 에러 메시지 그룹
+  labelGroup: 'flex flex-col items-start md:flex-row md:items-center',
+  labelTextWrapper: 'flex items-center gap-[0.39rem] md:gap-[0.49rem] lg:gap-[0.69rem]',
+  labelText: 'text-[1rem] font-medium text-[var(--color-navyblack-main)] md:text-[1.5rem] lg:text-[1.75rem]',
+  requiredStar:
+    'text-[1.125rem] leading-normal font-bold text-[var(--color-blue-main)] md:text-[1.3rem] lg:text-[1.5rem]',
+  errorMessage:
+    'mt-[0.4rem] text-[0.8125rem] font-medium text-[rgba(255,36,36,0.80)] md:mt-0 md:ml-[1.2rem] md:text-[1rem] lg:ml-[2.2rem] lg:text-[1.25rem]',
+
+  // 간격 조절용 (Spacer)
+  spacerHeader: 'h-[1rem] shrink-0 md:h-[1.2rem] lg:h-[1.38rem]',
+  spacerFooter: 'h-[1.5rem] shrink-0 md:h-[1.8rem] lg:h-[2.31rem]',
+} as const;
 
 const AgreementSection = ({ agreements, onAgreementChange, isSubmitted }: AgreementSectionProps) => {
   const agreementKeys = Object.keys(AGREEMENT_INFO) as AgreementKey[];
@@ -19,91 +71,97 @@ const AgreementSection = ({ agreements, onAgreementChange, isSubmitted }: Agreem
     .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(27, 38, 52, 0.2); border-radius: 10px; }
   `;
 
+  const getCheckboxStyle = (key: AgreementKey, hasError: boolean) => {
+    const base = STYLES.checkboxBox;
+    if (agreements[key])
+      return `${base} border-[var(--color-navyblack-main)] bg-[var(--color-white-main)] drop-shadow-[1px_1px_8.4px_rgba(27,38,52,0.10)]`;
+    if (hasError)
+      return `${base} border-[rgba(255,36,36,0.80)] bg-[var(--color-white-main)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)]`;
+    return `${base} border-[rgba(27,38,52,0.65)] bg-[var(--color-white-main)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)]`;
+  };
+
   return (
-    <section className="mx-auto flex w-full flex-col items-center gap-[2.1875rem] self-stretch px-4 md:px-0 lg:w-[98.18744rem]">
+    <section className={STYLES.section}>
       <style dangerouslySetInnerHTML={{ __html: scrollbarStyle }} />
       <SectionHeader title="정보 수집" />
 
-      {agreementKeys.map((key) => {
-        const info = AGREEMENT_INFO[key];
-        const isPhotoUsage = key === 'photoUsage';
-        const hasError = isSubmitted && !agreements[key];
-        const errorMessage = AGREEMENT_ERRORS[key];
+      {/* 컨테이너: 내부 카드들의 너비와 정렬을 제어 */}
+      <div className={STYLES.container}>
+        {agreementKeys.map((key) => {
+          const info = AGREEMENT_INFO[key];
+          const isPhotoUsage = key === 'photoUsage';
+          const hasError = isSubmitted && !agreements[key];
+          const errorMessage = AGREEMENT_ERRORS[key];
 
-        return (
-          <div
-            key={key}
-            className="flex max-h-[25.375rem] w-full flex-col items-center self-stretch overflow-hidden rounded-[1.25rem] bg-[#F0F5FA] p-[1.5625rem_1.25rem_1.5625rem_1.3125rem] shadow-[1px_1px_6.4px_0_rgba(27,38,52,0.10)] md:max-h-[29.25rem] md:p-[2.5rem_4.8125rem_2.5rem_3.75rem] lg:max-h-[35rem] lg:w-[98.18744rem] lg:p-[3rem_3.71875rem]">
-            {/* 1. 타이틀 영역 */}
-            <div className="flex w-full shrink-0 justify-center">
-              <h4 className="w-full text-left text-[1.125rem] font-semibold whitespace-pre-line text-[var(--color-navyblack)] md:text-[1.625rem] lg:w-[90.0625rem] lg:text-[2rem]">
-                {info.title}
-              </h4>
-            </div>
-            <div className="h-[1rem] shrink-0 md:h-[1.2rem] lg:h-[1.38rem]" />
-
-            {/* 2. 본문 영역 */}
-            <div className="flex min-h-0 w-full flex-1 justify-center overflow-hidden">
-              <div className="custom-scrollbar w-full overflow-y-auto pr-2 text-left text-[0.875rem] font-medium text-[rgba(27,38,52,0.70)] md:text-[1rem] lg:w-[87.125rem] lg:text-[1.5rem] lg:leading-[160%]">
-                {isPhotoUsage ? (
-                  <div className="flex flex-col gap-y-[0.75rem] pl-[0.5rem] md:pl-[1rem] lg:pl-0">
-                    {info.content.split('\n').map((line, i) => (
-                      <div key={i} className="flex items-start gap-x-[0.5rem] lg:gap-x-[0.8125rem]">
-                        <img
-                          src={bulletIcon}
-                          alt="bullet"
-                          className="mt-[0.25rem] aspect-square h-[0.75rem] w-[0.75rem] shrink-0 object-contain lg:mt-[0.65rem] lg:h-[1.0625rem] lg:w-[1.0625rem]"
-                        />
-                        <span className="flex-1">{line.replace(/^[•※-]\s*/, '')}</span>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="pl-[0.5rem] whitespace-pre-line md:pl-[1rem] lg:pl-0">{info.content}</div>
-                )}
+          return (
+            <div key={key} className={STYLES.card}>
+              {/* 1. 타이틀 */}
+              <div className={STYLES.titleWrapper}>
+                <h4 className={STYLES.titleText}>
+                  {info.title.split('\n').map((line, i, arr) => (
+                    <Fragment key={i}>
+                      {line}
+                      {i < arr.length - 1 && (
+                        <>
+                          {i === 0 && <br className="lg:hidden" />}
+                          {i === 1 && <br className="md:hidden" />}
+                        </>
+                      )}
+                    </Fragment>
+                  ))}
+                </h4>
               </div>
-            </div>
-            <div className="h-[1.5rem] shrink-0 md:h-[1.8rem] lg:h-[2.31rem]" />
+              <div className={STYLES.spacerHeader} />
 
-            {/* 3. 체크란 영역 */}
-            <div className="flex w-full shrink-0 justify-center">
-              <div className="flex w-full items-center justify-start pl-[0.5rem] md:pl-[1rem] lg:w-[87.125rem] lg:pl-0">
-                <label
-                  className="inline-flex cursor-pointer items-start gap-[0.8125rem] md:items-center"
-                  onClick={() => onAgreementChange(key, !agreements[key])}>
-                  <div
-                    className={`flex aspect-square h-[1.5625rem] w-[1.5625rem] shrink-0 items-center justify-center rounded-[0.5rem] border-2 transition-all md:h-[2.3125rem] md:w-[2.3125rem] md:rounded-[0.75rem] lg:h-[2.8125rem] lg:w-[2.8125rem] lg:rounded-[1rem] ${
-                      agreements[key]
-                        ? 'border-[var(--color-navyblack)] bg-[var(--color-white)] drop-shadow-[1px_1px_8.4px_rgba(27,38,52,0.10)]'
-                        : hasError
-                          ? 'border-[var(--Color-error-red,rgba(255,36,36,0.80))] bg-[var(--color-white)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)]'
-                          : 'border-[var(--color-gray)] bg-[var(--color-white)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)]'
-                    }`}>
-                    {agreements[key] && <CheckMark />}
-                  </div>
-
-                  {/* 텍스트/에러 메시지 */}
-                  <div className="flex flex-col items-start md:flex-row md:items-center">
-                    <div className="flex items-center gap-[0.39rem] md:gap-[0.49rem] lg:gap-[0.69rem]">
-                      <span className="text-[1rem] font-medium text-[var(--color-navyblack)] md:text-[1.5rem] lg:text-[1.75rem]">
-                        {info.checkbox}
-                      </span>
-                      <span className="text-[1.125rem] leading-normal font-bold text-[var(--Color-blue-main,#4284FF)] md:text-[1.3rem] lg:text-[1.5rem]">
-                        *
-                      </span>
+              {/* 2. 본문 (스크롤 기능 유지) */}
+              <div className={STYLES.contentWrapper}>
+                <div className={STYLES.scrollArea}>
+                  {isPhotoUsage ? (
+                    <div className={STYLES.photoUsageBox}>
+                      {info.content.split('\n').map((line, i) => (
+                        <div key={i} className={STYLES.bulletItem}>
+                          <img src={bulletIcon} alt="bullet" className={STYLES.bulletIcon} />
+                          <span className="flex-1">
+                            {/* [DBR]이라는 글자가 있으면 데스크탑에서만 작동하는 br 태그로 교체 */}
+                            {line.includes('[DBR]')
+                              ? line.split('[DBR]').map((part, index, arr) => (
+                                  <Fragment key={index}>
+                                    {part.replace(/^[•※-]\s*/, '')}
+                                    {index < arr.length - 1 && <br className="hidden lg:block" />}
+                                  </Fragment>
+                                ))
+                              : line.replace(/^[•※-]\s*/, '')}
+                          </span>
+                        </div>
+                      ))}
                     </div>
-                    {hasError && (
-                      <span className="mt-[0.4rem] text-[0.8125rem] font-medium text-[var(--Color-error-red,rgba(255,36,36,0.80))] md:mt-0 md:ml-[1.2rem] md:text-[1rem] lg:ml-[2.2rem] lg:text-[1.25rem]">
-                        {errorMessage}
-                      </span>
-                    )}
-                  </div>
-                </label>
+                  ) : (
+                    <div className="pl-[0.5rem] whitespace-pre-line md:pl-[1rem] lg:pl-0">{info.content}</div>
+                  )}
+                </div>
+              </div>
+              <div className={STYLES.spacerFooter} />
+
+              {/* 3. 동의 체크박스 */}
+              <div className={STYLES.footerWrapper}>
+                <div className={STYLES.footerContent}>
+                  <label className={STYLES.label} onClick={() => onAgreementChange(key, !agreements[key])}>
+                    <div className={getCheckboxStyle(key, hasError)}>{agreements[key] && <CheckMark />}</div>
+
+                    <div className={STYLES.labelGroup}>
+                      <div className={STYLES.labelTextWrapper}>
+                        <span className={STYLES.labelText}>{info.checkbox}</span>
+                        <span className={STYLES.requiredStar}>*</span>
+                      </div>
+                      {hasError && <span className={STYLES.errorMessage}>{errorMessage}</span>}
+                    </div>
+                  </label>
+                </div>
               </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </section>
   );
 };
