@@ -1,4 +1,3 @@
-// components/RecruitPartSection.tsx
 import { useEffect, useState } from 'react';
 import { SECTION_TITLES, RECRUIT_PARTS, SECTION_SUB_TITLES } from '../../constants/index';
 import img3dOrange from '../../assets/3d-orange.png';
@@ -18,6 +17,7 @@ const RecruitPartSection = () => {
 
   const isMdUp = useMediaQuery('(min-width: 768px)');
   const isLgUp = useMediaQuery('(min-width: 1024px)');
+  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
 
   useEffect(() => {
     if (!isMdUp) setIsExpanded(false);
@@ -42,13 +42,15 @@ const RecruitPartSection = () => {
 
   // 데스크탑 hover / 태블릿 click 분기
   const handleEnter = () => {
-    if (isLgUp) setIsExpanded(true);
+    if (isLgUp && !isTouchDevice) setIsExpanded(true);
   };
   const handleLeave = () => {
     if (isLgUp) setIsExpanded(false);
   };
   const handleToggleTablet = () => {
-    if (isMdUp && !isLgUp) setIsExpanded((v) => !v);
+    if (!isLgUp || isTouchDevice) {
+      setIsExpanded((v) => !v);
+    }
   };
 
   // 회전 각도 설정

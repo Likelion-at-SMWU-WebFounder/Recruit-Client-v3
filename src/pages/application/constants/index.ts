@@ -2,7 +2,7 @@ import type { FieldConfig, Question, InterviewScheduleOption } from '../types/in
 
 // 1. 페이지 헤더 정보
 export const PAGE_TITLE = '숙명여대 멋사 14기 모집 서류 작성페이지 입니다.';
-export const PAGE_SUBTITLE = '* 표시 문항은 필수 응답 항목입니다.';
+export const PAGE_SUBTITLE = '*필수입력 항목은 모두 작성해야합니다.';
 
 // 2. 지원자 정보 섹션 설정
 export const APPLICANT_FIELD_CONFIG: FieldConfig[] = [
@@ -32,7 +32,7 @@ export const APPLICANT_FIELD_CONFIG: FieldConfig[] = [
       { label: '졸업 유예', value: '졸업 유예' },
     ],
   },
-  { id: 'graduationYear', label: '졸업 예정 연도', placeholder: '2026년 2월', required: true },
+  { id: 'graduationYear', label: '졸업 예정 연도', placeholder: '2027년 2월', required: true },
   { id: 'phone', label: '전화번호', placeholder: '010-1234-5678', required: true },
   { id: 'email', label: '이메일', placeholder: 'sooklion@gmail.com', required: true },
 ];
@@ -176,7 +176,7 @@ export const INTERVIEW_SCHEDULE: InterviewScheduleOption[] = [
 
 export const AGREEMENT_INFO = {
   activityParticipation: {
-    title: '[숙명여대 멋사 필수 참여 행사]\n불참 시 합격이 취소될 수 있으며,\n활동 수료에 제한이 있을 수 있습니다.',
+    title: '[숙명여대 멋사 필수 참여 행사] \n불참 시 합격이 취소될 수 있으며,\n활동 수료에 제한이 있을 수 있습니다.',
     content: `숙명여대 멋사 OT: 03.03(화) 19:00~21:00 (대면 진행, 불참 시 합격 취소)
 멋사 중앙 OT: 03.18(수) ??:00 (온라인 진행, 불참 시 함격 취소)
 중앙 아이디어톤: 6월 중 진행 (수료 요건)

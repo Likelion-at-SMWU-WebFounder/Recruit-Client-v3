@@ -19,12 +19,12 @@ const TW = {
   cardClosed: 'bg-[var(--color-white-main)]',
 
   /* question (Trigger) */
-  questionBtn: 'flex w-full items-start justify-between cursor-pointer group',
-  questionContent: 'flex items-start gap-[0.375rem] md:gap-[0.75rem] lg:gap-[0.875rem]',
+  questionBtn: 'flex w-full items-center justify-between cursor-pointer group',
+  questionContent: 'flex items-center gap-[0.375rem] md:gap-[0.75rem] lg:gap-[0.875rem]',
   questionPrefix:
     'shrink-0 font-semibold text-[var(--color-navyblack-main)] text-[1.0625rem] md:text-[1.625rem] lg:text-[2.5rem] leading-[120%] md:leading-[140%] lg:leading-[120%]',
   questionText:
-    'text-left text-[1rem] leading-[120%] md:leading-[140%] font-semibold text-[var(--color-navyblack-main)] md:text-[1.5rem] lg:text-[2rem] break-keep',
+    'text-left text-[1rem] leading-[120%] md:leading-[140%] font-semibold text-[var(--color-navyblack-main)] md:text-[1.5rem] lg:text-[2rem] break-keep whitespace-pre-line',
 
   /* arrow icon */
   arrow:
@@ -41,7 +41,7 @@ const TW = {
   answerInnerClosed: 'pt-0',
 
   answerText: `
-    font-medium whitespace-pre-line text-[rgba(27,38,52,0.7)] leading-[170%] break-keep
+    font-medium lg:whitespace-pre-line text-[rgba(27,38,52,0.7)] leading-[170%] break-keep
     text-[0.875rem] px-[1.4375rem] md:text-[1.125rem] md:px-[2.375rem] lg:text-[1.5rem] lg:px-[3.375rem]
   `,
 
@@ -54,7 +54,7 @@ const TW = {
 const cx = (...classes: Array<string | false | null | undefined>) => classes.filter(Boolean).join(' ');
 
 const FAQSection = () => {
-  const [openId, setOpenId] = useState<string | null>('f1');
+  const [openId, setOpenId] = useState<string | null>(null);
 
   const toggleFAQ = (id: string) => {
     setOpenId((prev) => (prev === id ? null : id));

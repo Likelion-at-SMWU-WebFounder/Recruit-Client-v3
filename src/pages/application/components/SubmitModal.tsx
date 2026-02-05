@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { SUBMIT_MODAL, SUCCESS_MODAL, DUPLICATE_MODAL } from '../constants/index';
 import CloseIcon from '../assets/close-icon.svg';
-import DefaultButton from '@/shared/components/button/DefaultButton';
+import ModalButton from './button/ModalButton';
 
 interface SubmitModalProps {
   isOpen: boolean;
@@ -16,7 +16,7 @@ const STYLES = {
   // 배경 및 모달 본체
   overlay: 'fixed inset-0 z-[100] flex items-center justify-center bg-black/50 px-4',
   modalContainer:
-    'relative flex w-full lg:max-w-[43.4375rem] md:max-w-[39.3125rem] max-w-[21.4375rem] flex-col rounded-[1.25rem] bg-[var(--color-white-main)] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] p-[1.75rem_1.625rem] md:p-[4.25rem_3.3125rem] lg:p-[5rem_3.25rem]',
+    'relative flex w-full lg:max-w-[43.4375rem] md:max-w-[39.3125rem] max-w-[21.4375rem] flex-col rounded-[1.25rem] bg-[var(--color-white-main)] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] p-[1.75rem_1.625rem] md:px-[3.3125rem] md:py-[4.25rem] lg:p-[5rem_3.25rem]',
 
   // 닫기 버튼
   closeButton: 'absolute top-6 right-6 cursor-pointer',
@@ -33,7 +33,7 @@ const STYLES = {
     'text-[0.875rem] leading-[160%] font-medium break-keep text-[#899099] md:text-[1.25rem] lg:text-[1.375rem]',
 
   // 강조 및 링크 스타일
-  blueText: 'text-[#4284FF] font-bold',
+  blueText: 'text-[#4284FF] font-bold lg:font-semibold',
   link: 'cursor-pointer underline underline-offset-4',
   partLabel:
     'text-[0.875rem] font-semibold text-[#4284FF] md:text-[1.125rem] uppercase lg:text-[1.25rem] leading-[120%]',
@@ -74,14 +74,19 @@ const SubmitModal = ({ isOpen, onClose, onConfirm, partName, submitStatus }: Sub
 
             {/* 본문 영역: 상태에 따른 분기 처리 */}
             {isSuccess ? (
-              <div className={STYLES.description}>
-                <p>{SUCCESS_MODAL.DESC_1}</p>
-                <p>
+              <div className={`${STYLES.description} mt-[0.75rem] md:mt-[1.25rem] lg:mt-[1.375rem]`}>
+                <span>{SUCCESS_MODAL.DESC_1}</span>
+                <span className="md:hidden"> </span>
+                <br className="hidden md:block" />
+                <span>
                   {SUCCESS_MODAL.DESC_2_PREFIX}
+                  <br className="md:hidden" />
                   <span className={STYLES.blueText}>{SUCCESS_MODAL.DESC_2_BLUE}</span>
                   {SUCCESS_MODAL.DESC_2_SUFFIX}
-                </p>
-                <p className="lg:whitespace-nowrap">
+                </span>
+                <span className="md:hidden"> </span>
+                <br className="hidden md:block" />
+                <span className="lg:whitespace-nowrap">
                   {SUCCESS_MODAL.DESC_3_PREFIX}
                   <span className={STYLES.blueText}>
                     <a
@@ -94,10 +99,10 @@ const SubmitModal = ({ isOpen, onClose, onConfirm, partName, submitStatus }: Sub
                     {SUCCESS_MODAL.DESC_3_BLUE_PLAIN}
                   </span>
                   {SUCCESS_MODAL.DESC_3_SUFFIX}
-                </p>
+                </span>
               </div>
             ) : isDuplicate ? (
-              <div className={STYLES.description}>
+              <div className={`${STYLES.description} mt-[0.75rem] md:mt-[1.25rem] lg:mt-[1.375rem]`}>
                 <p>{DUPLICATE_MODAL.DESC_1}</p>
                 <p>
                   {DUPLICATE_MODAL.DESC_2_PREFIX}
@@ -142,13 +147,10 @@ const SubmitModal = ({ isOpen, onClose, onConfirm, partName, submitStatus }: Sub
               </div>
             )}
           </div>
-
           {/* 하단 버튼 영역 */}
           <div className={STYLES.buttonWrapper(isLoading)}>
-            <DefaultButton
-              backgroundType="white"
-              border="solid"
-              isIcon={false}
+            <ModalButton
+              disabled={isLoading}
               onClick={() => {
                 if (isLoading) return;
                 if (isFinalState) {
@@ -158,7 +160,7 @@ const SubmitModal = ({ isOpen, onClose, onConfirm, partName, submitStatus }: Sub
                 }
               }}>
               {isLoading ? '제출하기' : isFinalState ? SUCCESS_MODAL.BUTTON : SUBMIT_MODAL.BUTTON_TEXT}
-            </DefaultButton>
+            </ModalButton>
           </div>
         </div>
       </div>

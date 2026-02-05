@@ -1,7 +1,6 @@
 export const TW = {
   // layout
-  section:
-    'flex w-full items-center justify-center py-[9.37rem] md:py-[12.23244rem] lg:py-[6.0625rem] lg:px-[10.1875rem]',
+  section: 'flex w-full items-center justify-center py-[9.37rem] md:py-[12.23244rem] lg:py-[6.0625rem] px-[1rem]',
   container: 'flex w-full flex-col items-center',
 
   // heading
@@ -41,14 +40,13 @@ export const TW = {
     'bg-[linear-gradient(180deg,rgba(247,250,255,0.40)_0.05%,rgba(247,250,255,0.26)_41.42%,rgba(247,250,255,0.40)_82.79%)]',
 
   // card text
-  textWrap: 'relative z-10',
+  textWrap: 'relative z-10 flex flex-col gap-[0.5rem] lg:gap-[0.625rem]',
   titleMobile: 'text-[1.5rem] font-semibold text-[var(--color-navyblack-main)] leading-[120%]',
   titleDesktop: 'text-[1.5rem] font-semibold text-[var(--color-navyblack-main)] lg:text-[2.25rem] leading-[120%]',
 
-  skillsMobile: 'mt-[0.5rem] text-[0.875rem] font-medium text-[#1B2634]/60 leading-[120%]',
-  skillsFolded: 'lg:mt-[0.625rem] md:mt-[0.5rem] text-[0.875rem] font-medium text-[#1B2634]/60 lg:text-[1.25rem]',
-  skillsExpanded:
-    'lg:mt-[0.625rem] mt:[0.5rem] text-[0.875rem] font-medium text-[#1B2634]/60 lg:text-[1.25rem] leading-[120%]',
+  skillsMobile: 'text-[0.875rem] font-medium text-[#1B2634]/60 leading-[120%]',
+  skillsFolded: 'text-[0.875rem] font-medium text-[#1B2634]/60 lg:text-[1.25rem] leading-[120%]',
+  skillsExpanded: 'text-[0.875rem] font-medium text-[#1B2634]/60 lg:text-[1.25rem] leading-[120%]',
 
   descMobile:
     'mt-[1.3125rem] text-[0.9375rem] leading-[180%] font-medium text-[var(--color-navyblack-main)] break-keep whitespace-pre-line',
@@ -62,10 +60,10 @@ export const TW = {
 
   // 3D images
   imgBase: 'absolute z-0 w-auto object-contain opacity-80 transition-all duration-500 ease-in-out',
-  imgMobile: '-right-[0%] -bottom-[0%] h-[40%] blur-[1px]',
+  imgMobile: '-right-[0%] -bottom-[0%] h-[40%] blur-[1.8px]',
   imgFoldedLeft: '-right-[0%] -bottom-[0%] h-[40%] blur-[1px] lg:h-[42%]',
   imgFoldedCenter: '-right-[0%] -bottom-[0%] h-[40%] blur-[1px] lg:h-[42%]',
-  imgExpanded: '-right-[0%] -bottom-[0%] h-[40%] lg:h-[42%] blur-[1px]',
+  imgExpanded: '-right-[0%] -bottom-[0%] h-[40%] lg:h-[42%] blur-[1.8px]',
 } as const;
 
 export type TwTokens = typeof TW;

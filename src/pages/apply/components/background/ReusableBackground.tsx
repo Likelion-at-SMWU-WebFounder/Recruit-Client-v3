@@ -17,8 +17,8 @@ const TW = {
 
   deco: {
     orange:
-      'absolute -top-[2rem] -left-[3rem] h-auto w-[18rem] md:w-[28rem] lg:-top-[5rem] lg:-left-[8rem] lg:w-[40rem]',
-    blue: 'absolute -right-[5rem] bottom-[-2rem] h-auto w-[22rem] md:w-[35rem] lg:-right-[12rem] lg:-bottom-[10rem] lg:w-[52rem]',
+      'absolute -top-[2rem] -left-[3rem] h-auto w-[22rem] md:w-[28rem] lg:-top-[5rem] lg:-left-[8rem] lg:w-[40rem]',
+    blue: 'absolute -right-[5rem] bottom-[-2rem] h-auto w-[26rem] md:w-[35rem] lg:-right-[12rem] lg:-bottom-[10rem] lg:w-[52rem]',
   },
 } as const;
 
