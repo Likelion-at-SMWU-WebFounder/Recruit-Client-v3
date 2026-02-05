@@ -7,7 +7,7 @@ import DefaultButton from '@shared/components/button/DefaultButton';
 
 import { combineStyles } from '@shared/utils/combineStyles';
 import { SUB_TITLE } from '@pages/home/constants/index';
-import { PROJECT_BUTTON_TEXT, PROJECT_IMAGES } from '@/pages/home/constants/project';
+import { PROJECT_BUTTON_TEXT } from '@/pages/home/constants/project';
 import { allProjectsData } from '@pages/project/constants/project/allProjectData';
 
 // ProjectSection 스타일 상수화
@@ -83,11 +83,10 @@ const ProjectSection = () => {
     navigate(ROUTER_URL.PROJECT);
   };
 
-  // 이미지 경로를 기반으로 프로젝트 ID를 찾는 함수
+  // 대표 이미지 경로를 기반으로 프로젝트 ID를 찾는 함수
   const getProjectIdByImage = (imagePath: string): string | null => {
     for (const project of allProjectsData) {
-      const projectWithImages = project as typeof project & { images?: string[] };
-      if (projectWithImages.images?.includes(imagePath)) {
+      if (project.images && project.images[0] === imagePath) {
         return project.id;
       }
     }
@@ -108,12 +107,18 @@ const ProjectSection = () => {
   // 상수에서 프로젝트 이미지들을 가져와서 두 줄로 분할
   const getProjectImages = (): string[] => {
     const images: string[] = [];
-    // 모든 기수와 카테고리의 이미지들을 플랫한 배열로 변환
-    Object.values(PROJECT_IMAGES).forEach((generation) => {
-      Object.values(generation).forEach((category) => {
-        images.push(...category);
-      });
+    // allProjectsData에서 모든 프로젝트의 대표 이미지(첫 번째 이미지)를 가져옴
+    allProjectsData.forEach((project) => {
+      if (project.images && project.images.length > 0) {
+        images.push(project.images[0]);
+      }
     });
+
+    // 이미지가 부족하면 반복해서 추가 (최소 20개 확보)
+    while (images.length < 20) {
+      images.push(...images.slice(0, Math.min(images.length, 20 - images.length)));
+    }
+
     return images;
   };
 
@@ -128,9 +133,9 @@ const ProjectSection = () => {
   const projectImages = getProjectImages();
   const [firstRowImages, secondRowImages] = splitImagesIntoTwoRows(projectImages);
 
-  // 무한 스크롤을 위해 이미지들을 3번 복제 (연속성 확보)
-  const duplicatedFirstRow = [...firstRowImages, ...firstRowImages, ...firstRowImages];
-  const duplicatedSecondRow = [...secondRowImages, ...secondRowImages, ...secondRowImages];
+  // 무한 스크롤을 위해 이미지들을 5번 복제 (연속성 확보 및 빈 공간 방지)
+  const duplicatedFirstRow = Array(5).fill(firstRowImages).flat();
+  const duplicatedSecondRow = Array(5).fill(secondRowImages).flat();
 
   return (
     <section className={sectionClassName}>
