@@ -4,6 +4,12 @@ import InfoDropdown from './InfoDropdown';
 import { APPLICANT_ERRORS, APPLICANT_FIELD_CONFIG } from '../../constants/index';
 import type { ApplicantInfo } from '../../types/index';
 
+const STYLES = {
+  section: 'flex flex-col w-full items-center gap-[1.5rem] md:gap-[2.0625rem] lg:gap-[2.1875rem] ',
+  gridContainer:
+    'flex flex-wrap justify-center w-full px-[1.06rem] md:px-[0rem] md:w-[52.75rem] lg:w-[90.0625rem] gap-x-[1rem] gap-y-[2.1875rem] md:gap-x-[3.25rem] md:gap-y-[4rem] lg:gap-x-[8.5625rem] lg:gap-y-[5rem]',
+};
+
 interface ApplicantInfoSectionProps {
   data: ApplicantInfo;
   onChange: (field: keyof ApplicantInfo, value: string) => void;
@@ -43,9 +49,9 @@ const ApplicantInfoSection = ({ data, onChange, isSubmitted }: ApplicantInfoSect
   };
 
   return (
-    <section className="flex w-full flex-col items-center gap-[1.5rem] px-4 md:gap-[1.75rem] md:px-0 lg:gap-[2.1875rem]">
+    <section className={STYLES.section}>
       <SectionHeader title="지원자 정보" />
-      <div className="flex w-full flex-wrap justify-center gap-y-[2.12rem] md:w-[52.75rem] md:gap-x-[3.25rem] md:gap-y-[4rem] lg:w-[90.0625rem] lg:gap-x-[8.5625rem] lg:gap-y-[5rem]">
+      <div className={STYLES.gridContainer}>
         {APPLICANT_FIELD_CONFIG.map((field) => {
           const commonProps = {
             label: field.label,
@@ -54,6 +60,7 @@ const ApplicantInfoSection = ({ data, onChange, isSubmitted }: ApplicantInfoSect
             onChange: (val: string) => onChange(field.id, val),
             errorMessage: getErrorMessage(field.id),
           };
+
           if (field.options) {
             return <InfoDropdown key={field.id} {...commonProps} options={field.options} />;
           }
