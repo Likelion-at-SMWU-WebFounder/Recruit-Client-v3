@@ -10,6 +10,11 @@ export const getProjectImages = (): string[] => {
     }
   });
 
+  // 이미지가 없으면 빈 배열 반환 - 무한루프 방지
+  if (images.length === 0) {
+    return [];
+  }
+
   // 이미지가 부족하면 반복해서 추가 (최소 20개 확보)
   while (images.length < 20) {
     images.push(...images.slice(0, Math.min(images.length, 20 - images.length)));
