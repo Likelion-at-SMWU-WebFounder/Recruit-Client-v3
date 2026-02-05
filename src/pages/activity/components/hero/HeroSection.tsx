@@ -7,8 +7,8 @@ import { HERO_DATA } from '@pages/activity/constants/hero';
 const HERO_SECTION_STYLES = {
   section: {
     base: 'relative h-[100dvh] snap-start overflow-hidden flex flex-col justify-center items-center',
-    desktop: 'lg:py-[8rem] lg:gap-[7.63rem]',
-    tablet: 'md:py-[6rem] md:gap-[2rem]',
+    desktop: 'lg:pt-[10rem] lg:gap-[5rem]',
+    tablet: 'md:py-[6rem] md:gap-[1rem]',
     mobile: 'py-[4rem] gap-[1.5rem]',
   },
   titleContainer: {
@@ -31,9 +31,9 @@ const HERO_SECTION_STYLES = {
   },
   heroContainer: {
     base: 'w-full flex flex-col overflow-hidden',
-    desktop: 'lg:gap-[0.5rem]',
-    tablet: 'md:gap-[0.31rem]',
-    mobile: 'gap-[0.38rem]',
+    desktop: 'lg:gap-[0.5rem] lg:py-[3rem]',
+    tablet: 'md:gap-[0.31rem] md:py-[2rem]',
+    mobile: 'gap-[0.38rem] py-[1rem]',
   },
   heroRow: {
     base: 'flex w-max ',
