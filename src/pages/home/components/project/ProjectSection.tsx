@@ -13,7 +13,7 @@ import { getProjectImages, splitImagesIntoTwoRows } from '@/pages/home/utils/get
 // ProjectSection 스타일 상수화
 const PROJECT_SECTION_STYLES = {
   section: {
-    base: 'w-full max-w-[100vw] flex flex-col justify-center items-center py-[6.25rem] overflow-hidden',
+    base: 'w-full max-w-[100vw] flex flex-col justify-between items-center pt-[10rem] overflow-hidden',
     desktop: 'lg:gap-[3.25rem]',
     tablet: 'md:gap-[7rem]',
     mobile: 'gap-[2.5rem]',
@@ -80,7 +80,7 @@ const ProjectSection = () => {
 
   const navigate = useNavigate();
   const handlePartClick = () => {
-    navigate(ROUTER_URL.ACTIVITY);
+    navigate(ROUTER_URL.PROJECT);
   };
 
   // 프로젝트 이미지들을 가져와서 두 줄로 분할
