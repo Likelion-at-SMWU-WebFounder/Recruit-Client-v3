@@ -11,6 +11,40 @@ interface SubmitModalProps {
   submitStatus: 'idle' | 'loading' | 'success' | 'error' | 'duplicate';
 }
 
+// 1. 스타일 토큰 정의
+const STYLES = {
+  // 배경 및 모달 본체
+  overlay: 'fixed inset-0 z-[100] flex items-center justify-center bg-black/50 px-4',
+  modalContainer:
+    'relative flex w-full lg:max-w-[43.4375rem] md:max-w-[39.3125rem] max-w-[21.4375rem] flex-col rounded-[1.25rem] bg-[var(--color-white-main)] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] p-[1.75rem_1.625rem] md:p-[4.25rem_3.3125rem] lg:p-[5rem_3.25rem]',
+
+  // 닫기 버튼
+  closeButton: 'absolute top-6 right-6 cursor-pointer',
+  closeIcon: 'h-[0.8125rem] w-[0.8125rem] md:h-[1.28913rem] md:w-[1.28913rem]',
+
+  // 레이아웃 구성
+  contentLayout: 'flex flex-col items-center gap-[1.5rem] md:gap-[2.125rem] lg:gap-[2.375rem]',
+  infoWrapper: 'flex w-full flex-col gap-[0.375rem] md:gap-[0.625rem]',
+
+  // 텍스트 스타일
+  title:
+    'text-[1.375rem] font-semibold break-keep text-[var(--color-navyblack)] md:text-[2rem] lg:text-[2.25rem] leading-[120%]',
+  description:
+    'text-[0.875rem] leading-[160%] font-medium break-keep text-[#899099] md:text-[1.25rem] lg:text-[1.375rem]',
+
+  // 강조 및 링크 스타일
+  blueText: 'text-[#4284FF] font-bold',
+  link: 'cursor-pointer underline underline-offset-4',
+  partLabel:
+    'text-[0.875rem] font-semibold text-[#4284FF] md:text-[1.125rem] uppercase lg:text-[1.25rem] leading-[120%]',
+
+  // 경고 문구 박스 (제출 전)
+  warningBox: 'flex flex-col gap-6 lg:gap-[2rem]',
+
+  // 하단 버튼 영역
+  buttonWrapper: (isLoading: boolean) => `${isLoading ? 'opacity-50' : ''} transition-opacity`,
+} as const;
+
 const SubmitModal = ({ isOpen, onClose, onConfirm, partName, submitStatus }: SubmitModalProps) => {
   const navigate = useNavigate();
 
@@ -19,43 +53,42 @@ const SubmitModal = ({ isOpen, onClose, onConfirm, partName, submitStatus }: Sub
   const isSuccess = submitStatus === 'success';
   const isDuplicate = submitStatus === 'duplicate';
   const isLoading = submitStatus === 'loading';
-
   const isFinalState = isSuccess || isDuplicate;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 px-4">
-      <div className="relative flex w-full max-w-[43.4375rem] flex-col rounded-[1.25rem] bg-[#F7FAFF] p-8 shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] md:p-12 lg:p-[5rem_3.25rem]">
+    <div className={STYLES.overlay}>
+      <div className={STYLES.modalContainer}>
+        {/* 최종 상태(성공/중복)가 아닐 때만 닫기 버튼 노출 */}
         {!isFinalState && (
-          <button onClick={onClose} className="absolute top-6 right-6 cursor-pointer">
-            <img src={CloseIcon} alt="close" className="h-[1rem] w-[1rem]" />
+          <button onClick={onClose} className={STYLES.closeButton}>
+            <img src={CloseIcon} alt="close" className={STYLES.closeIcon} />
           </button>
         )}
 
-        <div className="flex flex-col items-center gap-8 lg:gap-[2.375rem]">
-          <div className="flex w-full flex-col gap-6 lg:gap-[2rem]">
+        <div className={STYLES.contentLayout}>
+          <div className={STYLES.infoWrapper}>
             {/* 제목 영역 */}
-            <h2 className="text-[1.375rem] font-semibold break-keep text-[var(--color-navyblack)] md:text-[2rem] lg:text-[2.25rem]">
+            <h2 className={STYLES.title}>
               {isSuccess ? SUCCESS_MODAL.TITLE : isDuplicate ? DUPLICATE_MODAL.TITLE : SUBMIT_MODAL.TITLE}
             </h2>
-            {/* 본문 영역 */}
+
+            {/* 본문 영역: 상태에 따른 분기 처리 */}
             {isSuccess ? (
-              <div className="text-[1rem] leading-[160%] font-medium break-keep text-[#949BA4] md:text-[1.125rem] lg:text-[1.375rem]">
+              <div className={STYLES.description}>
                 <p>{SUCCESS_MODAL.DESC_1}</p>
                 <p>
                   {SUCCESS_MODAL.DESC_2_PREFIX}
-                  {/* 확인 메일 */}
-                  <span className="text-[#4284FF]">{SUCCESS_MODAL.DESC_2_BLUE}</span>
+                  <span className={STYLES.blueText}>{SUCCESS_MODAL.DESC_2_BLUE}</span>
                   {SUCCESS_MODAL.DESC_2_SUFFIX}
                 </p>
                 <p className="lg:whitespace-nowrap">
                   {SUCCESS_MODAL.DESC_3_PREFIX}
-                  {/* '오픈채팅을 통해 문의' */}
-                  <span className="text-[#4284FF]">
+                  <span className={STYLES.blueText}>
                     <a
-                      href="https://open.kakao.com/o/sz4wNDdi" // 실제 링크 삽입
+                      href="https://open.kakao.com/o/sz4wNDdi"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="cursor-pointer underline underline-offset-4">
+                      className={STYLES.link}>
                       {SUCCESS_MODAL.DESC_3_BLUE_LINK}
                     </a>
                     {SUCCESS_MODAL.DESC_3_BLUE_PLAIN}
@@ -64,17 +97,16 @@ const SubmitModal = ({ isOpen, onClose, onConfirm, partName, submitStatus }: Sub
                 </p>
               </div>
             ) : isDuplicate ? (
-              /* 이미 지원 접수*/
-              <div className="text-[1rem] leading-[160%] font-medium break-keep text-[#949BA4] md:text-[1.125rem] lg:text-[1.375rem]">
+              <div className={STYLES.description}>
                 <p>{DUPLICATE_MODAL.DESC_1}</p>
                 <p>
                   {DUPLICATE_MODAL.DESC_2_PREFIX}
-                  <span className="text-[#4284FF]">
+                  <span className={STYLES.blueText}>
                     <a
-                      href="https://open.kakao.com/..."
+                      href="https://open.kakao.com/o/sz4wNDdi"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="cursor-pointer underline underline-offset-4">
+                      className={STYLES.link}>
                       {DUPLICATE_MODAL.DESC_2_BLUE_LINK}
                     </a>
                   </span>
@@ -82,30 +114,47 @@ const SubmitModal = ({ isOpen, onClose, onConfirm, partName, submitStatus }: Sub
                 </p>
               </div>
             ) : (
-              // 파트 및 경고 문구
-              <div className="flex flex-col gap-6 lg:gap-[2rem]">
-                <p className="text-[1.125rem] font-semibold text-[#4284FF] uppercase lg:text-[1.25rem]">
+              /* 제출 확인 (기본 상태) */
+              <div className={STYLES.warningBox}>
+                <p className={STYLES.partLabel}>
                   {SUBMIT_MODAL.PART_LABEL} {partName}
                 </p>
-                <div className="text-[1rem] leading-relaxed font-medium break-keep text-[#949BA4] md:text-[1.125rem] lg:text-[1.375rem]">
-                  <p>{SUBMIT_MODAL.WARNING_TEXT_1}</p>
-                  <p>{SUBMIT_MODAL.WARNING_TEXT_2}</p>
+                <div className={STYLES.description}>
+                  {SUBMIT_MODAL.WARNING_TEXT_1}
+                  <br className="hidden md:block" />
+                  <span className="md:hidden"> </span>
+                  {(() => {
+                    const targetWord = '작성되었는지';
+                    const parts = SUBMIT_MODAL.WARNING_TEXT_2.split(targetWord);
+                    if (parts.length > 1) {
+                      return (
+                        <>
+                          {parts[0]}
+                          {targetWord}
+                          <br className="md:hidden" />
+                          {parts[1]}
+                        </>
+                      );
+                    }
+                    return SUBMIT_MODAL.WARNING_TEXT_2;
+                  })()}
                 </div>
               </div>
             )}
           </div>
-          {/* 버튼 영역 */}
-          <div className={isLoading ? 'opacity-50' : ''}>
+
+          {/* 하단 버튼 영역 */}
+          <div className={STYLES.buttonWrapper(isLoading)}>
             <DefaultButton
               backgroundType="white"
               border="solid"
               isIcon={false}
               onClick={() => {
-                if (isLoading) return; // 로딩 중일 때는 클릭 무시
+                if (isLoading) return;
                 if (isFinalState) {
-                  navigate('/'); // 완료 상태면 홈으로 이동
+                  navigate('/');
                 } else {
-                  onConfirm(); // 제출 대기 상태면 제출 실행
+                  onConfirm();
                 }
               }}>
               {isLoading ? '제출하기' : isFinalState ? SUCCESS_MODAL.BUTTON : SUBMIT_MODAL.BUTTON_TEXT}

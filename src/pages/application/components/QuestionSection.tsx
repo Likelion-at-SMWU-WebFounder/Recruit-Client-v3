@@ -7,39 +7,46 @@ interface QuestionSectionProps {
   isSubmitted: boolean;
 }
 
-/**
- * QuestionSection 스타일 토큰
- */
 const STYLES = {
-  section: 'flex w-full flex-col items-center gap-[4rem] px-4 md:px-0 lg:gap-[5rem]',
-  container: 'flex w-full flex-col items-start md:w-[52.75rem] lg:w-[89.1875rem]',
-  header: 'flex items-start gap-[0.8125rem]',
+  section: 'flex w-full flex-col items-center gap-[1.5rem] md:gap-[2.0625rem] lg:gap-[2.1875rem]',
+  container: 'flex w-full flex-col items-start w-full px-[1.06rem] md:px-[0rem] md:w-[52.75rem] lg:w-[89.1875rem]',
+
+  // 헤더 영역
+  header: 'max-md:block md:flex items-start gap-[0.5rem] md:gap-[0.8125rem] w-full',
   questionNumber:
-    'shrink-0 text-[1.125rem] leading-[140%] font-semibold text-[var(--color-navyblack)] md:text-[1.625rem] lg:text-[2rem]',
-  questionLabelBox: 'flex flex-col items-start',
+    'max-md:inline md:shrink-0 text-[1.125rem] leading-[120%] md:leading-[140%] font-semibold text-[var(--color-navyblack-main)] md:text-[1.625rem] lg:text-[2rem] max-md:mr-[0.4rem]',
+  questionLabelBox: 'max-md:inline flex flex-col items-start',
   questionLabel:
-    'text-[1.125rem] leading-[140%] font-semibold break-keep text-[var(--color-navyblack)] md:text-[1.625rem] lg:text-[2rem]',
+    'max-md:inline text-[1.125rem] leading-[120%] md:leading-[140%] font-semibold md:break-keep text-[var(--color-navyblack-main)] md:text-[1.625rem] lg:text-[2rem]',
   requiredStar:
-    'ml-[0.25rem] text-[1rem] leading-[140%] font-bold text-[var(--color-blue)] md:text-[1.25rem] lg:text-[1.5rem]',
+    'ml-[0.25rem] text-[1rem] leading-[120%] font-bold text-[var(--color-blue-main)] md:text-[1.375rem] lg:text-[1.5rem]',
   subDescription:
-    'mt-[0.5625rem] text-[0.8125rem] font-medium text-[rgba(27,38,52,0.65)] md:text-[1rem] lg:text-[1.25rem]',
-  inputWrapper: 'mt-[1.375rem] flex w-full flex-col',
+    'max-md:block lg:mt-[0.5625rem] md:mt-[0.4375rem] mt-[0.375rem] text-[0.8125rem] font-medium text-[rgba(27,38,52,0.65)] md:text-[1rem] lg:text-[1.25rem] leading-[120%]',
+
+  // 입력 필드 공통
+  inputWrapper: 'mt-[0.875rem] md:mt-[1.375rem] flex w-full flex-col',
   inputBase: `
-    w-full rounded-[1rem] border-2 bg-[var(--color-white)]
-    text-[var(--color-navyblack)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)] transition-all outline-none
-    text-[1.125rem] md:text-[1.375rem] lg:text-[1.75rem]
-    font-medium leading-normal
-    placeholder:text-[rgba(27, 38, 52, 0.45)]
+    w-full md:rounded-[1rem] rounded-[0.875rem] border-2 bg-[var(--color-white-main)]
+    text-[var(--color-navyblack-main)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)] transition-all outline-none
+    text-[1rem] md:text-[1.375rem] lg:text-[1.75rem]
+    font-medium leading-[120%]
+    placeholder:text-[rgba(27,38,52,0.45)] break-keep leading-[120%]
   `,
-  textareaLong: 'h-[37rem] resize-none px-[1.375rem] py-[1.0625rem] md:h-[26.375rem] lg:h-[24.8125rem]',
+
+  // 입력 필드 크기 및 상태
+  textareaLong:
+    'w-full h-[43.7rem] resize-none md:h-[32.9rem] lg:h-[29.9rem] px-[0.875rem] py-[0.6875rem] md:px-[1.5rem] md:py-[1em] lg:px-[1.375rem] lg:py-[1.0625rem]',
   textareaShort:
-    'min-h-[4.7rem] overflow-hidden px-[0.875rem] py-[0.5625rem] md:min-h-[4rem] md:py-[0.9rem] lg:min-h-[5rem] lg:px-[1.375rem] lg:py-[1.0625rem]',
+    'min-h-[3.5em] overflow-hidden md:min-h-[3.625rem] lg:min-h-[4.1875rem] px-[0.875rem] py-[0.45rem] md:px-[1.5rem] md:py-[0.8rem] lg:px-[1.375rem] lg:py-[0.9rem]',
   errorBorder: 'border-[rgba(255,36,36,0.80)]',
-  defaultBorder: 'border-[rgba(27,38,52,0.65)] focus:border-[var(--color-blue)]',
-  footerWrapper: 'mt-[0.5rem] flex items-start justify-between',
-  errorMessage: 'text-[0.8125rem] font-medium text-[rgba(255,36,36,0.80)] md:text-[1rem] lg:text-[1.25rem]',
-  charCount: 'text-[0.875rem] font-medium text-[rgba(27,38,52,0.65)] md:text-[1rem] lg:text-[1.25rem]',
-  errorMinHeight: 'min-h-[1.25rem] md:min-h-[1.5rem]',
+  defaultBorder: 'border-[rgba(27,38,52,0.65)] focus:border-[var(--color-blue-main)]',
+
+  // 하단 영역 (에러/글자수)
+  footerWrapper:
+    'mt-[0.5rem] md:mt-[0.625rem] lg:mt-[0.75rem] flex items-start justify-between min-h-[1.25rem] md:min-h-[1.5rem]',
+  errorMessage:
+    'text-[0.8125rem] font-medium text-[rgba(255,36,36,0.80)] md:text-[1rem] lg:text-[1.25rem] leading-[120%]',
+  charCount: 'text-[0.8125rem] font-medium text-[rgba(27,38,52,0.65)] md:text-[1rem] lg:text-[1.25rem] leading-[120%]',
 } as const;
 
 const QuestionSection = ({ answers, onAnswerChange, isSubmitted }: QuestionSectionProps) => {
@@ -53,6 +60,7 @@ const QuestionSection = ({ answers, onAnswerChange, isSubmitted }: QuestionSecti
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
+  // 8번 항목 높이 자동 조절
   useEffect(() => {
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
@@ -62,7 +70,7 @@ const QuestionSection = ({ answers, onAnswerChange, isSubmitted }: QuestionSecti
 
   return (
     <section className={STYLES.section}>
-      {/* 1번 ~ 6번 문항 */}
+      {/* 1번 ~ 7번 문항 (Long Type) */}
       {QUESTIONS.filter((q) => q.type === 'long').map((question) => {
         const errorMessage = getErrorMessage(question);
         const hasError = !!errorMessage;
@@ -93,12 +101,10 @@ const QuestionSection = ({ answers, onAnswerChange, isSubmitted }: QuestionSecti
                     onAnswerChange(question.id, val);
                   }
                 }}
-                className={` ${STYLES.inputBase} ${STYLES.textareaLong} ${hasError ? STYLES.errorBorder : STYLES.defaultBorder} `}
+                className={`${STYLES.inputBase} ${STYLES.textareaLong} ${hasError ? STYLES.errorBorder : STYLES.defaultBorder}`}
               />
               <div className={STYLES.footerWrapper}>
-                <div className={STYLES.errorMinHeight}>
-                  {hasError && <p className={STYLES.errorMessage}>{errorMessage}</p>}
-                </div>
+                <div>{hasError && <p className={STYLES.errorMessage}>{errorMessage}</p>}</div>
                 <div className={STYLES.charCount}>
                   {Math.min(currentValue.length, question.maxLength || 0)}/{question.maxLength}
                 </div>
@@ -108,7 +114,7 @@ const QuestionSection = ({ answers, onAnswerChange, isSubmitted }: QuestionSecti
         );
       })}
 
-      {/* 7번 항목 */}
+      {/* 8번 문항 (Short Type) */}
       {(() => {
         const q7 = QUESTIONS.find((q) => q.type === 'short');
         if (!q7) return null;
@@ -132,9 +138,11 @@ const QuestionSection = ({ answers, onAnswerChange, isSubmitted }: QuestionSecti
                 value={answers[q7.id] || ''}
                 onChange={(e) => onAnswerChange(q7.id, e.target.value)}
                 rows={1}
-                className={` ${STYLES.inputBase} ${STYLES.textareaShort} ${hasError ? STYLES.errorBorder : STYLES.defaultBorder} `}
+                className={`${STYLES.inputBase} ${STYLES.textareaShort} ${hasError ? STYLES.errorBorder : STYLES.defaultBorder}`}
               />
-              {hasError && <p className={STYLES.errorMessage}>{errorMessage}</p>}
+              <div className={STYLES.footerWrapper}>
+                {hasError && <p className={STYLES.errorMessage}>{errorMessage}</p>}
+              </div>
             </div>
           </div>
         );
