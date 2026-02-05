@@ -5,7 +5,7 @@ export const DOING_DATA = [
   {
     id: 1,
     title: '정기 세미나',
-    term: [],
+    term: [1, 2],
     description: [
       '체계적인 세미나로\n개발의 기초부터 심화까지',
       '주 1회 파트별 진행하는\n세미나로 기초부터 심화까지\n체계적으로 학습합니다',
@@ -17,7 +17,7 @@ export const DOING_DATA = [
   {
     id: 2,
     title: '아이디어톤',
-    term: [1, 2],
+    term: [1],
     description: [
       '나만의 반짝이는 아이디어로\n세상을 바꾸다',
       '교내 부원들과 함께 팀을 이뤄\n아이디어를 설계하고\n다른 학교들과 경쟁합니다',
@@ -42,7 +42,7 @@ export const DOING_DATA = [
   {
     id: 4,
     title: '연합 해커톤',
-    term: [2],
+    term: [1, 2],
     description: [
       '타대와 함께 팀이 되어 \n협업 경험의 끝을',
       '여성·4호선 대학 연합을 통해\n타 학교와 협업하며\n서비스를 배포하고, 성장합니다',

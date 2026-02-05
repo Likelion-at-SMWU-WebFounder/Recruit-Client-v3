@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { combineStyles } from '@shared/utils/combineStyles';
 import Layout from '@shared/components/Layout';
+import Footer from '@shared/components/Footer';
 import HeroSection from '@pages/activity/components/hero/HeroSection';
 import DoingSection from '@pages/activity/components/doing/DoingSection';
 import ScheduleSection from '@pages/activity/components/schedule/ScheduleSection';
@@ -17,6 +18,9 @@ const ACTIVITY_STYLES = {
   sectionWithouthHeight: {
     base: 'relative snap-start',
   },
+  footer: {
+    base: 'relative h-auto snap-start',
+  },
 } as const;
 
 const Activity = () => {
@@ -25,6 +29,7 @@ const Activity = () => {
   const scrollContainerClassName = combineStyles(ACTIVITY_STYLES.scrollContainer);
   const sectionClassName = combineStyles(ACTIVITY_STYLES.section);
   const sectionWithouthHeightClassName = combineStyles(ACTIVITY_STYLES.sectionWithouthHeight);
+  const footerClassName = combineStyles(ACTIVITY_STYLES.footer);
 
   const [menuMode, setMenuMode] = useState<'light' | 'dark'>('light');
 
@@ -66,20 +71,26 @@ const Activity = () => {
   }, []);
 
   return (
-    <Layout menuMode={menuMode} footerMode="dark">
+    <Layout menuMode={menuMode} footerMode="dark" withoutFooter={true}>
       <div ref={scrollRef} className={scrollContainerClassName}>
         <div id="hero-section" className={sectionClassName}>
           <HeroSection />
         </div>
+
         <div id="doing-section" className={sectionClassName}>
           <DoingSection />
         </div>
+
         <div id="schedule-section" className={sectionWithouthHeightClassName}>
           <ScheduleSection scrollContainerRef={scrollRef} />
         </div>
-      </div>
-      <div id="curriculum-section" className={sectionWithouthHeightClassName}>
-        <CurriculumSection />
+
+        <div id="curriculum-section" className={sectionWithouthHeightClassName}>
+          <CurriculumSection />
+        </div>
+        <div className={footerClassName}>
+          <Footer mode="dark" />
+        </div>
       </div>
     </Layout>
   );

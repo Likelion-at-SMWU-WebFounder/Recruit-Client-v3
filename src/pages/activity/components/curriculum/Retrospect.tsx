@@ -12,19 +12,20 @@ interface RetrospectProps {
 
 const RETROSPECT_STYLES = {
   retrospect: {
-    base: 'flex flex-row bg-navyblack w-full justify-end',
+    base: 'flex bg-navyblack items-start w-full',
     desktop: 'lg:mt-[9.5rem] lg:gap-[3.31rem]',
     tablet: 'md:mt-[2.54rem] md:gap-[5rem]',
     mobile: 'mt-[1.88rem] gap-[2.31rem]',
   },
   retrospectCardContainer: {
-    desktop: 'lg:max-w-[76rem] lg:h-fit lg:overflow-x-hidden',
-    tablet: 'md:max-w-[38.625rem] md:h-fit',
-    mobile: 'max-w-[13.8125rem] h-fit ',
+    base: 'w-full overflow-x-hidden',
+    desktop: 'lg:overflow-x-hidden',
+    tablet: 'md:overflow-x-hidden',
+    mobile: 'overflow-x-hidden',
   },
   retrosepectCardRow: {
     base: 'scrollbar-hidden flex flex-row items-start justify-start overflow-x-scroll',
-    desktop: 'lg:gap-[1.5rem] lg:pr-[1.5rem]',
+    desktop: 'lg:gap-[1.5rem] lg:pr-[1.5rem] lg:pr-[100rem]',
     tablet: 'md:gap-[1rem] md:pr-[1rem]',
     mobile: 'gap-[0.5rem] pr-[0.5rem]',
   },
@@ -63,10 +64,10 @@ const Retrospect = ({ selectedPart }: RetrospectProps) => {
     <>
       <div className={retrospectClassName}>
         {/* SubTitle 모바일 / 테블릿,데스크탑 분기 */}
-        <div className="hidden md:block">
+        <div className="hidden md:flex">
           <SubTitle mode="dark" align="left" subTitle={SUB_TITLE.SUB_TITLE_4} subDescription={getSubDescription()} />
         </div>
-        <div className="md:hidden">
+        <div className="flex md:hidden">
           <SubTitle
             mode="dark"
             align="left"

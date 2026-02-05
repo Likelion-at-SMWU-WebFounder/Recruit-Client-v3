@@ -393,6 +393,6 @@
   }
 
   .hero-scroll-left {
-    animation: heroScrollLeft 60s linear infinite;
+    animation: heroScrollLeft 100s linear infinite;
   }
 }
