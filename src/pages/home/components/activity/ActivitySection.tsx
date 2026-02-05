@@ -29,7 +29,7 @@ const ACTIVITY_SECTION_STYLES = {
     desktop: 'lg:hidden',
   },
   mobileTextContainer: {
-    base: 'inline-flex flex-col items-center justify-center gap-[3.125rem]',
+    base: 'inline-flex flex-col items-center justify-center gap-[1.5rem]',
   },
   mobileText: {
     base: `${TEXT_CONTENT_CLASSES} w-[22rem] text-center`,
