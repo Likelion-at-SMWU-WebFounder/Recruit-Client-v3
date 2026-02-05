@@ -146,7 +146,6 @@ const DesktopTabletDoingCard = ({
           {/* 뒷면 */}
           <DoingCardBack
             icon_white={icon_white}
-            term={term}
             title={title}
             fullDescription={fullDescription}
             image={image}
