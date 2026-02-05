@@ -61,7 +61,7 @@ export const ACTIVITY_INFO = {
   sessionPeriod: '03~12월',
   sessionTime: '매주 화요일 19:00~21:00',
   feeTitle: '활동비',
-  feeAmount: '4만원',
+  feeAmount: '5만원',
   feeNote: '(장소 대관비가 별도로 발생할 수 있음)',
 };
 
@@ -106,8 +106,8 @@ export const COMPLETION_CONDITIONS = [
     id: 'event',
     title: '필수 행사 참여',
     items: [
-      { number: '01', title: '숙명여대 멋사 OT', date: '(03.08 19:00)' },
-      { number: '02', title: '멋사 중앙 OT', date: '(03.21 19:00)' },
+      { number: '01', title: '숙명여대 멋사 OT', date: '(03.03 19:00)' },
+      { number: '02', title: '멋사 중앙 OT', date: '(03.18)' },
       { number: '03', title: '중앙 아이디어톤', date: '(6월 중 진행)' },
       { number: '04', title: '중앙 해커톤', date: '(8월 중순 진행)' },
       { number: '05', title: '연합 해커톤: 여기톤', date: '(7월 중 진행)' },
@@ -121,21 +121,21 @@ export const COMPLETION_CONDITIONS = [
 export const SCHEDULES: ScheduleTypes[] = [
   {
     id: 's1',
-    dateRange: '02.14(금)~02.18(금)',
-    dateRangeMobile: '02.14~02.18',
+    dateRange: '02.12(금)~02.18(금)',
+    dateRangeMobile: '02.12~02.18',
     label: '서류 접수',
     status: 'current',
   },
   {
     id: 's2',
-    dateRange: '02.22(화)',
+    dateRange: '02.22(알)',
     dateRangeMobile: '02.22',
     label: '서류 발표',
     status: 'upcoming',
   },
   {
     id: 's3',
-    dateRange: '02.24(목)~02.25(금)',
+    dateRange: '02.24(화)~02.25(수)',
     dateRangeMobile: '02.24~02.25',
     label: '면접',
     status: 'upcoming',

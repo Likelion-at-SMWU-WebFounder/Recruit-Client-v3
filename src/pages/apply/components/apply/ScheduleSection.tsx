@@ -14,7 +14,7 @@ const TW = {
 
   // Mobile Layout
   mobileGrid: 'grid w-full grid-cols-4 gap-[0.69rem] md:hidden relative pt-[2.5rem]',
-  mobileItem: 'flex flex-col items-center justify-center gap-[1.4375rem] transition-all duration-700 ease-out z-10',
+  mobileItem: 'flex flex-col items-center justify-center gap-[1.4375rem] z-10',
   mobileDate: 'text-center text-[0.875rem] font-medium text-[var(--color-navyblack-main)] leading-[120%]',
   mobileStar: `${starBase} h-[1.25rem] w-[1.25rem]`,
   mobileBadge: `${badgeBase} px-[0.5rem] py-[0.25rem]`,
@@ -22,15 +22,14 @@ const TW = {
 
   // Tablet & Desktop Layout
   desktopRow: 'hidden w-full items-center justify-center gap-[0.62rem] md:flex lg:gap-[7.44rem] relative pt-[3.5rem]',
-  desktopItem:
-    'flex w-full flex-col items-center justify-center gap-[1.4375rem] transition-all duration-700 ease-out z-10',
+  desktopItem: 'flex w-full flex-col items-center justify-center gap-[1.4375rem] z-10',
   desktopDate:
     'w-full text-center text-[1rem] font-medium text-[var(--color-navyblack-main)] lg:text-[1.375rem] leading-[120%]',
   desktopStar: `${starBase} md:h-[1.75rem] md:w-[1.75rem] lg:h-[2.25rem] lg:w-[2.25rem]`,
   desktopBadge: `${badgeBase} flex items-center justify-center px-[1rem] py-[0.375rem] lg:px-[1.625rem] lg:py-[0.625rem]`,
   desktopLabel: `${labelBase} text-[1.375rem] lg:text-[1.75rem] leading-[120%]`,
 
-  // Common Animation Classes
+  // Line Animation Classes
   lineContainer: 'absolute left-0 w-full flex justify-center pointer-events-none z-0 px-[1rem]',
   hidden: 'opacity-0 translate-y-4',
   visible: 'opacity-100 translate-y-0',
@@ -69,8 +68,7 @@ const ScheduleSection = () => {
 
   return (
     <section ref={sectionRef} className={TW.section}>
-      {/* 제목 섹션 */}
-      <div className={cx('transition-all duration-700', isVisible ? TW.visible : TW.hidden)}>
+      <div>
         <SubTitle
           mode="light"
           align="center"
@@ -81,7 +79,7 @@ const ScheduleSection = () => {
 
       {/* [Mobile] */}
       <div className={TW.mobileGrid}>
-        <div className={cx(TW.lineContainer, 'top-[5.55rem]')}>
+        <div className={cx(TW.lineContainer, 'top-[5.51rem]')}>
           <svg width="100%" height="4" viewBox="0 0 100 4" fill="none" preserveAspectRatio="none">
             <path
               d="M0 2H100"
@@ -100,11 +98,8 @@ const ScheduleSection = () => {
           </svg>
         </div>
 
-        {mobileSchedules.map((schedule, idx) => (
-          <div
-            key={schedule.id}
-            className={cx(TW.mobileItem, isVisible ? TW.visible : TW.hidden)}
-            style={{ transitionDelay: `${0.3 + idx * 0.15}s` }}>
+        {mobileSchedules.map((schedule) => (
+          <div key={schedule.id} className={TW.mobileItem}>
             <span className={TW.mobileDate}>{schedule.dateRangeMobile || schedule.dateRange}</span>
             <img src={iconStar} alt="" className={cx(TW.mobileStar, 'relative z-10')} />
             <div className={TW.mobileBadge}>
@@ -116,7 +111,7 @@ const ScheduleSection = () => {
 
       {/* [Tablet & Desktop] */}
       <div className={TW.desktopRow}>
-        <div className={cx(TW.lineContainer, 'top-[6.9rem] lg:top-[7.5rem]')}>
+        <div className={cx(TW.lineContainer, 'top-[6.88rem] lg:top-[7.5rem]')}>
           <svg width="100%" height="4" viewBox="0 0 100 4" fill="none" preserveAspectRatio="none">
             <path
               d="M0 2H100"
@@ -135,11 +130,8 @@ const ScheduleSection = () => {
           </svg>
         </div>
 
-        {SCHEDULES.map((schedule, idx) => (
-          <div
-            key={schedule.id}
-            className={cx(TW.desktopItem, isVisible ? TW.visible : TW.hidden)}
-            style={{ transitionDelay: `${0.2 + idx * 0.25}s` }}>
+        {SCHEDULES.map((schedule) => (
+          <div key={schedule.id} className={TW.desktopItem}>
             <span className={TW.desktopDate}>{schedule.dateRange}</span>
             <img src={iconStar} alt="" className={cx(TW.desktopStar, 'relative z-10')} />
             <div className={TW.desktopBadge}>
