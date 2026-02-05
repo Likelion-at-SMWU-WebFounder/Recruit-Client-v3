@@ -44,7 +44,8 @@ const CURRICULUM_STYLES = {
   },
   table: {
     base: 'flex flex-col justify-center items-center',
-    desktop: '',
+    desktop: 'lg:pb-[2rem]',
+    mobile: 'pb-[0.5rem]',
   },
   row: {
     base: 'grid grid-cols-[100px_1fr_2fr] justify-center items-center border-b border-gray-100 last:border-0 whitespace-pre-line',
