@@ -13,8 +13,8 @@ interface InfoDropdownProps {
 const STYLES = {
   // 레이아웃 컨테이너
   container:
-    'group relative flex flex-col gap-[0.875rem] w-[19.375rem] md:w-[24.75rem] md:gap-[1.125rem] lg:w-[40.3125rem] lg:gap-[1.375rem] transition-all duration-300',
-  overlay: 'fixed inset-0 z-10 md:hidden bg-[#4D4D4E] opacity-65',
+    'group relative flex flex-col gap-[0.875rem] w-[19.375rem] md:w-[24.75rem] md:gap-[1.125rem] lg:w-[40.3125rem] lg:gap-[1.375rem]',
+  overlay: 'fixed inset-0 z-[100] bg-[#4D4D4E]/65 transition-opacity duration-300',
 
   // 라벨 섹션
   labelWrapper: 'flex items-end gap-[0.375rem] md:gap-[0.8125rem]',
@@ -25,7 +25,7 @@ const STYLES = {
 
   // 셀렉트 박스 (Trigger)
   triggerBase:
-    'relative z-20 flex cursor-pointer items-center justify-between h-[2.5rem] w-full rounded-[0.625rem] md:rounded-[1rem] bg-[var(--color-white-main)] px-[0.875rem] py-[0.625rem] text-[var(--color-navyblack-main)] transition-all outline-none md:h-[3.625rem] md:px-[1.5rem] md:py-[1rem] lg:h-[4.1875rem] lg:px-[1.375rem] lg:py-[1.0625rem] border-2 shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)] leading-[120%]',
+    'relative z-20 flex cursor-pointer items-center justify-between h-[2.5rem] w-full rounded-[0.625rem] md:rounded-[1rem] bg-[var(--color-white-main)] px-[0.875rem] py-[0.625rem] text-[var(--color-navyblack-main)] transition-all outline-none md:h-[3.625rem] md:px-[1.5rem] md:py-[1rem] lg:h-[4.1875rem] lg:px-[1.375rem] lg:py-[1.0625rem] border-2 shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)] leading-[120%] transition-colors duration-300',
   triggerNormal: 'border-[rgba(27,38,52,0.65)]',
   triggerError: 'border-[rgba(255,36,36,0.80)]',
 
@@ -35,8 +35,11 @@ const STYLES = {
   iconSvg: 'w-[0.63263rem] h-[0.24688rem] md:w-[0.95129rem] md:h-[0.37156rem] lg:w-[1.28125rem] lg:h-[0.5rem]',
 
   // 드롭다운 메뉴 (List)
-  menuWrapper:
-    'absolute z-20 w-full overflow-hidden rounded-[1rem] border-2 border-[rgba(27,38,52,0.65)] bg-[var(--color-white-main)] shadow-lg transition-all duration-300 ease-in-out',
+  menuWrapper: `
+    absolute z-[110] w-full overflow-hidden rounded-[1rem] border-2 border-[rgba(27,38,52,0.65)] bg-[var(--color-white-main)] shadow-lg transition-all duration-300 ease-in-out
+    md:mt-[0.5625rem]
+    max-md:fixed max-md:top-1/2 max-md:left-1/2 max-md:-translate-x-1/2 max-md:-translate-y-1/2 max-md:w-[calc(100%-4rem)] max-md:max-w-[20rem]
+  `,
 
   optionItem:
     'flex h-[3.625rem] cursor-pointer items-center px-[1.5rem] text-[1.125rem] font-medium text-[var(--color-navyblack-main)] transition-colors duration-300 md:text-[1.375rem] lg:h-[4.1875rem] lg:px-[1.375rem] lg:text-[1.75rem] leading-[120%] lg:hover:bg-[rgba(27,38,52,0.05)] active:bg-[rgba(27,38,52,0.1)]',
@@ -50,19 +53,24 @@ const STYLES = {
 const InfoDropdown = ({ label, required, value, options, errorMessage, onChange }: InfoDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const hasError = !!errorMessage;
-  const filteredOptions = options.filter((opt) => opt.label !== value);
+  const displayOptions = options;
 
-  // 애니메이션
+  // 데스크탑 클릭 방어 로직
+  const handleTriggerClick = () => {
+    if (window.innerWidth >= 1024) return;
+    setIsOpen(!isOpen);
+  };
+
+  // 2. 애니메이션 클래스 개선
   const activeClass = isOpen
-    ? 'opacity-100 mt-[0.5625rem] visible'
-    : 'opacity-0 top-[-20px] invisible lg:group-hover:opacity-100 lg:group-hover:top-full lg:group-hover:mt-[0.5625rem] lg:group-hover:visible';
-
+    ? 'opacity-100 translate-y-0 visible pointer-events-auto max-md:scale-100'
+    : 'opacity-0 -translate-y-4 invisible pointer-events-none max-md:scale-95 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 lg:group-hover:visible lg:group-hover:pointer-events-auto';
   const arrowRotate = isOpen ? 'rotate-180' : 'rotate-0 lg:group-hover:rotate-180';
 
   return (
     <div className={STYLES.container}>
       {/* 모바일 오버레이 */}
-      {isOpen && <div className={STYLES.overlay} onClick={() => setIsOpen(false)} />}
+      {isOpen && <div className="fixed inset-0 z-[100] bg-[#4D4D4E]/65 md:hidden" onClick={() => setIsOpen(false)} />}
 
       {/* 라벨 섹션 */}
       <div className={STYLES.labelWrapper}>
@@ -73,7 +81,7 @@ const InfoDropdown = ({ label, required, value, options, errorMessage, onChange 
       <div className="relative w-full">
         {/* 드롭다운 실행부 */}
         <div
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={handleTriggerClick}
           className={`${STYLES.triggerBase} ${hasError ? STYLES.triggerError : STYLES.triggerNormal}`}>
           <span
             className={`${STYLES.valueText} ${value ? 'text-[var(--color-navyblack-main)]' : 'text-[rgba(27,38,52,0.45)]'}`}>
@@ -84,7 +92,7 @@ const InfoDropdown = ({ label, required, value, options, errorMessage, onChange 
               <path
                 d="M1.5 1.5L11.5 9.5L22 1.5"
                 stroke="var(--color-navyblack-main)"
-                strokeWidth="3"
+                strokeWidth="4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
@@ -94,14 +102,14 @@ const InfoDropdown = ({ label, required, value, options, errorMessage, onChange 
 
         {/* 옵션 리스트 */}
         <div className={`${STYLES.menuWrapper} ${activeClass}`}>
-          {filteredOptions.map((opt, index) => (
+          {displayOptions.map((opt, index) => (
             <div
               key={opt.value}
               onClick={() => {
                 onChange(opt.value);
                 setIsOpen(false);
               }}
-              className={`${STYLES.optionItem} ${index !== filteredOptions.length - 1 ? 'border-b border-[rgba(27,38,52,0.1)]' : ''}`}>
+              className={` ${STYLES.optionItem} ${index !== displayOptions.length - 1 ? 'border-b border-[rgba(27,38,52,0.1)]' : ''} ${opt.label === value ? 'md:hidden' : 'flex'} `}>
               {opt.label}
             </div>
           ))}

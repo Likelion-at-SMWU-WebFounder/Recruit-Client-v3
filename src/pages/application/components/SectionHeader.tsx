@@ -7,7 +7,7 @@ interface SectionHeaderProps {
 const TW = {
   /* layout */
   container:
-    'flex w-[19.8125rem] md:w-[52.5625rem] lg:w-[95.426rem] flex-col items-start gap-[0.75rem] md:gap-[0.9375em] lg:gap-[1.0625rem]',
+    'flex w-full md:w-[52.5625rem] lg:w-[95.426rem] flex-col items-start gap-[0.75rem] md:gap-[0.9375em] lg:gap-[1.0625rem]',
 
   /* title text */
   title: 'text-[1.125rem] leading-[120%] font-bold text-[var(--color-navyblack)] md:text-[1.625rem] lg:text-[2rem]',
