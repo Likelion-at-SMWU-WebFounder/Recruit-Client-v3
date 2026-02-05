@@ -7,15 +7,16 @@ import { FiGlobe } from 'react-icons/fi';
 export interface FooterProps {
   /* 푸터 모드 - light / dark */
   mode?: 'light' | 'dark';
+  bgColor?: string;
 }
 
-const Footer = ({ mode = 'light', ...props }: FooterProps) => {
+const Footer = ({ mode = 'light', bgColor, ...props }: FooterProps) => {
   const navigate = useNavigate();
 
   // 기본 스타일 + 색상 모드
   const baseClasses = [
     'w-full inline-flex flex-col justify-center items-center',
-    `${mode === 'light' ? 'bg-white' : 'bg-navyblack  '}`,
+    bgColor ? `bg-[${bgColor}]` : `${mode === 'light' ? 'bg-white' : 'bg-navyblack  '}`,
   ].join(' ');
 
   // 반응형 padding, gap 스타일 (모바일 기본, md: 태블릿, lg: 데스크톱)
@@ -46,7 +47,7 @@ const Footer = ({ mode = 'light', ...props }: FooterProps) => {
     'text-center text-gray font-normal leading-[150%] text-[0.75rem] md:text-[0.875rem] lg:text-[1rem]';
 
   return (
-    <div className={`${baseClasses} ${responsiveClasses} `} {...props}>
+    <div className={`${baseClasses} ${responsiveClasses} `} style={{ backgroundColor: bgColor }} {...props}>
       {/* Title */}
       <div className={`${titleClasses}`}>{FooterConstants.TITLE}</div>
       {/* Icon */}
