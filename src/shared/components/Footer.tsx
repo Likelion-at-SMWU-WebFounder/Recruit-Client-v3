@@ -16,7 +16,7 @@ const Footer = ({ mode = 'light', bgColor, ...props }: FooterProps) => {
   // 기본 스타일 + 색상 모드
   const baseClasses = [
     'w-full inline-flex flex-col justify-center items-center',
-    bgColor ? `bg-[${bgColor}]` : `${mode === 'light' ? 'bg-white' : 'bg-navyblack  '}`,
+    `${mode === 'light' ? 'bg-white' : 'bg-navyblack'}`,
   ].join(' ');
 
   // 반응형 padding, gap 스타일 (모바일 기본, md: 태블릿, lg: 데스크톱)
@@ -47,7 +47,10 @@ const Footer = ({ mode = 'light', bgColor, ...props }: FooterProps) => {
     'text-center text-gray font-normal leading-[150%] text-[0.75rem] md:text-[0.875rem] lg:text-[1rem]';
 
   return (
-    <div className={`${baseClasses} ${responsiveClasses} `} style={{ backgroundColor: bgColor }} {...props}>
+    <div
+      className={`${baseClasses} ${responsiveClasses}`}
+      style={bgColor ? { backgroundColor: bgColor } : undefined}
+      {...props}>
       {/* Title */}
       <div className={`${titleClasses}`}>{FooterConstants.TITLE}</div>
       {/* Icon */}
