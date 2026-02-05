@@ -23,35 +23,82 @@ const Home = () => {
   const scrollContainerClassName = combineStyles(HOME_STYLES.scrollContainer);
   const sectionClassName = combineStyles(HOME_STYLES.section);
 
-  const [menuMode, setMenuMode] = useState<'light' | 'dark'>('light');
+  const [menuMode, setMenuMode] = useState<'light' | 'dark'>('dark');
+  const DARK_SECTIONS = ['hero-section', 'apply-section'];
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  // HeroSection이 뷰포트에 있는지 감지 -> menuMode 변경
   useEffect(() => {
-    const heroSection = document.getElementById('hero-section');
-    const applySection = document.getElementById('apply-section');
-    if (!heroSection || !applySection) return;
+    const sectionIds = [
+      'hero-section',
+      'about-section',
+      'activity-section',
+      'year-section',
+      'part-section',
+      'project-section',
+      'apply-section',
+    ];
+
+    for (const id of sectionIds) {
+      const el = document.getElementById(id);
+      if (!el) continue;
+
+      const rect = el.getBoundingClientRect();
+      const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+      if (isVisible) {
+        if (['hero-section', 'apply-section'].includes(id)) {
+          setMenuMode('dark');
+        } else {
+          setMenuMode('light');
+        }
+        break;
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    const sectionIds = [
+      'hero-section',
+      'about-section',
+      'activity-section',
+      'year-section',
+      'part-section',
+      'project-section',
+      'apply-section',
+    ];
+
+    const sections = sectionIds.map((id) => document.getElementById(id)).filter((el): el is HTMLElement => Boolean(el));
+
+    if (sections.length === 0) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          setMenuMode(entry.isIntersecting ? 'dark' : 'light');
-        });
+        // 화면에 가장 많이 보이는 섹션 하나 고르기
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (!visible) return;
+
+        const id = visible.target.id;
+
+        if (DARK_SECTIONS.includes(id)) {
+          setMenuMode('dark'); // 글자 흰색
+        } else {
+          setMenuMode('light'); // 글자 어두운색
+        }
       },
       {
-        threshold: 0.9, // 90% 이상 보이면 감지
+        threshold: [0.3, 0.5, 0.7],
       }
     );
 
-    observer.observe(heroSection);
-    observer.observe(applySection);
+    sections.forEach((section) => observer.observe(section));
 
-    return () => {
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, []);
 
   return (
