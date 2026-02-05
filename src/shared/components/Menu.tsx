@@ -16,7 +16,7 @@ const activeOption = 'text-blue font-[600]';
 
 export interface MobileDrawerProps {
   setDrawerOpen: (open: boolean) => void;
-  mobileMenuColor?: string;
+  mobileMenuColor: string;
 }
 
 const MobileDrawer = ({ setDrawerOpen, mobileMenuColor }: MobileDrawerProps) => {
