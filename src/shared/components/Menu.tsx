@@ -4,6 +4,7 @@ import { MENU_ORDER } from '@shared/constants/menu';
 import { KAKAOTALK_URL, INSTAGRAM_URL } from '@shared/constants/url';
 import { logo, apply_arrow } from '@shared/constants/menu';
 import { RiMenuLine, RiCloseLargeLine, RiKakaoTalkFill, RiInstagramFill } from 'react-icons/ri';
+import { useNavigate } from 'react-router-dom';
 
 export interface MenuProps {
   mode?: 'light' | 'dark';
@@ -21,6 +22,7 @@ export interface MobileDrawerProps {
 const MobileDrawer = ({ setDrawerOpen, mobileMenuColor }: MobileDrawerProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredMobileItem, setHoveredMobileItem] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const handleClose = () => {
     setIsVisible(false);
@@ -41,6 +43,15 @@ const MobileDrawer = ({ setDrawerOpen, mobileMenuColor }: MobileDrawerProps) => 
       document.body.style.overflow = '';
     };
   }, []);
+
+  const handleCloseAndNavigate = (path: string) => {
+    setIsVisible(false);
+
+    setTimeout(() => {
+      setDrawerOpen(false);
+      navigate(path);
+    }, 300); // 슬라이드 애니메이션 duration과 동일하게
+  };
 
   const mobileMenuContainerClasses = `
     fixed top-0 left-0 w-[100vw] h-[100vh] inline-flex flex-col justify-start items-start z-[200] bg-white md:hidden
@@ -64,7 +75,10 @@ const MobileDrawer = ({ setDrawerOpen, mobileMenuColor }: MobileDrawerProps) => 
               key={item.key}
               to={item.path}
               end={item.path === '/'}
-              onClick={handleClose}
+              onClick={(e) => {
+                e.preventDefault(); // 기본 네비게이션 막기
+                handleCloseAndNavigate(item.path);
+              }}
               onMouseEnter={() => setHoveredMobileItem(item.key)}
               onMouseLeave={() => setHoveredMobileItem(null)}
               className={({ isActive }) => {
