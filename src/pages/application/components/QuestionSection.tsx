@@ -12,16 +12,16 @@ const STYLES = {
   container: 'flex w-full flex-col items-start w-full px-[1.06rem] md:px-[0rem] md:w-[52.75rem] lg:w-[89.1875rem]',
 
   // 헤더 영역
-  header: 'flex items-start gap-[0.5rem] md:gap-[0.8125rem]',
+  header: 'max-md:block md:flex items-start gap-[0.5rem] md:gap-[0.8125rem] w-full',
   questionNumber:
-    'shrink-0 text-[1.125rem] leading-[120%] md:leading-[140%] font-semibold text-[var(--color-navyblack-main)] md:text-[1.625rem] lg:text-[2rem]',
-  questionLabelBox: 'flex flex-col items-start',
+    'max-md:inline md:shrink-0 text-[1.125rem] leading-[120%] md:leading-[140%] font-semibold text-[var(--color-navyblack-main)] md:text-[1.625rem] lg:text-[2rem] max-md:mr-[0.4rem]',
+  questionLabelBox: 'max-md:inline flex flex-col items-start',
   questionLabel:
-    'text-[1.125rem] leading-[120%] md:leading-[140%] font-semibold break-keep text-[var(--color-navyblack-main)] md:text-[1.625rem] lg:text-[2rem]',
+    'max-md:inline text-[1.125rem] leading-[120%] md:leading-[140%] font-semibold md:break-keep text-[var(--color-navyblack-main)] md:text-[1.625rem] lg:text-[2rem]',
   requiredStar:
     'ml-[0.25rem] text-[1rem] leading-[120%] font-bold text-[var(--color-blue-main)] md:text-[1.375rem] lg:text-[1.5rem]',
   subDescription:
-    'lg:mt-[0.5625rem] md:mt-[0.4375rem] mt-[0.375rem] leading-[120%] text-[0.8125rem] font-medium text-[rgba(27,38,52,0.65)] md:text-[1rem] lg:text-[1.25rem] leading-[120%]',
+    'max-md:block lg:mt-[0.5625rem] md:mt-[0.4375rem] mt-[0.375rem] text-[0.8125rem] font-medium text-[rgba(27,38,52,0.65)] md:text-[1rem] lg:text-[1.25rem] leading-[120%]',
 
   // 입력 필드 공통
   inputWrapper: 'mt-[0.875rem] md:mt-[1.375rem] flex w-full flex-col',
