@@ -15,7 +15,7 @@ const cx = (...classes: Array<string | false | null | undefined>) => classes.fil
 const TW = {
   // layout
   section:
-    'flex h-auto w-full items-center justify-center bg-[--color-white-main] px-[1rem] py-[10rem] md:py-[12.0625rem] lg:px-[10.15625rem] lg:py-[13.3125rem]',
+    'flex h-auto w-full items-center justify-center bg-[--color-white-main] px-[1rem] py-[10rem] md:py-[12.0625rem] lg:py-[13.3125rem]',
   container: 'flex w-full flex-col items-center',
 
   // heading
@@ -41,7 +41,7 @@ const TW = {
 
   // bonus link
   link: cx(
-    'mt-[0.75rem] inline-flex items-center gap-1',
+    'mt-[0.75rem] inline-flex items-center lg:gap-[0.5rem] gap-[0.4rem]',
     'text-[0.875rem] font-medium text-[var(--color-white-main)]',
     'md:text-[1rem] lg:text-[1.5rem] leading-[120%]',
     'border-b border-b-[var(--color-white-main)] border-opacity-50 pb-[0.1rem] hover:border-opacity-100 transition-all'
@@ -80,7 +80,19 @@ const RecruitInfoSection = () => {
       {QUALIFICATIONS.map((item, index) => (
         <li key={index} className={TW.qualItem}>
           <span className={TW.qualDot} />
-          <span className={cx(TW.contentText, TW.preline)}>{item}</span>
+          <span className={cx(TW.contentText, TW.preline)}>
+            {item.split('\n').map((line, i, arr) => (
+              <span key={i}>
+                {line}
+                {i < arr.length - 1 && (
+                  <>
+                    <br className={index === 0 ? '' : 'lg:hidden'} />
+                    {index !== 0 && <span className="hidden lg:inline"> </span>}
+                  </>
+                )}
+              </span>
+            ))}
+          </span>
         </li>
       ))}
     </ul>

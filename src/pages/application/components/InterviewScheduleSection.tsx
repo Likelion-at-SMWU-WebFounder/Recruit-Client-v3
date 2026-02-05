@@ -72,7 +72,7 @@ const InterviewScheduleSection = ({
   onScheduleChange,
   isSubmitted,
 }: InterviewScheduleSectionProps) => {
-  const question = QUESTIONS[7];
+  const question = QUESTIONS[8];
   const [activeIndex, setActiveIndex] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
 
