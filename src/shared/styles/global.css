@@ -361,13 +361,13 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-33.333%);
+      transform: translateX(-20%);
     }
   }
 
   @keyframes scrollLeft {
     0% {
-      transform: translateX(-33.333%);
+      transform: translateX(-20%);
     }
     100% {
       transform: translateX(0);
@@ -375,11 +375,11 @@
   }
 
   .project-scroll-right {
-    animation: scrollRight 120s linear infinite;
+    animation: scrollRight 200s linear infinite;
   }
 
   .project-scroll-left {
-    animation: scrollLeft 120s linear infinite;
+    animation: scrollLeft 200s linear infinite;
   }
 
   /* 히어로 무한 스크롤 애니메이션 */
