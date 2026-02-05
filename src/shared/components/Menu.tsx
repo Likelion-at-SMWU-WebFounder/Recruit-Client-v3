@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { MENU_ORDER } from '@shared/constants/menu';
 import { KAKAOTALK_URL, INSTAGRAM_URL } from '@shared/constants/url';
 import { logo, apply_arrow } from '@shared/constants/menu';
-import { RiMenuLine, RiCloseLine, RiKakaoTalkFill, RiInstagramFill } from 'react-icons/ri';
+import { RiMenuLine, RiCloseLargeLine, RiKakaoTalkFill, RiInstagramFill } from 'react-icons/ri';
 
 export interface MenuProps {
   mode?: 'light' | 'dark';
@@ -55,8 +55,8 @@ const MobileDrawer = ({ setDrawerOpen, mobileMenuColor }: MobileDrawerProps) => 
   return (
     <>
       <div className={mobileMenuContainerClasses} role="dialog" aria-modal="true" aria-label="모바일 메뉴 서랍">
-        <span className={`inline-flex h-[2.5rem] w-full justify-end p-[1rem_1rem] pr-[1.5rem]`}>
-          <RiCloseLine className={`${mobileMenuColor} ${hoverOption} cursor-pointer`} onClick={handleClose} />
+        <span className={`inline-flex h-[3.5rem] w-full justify-end p-[1.2rem_1rem] pr-[1.5rem]`}>
+          <RiCloseLargeLine className={`${mobileMenuColor} ${hoverOption} cursor-pointer`} onClick={handleClose} />
         </span>
         <div className={mobileMenuListClasses}>
           {MENU_ORDER.map((item) => (
@@ -103,7 +103,7 @@ const Menu = ({ mode = 'light', ...props }: MenuProps) => {
   ].join(' ');
 
   const responsiveClasses = [
-    'p-[1.5rem_1rem] pr-[1.5rem] h-[2.5rem]', // mobile
+    'p-[1.5rem_1rem] pr-[1.5rem] h-[3.5rem]', // mobile
     'md:p-[0.625rem_4rem] md:h-[4.625rem]', // tablet
     'lg:p-[0.625rem_4rem] lg:h-[6.0625rem]', // desktop
   ].join(' ');
@@ -134,7 +134,7 @@ const Menu = ({ mode = 'light', ...props }: MenuProps) => {
                 className={({ isActive }) => {
                   const isActiveOrHovered = isActive || hoveredItem === item.key;
                   return `${hoverOption} md:text-[1rem] lg:text-[1.25rem] ${
-                    isActiveOrHovered ? activeOption : mobileMenuColor
+                    isActiveOrHovered ? activeOption : menuModeColor
                   }`;
                 }}>
                 {({ isActive }) => (
