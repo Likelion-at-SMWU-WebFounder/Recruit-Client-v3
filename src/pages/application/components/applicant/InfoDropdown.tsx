@@ -13,7 +13,7 @@ interface InfoDropdownProps {
 const STYLES = {
   // 레이아웃 컨테이너
   container:
-    'group relative flex flex-col gap-[0.875rem] w-[19.375rem] md:w-[24.75rem] md:gap-[1.125rem] lg:w-[40.3125rem] lg:gap-[1.375rem]',
+    'group relative flex flex-col gap-[0.875rem] w-full md:w-[24.75rem] md:gap-[1.125rem] lg:w-[40.3125rem] lg:gap-[1.375rem]',
   overlay: 'fixed inset-0 z-[100] bg-[#4D4D4E]/65 transition-opacity duration-300',
 
   // 라벨 섹션

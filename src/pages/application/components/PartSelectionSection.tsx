@@ -11,8 +11,8 @@ import DeleteIcon from '../assets/delete-icon.svg';
 const STYLES = {
   section: 'flex w-full flex-col items-center gap-[1.5rem] md:gap-[2.0625rem] lg:gap-[2.1875rem]',
   gridContainer:
-    'flex flex-wrap justify-center w-full md:w-[52.75rem] lg:w-[90.0625rem] gap-x-[1rem] gap-y-[2.1875rem] md:gap-x-[3.25rem] md:gap-y-[4rem] lg:gap-x-[8.5625rem] lg:gap-y-[5rem]',
-  itemWrapper: 'w-[19.375rem] md:w-[24.75rem] lg:w-[40.3125rem]',
+    'flex flex-wrap justify-center w-full px-[1.06rem] md:px-[0rem] md:w-[52.75rem] lg:w-[90.0625rem] gap-x-[1rem] gap-y-[2.1875rem] md:gap-x-[3.25rem] md:gap-y-[4rem] lg:gap-x-[8.5625rem] lg:gap-y-[5rem]',
+  itemWrapper: 'w-full md:w-[24.75rem] lg:w-[40.3125rem]',
 
   // 헤더 및 라벨 영역
   labelWrapper: 'flex w-full items-end justify-between min-h-[1.35rem] md:min-h-[2.1rem] lg:min-h-[2.6rem]',

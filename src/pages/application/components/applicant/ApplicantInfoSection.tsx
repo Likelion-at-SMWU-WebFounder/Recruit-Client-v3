@@ -7,7 +7,7 @@ import type { ApplicantInfo } from '../../types/index';
 const STYLES = {
   section: 'flex flex-col w-full items-center gap-[1.5rem] md:gap-[2.0625rem] lg:gap-[2.1875rem] ',
   gridContainer:
-    'flex flex-wrap justify-center w-full md:w-[52.75rem] lg:w-[90.0625rem] gap-x-[1rem] gap-y-[2.1875rem] md:gap-x-[3.25rem] md:gap-y-[4rem] lg:gap-x-[8.5625rem] lg:gap-y-[5rem]',
+    'flex flex-wrap justify-center w-full px-[1.06rem] md:px-[0rem] md:w-[52.75rem] lg:w-[90.0625rem] gap-x-[1rem] gap-y-[2.1875rem] md:gap-x-[3.25rem] md:gap-y-[4rem] lg:gap-x-[8.5625rem] lg:gap-y-[5rem]',
 };
 
 interface ApplicantInfoSectionProps {

@@ -12,7 +12,7 @@ interface InfoInputProps {
 const STYLES = {
   // 전체 컨테이너
   container:
-    'flex flex-col gap-[0.875rem] w-[19.375rem] md:w-[24.75rem] md:gap-[1.125rem] lg:w-[40.3125rem] lg:gap-[1.375rem]',
+    'flex flex-col gap-[0.875rem] w-full md:w-[24.75rem] md:gap-[1.125rem] lg:w-[40.3125rem] lg:gap-[1.375rem]',
 
   // 라벨 영역
   labelWrapper: 'flex items-end gap-[0.375rem] md:gap-[0.8125rem]',
