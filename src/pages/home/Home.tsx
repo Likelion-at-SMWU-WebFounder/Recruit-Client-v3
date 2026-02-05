@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { combineStyles } from '@shared/utils/combineStyles';
 import Layout from '@shared/components/Layout';
+import Footer from '@shared/components/Footer';
 import HeroSection from '@pages/home/components/hero/HeroSection';
 import AboutSection from '@pages/home/components/about/AboutSection';
 import ActivitySection from '@pages/home/components/activity/ActivitySection';
@@ -17,11 +18,15 @@ const HOME_STYLES = {
   section: {
     base: 'relative h-[100dvh] snap-start overflow-hidden',
   },
+  footer: {
+    base: 'relative h-auto snap-start',
+  },
 } as const;
 
 const Home = () => {
   const scrollContainerClassName = combineStyles(HOME_STYLES.scrollContainer);
   const sectionClassName = combineStyles(HOME_STYLES.section);
+  const footerClassName = combineStyles(HOME_STYLES.footer);
 
   const [menuMode, setMenuMode] = useState<'light' | 'dark'>('dark');
 
@@ -71,7 +76,7 @@ const Home = () => {
   }, []);
 
   return (
-    <Layout menuMode={menuMode} footerMode="light">
+    <Layout menuMode={menuMode} footerMode="light" withoutFooter={true}>
       <div ref={scrollRef} className={scrollContainerClassName}>
         <div id="hero-section" className={sectionClassName}>
           <HeroSection />
@@ -93,6 +98,9 @@ const Home = () => {
         </div>
         <div id="apply-section" className={sectionClassName}>
           <ApplySection />
+        </div>
+        <div className={footerClassName}>
+          <Footer mode="light" />
         </div>
       </div>
     </Layout>
