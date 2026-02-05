@@ -87,7 +87,9 @@ const Home = () => {
       setMenuMode(DARK_SECTIONS.includes(id) ? 'dark' : 'light');
     });
 
-    sections.forEach((section) => observer.observe(section));
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
 
     return () => observer.disconnect();
   }, []);
