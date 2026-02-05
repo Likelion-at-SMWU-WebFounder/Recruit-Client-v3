@@ -75,7 +75,7 @@ const WebFounders = () => {
   const sectionsContainerClassName = combineStyles(WEBFOUNDERS_STYLES.sectionsContainer);
 
   return (
-    <Layout menuMode="light" footerMode="light">
+    <Layout menuMode="light" footerMode="light" footerBgColor="#EEF1F6">
       <div className={containerClassName} style={{ backgroundImage }}>
         {/* 타이틀 */}
         <div className={titleWrapperClassName}>

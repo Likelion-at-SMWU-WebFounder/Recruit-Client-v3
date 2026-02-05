@@ -46,4 +46,5 @@ export const logo = {
 export const apply_arrow = {
   dark: MENU_IMAGES_PATH + '/arrow_dark.svg',
   light: MENU_IMAGES_PATH + '/arrow_light.svg',
+  active: MENU_IMAGES_PATH + '/arrow_active.svg',
 };

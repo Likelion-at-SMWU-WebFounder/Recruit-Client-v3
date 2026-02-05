@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { combineStyles } from '@shared/utils/combineStyles';
 import Layout from '@shared/components/Layout';
 import HeroSection from '@pages/home/components/hero/HeroSection';
@@ -23,35 +23,75 @@ const Home = () => {
   const scrollContainerClassName = combineStyles(HOME_STYLES.scrollContainer);
   const sectionClassName = combineStyles(HOME_STYLES.section);
 
-  const [menuMode, setMenuMode] = useState<'light' | 'dark'>('light');
+  const [menuMode, setMenuMode] = useState<'light' | 'dark'>('dark');
+  const DARK_SECTIONS = ['hero-section', 'apply-section'];
+
+  const intersectionRatios = useRef(new Map<string, number>());
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  // HeroSection이 뷰포트에 있는지 감지 -> menuMode 변경
   useEffect(() => {
-    const heroSection = document.getElementById('hero-section');
-    const applySection = document.getElementById('apply-section');
-    if (!heroSection || !applySection) return;
+    const sectionIds = [
+      'hero-section',
+      'about-section',
+      'activity-section',
+      'year-section',
+      'part-section',
+      'project-section',
+      'apply-section',
+    ];
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setMenuMode(entry.isIntersecting ? 'dark' : 'light');
-        });
-      },
-      {
-        threshold: 0.9, // 90% 이상 보이면 감지
+    for (const id of sectionIds) {
+      const el = document.getElementById(id);
+      if (!el) continue;
+
+      const rect = el.getBoundingClientRect();
+      const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+      if (isVisible) {
+        if (['hero-section', 'apply-section'].includes(id)) {
+          setMenuMode('dark');
+        } else {
+          setMenuMode('light');
+        }
+        break;
       }
-    );
+    }
+  }, []);
 
-    observer.observe(heroSection);
-    observer.observe(applySection);
+  useEffect(() => {
+    const sectionIds = [
+      'hero-section',
+      'about-section',
+      'activity-section',
+      'year-section',
+      'part-section',
+      'project-section',
+      'apply-section',
+    ];
 
-    return () => {
-      observer.disconnect();
-    };
+    const sections = sectionIds.map((id) => document.getElementById(id)).filter((el): el is HTMLElement => Boolean(el));
+
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        intersectionRatios.current.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0);
+      });
+
+      const [id, ratio] = [...intersectionRatios.current.entries()].sort((a, b) => b[1] - a[1])[0] ?? [];
+      if (!id || ratio === 0) return;
+
+      setMenuMode(DARK_SECTIONS.includes(id) ? 'dark' : 'light');
+    });
+
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   return (
