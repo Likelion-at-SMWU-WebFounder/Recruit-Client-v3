@@ -20,7 +20,7 @@ const HeroSection = () => {
 
   return (
     <div
-      className="relative flex h-[100dvh] w-full max-w-[100vw] flex-col items-center overflow-hidden bg-cover bg-center bg-no-repeat pt-[200px] md:pt-[230px]"
+      className="relative flex h-[100dvh] w-full max-w-[100vw] flex-col items-center overflow-hidden bg-cover bg-top bg-no-repeat pt-[200px] md:pt-[230px]"
       style={{ backgroundImage }}>
       <div className={titleClasses}>{TITLE.TITLE_1}</div>
       <div className={`${titleClasses} `}>

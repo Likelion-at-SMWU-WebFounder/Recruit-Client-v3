@@ -16,7 +16,7 @@ interface CardItem {
 // ActivityCard 스타일 상수화
 const ACTIVITY_CARD_STYLES = {
   desktopTabletTextCard: {
-    base: 'md:inline-flex md:flex-col items-start justify-center shadow-default rounded-[1.25rem] bg-navyblack/20 p-[2rem]',
+    base: 'md:inline-flex md:flex-col items-start justify-center shadow-default rounded-[1.25rem] p-[2rem]',
     desktop: 'lg:w-[20rem] lg:h-[18rem] lg:gap-[1.25rem]',
     tablet: 'md:inline-flex md:w-[13rem] md:h-[18rem] md:gap-[1.65rem]',
     mobile: 'hidden',

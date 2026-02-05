@@ -11,8 +11,9 @@ export interface MenuProps {
 }
 
 const mobileMenuColor = 'text-navyblack';
-const hoverOption = 'hover:text-blue hover:font-[600]';
+const hoverOption = 'hover:font-[600]';
 const activeOption = 'text-blue font-[600]';
+const defaultFontWeight = 'font-medium';
 
 export interface MobileDrawerProps {
   setDrawerOpen: (open: boolean) => void;
@@ -21,7 +22,6 @@ export interface MobileDrawerProps {
 
 const MobileDrawer = ({ setDrawerOpen, mobileMenuColor }: MobileDrawerProps) => {
   const [isVisible, setIsVisible] = useState(false);
-  const [hoveredMobileItem, setHoveredMobileItem] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const handleClose = () => {
@@ -79,12 +79,9 @@ const MobileDrawer = ({ setDrawerOpen, mobileMenuColor }: MobileDrawerProps) => 
                 e.preventDefault(); // 기본 네비게이션 막기
                 handleCloseAndNavigate(item.path);
               }}
-              onMouseEnter={() => setHoveredMobileItem(item.key)}
-              onMouseLeave={() => setHoveredMobileItem(null)}
               className={({ isActive }) => {
-                const isActiveOrHovered = isActive || hoveredMobileItem === item.key;
                 return `w-full cursor-pointer text-[1.5rem] ${
-                  isActiveOrHovered ? activeOption : mobileMenuColor
+                  isActive ? activeOption : `${mobileMenuColor} ${defaultFontWeight}`
                 } ${hoverOption}`;
               }}>
               {item.label}
@@ -106,7 +103,6 @@ const MobileDrawer = ({ setDrawerOpen, mobileMenuColor }: MobileDrawerProps) => 
 
 const Menu = ({ mode = 'light', ...props }: MenuProps) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const isLightMode = mode === 'light';
   const menuModeColor = isLightMode ? 'text-navyblack' : 'text-white';
 
@@ -143,12 +139,9 @@ const Menu = ({ mode = 'light', ...props }: MenuProps) => {
             <span key={item.key}>
               <NavLink
                 to={item.path}
-                onMouseEnter={() => setHoveredItem(item.key)}
-                onMouseLeave={() => setHoveredItem(null)}
                 className={({ isActive }) => {
-                  const isActiveOrHovered = isActive || hoveredItem === item.key;
                   return `${hoverOption} md:text-[1rem] lg:text-[1.25rem] ${
-                    isActiveOrHovered ? activeOption : menuModeColor
+                    isActive ? activeOption : `${menuModeColor} ${defaultFontWeight}`
                   }`;
                 }}>
                 {({ isActive }) => (
@@ -157,13 +150,7 @@ const Menu = ({ mode = 'light', ...props }: MenuProps) => {
                     {item.key === 'apply' && (
                       <img
                         className={`${iconItemClasses} inline-block pl-[0.3rem]`}
-                        src={
-                          isActive || hoveredItem === 'apply'
-                            ? apply_arrow.active
-                            : isLightMode
-                              ? apply_arrow.dark
-                              : apply_arrow.light
-                        }
+                        src={isActive ? apply_arrow.active : isLightMode ? apply_arrow.dark : apply_arrow.light}
                         alt=" "
                       />
                     )}

@@ -28,7 +28,7 @@ const PART_CARD_STYLES = {
     desktop: 'lg:bd28 lg:leading-[140%]',
     mobile: 'bd15 leading-[180%]',
   },
-  shadow: 'shadow-sub lg:shadow-default',
+  shadow: 'shadow-sub lg:hover:shadow-default',
 } as const;
 
 const PartCard = ({ part, explain, cardImage }: PartCardProps) => {
