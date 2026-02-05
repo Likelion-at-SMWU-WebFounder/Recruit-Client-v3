@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { combineStyles } from '@shared/utils/combineStyles';
 import Layout from '@shared/components/Layout';
 import HeroSection from '@pages/home/components/hero/HeroSection';
@@ -25,6 +25,8 @@ const Home = () => {
 
   const [menuMode, setMenuMode] = useState<'light' | 'dark'>('dark');
   const DARK_SECTIONS = ['hero-section', 'apply-section'];
+
+  const intersectionRatios = useRef(new Map<string, number>());
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -74,27 +76,16 @@ const Home = () => {
 
     if (sections.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // 화면에 가장 많이 보이는 섹션 하나 고르기
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        intersectionRatios.current.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0);
+      });
 
-        if (!visible) return;
+      const [id, ratio] = [...intersectionRatios.current.entries()].sort((a, b) => b[1] - a[1])[0] ?? [];
+      if (!id || ratio === 0) return;
 
-        const id = visible.target.id;
-
-        if (DARK_SECTIONS.includes(id)) {
-          setMenuMode('dark'); // 글자 흰색
-        } else {
-          setMenuMode('light'); // 글자 어두운색
-        }
-      },
-      {
-        threshold: [0.3, 0.5, 0.7],
-      }
-    );
+      setMenuMode(DARK_SECTIONS.includes(id) ? 'dark' : 'light');
+    });
 
     sections.forEach((section) => observer.observe(section));
 
