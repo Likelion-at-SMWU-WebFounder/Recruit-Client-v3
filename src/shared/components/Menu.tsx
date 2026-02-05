@@ -125,7 +125,7 @@ const Menu = ({ mode = 'light', ...props }: MenuProps) => {
   const logoClasses = 'h-[24px] md:h-[2.625rem] lg:h-[3.675rem]';
 
   const menuListClasses =
-    'hidden md:p-[0.625rem] md:inline-flex md:justify-center md:items-center md:gap-[2.5rem] lg:gap-[4rem]';
+    'hidden md:p-[0.625rem] md:inline-flex md:justify-center md:items-center md:gap-[2.5rem] lg:ml-[-8rem] lg:gap-[4rem]';
   const iconContainerClasses = 'hidden md:inline-flex md:justify-center md:items-right md:gap-[1rem]';
   const iconItemClasses = `${menuModeColor} cursor-pointer md:h-[1.42rem] md:w-[1.42rem] lg:h-[2rem] lg:w-[2rem]`;
 
