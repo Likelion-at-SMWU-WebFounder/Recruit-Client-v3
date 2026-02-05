@@ -5,15 +5,16 @@ import Footer from '@components/Footer';
 export interface LayoutProps {
   menuMode?: 'light' | 'dark';
   footerMode?: 'light' | 'dark';
+  footerBgColor?: string;
   children: ReactNode;
 }
 
-const Layout = ({ menuMode, footerMode, children }: LayoutProps) => {
+const Layout = ({ menuMode, footerMode, footerBgColor, children }: LayoutProps) => {
   return (
     <div className="relative flex min-h-screen flex-col">
       <Menu mode={menuMode} />
       <main className="flex-1">{children}</main>
-      <Footer mode={footerMode} />
+      <Footer mode={footerMode} bgColor={footerBgColor} />
     </div>
   );
 };
