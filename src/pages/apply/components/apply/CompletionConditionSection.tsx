@@ -32,7 +32,7 @@ const TW = {
   headingBox: 'mb-[4.5rem] flex flex-col items-center gap-[1rem] md:mb-[6.89rem] lg:mb-[4.19rem]',
 
   // mobile wrapper
-  mobileWrap: 'relative w-[22.5625rem] md:hidden ',
+  mobileWrap: 'relative w-[22.5625rem] h-[20.8125rem] md:hidden',
 
   // mobile cards (fronts)
   mobileCardBase:
@@ -44,7 +44,7 @@ const TW = {
   // mobile contents
   mobileLightTitle: 'mb-[1.25rem] text-[1.25rem] font-semibold text-[var(--color-navyblack-main)] leading-[120%]',
   mobileBlueTitle: 'mb-[1.25rem] text-[1.25rem] font-semibold text-[var(--color-white-main)] leading-[120%]',
-  mobileRow: 'flex items-center gap-[0.875rem]',
+  mobileRow: 'flex items-center gap-[0.375rem]',
   mobileLightNum: 'text-[1.125rem] font-semibold text-[var(--color-navyblack-main)] leading-[120%]',
   mobileBlueNum: 'text-[1.125rem] font-semibold text-[var(--color-white-main)] leading-[120%]',
   mobileLightLabel: 'text-[1rem] font-medium text-[var(--color-navyblack-main) leading-[120%]]',
@@ -96,38 +96,38 @@ const TW = {
     'font-semibold text-[var(--color-white-main)] md:mb-[1.94rem] md:text-[1.5rem] lg:mb-[2.81rem] lg:text-[2.25rem] leading-[120%] relative z-10',
   backAttendanceWrap: 'flex flex-col md:gap-[1.9375rem] lg:gap-[2.3125rem] relative z-10',
   backEventWrap: 'flex flex-col md:gap-[1rem] lg:gap-[1.125rem] relative z-10',
-  backItemRow: 'flex items-center gap-[1rem]',
+  backItemRow: 'flex items-center gap-[0.625rem]',
   backNum: 'font-semibold text-[var(--color-white-main)] md:text-[1.375rem] lg:text-[2rem] leading-[120%]',
+  backItemRowAttendance: 'flex items-center gap-[1rem] mb-[0.625rem]',
   backItemTitleAttendance:
-    'font-medium text-[var(--color-white-main)] md:text-[1.25rem] lg:text-[1.75rem] leading-[120%] mb-[0.75rem]',
+    'font-medium text-[var(--color-white-main)] md:text-[1.25rem] lg:text-[1.75rem] leading-[120%]',
   backItemTitleEvent: 'font-medium text-[var(--color-white-main)] md:text-[1.25rem] lg:text-[1.75rem] leading-[120%]',
   backDate: 'font-medium text-[var(--color-white-main)]/75 md:text-[1.125rem] lg:text-[1.5rem] leading-[120%]',
   backDetail:
-    'font-medium text-[var(--color-white-main)] md:text-[1.125rem] lg:text-[1.5rem] lg:pl-[3.625rem] md:pl-[2.875rem] leading-[120%]',
+    'font-medium text-[var(--color-white-opacity75)] md:text-[1.125rem] lg:text-[1.5rem] lg:pl-[3.625rem] md:pl-[2.875rem] leading-[120%]',
   backDetailsWrap: 'flex flex-col md:gap-[0.375rem] lg:gap-[0.5rem]',
 
   // back image
-  backImgBase: 'absolute object-contain opacity-30',
+  backImgBase: 'absolute object-contain ',
   backImg0:
-    '-right-[23%] -bottom-[35%] h-[130%] w-auto lg:-right-[23%] lg:-bottom-[60%] lg:h-[170%] opacity-20 scale-[1.7]',
+    '-right-[23%] -bottom-[35%] h-[130%] w-auto lg:-right-[23%] lg:-bottom-[60%] lg:h-[170%] opacity-30 scale-[1.7]',
   backImg1:
-    '-right-[21%] -bottom-[33%] h-[120%] w-auto lg:-right-[21%] lg:-bottom-[55%] lg:h-[160%] opacity-20 scale-[1.3]',
+    '-right-[21%] -bottom-[33%] h-[120%] w-auto lg:-right-[21%] lg:-bottom-[55%] lg:h-[160%] opacity-30 scale-[1.3]',
 } as const;
 
 const CompletionConditionSection = () => {
   const [flippedCard, setFlippedCard] = useState<string | null>(null);
-  const [mobileCardIndex, setMobileCardIndex] = useState(0);
+  const [isMobileFlipped, setIsMobileFlipped] = useState(false);
 
   const isDesktop = useMediaQuery('(min-width: 1024px)');
 
   const handleCardClick = (cardId: string) => {
     if (isDesktop) return;
-
     setFlippedCard((prev) => (prev === cardId ? null : cardId));
   };
 
-  const handleMobileNext = () => {
-    setMobileCardIndex((prev) => (prev + 1) % COMPLETION_CONDITIONS.length);
+  const handleMobileFlip = () => {
+    setIsMobileFlipped((prev) => !prev);
   };
 
   const renderBackContent = (card: (typeof COMPLETION_CONDITIONS)[0], index: number) => {
@@ -141,7 +141,7 @@ const CompletionConditionSection = () => {
           <div className={TW.backAttendanceWrap}>
             {(card.items as AttendanceItem[]).map((item) => (
               <div key={item.number}>
-                <div className={TW.backItemRow}>
+                <div className={TW.backItemRowAttendance}>
                   <span className={TW.backNum}>{item.number}</span>
                   <span className={TW.backItemTitleAttendance}>{item.title}</span>
                 </div>
@@ -187,15 +187,24 @@ const CompletionConditionSection = () => {
         </div>
 
         {/* mobile carousel */}
-        <div className={TW.mobileWrap}>
-          {mobileCardIndex === 0 && (
-            <div className={cx(TW.mobileCardBase, TW.mobileCardLight)} onClick={handleMobileNext}>
+        {/* mobile carousel */}
+        <div className={cx(TW.mobileWrap, 'mFlipCard')}>
+          <div className={cx('mFlipInner', isMobileFlipped && 'is-flipped')}>
+            {/* FRONT: 기존 mobileCardIndex === 0 카드 그대로 */}
+            <div
+              className={cx(TW.mobileCardBase, TW.mobileCardLight, 'mFlipFace')}
+              onClick={handleMobileFlip}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') handleMobileFlip();
+              }}>
               <div className="relative z-10">
                 <h3 className={TW.mobileLightTitle}>{COMPLETION_CONDITIONS[0].title}</h3>
                 <div className="flex flex-col gap-[1.5rem]">
                   {(COMPLETION_CONDITIONS[0].items as AttendanceItem[]).map((item) => (
                     <div key={item.number}>
-                      <div className="mb-[0.625rem] flex items-baseline gap-[1rem]">
+                      <div className="mb-[0.5rem] flex items-baseline gap-[1rem]">
                         <span className={TW.mobileLightNum}>{item.number}</span>
                         <span className={TW.mobileLightLabel}>{item.title}</span>
                       </div>
@@ -217,7 +226,7 @@ const CompletionConditionSection = () => {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  handleMobileNext();
+                  handleMobileFlip();
                 }}
                 className={cx(TW.arrowBtnBase, TW.arrowBtnOnLight)}
                 aria-label="다음 카드">
@@ -226,10 +235,16 @@ const CompletionConditionSection = () => {
                 </svg>
               </button>
             </div>
-          )}
 
-          {mobileCardIndex === 1 && (
-            <div className={cx(TW.mobileCardBase, TW.mobileCardBlue)} onClick={handleMobileNext}>
+            {/* BACK: 기존 mobileCardIndex === 1 카드 그대로 */}
+            <div
+              className={cx(TW.mobileCardBase, TW.mobileCardBlue, 'mFlipFace', 'mFlipBack')}
+              onClick={handleMobileFlip}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') handleMobileFlip();
+              }}>
               <div className="relative z-10">
                 <h3 className={TW.mobileBlueTitle}>{COMPLETION_CONDITIONS[1].title}</h3>
 
@@ -249,7 +264,7 @@ const CompletionConditionSection = () => {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  handleMobileNext();
+                  handleMobileFlip();
                 }}
                 className={cx(TW.arrowBtnBase, TW.arrowBtnOnBlue)}
                 aria-label="다음 카드">
@@ -258,7 +273,7 @@ const CompletionConditionSection = () => {
                 </svg>
               </button>
             </div>
-          )}
+          </div>
         </div>
 
         {/* tablet/desktop */}

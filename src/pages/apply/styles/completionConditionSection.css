@@ -27,3 +27,33 @@
 .flipCardBack {
   transform: rotateY(180deg);
 }
+
+/* mobile flip */
+.mFlipCard {
+  perspective: 1000px;
+}
+
+.mFlipInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.mFlipInner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.mFlipFace {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.mFlipBack {
+  transform: rotateY(180deg);
+}
