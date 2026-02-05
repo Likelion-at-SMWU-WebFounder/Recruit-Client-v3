@@ -8,13 +8,14 @@ interface HeroButtonProps {
 const TW = {
   button: `
     group inline-flex items-center justify-center 
-    gap-[0.5rem]
-    md:gap-[0.625rem]
+    gap-[0.62rem]
+    md:gap-[1.05rem]
     bg-[var(--color-white-main)] 
     text-[var(--color-blue-main)] 
     font-bold leading-normal
     transition-all duration-300 ease-in-out
     cursor-pointer
+    leading-[100%]
     
     /* Mobile (Default) */
     rounded-[0.625rem] px-[0.75rem] py-[0.5rem] text-[0.875rem]

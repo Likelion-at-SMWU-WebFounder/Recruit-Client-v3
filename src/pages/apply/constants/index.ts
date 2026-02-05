@@ -50,7 +50,7 @@ export const RECRUIT_INFO_TABS: RecruitInfoTabTypes[] = [
 // 지원 자격
 export const QUALIFICATIONS: string[] = [
   '26년도 기준 숙명여자대학교\n재학생·휴학생·자대 편입생·졸업 유예자\n(졸업생, 타대생 참여 불가)',
-  '1년간 재학·휴학·졸업 유예 상태 유지 가능자',
+  '1년간 재학·휴학·졸업 유예 상태 \n유지 가능자',
   '지원서 양식 준수자',
   '멋쟁이사자처럼 공식 행사 및\n정기 세션 참여 가능자',
 ];
@@ -61,7 +61,7 @@ export const ACTIVITY_INFO = {
   sessionPeriod: '03~12월',
   sessionTime: '매주 화요일 19:00~21:00',
   feeTitle: '활동비',
-  feeAmount: '4만원',
+  feeAmount: '5만원',
   feeNote: '(장소 대관비가 별도로 발생할 수 있음)',
 };
 
@@ -106,8 +106,8 @@ export const COMPLETION_CONDITIONS = [
     id: 'event',
     title: '필수 행사 참여',
     items: [
-      { number: '01', title: '숙명여대 멋사 OT', date: '(03.08 19:00)' },
-      { number: '02', title: '멋사 중앙 OT', date: '(03.21 19:00)' },
+      { number: '01', title: '숙명여대 멋사 OT', date: '(03.03 19:00)' },
+      { number: '02', title: '멋사 중앙 OT', date: '(03.18)' },
       { number: '03', title: '중앙 아이디어톤', date: '(6월 중 진행)' },
       { number: '04', title: '중앙 해커톤', date: '(8월 중순 진행)' },
       { number: '05', title: '연합 해커톤: 여기톤', date: '(7월 중 진행)' },
@@ -121,21 +121,21 @@ export const COMPLETION_CONDITIONS = [
 export const SCHEDULES: ScheduleTypes[] = [
   {
     id: 's1',
-    dateRange: '02.14(금)~02.18(금)',
-    dateRangeMobile: '02.14~02.18',
+    dateRange: '02.12(금)~02.18(금)',
+    dateRangeMobile: '02.12~02.18',
     label: '서류 접수',
     status: 'current',
   },
   {
     id: 's2',
-    dateRange: '02.22(화)',
+    dateRange: '02.22(알)',
     dateRangeMobile: '02.22',
     label: '서류 발표',
     status: 'upcoming',
   },
   {
     id: 's3',
-    dateRange: '02.24(목)~02.25(금)',
+    dateRange: '02.24(화)~02.25(수)',
     dateRangeMobile: '02.24~02.25',
     label: '면접',
     status: 'upcoming',
@@ -161,15 +161,15 @@ export const SCHEDULES: ScheduleTypes[] = [
 export const FAQS: FAQTypes[] = [
   {
     id: 'f1',
-    question: 'Q. 꼭 컴퓨터 관련 전공이어야만 하나요? 기초가 갖추어지지 않은 비전공자의 경우에는 지원이 힘든가요?',
+    question: 'Q. 꼭 컴퓨터 관련 전공이어야만 하나요?\n기초가 갖추어지지 않은 비전공자의 경우에는 지원이 힘든가요?',
     answer:
-      '멋쟁이사자처럼은 비전공자와 전공자 모두를 대상으로 모집합니다. 기초를 갖춘 상태에서 동아리에 가입한 사람들도 있는 한편, 동아리 가입 후 코딩을 아예 처음 시작한 사람들도 있습니다. 코딩 경험이 없으시더라도 웹 서비스 또는 IT 관련 창업에 관심이 많으시고, 자기소개서와 면접을 통해 활동 의지와 열정을 충분히 보여주신다면 누구든지 활동 가능합니다.',
+      '멋쟁이사자처럼은 비전공자와 전공자 모두를 대상으로 모집합니다. 기초를 갖춘 상태에서 동아리에 가입한 사람들도 있는 한편, 동아리 가입 후 코딩을\n 아예 처음 시작한 사람들도 있습니다. 코딩 경험이 없으시더라도 웹 서비스 또는 IT 관련 창업에 관심이 많으시고, 자기소개서와 면접을 통해 활동 의지\n와 열정을 충분히 보여주신다면 누구든지 활동 가능합니다.',
   },
   {
     id: 'f2',
     question: 'Q. 전체, 파트 별 모집 인원이 궁금해요!',
     answer:
-      '올해 전체 모집 인원은 20명 내외 모집 예정이며, 파트별 모집 인원은 기획·디자인:프론트엔드:백엔드 비율을 1:2:2로 예상하고 있습니다. 상황에 따라 변동이 있을 수 있습니다.',
+      '올해 전체 모집 인원은 20명 내외 모집 예정이며, 파트별 모집 인원은 기획·디자인:프론트엔드:백엔드 비율을 1:2:2로 예상하고 있습니다. \n상황에 따라 변동이 있을 수 있습니다.',
   },
   {
     id: 'f3',
@@ -191,7 +191,7 @@ export const FAQS: FAQTypes[] = [
     id: 'f6',
     question: 'Q. 2학기에도 신입 아기사자를 모집하나요?',
     answer:
-      '멋쟁이사자처럼 활동은 1년을 기준으로 하며, 상반기 + 하반기 연속으로 활동하셔야 합니다. 매년 2월 말 ~ 3월 초에만 신입 아기사자를 모집하고 있습니다.',
+      '멋쟁이사자처럼 활동은 1년을 기준으로 하며, 상반기 + 하반기 연속으로 활동하셔야 합니다. \n매년 2월 말 ~ 3월 초에만 신입 아기사자를 모집하고 있습니다.',
   },
   {
     id: 'f7',

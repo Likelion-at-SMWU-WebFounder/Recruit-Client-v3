@@ -39,8 +39,10 @@ const RecruitPartCard = ({
           <div className={TW.textWrap}>
             <h3 className={TW.titleMobile}>{part.title}</h3>
             <p className={TW.skillsMobile}>{part.skills}</p>
-            <p className={TW.descMobile}>{part.description}</p>
-            <p className={TW.ctaMobile}>{part.cta}</p>
+            <div className={cx(isActive ? 'opacity-100' : 'opacity-0')}>
+              <p className={TW.descMobile}>{part.description}</p>
+              <p className={TW.ctaMobile}>{part.cta}</p>
+            </div>
           </div>
 
           <img src={images[partIndex]} alt="" className={cx(TW.imgBase, TW.imgMobile)} />
@@ -71,21 +73,10 @@ const RecruitPartCard = ({
         <h3 className={TW.titleDesktop}>{part.title}</h3>
 
         {/* 접혔을 때 스킬 */}
-        <p
-          className={cx(
-            TW.skillsFolded,
-            'transition-all duration-300',
-            isExpanded ? 'invisible h-0 opacity-0' : 'visible opacity-100'
-          )}>
-          {part.skills}
-        </p>
+        {!isExpanded && <p className={cx(TW.skillsFolded, 'visible opacity-100')}>{part.skills}</p>}
 
         {/* 펼쳐졌을 때 상세 내용*/}
-        <div
-          className={cx(
-            'transition-all delay-100 duration-500',
-            isExpanded ? 'relative h-auto translate-y-0 opacity-100' : 'h-0 translate-y-4 overflow-hidden opacity-0'
-          )}>
+        <div className={cx(isExpanded ? 'relative block h-auto opacity-100' : 'hidden h-0 overflow-hidden opacity-0')}>
           <div className="w-[16.38rem] lg:w-[27.0675rem]">
             <p className={TW.skillsExpanded}>{part.skills}</p>
             <p className={TW.descExpanded}>{part.description}</p>
