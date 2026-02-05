@@ -13,7 +13,7 @@ const STYLES = {
     inline-flex items-center justify-center gap-[0.625rem]
     
     /* 형태 및 테두리 */
-    md:rounded-[1rem] rounded-[0.625rem] border-[1.5px] border-solid border-[#4284FF]
+    md:rounded-[1rem] rounded-[0.625rem] md:border-[1.5px] border-[1px] border-solid border-[#4284FF]
     
     /* 기본 색상 및 폰트 */
     bg-[#F7FAFF] text-[#4284FF] font-bold leading-[120%]

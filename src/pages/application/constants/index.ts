@@ -280,8 +280,8 @@ export const VERIFICATION_ERRORS = {
 export const SUBMIT_MODAL = {
   TITLE: '제출하시겠습니까?',
   PART_LABEL: '지원 파트:',
-  WARNING_TEXT_1: '제출 이후에는 작성내용 조회 및 수정, 지원 취소가 불가능합니다.',
-  WARNING_TEXT_2: '내용이 정확히 작성되었는지 다시 한 번 확인해주세요!',
+  WARNING_TEXT_1: '제출 이후에는 작성내용 조회 및 수정, 지원 취소가\n불가능합니다.',
+  WARNING_TEXT_2: '내용이 정확히 작성되었는지\n다시 한 번 확인해주세요!',
   BUTTON_TEXT: '제출하기',
 } as const;
 
