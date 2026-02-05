@@ -1,14 +1,19 @@
-import { PROJECT_IMAGES } from '@/pages/home/constants/project';
+import { allProjectsData } from '@pages/project/constants/project/allProjectData';
 
 export const getProjectImages = (): string[] => {
   const images: string[] = [];
 
-  // 모든 기수와 카테고리의 이미지들을 플랫한 배열로 변환
-  Object.values(PROJECT_IMAGES).forEach((generation) => {
-    Object.values(generation).forEach((category) => {
-      images.push(...category);
-    });
+  // allProjectsData에서 모든 프로젝트의 대표 이미지(첫 번째 이미지)를 가져옴
+  allProjectsData.forEach((project) => {
+    if (project.images && project.images.length > 0) {
+      images.push(project.images[0]);
+    }
   });
+
+  // 이미지가 부족하면 반복해서 추가 (최소 20개 확보)
+  while (images.length < 20) {
+    images.push(...images.slice(0, Math.min(images.length, 20 - images.length)));
+  }
 
   return images;
 };
