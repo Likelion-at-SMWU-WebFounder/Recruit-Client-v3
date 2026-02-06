@@ -1,12 +1,33 @@
 /* src/styles/loading.css */
+
 .loader {
+  --loader-size: 9.375rem;
+  --line-weight: 0.1875rem;
+  --loader-perspective: 48.75rem;
+
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 150px;
-  height: 150px;
-  perspective: 780px;
+  width: var(--loader-size);
+  height: var(--loader-size);
+  perspective: var(--loader-perspective);
+}
+
+@media (min-width: 768px) {
+  .loader {
+    --loader-size: 15.625rem;
+    --line-weight: 0.3125rem;
+    --loader-perspective: 62.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .loader {
+    --loader-size: 21.875rem;
+    --line-weight: 0.5rem;
+    --loader-perspective: 75rem;
+  }
 }
 
 .loader .loader-text {
@@ -24,24 +45,25 @@
 .load-inner.load-one {
   left: 0%;
   top: 0%;
-  border-bottom: 3px solid var(--color-blue-main);
+  border-bottom: var(--line-weight) solid var(--color-blue-main);
   animation: rotate1 1.15s linear infinite;
 }
 
 .load-inner.load-two {
   right: 0%;
   top: 0%;
-  border-right: 3px solid var(--color-orange-main);
+  border-right: var(--line-weight) solid var(--color-orange-main);
   animation: rotate2 1.15s 0.1s linear infinite;
 }
 
 .load-inner.load-three {
   right: 0%;
   bottom: 0%;
-  border-top: 3px solid #fbd1ae;
+  border-top: var(--line-weight) solid #fbd1ae;
   animation: rotate3 1.15s 0.15s linear infinite;
 }
 
+/* 애니메이션 Keyframes는 동일 */
 @keyframes rotate1 {
   0% {
     transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);

@@ -11,7 +11,7 @@ const LoadingOverlay = ({ message = '서류를 제출 중입니다...' }: Loadin
         <div className="load-inner load-one"></div>
         <div className="load-inner load-two"></div>
         <div className="load-inner load-three"></div>
-        <span className="loader-text z-10 text-[1.375rem] leading-[120%] font-bold whitespace-nowrap text-white md:text-[2.375rem] lg:text-[2.625rem]">
+        <span className="loader-text z-20 text-[1.375rem] leading-[120%] font-bold whitespace-nowrap text-white md:text-[2.375rem] lg:text-[2.625rem]">
           {message}
         </span>
       </div>
