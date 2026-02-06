@@ -9,6 +9,7 @@ import VerificationSection from './components/VerificationSection';
 import SubmitModal from './components/SubmitModal';
 import { PAGE_TITLE, PAGE_SUBTITLE, QUESTIONS } from './constants/index';
 import DefaultButton from '@/shared/components/button/DefaultButton';
+import LoadingOverlay from './components/LoadingOverlay';
 import Layout from '@/shared/components/Layout';
 
 const TW = {
@@ -204,6 +205,7 @@ const Application = () => {
 
   return (
     <Layout menuMode="light" footerMode="light">
+      {submitStatus === 'loading' && <LoadingOverlay />}
       <div className={TW.container}>
         <main className={TW.main}>
           {/* 헤더 섹션 */}
