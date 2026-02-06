@@ -15,7 +15,7 @@ const TW = {
   /* layout */
   container:
     'flex w-full flex-col items-center overflow-x-hidden bg-[var(--color-white-main)] lg:px-[10.91rem] md:px-[4.44rem] px-[1.53rem]',
-  main: 'w-full lg:px-[10.91rem] px-[1rem]s',
+  main: 'w-full',
 
   /* header section */
   header: `
@@ -222,7 +222,7 @@ const Application = () => {
                   isSubmitted={isSubmitted}
                 />
               </div>
-              <div className="flex flex-col gap-[4.125rem] md:gap-[2.5rem] lg:gap-[5.625rem]">
+              <div className="flex flex-col gap-[2.5rem] md:gap-[4.125rem] lg:gap-[5.625rem]">
                 <div ref={partRef}>
                   <PartSelectionSection
                     selectedPart={formData.part}
@@ -233,19 +233,23 @@ const Application = () => {
                     isSubmitted={isSubmitted}
                   />
                 </div>
-                <div ref={questionsRef}>
-                  <QuestionSection answers={formData.answers} onAnswerChange={updateAnswer} isSubmitted={isSubmitted} />
-                </div>
-
-                <div ref={interviewRef}>
-                  <InterviewScheduleSection
-                    selectedSchedule={formData.interviewSchedule}
-                    onScheduleChange={updateInterviewSchedule}
-                    isSubmitted={isSubmitted}
-                  />
+                <div className="flex flex-col gap-[2.375rem] md:gap-[4rem] lg:gap-[5rem]">
+                  <div ref={questionsRef}>
+                    <QuestionSection
+                      answers={formData.answers}
+                      onAnswerChange={updateAnswer}
+                      isSubmitted={isSubmitted}
+                    />
+                  </div>
+                  <div ref={interviewRef}>
+                    <InterviewScheduleSection
+                      selectedSchedule={formData.interviewSchedule}
+                      onScheduleChange={updateInterviewSchedule}
+                      isSubmitted={isSubmitted}
+                    />
+                  </div>
                 </div>
               </div>
-
               <div ref={agreementRef}>
                 <AgreementSection
                   agreements={formData.agreements}
