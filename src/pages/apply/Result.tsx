@@ -93,19 +93,11 @@ const Result = () => {
 
       return (
         <span key={i} className={chunk.isHighlight ? TW.highlight : ''}>
-          {/* \n을 기준으로 나누어 배열로 만든 뒤, 중간에 브레이크 태그 삽입 */}
           {content.split('\n').map((line, index, array) => (
             <Fragment key={index}>
               {line}
-              {/* 마지막 라인이 아닐 때만 br 삽입 */}
               {index < array.length - 1 && (
-                <br
-                  className={
-                    chunk.isTabletOnlyBreak && !isMobile
-                      ? 'hidden md:block lg:hidden' // 플래그가 있으면 태블릿(md)에서만 노출
-                      : '' // 없으면 기본 줄바꿈 (데스크탑 포함 전 구간)
-                  }
-                />
+                <br className={chunk.isTabletOnlyBreak && !isMobile ? 'hidden md:block lg:hidden' : ''} />
               )}
             </Fragment>
           ))}
