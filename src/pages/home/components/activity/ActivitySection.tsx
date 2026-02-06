@@ -6,19 +6,23 @@ import { combineStyles } from '@shared/utils/combineStyles';
 
 // ActivitySection 스타일 상수화
 const ACTIVITY_SECTION_STYLES = {
+  activity: {
+    base: 'flex justify-center items-center w-full max-w-[100vw] h-[100dvh] overflow-hidden',
+  },
   desktopTabletSection: {
-    base: 'md:inline-flex justify-between items-center w-full max-w-[100vw] h-[100dvh] overflow-hidden pt-[5rem]',
+    base: 'md:inline-flex justify-between items-start w-full max-w-[100vw] pt-[5rem]',
     desktop: 'lg:px-[10rem]',
     tablet: 'md:px-[4rem]',
     mobile: 'hidden',
   },
   mobileSection: {
-    base: 'relative flex w-full max-w-[100vw] h-[100dvh] flex-col items-center justify-center  gap-[2.7rem] ',
+    base: 'relative flex w-full max-w-[100vw] flex-col items-center justify-center  gap-[2.7rem] ',
     tablet: 'md:hidden',
   },
   textContainer: {
-    base: 'inline-flex flex-col items-start justify-center gap-[1.25rem]',
-    tablet: 'md:mt-[6rem]',
+    base: 'inline-flex flex-col items-start justify-start gap-[1.25rem]',
+    desktop: 'lg:mt-0',
+    tablet: 'md:mt-[88px]',
   },
   desktopText: {
     base: `${TEXT_CONTENT_CLASSES} hidden`,
@@ -40,6 +44,7 @@ const ACTIVITY_SECTION_STYLES = {
 } as const;
 
 const ActivitySection = () => {
+  const activityClassName = combineStyles(ACTIVITY_SECTION_STYLES.activity);
   const desktopTabletSectionClassName = combineStyles(ACTIVITY_SECTION_STYLES.desktopTabletSection);
   const mobileSectionClassName = combineStyles(ACTIVITY_SECTION_STYLES.mobileSection);
   const textContainerClassName = combineStyles(ACTIVITY_SECTION_STYLES.textContainer);
@@ -51,26 +56,28 @@ const ActivitySection = () => {
 
   return (
     <>
-      {/* 데스크톱, 태블릿 */}
-      <section className={desktopTabletSectionClassName}>
-        <div className={textContainerClassName}>
-          <SubTitle subTitle={SUB_TITLE.SUB_TITLE_2} subDescription={SUB_TITLE.SUB_DESCRIPTION_2} align="left" />
-          <div className={desktopTextClassName}>{ACTIVITY_CONTENT_TEXT.desktop}</div>
-          <div className={tabletTextClassName}>{ACTIVITY_CONTENT_TEXT.tablet}</div>
+      <section className={activityClassName}>
+        {/* 데스크톱, 태블릿 */}
+        <div className={desktopTabletSectionClassName}>
+          <div className={textContainerClassName}>
+            <SubTitle subTitle={SUB_TITLE.SUB_TITLE_2} subDescription={SUB_TITLE.SUB_DESCRIPTION_2} align="left" />
+            <div className={desktopTextClassName}>{ACTIVITY_CONTENT_TEXT.desktop}</div>
+            <div className={tabletTextClassName}>{ACTIVITY_CONTENT_TEXT.tablet}</div>
+          </div>
+          <div className={cardContainerClassName}>
+            <ActivityCardContainer />
+          </div>
         </div>
-        <div className={cardContainerClassName}>
-          <ActivityCardContainer />
-        </div>
-      </section>
 
-      {/* 모바일 */}
-      <section className={mobileSectionClassName}>
-        <div className={mobileTextContainerClassName}>
-          <SubTitle subTitle={SUB_TITLE.SUB_TITLE_2} subDescription={SUB_TITLE.SUB_DESCRIPTION_2} />
-          <div className={mobileTextClassName}>{ACTIVITY_CONTENT_TEXT.mobile}</div>
-        </div>
-        <div className={cardContainerClassName}>
-          <ActivityCardContainer />
+        {/* 모바일 */}
+        <div className={mobileSectionClassName}>
+          <div className={mobileTextContainerClassName}>
+            <SubTitle subTitle={SUB_TITLE.SUB_TITLE_2} subDescription={SUB_TITLE.SUB_DESCRIPTION_2} />
+            <div className={mobileTextClassName}>{ACTIVITY_CONTENT_TEXT.mobile}</div>
+          </div>
+          <div className={cardContainerClassName}>
+            <ActivityCardContainer />
+          </div>
         </div>
       </section>
     </>
