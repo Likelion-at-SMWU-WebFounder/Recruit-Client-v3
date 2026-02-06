@@ -52,12 +52,12 @@ const STYLES = {
 const SubmitModal = ({ isOpen, onClose, onConfirm, partName, submitStatus }: SubmitModalProps) => {
   const navigate = useNavigate();
 
-  if (!isOpen) return null;
-
   const isSuccess = submitStatus === 'success';
   const isDuplicate = submitStatus === 'duplicate';
   const isLoading = submitStatus === 'loading';
   const isFinalState = isSuccess || isDuplicate;
+
+  if (!isOpen || isLoading) return null;
 
   return (
     <div className={STYLES.overlay}>
@@ -149,7 +149,7 @@ const SubmitModal = ({ isOpen, onClose, onConfirm, partName, submitStatus }: Sub
                   onConfirm();
                 }
               }}>
-              {isLoading ? '제출하기' : isFinalState ? SUCCESS_MODAL.BUTTON : SUBMIT_MODAL.BUTTON_TEXT}
+              {isFinalState ? SUCCESS_MODAL.BUTTON : SUBMIT_MODAL.BUTTON_TEXT}
             </ModalButton>
           </div>
         </div>

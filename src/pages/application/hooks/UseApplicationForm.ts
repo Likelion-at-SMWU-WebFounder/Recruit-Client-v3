@@ -4,8 +4,6 @@ import { postApplication } from '../apis/recruit';
 import type { ApplicationRequest, TrackType, SchoolStatusType, ProgrammersStatusType } from '../types/api';
 import type { ApplicationFormData, ApplicantInfo, PartType, AgreementKey } from '../types/index';
 
-const MOCK_MODE = false;
-
 const initialFormData: ApplicationFormData = {
   applicantInfo: {
     name: '',
@@ -29,6 +27,7 @@ const initialFormData: ApplicationFormData = {
 export const useApplicationForm = () => {
   const [formData, setFormData] = useState<ApplicationFormData>(initialFormData);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'duplicate'>('idle');
+  const [isMockMode, setIsMockMode] = useState(false);
 
   const resetForm = useCallback(() => setFormData(initialFormData), []);
 
@@ -135,8 +134,8 @@ export const useApplicationForm = () => {
       if (submitStatus === 'loading') return false;
       setSubmitStatus('loading');
 
-      if (MOCK_MODE) {
-        await new Promise((r) => setTimeout(r, 1500));
+      if (isMockMode) {
+        await new Promise((r) => setTimeout(r, 5000));
         setSubmitStatus('success');
         return true;
       }
@@ -164,10 +163,12 @@ export const useApplicationForm = () => {
         return false;
       }
     },
-    [submitStatus, transformDataForServer, resetForm]
+    [submitStatus, transformDataForServer, resetForm, isMockMode]
   );
 
   return {
+    isMockMode,
+    setIsMockMode,
     formData,
     submitStatus,
     updateApplicantInfo,

@@ -9,6 +9,7 @@ import VerificationSection from './components/VerificationSection';
 import SubmitModal from './components/SubmitModal';
 import { PAGE_TITLE, PAGE_SUBTITLE, QUESTIONS } from './constants/index';
 import DefaultButton from '@/shared/components/button/DefaultButton';
+import LoadingOverlay from './components/LoadingOverlay';
 import Layout from '@/shared/components/Layout';
 
 const TW = {
@@ -38,6 +39,8 @@ const TW = {
 
 const Application = () => {
   const {
+    isMockMode,
+    setIsMockMode,
     formData,
     submitStatus,
     updateApplicantInfo,
@@ -204,6 +207,23 @@ const Application = () => {
 
   return (
     <Layout menuMode="light" footerMode="light">
+      <div className="fixed right-10 bottom-10 z-[10000] flex flex-col items-end gap-3">
+        <div
+          className={`rounded-lg px-4 py-2 text-xs font-bold text-white shadow-lg transition-colors ${isMockMode ? 'bg-green-500' : 'bg-red-500'}`}>
+          {isMockMode ? 'MOCK MODE: ON (실제 서버에 안 보내짐)' : 'MOCK MODE: OFF (실제 서버로 전송됨)'}
+        </div>
+        <button
+          type="button"
+          onClick={() => setIsMockMode(!isMockMode)}
+          className="flex h-14 w-14 items-center justify-center rounded-full bg-slate-800 text-white shadow-xl transition-all hover:bg-slate-700 active:scale-95">
+          <span className="text-center text-[10px] font-bold">
+            MOCK
+            <br />
+            TOGGLE
+          </span>
+        </button>
+      </div>
+      {submitStatus === 'loading' && <LoadingOverlay />}
       <div className={TW.container}>
         <main className={TW.main}>
           {/* 헤더 섹션 */}
