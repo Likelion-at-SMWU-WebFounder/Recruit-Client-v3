@@ -1,6 +1,6 @@
 export const TW = {
   // layout
-  section: 'flex w-full items-center justify-center py-[9.37rem] md:py-[12.23244rem] lg:py-[6.0625rem] px-[1rem]',
+  section: 'flex w-full items-center justify-center py-[9.37rem] md:py-[12.23244rem] lg:py-[6.0625rem] md:px-[1rem]',
   container: 'flex w-full flex-col items-center',
 
   // heading

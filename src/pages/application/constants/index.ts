@@ -287,7 +287,7 @@ export const SUBMIT_MODAL = {
 
 export const SUCCESS_MODAL = {
   TITLE: '서류 접수가 완료되었습니다.',
-  DESC_1: '멋쟁이사자처럼 숙명여대 13기 모집에 지원해 \n주셔서 감사합니다.',
+  DESC_1: '멋쟁이사자처럼 숙명여대 14기 모집에 지원해 \n주셔서 감사합니다.',
   DESC_2_PREFIX: '정상적으로 서류가 접수된 경우, ',
   DESC_2_BLUE: '확인 메일',
   DESC_2_SUFFIX: '을 발송 드릴 예정입니다.',

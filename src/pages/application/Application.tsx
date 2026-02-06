@@ -25,7 +25,8 @@ const TW = {
     md:mt-[18.5rem] md:mb-[11.25rem] 
     lg:mt-[22.8rem] lg:mb-[15.94rem]
   `,
-  title: 'text-center text-[1.375rem] font-semibold break-keep md:text-[1.875rem] lg:text-[2.625rem] leading-[140%]',
+  title:
+    'text-center text-[1.375rem] font-semibold break-keep md:text-[1.875rem] lg:text-[2.625rem] leading-[140%] text-[var(--color-navyblack-main)]',
   subTitle:
     'text-center text-[0.875rem] font-semibold text-[var(--color-blue-main)] md:text-[1.125rem] lg:text-[1.25rem] leading-[120%] md:leading-[140%]',
 
