@@ -42,7 +42,7 @@ const MENU_STYLES = {
     base: 'fixed top-0 left-0 w-[100vw] h-[100vh] inline-flex flex-col justify-start items-start z-[400] bg-white md:hidden transform transition-transform duration-300 ease-in-out',
   },
   mobileMenuList: {
-    base: 'm-[2.5rem_1rem] flex flex-col gap-[2rem] text-[1.5rem] font-medium',
+    base: 'm-[2.5rem] flex flex-col gap-[2rem] text-[1.5rem] font-medium',
   },
   mobileIconContainer: {
     base: 'inline-flex gap-[1rem]',
@@ -50,8 +50,11 @@ const MENU_STYLES = {
   mobileIconItem: {
     base: 'cursor-pointer h-[2rem] w-[2rem]',
   },
+  mobileCloseButtonContainer: {
+    base: 'w-full flex  items-center justify-end pr-[1.5rem] h-[60px]',
+  },
   mobileCloseButton: {
-    base: 'inline-flex h-[3.5rem] w-full justify-end p-[1.2rem_1rem] pr-[1.5rem]',
+    base: 'w-[40px] h-[40px] ',
   },
   hamburgerButton: {
     base: 'cursor-pointer md:hidden w-[40px] h-[40px]',
@@ -108,6 +111,7 @@ const MobileDrawer = ({ setDrawerOpen, mobileMenuColor }: MobileDrawerProps) => 
     isVisible ? 'translate-x-0' : 'translate-x-full'
   }`;
   const mobileMenuListClassName = combineStyles(MENU_STYLES.mobileMenuList);
+  const mobileCloseButtonContainerClassName = combineStyles(MENU_STYLES.mobileCloseButtonContainer);
   const mobileCloseButtonClassName = combineStyles(MENU_STYLES.mobileCloseButton);
   const mobileIconContainerClassName = combineStyles(MENU_STYLES.mobileIconContainer);
   const mobileIconItemClassName = `${combineStyles(MENU_STYLES.mobileIconItem)} ${mobileMenuColor} ${hoverOption}`;
@@ -115,9 +119,14 @@ const MobileDrawer = ({ setDrawerOpen, mobileMenuColor }: MobileDrawerProps) => 
   return (
     <>
       <div className={mobileMenuContainerClassName} role="dialog" aria-modal="true" aria-label="모바일 메뉴 서랍">
-        <span className={mobileCloseButtonClassName}>
-          <RiCloseLargeLine className={`${mobileMenuColor} ${hoverOption} cursor-pointer`} onClick={handleClose} />
-        </span>
+        <div className={mobileCloseButtonContainerClassName}>
+          <div className={mobileCloseButtonClassName}>
+            <RiCloseLargeLine
+              className={`${mobileMenuColor} ${hoverOption} h-full w-full cursor-pointer`}
+              onClick={handleClose}
+            />
+          </div>
+        </div>
         <div className={mobileMenuListClassName}>
           {MENU_ORDER.map((item) => (
             <NavLink
