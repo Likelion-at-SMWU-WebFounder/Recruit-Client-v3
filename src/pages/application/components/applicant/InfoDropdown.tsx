@@ -57,18 +57,25 @@ const InfoDropdown = ({ label, required, value, options, errorMessage, onChange 
 
   // 데스크탑 클릭 방어 로직
   const handleTriggerClick = () => {
-    if (window.innerWidth >= 1024) return;
     setIsOpen(!isOpen);
+  };
+
+  const handleMouseEnter = () => {
+    if (window.innerWidth >= 1024) setIsOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    if (window.innerWidth >= 1024) setIsOpen(false);
   };
 
   // 2. 애니메이션 클래스 개선
   const activeClass = isOpen
     ? 'opacity-100 translate-y-0 visible pointer-events-auto max-md:scale-100'
-    : 'opacity-0 -translate-y-4 invisible pointer-events-none max-md:scale-95 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 lg:group-hover:visible lg:group-hover:pointer-events-auto';
-  const arrowRotate = isOpen ? 'rotate-180' : 'rotate-0 lg:group-hover:rotate-180';
+    : 'opacity-0 -translate-y-4 invisible pointer-events-none max-md:scale-95';
+  const arrowRotate = isOpen ? 'rotate-180' : 'rotate-0';
 
   return (
-    <div className={STYLES.container}>
+    <div className={STYLES.container} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       {/* 모바일 오버레이 */}
       {isOpen && <div className="fixed inset-0 z-[100] bg-[#4D4D4E]/65 md:hidden" onClick={() => setIsOpen(false)} />}
 
