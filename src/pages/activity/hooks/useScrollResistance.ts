@@ -97,6 +97,8 @@ const useScrollResistance = (strength: number = 0.25, scrollContainerRef: React.
 
       if (!isViewportInsideSection) {
         // 섹션 밖에서는 기본 스크롤 + 스냅
+        // 혹시 이전 프레임에서 애니메이션 중이었다면 정리해주기
+        stopAnimation();
         return;
       }
 
@@ -105,6 +107,8 @@ const useScrollResistance = (strength: number = 0.25, scrollContainerRef: React.
 
       // 섹션 상단에서 위로 / 하단에서 아래로 → 섹션 탈출 허용 (저항 미적용)
       if ((isScrollingUp && atTopEdge) || (isScrollingDown && atBottomEdge)) {
+        // 이 시점에는 다시 위/아래 섹션의 scroll-snap이 동작해야 하므로
+        // 애니메이션과 snapType을 모두 정리
         stopAnimation();
         return;
       }
