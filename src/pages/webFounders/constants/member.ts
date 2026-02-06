@@ -15,7 +15,7 @@ export const WEBFOUNDERS_3TH = {
       responsibilities: '홈, 소개, 프로젝트 페이지 UI/UX 기획 및 디자인',
       linkedin: 'https://www.linkedin.com/in/jueun-kang-ux',
       email: 'next.kje@gmail.com',
-      notion: 'https://exultant-bakery-289.notion.site/',
+      notion: 'https://jueunkang-resume.notion.site/',
     },
     {
       id: 2,
