@@ -16,7 +16,7 @@ const STYLES = {
   // 배경 및 모달 본체
   overlay: 'fixed inset-0 z-[100] flex items-center justify-center bg-black/50 px-4',
   modalContainer:
-    'relative flex w-full lg:max-w-[43.4375rem] md:max-w-[39.3125rem] max-w-[21.4375rem] flex-col rounded-[1.25rem] bg-[var(--color-white-main)] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] p-[1.9375rem_1.625rem] md:pl-[3.3125rem] md:py-[4.25rem] lg:p-[5rem_3.25rem]',
+    'relative flex w-full lg:max-w-[43.4375rem] md:max-w-[39.3125rem] max-w-[21.4375rem] flex-col rounded-[1.25rem] bg-[var(--color-white-main)] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] p-[1.9375rem_1.625rem] md:px-[3.3125rem] md:py-[4.25rem] lg:p-[5rem_3.25rem]',
 
   // 닫기 버튼
   closeButton: 'absolute top-6 right-6 cursor-pointer',
@@ -33,6 +33,7 @@ const STYLES = {
     text-[0.875rem] leading-[160%] font-medium break-keep text-[#899099] 
     md:text-[1.25rem] lg:text-[1.375rem]
     whitespace-pre-line md:whitespace-normal 
+    md:tracking-[-0.02em] lg:tracking-normal
   `,
 
   // 강조 및 링크 스타일

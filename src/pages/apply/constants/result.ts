@@ -3,7 +3,7 @@ export const DOCUMENT_RESULT_TEXT = {
   SIGNATURE: '숙명여대 멋쟁이사자처럼 운영진 드림',
   PASS: {
     TITLE: '2026 멋쟁이사자처럼 14기 서류 전형 “합격"을 진심으로 축하드립니다.',
-    mobileTitle: '2026 멋쟁이사자처럼 14기 서류 전형\n“합격"을 진심으로 축하드립니다.',
+    mobileTitle: '\n2026 멋쟁이사자처럼 14기 서류 전형\n“합격"을 진심으로 축하드립니다.',
     DESCRIPTION: (name: string) => [
       {
         text: `${name} 지원자님이 선택하셨던 면접 시간을 고려하여 \n아래의 일정으로 면접 전형을 진행할 예정입니다.`,
@@ -36,7 +36,7 @@ export const DOCUMENT_RESULT_TEXT = {
       [
         {
           text: '* 불가피한 사정으로 면접 시간 변경이 필요한 경우, 마찬가지로 문자 회신 부탁드립니다.',
-          textMobile: '* 불가피한 사정으로 면접 시간 변경이 필요한 경우,\n마찬가지로 문자 회신 부탁드립니다.',
+          textMobile: '\n* 불가피한 사정으로 면접 시간 변경이 필요한 경우,\n마찬가지로 문자 회신 부탁드립니다.',
           isHighlight: false,
         },
       ],
@@ -77,11 +77,16 @@ export const FINAL_RESULT_TEXT = {
       {
         text: '하셨습니다.\n치열한 경쟁 속에서 운영진들과 거듭 회의를 거쳐 결정된 결과인 만큼 \n한 해 동안 끝까지 함께하길 희망한다는 말씀부터 드립니다.\n오늘 중으로 카카오톡 단체방에 초대될 예정이며, 관련 공지 참고해 주시길 바랍니다.\n또한, 최종 합격 확인 여부는 아래 ',
         textMobile:
-          '하셨습니다.\n치열한 경쟁 속에서 운영진들과 거듭 회의를 거쳐\n결정된 결과인 만큼 한 해 동안 끝까지 함께하길\n희망한다는 말씀부터 드립니다.\n\n\n오늘 중으로 카카오톡 단체방에 초대될 예정이며, 관련 공지 참고해 주시길 바랍니다. 또한, 최종 합격\n확인 여부는 아래 ',
+          '하셨습니다.\n치열한 경쟁 속에서 운영진들과 거듭 회의를 거쳐\n결정된 결과인 만큼 한 해 동안 끝까지 함께하길\n희망한다는 말씀부터 드립니다.\n\n\n오늘 중으로 카카오톡 단체방에 초대될 예정이며,\n관련 공지 참고해 주시길 바랍니다. 또한, 최종 합격\n확인 여부는 아래 ',
         isHighlight: false,
       },
       { text: '구글 폼', isHighlight: true },
-      { text: ' 작성으로 확인할 예정이니, ', textMobile: ' 작성으로 확인할 예정이니,\n', isHighlight: false },
+      {
+        text: ' 작성으로 확인할 예정이니,\n ',
+        textMobile: ' 작성으로 확인할 예정이니,\n',
+        isHighlight: false,
+        isTabletOnlyBreak: true,
+      },
       { text: '금일 17시', isHighlight: true },
       {
         text: `까지 반드시 작성 부탁드립니다.\n다시 한번 합격을 진심으로 축하드리며, ${name}님이 보여주신 열정 기대하고 있겠습니다.`,
@@ -91,7 +96,7 @@ export const FINAL_RESULT_TEXT = {
     ],
     FORM_SECTION: '[최종 합격 확인 회신]*금일 17시까지 반드시 제출',
     FORM_LINK_TEXT: '숙명여대 멋쟁이사자처럼 14기 합격 확인 구글 폼',
-    FORM_URL: 'https://forms.gle/example',
+    FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSeZeJ7aIT92Ec4mRUjQ8ri0_AK74YVeODEkAqCF1mN58RSPZw/viewform',
   },
   FAIL: {
     THANKS: '멋쟁이사자처럼 모집에 관심을 가지고 지원해 주셔서 진심으로 감사드립니다.',
@@ -122,7 +127,7 @@ export const FINAL_RESULT_TEXT = {
         { text: `${name}`, isHighlight: true },
         {
           text: '님의 면접 참석에 대해 다시 한번 감사드립니다.',
-          textMobile: '님의 면접 참석에 대해 다시 한번 감사드립니다.',
+          textMobile: '님의 면접 참석에 대해\n다시 한번 감사드립니다.',
           isHighlight: false,
         },
       ],

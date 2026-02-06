@@ -121,14 +121,14 @@ export const COMPLETION_CONDITIONS = [
 export const SCHEDULES: ScheduleTypes[] = [
   {
     id: 's1',
-    dateRange: '02.12(금)~02.18(금)',
+    dateRange: '02.12(목)~02.18(수)',
     dateRangeMobile: '02.12~02.18',
     label: '서류 접수',
     status: 'current',
   },
   {
     id: 's2',
-    dateRange: '02.22(알)',
+    dateRange: '02.22(일)',
     dateRangeMobile: '02.22',
     label: '서류 발표',
     status: 'upcoming',
@@ -161,7 +161,7 @@ export const SCHEDULES: ScheduleTypes[] = [
 export const FAQS: FAQTypes[] = [
   {
     id: 'f1',
-    question: 'Q. 꼭 컴퓨터 관련 전공이어야만 하나요?\n기초가 갖추어지지 않은 비전공자의 경우에는 지원이 힘든가요?',
+    question: 'Q. 꼭 컴퓨터 관련 전공이어야만 하나요? \n기초가 갖추어지지 않은 비전공자의 경우에는 지원이 힘든가요?',
     answer:
       '멋쟁이사자처럼은 비전공자와 전공자 모두를 대상으로 모집합니다. 기초를 갖춘 상태에서 동아리에 가입한 사람들도 있는 한편, 동아리 가입 후 코딩을\n 아예 처음 시작한 사람들도 있습니다. 코딩 경험이 없으시더라도 웹 서비스 또는 IT 관련 창업에 관심이 많으시고, 자기소개서와 면접을 통해 활동 의지\n와 열정을 충분히 보여주신다면 누구든지 활동 가능합니다.',
   },
@@ -174,7 +174,7 @@ export const FAQS: FAQTypes[] = [
   {
     id: 'f3',
     question: 'Q. 고학년, 저학년 비율이 궁금해요!',
-    answer: '작년 12기 기준으로는 1~4학년에 걸쳐 다양했습니다.',
+    answer: '12기 기준으로는 1~4학년, 작년 13기 기준으로는 2~4학년에 걸쳐 다양했습니다.',
   },
   {
     id: 'f4',
@@ -203,7 +203,7 @@ export const FAQS: FAQTypes[] = [
     id: 'f8',
     question: 'Q. 수료 조건이 어떻게 되나요?',
     answer:
-      '중앙 멋쟁이사자처럼 수료 조건: 정기 세션, 중앙 아이디어톤, 중앙 해커톤 참여\n숙명여대 멋쟁이사자처럼 수료 조건: 중앙 멋쟁이사자처럼 수료 조건 + 연합 해커톤 및 파이널 프로젝트 참여',
+      '중앙 멋쟁이사자처럼 수료 조건: 멋사 중앙 OT, 정기 세션, 중앙 아이디어톤, 중앙 해커톤 참여\n숙명여대 멋쟁이사자처럼 수료 조건: 숙명여대 멋사 OT, 중앙 멋쟁이사자처럼 수료 조건 + 연합 해커톤 및 파이널 프로젝트 참여',
   },
 ];
 
