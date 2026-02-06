@@ -27,7 +27,7 @@ const cx = (...classes: Array<string | false | null | undefined>) => classes.fil
 
 const TW = {
   container: 'flex h-full w-full flex-col items-center justify-center',
-  logo: 'mb-[1.25rem] w-[7.8094rem] md:w-[14.5406rem] md:mb-[2.63rem] lg:mb-[2.81rem] lg:w-[15.8056rem]',
+  logo: 'mb-[1.25rem] w-[7.8094rem] h-[2rem] md:w-[14.5408rem] md:h-[3.75rem] md:mb-[2.63rem] lg:mb-[2.81rem] lg:w-[15.8059rem] lg:h-[4rem]',
   contentBox: 'flex w-full flex-col items-center',
   textBase: `
     text-[var(--color-white-main)] font-medium text-center whitespace-pre-line break-keep
@@ -47,7 +47,9 @@ const Result = () => {
   const { pathname, state } = useLocation() as { pathname: string; state: LocationState };
   const navigate = useNavigate();
 
-  const [isMobile, setIsMobile] = useState(!window.matchMedia('(min-width: 640px)').matches);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' ? !window.matchMedia('(min-width: 640px)').matches : false
+  );
 
   useEffect(() => {
     window.scrollTo(0, 0);
