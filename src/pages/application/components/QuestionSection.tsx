@@ -8,7 +8,7 @@ interface QuestionSectionProps {
 }
 
 const STYLES = {
-  section: 'flex w-full flex-col items-center gap-[1.5rem] md:gap-[2.0625rem] lg:gap-[2.1875rem]',
+  section: 'flex w-full flex-col items-center gap-[2.375rem] md:gap-[4rem] lg:gap-[5rem]',
   container: 'flex w-full flex-col items-start w-full px-[1.06rem] md:px-[0rem] md:w-[52.75rem] lg:w-[89.1875rem]',
 
   // 헤더 영역

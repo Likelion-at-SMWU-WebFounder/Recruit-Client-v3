@@ -222,19 +222,17 @@ const Application = () => {
                   isSubmitted={isSubmitted}
                 />
               </div>
-
-              <div ref={partRef}>
-                <PartSelectionSection
-                  selectedPart={formData.part}
-                  onPartChange={updatePart}
-                  programmersCompleted={formData.programmersCompleted}
-                  onProgrammersChange={updateProgrammersCompleted}
-                  onFileChange={setProgrammersFile}
-                  isSubmitted={isSubmitted}
-                />
-              </div>
-
-              <div className="flex flex-col gap-[0.5rem] md:gap-[0.8125rem]">
+              <div className="flex flex-col gap-[4.125rem] md:gap-[2.5rem] lg:gap-[5.625rem]">
+                <div ref={partRef}>
+                  <PartSelectionSection
+                    selectedPart={formData.part}
+                    onPartChange={updatePart}
+                    programmersCompleted={formData.programmersCompleted}
+                    onProgrammersChange={updateProgrammersCompleted}
+                    onFileChange={setProgrammersFile}
+                    isSubmitted={isSubmitted}
+                  />
+                </div>
                 <div ref={questionsRef}>
                   <QuestionSection answers={formData.answers} onAnswerChange={updateAnswer} isSubmitted={isSubmitted} />
                 </div>
