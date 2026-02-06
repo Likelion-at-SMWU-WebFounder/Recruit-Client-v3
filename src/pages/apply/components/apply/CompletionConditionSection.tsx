@@ -85,8 +85,9 @@ const TW = {
   frontImgBase: 'absolute object-contain',
   frontImg0: '-right-[23%] -bottom-[35%] h-[130%] w-auto lg:-right-[23%] lg:-bottom-[60%] lg:h-[170%] scale-[1.7]',
   frontImg1: '-right-[21%] -bottom-[33%] h-[120%] w-auto lg:-right-[21%] lg:-bottom-[55%] lg:h-[160%] scale-[1.3]',
+
   backFace: cx(
-    'absolute inset-0 [transform:rotateY(180deg)_translateZ(1px)] overflow-hidden rounded-[1.25rem] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] [backface-visibility:hidden] [-webkit-backface-visibility:hidden] lg:py-[4.38rem] lg:px-[5.13rem]',
+    'absolute inset-0 [transform:rotateY(180deg)_translateZ(1px)] overflow-hidden rounded-[1.25rem] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] [backface-visibility:hidden] [-webkit-backface-visibility:hidden] py-[2.06rem] px-[2.5rem] lg:py-[4.38rem] lg:px-[5.13rem]',
     'bg-[var(--color-blue-main)]'
   ),
 
