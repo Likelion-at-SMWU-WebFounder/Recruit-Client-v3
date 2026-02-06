@@ -42,29 +42,15 @@ const Apply = () => {
 
   return (
     <Layout menuMode={menuMode} footerMode="light">
-      <main className="w-full bg-white lg:h-screen lg:snap-y lg:snap-mandatory lg:overflow-y-auto lg:scroll-smooth">
-        <section ref={heroRef} className="w-full lg:h-fit lg:min-h-screen lg:snap-start">
+      <main className="w-full bg-white">
+        <div ref={heroRef}>
           <HeroSection />
-        </section>
-
-        <section className="w-full lg:h-fit lg:min-h-screen lg:snap-start">
-          <RecruitPartSection />
-        </section>
-
-        <section className="w-full lg:h-fit lg:min-h-screen lg:snap-start">
-          <RecruitInfoSection />
-        </section>
-
-        <section className="w-full lg:h-fit lg:min-h-screen lg:snap-start">
-          <CompletionConditionSection />
-        </section>
-
-        <section className="w-full lg:h-fit lg:min-h-screen lg:snap-start">
-          <ScheduleSection />
-        </section>
-        <section className="w-full lg:h-fit lg:min-h-screen lg:snap-start">
-          <FAQSection />
-        </section>
+        </div>
+        <RecruitPartSection />
+        <RecruitInfoSection />
+        <CompletionConditionSection />
+        <ScheduleSection />
+        <FAQSection />
       </main>
     </Layout>
   );

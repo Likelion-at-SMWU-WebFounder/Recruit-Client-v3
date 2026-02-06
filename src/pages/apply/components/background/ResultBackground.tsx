@@ -25,7 +25,7 @@ interface ResultBackgroundProps {
 const ResultBackground = ({ children, paddingClassName }: ResultBackgroundProps) => {
   return (
     <ReusableBackground
-      className="flex h-[53.25rem] items-center justify-center md:h-[85.375rem] lg:h-[67.5rem]"
+      className="flex h-[46rem] items-center justify-center md:h-[85.375rem] lg:h-[67.5rem]"
       isAnimated={false}>
       <div className={`${BASE_CARD_STYLE} ${paddingClassName || DEFAULT_PADDING}`}>{children}</div>
     </ReusableBackground>
