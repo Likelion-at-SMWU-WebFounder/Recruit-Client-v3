@@ -51,7 +51,7 @@ const TW = {
   mobileRow: 'flex items-center gap-[0.375rem]',
   mobileLightNum: 'text-[1.125rem] font-semibold text-[var(--color-navyblack-main)] leading-[120%]',
   mobileBlueNum: 'text-[1.125rem] font-semibold text-[var(--color-white-main)] leading-[120%]',
-  mobileLightLabel: 'text-[1rem] font-medium text-[var(--color-navyblack-main) leading-[120%]]',
+  mobileLightLabel: 'text-[1rem] font-medium text-[var(--color-navyblack-main)] leading-[120%]]',
   mobileBlueLabel: 'text-[1rem] font-medium text-[var(--color-white-main)] leading-[120%]',
   mobileBlueDate: 'text-[0.875rem] font-medium text-[#F7FAFF]/75 leading-[120%]',
   mobileLightDetail: 'text-[0.875rem] font-medium text-[#1B2634]/70 leading-[120%]',

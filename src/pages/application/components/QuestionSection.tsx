@@ -30,7 +30,7 @@ const STYLES = {
     text-[var(--color-navyblack-main)] shadow-[1px_1px_8.4px_0_rgba(27,38,52,0.10)] transition-all outline-none
     text-[1rem] md:text-[1.375rem] lg:text-[1.75rem]
     font-medium leading-[120%]
-    placeholder:text-[rgba(27,38,52,0.45)] break-keep leading-[120%]
+    placeholder:text-[rgba(27,38,52,0.45)] placeholder:break-keep leading-[120%]
   `,
 
   // 입력 필드 크기 및 상태
