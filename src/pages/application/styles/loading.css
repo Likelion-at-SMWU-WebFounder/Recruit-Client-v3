@@ -24,7 +24,7 @@
 
 @media (min-width: 1024px) {
   .loader {
-    --loader-size: 21.875rem;
+    --loader-size: 18.625rem;
     --line-weight: 0.5rem;
     --loader-perspective: 75rem;
   }

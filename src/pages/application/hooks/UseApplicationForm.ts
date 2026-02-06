@@ -26,7 +26,7 @@ const initialFormData: ApplicationFormData = {
 
 export const useApplicationForm = () => {
   const [formData, setFormData] = useState<ApplicationFormData>(initialFormData);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'duplicate'>('idle');
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'duplicate'>('loading');
   const [isMockMode, setIsMockMode] = useState(false);
 
   const resetForm = useCallback(() => setFormData(initialFormData), []);
