@@ -9,7 +9,7 @@ import useScrollResistance from '@pages/activity/hooks/useScrollResistance';
 // ScheduleSection 스타일 상수화
 const SCHEDULE_SECTION_STYLES = {
   section: {
-    base: 'scrollbar-hidden relative flex flex-col justify-center items-center',
+    base: 'scrollbar-hidden relative flex flex-col justify-start items-center',
     desktop: 'lg:py-[8rem] lg:gap-[7.63rem]',
     tablet: 'md:py-[6rem] md:gap-[2rem]',
     mobile: 'py-[4rem] gap-[1.5rem]',
@@ -17,7 +17,7 @@ const SCHEDULE_SECTION_STYLES = {
   contentWrapper: {
     base: 'relative w-full h-scroll flex flex-col justify-center items-center',
     desktop: 'lg:pb-[15rem]',
-    tablet: 'md:pb-[15rem]',
+    tablet: 'md:pt-[30rem] md:pb-[15rem]',
     mobile: 'pb-[15rem]',
   },
   stroke: {
