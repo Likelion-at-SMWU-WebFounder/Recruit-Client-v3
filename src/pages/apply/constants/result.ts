@@ -94,7 +94,7 @@ export const FINAL_RESULT_TEXT = {
         isHighlight: false,
       },
     ],
-    FORM_SECTION: '[최종 합격 확인 회신]*금일 17시까지 반드시 제출',
+    FORM_SECTION: '[최종 합격 확인 회신] * 금일 17시까지 반드시 제출',
     FORM_LINK_TEXT: '숙명여대 멋쟁이사자처럼 14기 합격 확인 구글 폼',
     FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSeZeJ7aIT92Ec4mRUjQ8ri0_AK74YVeODEkAqCF1mN58RSPZw/viewform',
   },
