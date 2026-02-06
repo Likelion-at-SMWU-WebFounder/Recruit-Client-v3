@@ -121,14 +121,14 @@ export const COMPLETION_CONDITIONS = [
 export const SCHEDULES: ScheduleTypes[] = [
   {
     id: 's1',
-    dateRange: '02.12(금)~02.18(금)',
+    dateRange: '02.12(목)~02.18(수)',
     dateRangeMobile: '02.12~02.18',
     label: '서류 접수',
     status: 'current',
   },
   {
     id: 's2',
-    dateRange: '02.22(알)',
+    dateRange: '02.22(일)',
     dateRangeMobile: '02.22',
     label: '서류 발표',
     status: 'upcoming',
