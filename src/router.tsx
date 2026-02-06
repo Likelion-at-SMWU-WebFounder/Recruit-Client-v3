@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
 import { ROUTER_URL } from '@shared/constants/url';
+import RouteGuard from './shared/components/RouteGuard';
 
 import Home from '@pages/home/Home';
 import About from '@pages/about/About';
@@ -12,6 +13,7 @@ import Activity from '@pages/activity/Activity';
 import WebFounders from '@pages/webFounders/WebFounders';
 import NotFound from '@pages/error/NotFound';
 import ResultUnavailable from '@/pages/error/ResultUnavailable';
+import ApplyUnAvailable from '@pages/error/ApplyUnavailable';
 import Notify from '@pages/apply/Notify';
 import ResultCheck from '@pages/apply/ResultCheck';
 import Result from '@/pages/apply/Result';
@@ -27,12 +29,48 @@ const router = createBrowserRouter([
       { path: ROUTER_URL.PROJECT_DETAIL, element: <ProjectDetail /> },
       { path: ROUTER_URL.APPLY, element: <Apply /> },
       { path: ROUTER_URL.NOTIFY, element: <Notify /> },
-      { path: ROUTER_URL.CHECK_DOCUMENT, element: <ResultCheck /> },
-      { path: ROUTER_URL.CHECK_FINAL, element: <ResultCheck /> },
-      { path: ROUTER_URL.RESULT_DOCUMENT, element: <Result /> },
-      { path: ROUTER_URL.RESULT_FINAL, element: <Result /> },
+      {
+        path: ROUTER_URL.CHECK_DOCUMENT,
+        element: (
+          <RouteGuard>
+            <ResultCheck />
+          </RouteGuard>
+        ),
+      },
+      {
+        path: ROUTER_URL.CHECK_FINAL,
+        element: (
+          <RouteGuard>
+            <ResultCheck />
+          </RouteGuard>
+        ),
+      },
+      {
+        path: ROUTER_URL.RESULT_DOCUMENT,
+        element: (
+          <RouteGuard>
+            <Result />
+          </RouteGuard>
+        ),
+      },
+      {
+        path: ROUTER_URL.RESULT_FINAL,
+        element: (
+          <RouteGuard>
+            <Result />
+          </RouteGuard>
+        ),
+      },
       { path: ROUTER_URL.RESULT_UNAVAILABLE, element: <ResultUnavailable /> },
-      { path: ROUTER_URL.APPLICATION, element: <Application /> },
+      { path: ROUTER_URL.APPLY_UNAVAILABLE, element: <ApplyUnAvailable /> },
+      {
+        path: ROUTER_URL.APPLICATION,
+        element: (
+          <RouteGuard>
+            <Application />
+          </RouteGuard>
+        ),
+      },
       { path: ROUTER_URL.ACTIVITY, element: <Activity /> },
       { path: ROUTER_URL.WEBFOUNDERS, element: <WebFounders /> },
       { path: '*', element: <NotFound /> },

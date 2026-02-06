@@ -10,9 +10,10 @@ export const ROUTER_URL = {
   RESULT_DOCUMENT: '/apply/document/result',
   RESULT_FINAL: '/apply/final/result',
   RESULT_UNAVAILABLE: '/result-unavailable',
+  APPLY_UNAVAILABLE: '/apply-unavailable',
   ACTIVITY: '/activity',
   WEBFOUNDERS: '/webfounders',
-  APPLICATION: '/application',
+  APPLICATION: '/apply/application',
 
   // 추가되는 거 있음 여기에 작성
 };
