@@ -54,8 +54,8 @@ const MobileDrawer = ({ setDrawerOpen, mobileMenuColor }: MobileDrawerProps) => 
   };
 
   const mobileMenuContainerClasses = `
-    fixed top-0 left-0 w-[100vw] h-[100vh] inline-flex flex-col justify-start items-start z-[200] bg-white md:hidden
-    transform transition-transform duration-300 ease-in-out
+    fixed top-0 left-0 w-[100vw] h-[100vh] inline-flex flex-col justify-start items-start z-[400] bg-white md:hidden
+    transform transition-transform duration-300 ease-in-out 
     ${isVisible ? 'translate-x-0' : 'translate-x-full'}
   `;
   const mobileMenuListClasses = 'm-[2.5rem_1rem] flex flex-col gap-[2rem] text-[1.5rem] font-medium';

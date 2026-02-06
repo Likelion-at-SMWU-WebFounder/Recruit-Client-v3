@@ -14,7 +14,7 @@ const APPLY_SECTION_STYLES = {
     base: 'relative flex h-[100dvh] w-full max-w-[100vw] flex-col justify-center items-center overflow-hidden bg-cover bg-center bg-no-repeat',
   },
   content: {
-    base: 'inline-flex flex-col items-center justify-center z-200 ',
+    base: 'inline-flex flex-col items-center justify-center z-10 ',
     desktop: 'lg:gap-[35rem]',
     tablet: 'md:gap-[25rem]',
     mobile: 'gap-[20rem]',
