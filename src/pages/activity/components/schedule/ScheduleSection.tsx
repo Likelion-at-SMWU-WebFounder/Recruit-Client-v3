@@ -16,9 +16,9 @@ const SCHEDULE_SECTION_STYLES = {
   },
   contentWrapper: {
     base: 'relative w-full h-scroll flex flex-col justify-center items-center',
-    desktop: 'lg:pb-[5rem]',
-    tablet: 'md:pb-[10rem]',
-    mobile: 'pb-[10rem]',
+    desktop: 'lg:pb-[15rem]',
+    tablet: 'md:pb-[15rem]',
+    mobile: 'pb-[15rem]',
   },
   stroke: {
     base: 'absolute left-1/2 top-0 -translate-x-1/2 bg-blue/30',
