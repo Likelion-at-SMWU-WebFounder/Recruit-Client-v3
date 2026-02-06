@@ -39,17 +39,16 @@ const SCHEDULE_BOX_STYLE = {
     base: 'inline-flex items-center overflow-hidden',
     left: 'justify-end',
     right: 'justify-start',
-    desktop: 'lg:flex-row lg:gap-[1.25rem]',
-    tablet: 'md:flex-row md:gap-[0.67rem]',
-    mobile: 'flex-col gap-[0.26rem]',
+    desktop: 'lg:flex-row lg:gap-[1.25rem] lg:mt-[1rem]',
+    tablet: 'md:flex-row md:gap-[0.67rem] md:mt-[0.5rem]',
+    mobile: 'flex-col gap-[0.26rem] mt-[0.2rem]',
     active: 'visible',
     inactive: 'hidden',
   },
   image: {
-    base: 'rounded-[1.05531rem]',
-    desktop: 'lg:w-[18.30919rem] lg:h-[11.92475rem]',
-    tablet: 'md:w-[9.76488rem] md:h-[6.35988rem]',
-    mobile: 'w-[7.5rem] h-[4.875rem]',
+    desktop: 'lg:w-[18.30919rem] lg:h-[11.92475rem] lg:rounded-[1.05531rem]',
+    tablet: 'md:w-[9.76488rem] md:h-[6.35988rem] md:rounded-[0.5625rem]',
+    mobile: 'w-[7.5rem] h-[4.875rem] rounded-[0.216rem]',
   },
 };
 

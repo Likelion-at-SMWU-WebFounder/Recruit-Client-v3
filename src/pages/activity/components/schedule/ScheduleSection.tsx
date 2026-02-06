@@ -46,7 +46,7 @@ const SCHEDULE_SECTION_STYLES = {
 } as const;
 
 const ScheduleSection = ({ scrollContainerRef }: { scrollContainerRef: React.RefObject<HTMLDivElement | null> }) => {
-  const resistanceRef = useScrollResistance(0.3, scrollContainerRef); // 0.15(매우 무거움) ~ 0.4(거의 정상) 사이로 저항감 조정
+  const resistanceRef = useScrollResistance(0.15, scrollContainerRef); // 0.15(매우 무거움) ~ 0.4(거의 정상) 사이로 저항감 조정
 
   const sectionClassName = combineStyles(SCHEDULE_SECTION_STYLES.section);
   const contentWrapperClassName = combineStyles(SCHEDULE_SECTION_STYLES.contentWrapper);
