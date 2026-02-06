@@ -32,7 +32,7 @@ const STYLES = {
   // 텍스트 및 아이콘
   valueText: 'text-[1rem] font-medium md:text-[1.375rem] lg:text-[1.75rem]',
   iconWrapper: 'transition-transform duration-300 flex items-center justify-center',
-  iconSvg: 'w-[0.63263rem] h-[0.24688rem] md:w-[0.95129rem] md:h-[0.37156rem] lg:w-[1.28125rem] lg:h-[0.5rem]',
+  iconSvg: 'w-[0.63268rem] md:w-[0.95129rem] lg:w-[1.28125rem] h-auto',
 
   // 드롭다운 메뉴 (List)
   menuWrapper: `
