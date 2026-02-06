@@ -17,7 +17,7 @@ const SCHEDULE_SECTION_STYLES = {
   contentWrapper: {
     base: 'relative w-full h-scroll flex flex-col justify-center items-center',
     desktop: 'lg:pb-[15rem]',
-    tablet: 'md:pt-[30rem] md:pb-[15rem]',
+    tablet: 'md:pt-[10rem] md:pb-[15rem]',
     mobile: 'pb-[15rem]',
   },
   stroke: {
