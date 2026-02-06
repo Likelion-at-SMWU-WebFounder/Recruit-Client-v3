@@ -15,7 +15,7 @@ const TW = {
   /* layout */
   container:
     'flex w-full flex-col items-center overflow-x-hidden bg-[var(--color-white-main)] lg:px-[10.91rem] md:px-[4.44rem] px-[1.53rem]',
-  main: 'w-full lg:px-[10.91rem] px-[1rem]s',
+  main: 'w-full',
 
   /* header section */
   header: `
@@ -62,8 +62,9 @@ const Application = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [programmersFile, setProgrammersFile] = useState<File | undefined>(undefined);
 
-  const handleSubmit = (e?: React.FormEvent) => {
-    e?.preventDefault();
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
 
     const isApplicantValid = Object.values(formData.applicantInfo).every((v) => v.trim() !== '');
     const numberOnlyRegex = /^\d+$/;
@@ -221,30 +222,34 @@ const Application = () => {
                   isSubmitted={isSubmitted}
                 />
               </div>
-
-              <div ref={partRef}>
-                <PartSelectionSection
-                  selectedPart={formData.part}
-                  onPartChange={updatePart}
-                  programmersCompleted={formData.programmersCompleted}
-                  onProgrammersChange={updateProgrammersCompleted}
-                  onFileChange={setProgrammersFile}
-                  isSubmitted={isSubmitted}
-                />
+              <div className="flex flex-col gap-[2.5rem] md:gap-[4.125rem] lg:gap-[5.625rem]">
+                <div ref={partRef}>
+                  <PartSelectionSection
+                    selectedPart={formData.part}
+                    onPartChange={updatePart}
+                    programmersCompleted={formData.programmersCompleted}
+                    onProgrammersChange={updateProgrammersCompleted}
+                    onFileChange={setProgrammersFile}
+                    isSubmitted={isSubmitted}
+                  />
+                </div>
+                <div className="flex flex-col gap-[2.375rem] md:gap-[4rem] lg:gap-[5rem]">
+                  <div ref={questionsRef}>
+                    <QuestionSection
+                      answers={formData.answers}
+                      onAnswerChange={updateAnswer}
+                      isSubmitted={isSubmitted}
+                    />
+                  </div>
+                  <div ref={interviewRef}>
+                    <InterviewScheduleSection
+                      selectedSchedule={formData.interviewSchedule}
+                      onScheduleChange={updateInterviewSchedule}
+                      isSubmitted={isSubmitted}
+                    />
+                  </div>
+                </div>
               </div>
-
-              <div ref={questionsRef}>
-                <QuestionSection answers={formData.answers} onAnswerChange={updateAnswer} isSubmitted={isSubmitted} />
-              </div>
-
-              <div ref={interviewRef}>
-                <InterviewScheduleSection
-                  selectedSchedule={formData.interviewSchedule}
-                  onScheduleChange={updateInterviewSchedule}
-                  isSubmitted={isSubmitted}
-                />
-              </div>
-
               <div ref={agreementRef}>
                 <AgreementSection
                   agreements={formData.agreements}
@@ -266,7 +271,7 @@ const Application = () => {
 
             {/* 제출 버튼 영역 */}
             <div className={TW.submitWrapper}>
-              <DefaultButton backgroundType="white" isIcon={false} border="solid" onClick={() => handleSubmit()}>
+              <DefaultButton type="submit" backgroundType="white" isIcon={false} border="solid">
                 제출하기
               </DefaultButton>
             </div>

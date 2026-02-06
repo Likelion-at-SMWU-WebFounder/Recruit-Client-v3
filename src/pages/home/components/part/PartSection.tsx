@@ -16,8 +16,8 @@ const PART_SECTION_STYLES = {
   section: {
     base: 'w-full max-w-[100vw] h-[100dvh] flex flex-col justify-center items-center pt-[5rem]',
     desktop: 'lg:gap-[2rem]',
-    tablet: 'md:gap-[8.5rem]',
-    mobile: 'gap-[1rem]',
+    tablet: 'md:gap-[8.5rem] md:pt-[10rem] md:pb-[5rem]',
+    mobile: 'gap-[1rem] pt-[5rem]',
   },
   mobileCarousel: {
     base: 'relative flex justify-center items-center w-[22rem] h-[25rem] p-[1rem] ',

@@ -3,12 +3,14 @@ import { useEffect, useState } from 'react';
 import Layout from '@/shared/components/Layout';
 import ResultBackground from './components/background/ResultBackground';
 import { DOCUMENT_RESULT_TEXT, FINAL_RESULT_TEXT } from './constants/result';
+import { Fragment } from 'react';
 
 // --- 타입 정의 추가 ---
 interface TextSegment {
   text: string;
   textMobile?: string;
   isHighlight: boolean;
+  isTabletOnlyBreak?: boolean;
 }
 
 interface LocationState {
@@ -29,14 +31,14 @@ const TW = {
   contentBox: 'flex w-full flex-col items-center',
   textBase: `
     text-[var(--color-white-main)] font-medium text-center whitespace-pre-line break-keep
-    text-[0.875rem] leading-[127%] 
+    text-[0.875rem] leading-[150%] 
     md:text-[1.3125rem] md:leading-[170%] 
     lg:text-[1.375rem]
   `,
   highlight: 'text-[#78A7FF] font-bold',
   signature: 'font-bold text-[#78A7FF]',
   link: 'underline underline-offset-4',
-  sectionGap: 'mt-[2.2225rem] md:mt-[2.23125rem] lg:mt-[2.3375rem]',
+  sectionGap: 'mt-[1.3125rem] md:mt-[2.23125rem] lg:mt-[2.3375rem]',
   failGap: 'gap-[1.11125rem] md:gap-[2.23125rem] lg:gap-[2.3375rem]',
   flexColCenter: 'flex flex-col items-center',
 } as const;
@@ -45,18 +47,24 @@ const Result = () => {
   const { pathname, state } = useLocation() as { pathname: string; state: LocationState };
   const navigate = useNavigate();
 
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 393);
+  const [isMobile, setIsMobile] = useState(!window.matchMedia('(min-width: 640px)').matches);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const handleResize = () => setIsMobile(window.innerWidth <= 393);
-    window.addEventListener('resize', handleResize);
+
+    const mql = window.matchMedia('(min-width: 640px)');
+    const handleMediaQueryChange = (e: MediaQueryListEvent) => {
+      setIsMobile(!e.matches);
+    };
+
+    mql.addEventListener('change', handleMediaQueryChange);
 
     if (!state) {
       const isDocument = pathname.includes('document');
       navigate(isDocument ? '/apply/document' : '/apply/final');
     }
-    return () => window.removeEventListener('resize', handleResize);
+
+    return () => mql.removeEventListener('change', handleMediaQueryChange);
   }, [state, navigate, pathname]);
 
   if (!state) return null;
@@ -67,15 +75,26 @@ const Result = () => {
   const trackName = state?.track ? FINAL_RESULT_TEXT.TRACK_NAME[state.track] : '';
 
   const renderSegments = (segments: readonly TextSegment[]) =>
-    segments.map((chunk, i) => (
-      <span key={i} className={chunk.isHighlight ? TW.highlight : ''}>
-        {isMobile && chunk.textMobile ? chunk.textMobile : chunk.text}
-      </span>
-    ));
+    segments.map((chunk, i) => {
+      const content = isMobile && chunk.textMobile ? chunk.textMobile : chunk.text;
+
+      return (
+        <span key={i} className={chunk.isHighlight ? TW.highlight : ''}>
+          {content.split('\n').map((line, index, array) => (
+            <Fragment key={index}>
+              {line}
+              {index < array.length - 1 && (
+                <br className={chunk.isTabletOnlyBreak && !isMobile ? 'hidden md:block lg:hidden' : ''} />
+              )}
+            </Fragment>
+          ))}
+        </span>
+      );
+    });
 
   return (
     <Layout menuMode="dark" footerMode="light">
-      <ResultBackground paddingClassName="py-[1.63rem] px-[1rem] md:py-[3.69rem] md:px-[1rem] lg:py-[3.75rem] lg:px-[1rem]">
+      <ResultBackground paddingClassName="py-[5.44rem] px-[1rem] md:py-[3.69rem] md:px-[1rem] lg:py-[3.75rem] lg:px-[1rem]">
         <div className={TW.container}>
           <img src={`${MENU_IMAGES_PATH}/smwu_lion_logo_light.svg`} alt="SMWU Logo" className={TW.logo} />
 

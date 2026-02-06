@@ -61,9 +61,9 @@ export const TW = {
   // 3D images
   imgBase: 'absolute z-0 w-auto object-contain opacity-80 transition-all duration-500 ease-in-out',
   imgMobile: '-right-[0%] -bottom-[0%] h-[40%] blur-[1.8px]',
-  imgFoldedLeft: '-right-[0%] -bottom-[0%] h-[40%] blur-[1px] lg:h-[42%]',
-  imgFoldedCenter: '-right-[0%] -bottom-[0%] h-[40%] blur-[1px] lg:h-[42%]',
-  imgExpanded: '-right-[0%] -bottom-[0%] h-[40%] lg:h-[42%] blur-[1.8px]',
+  imgFoldedLeft: '-right-[0%] -bottom-[0%] h-[40%] blur-[1px] lg:h-[44%]',
+  imgFoldedCenter: '-right-[0%] -bottom-[0%] h-[40%] blur-[1px] lg:h-[44%]',
+  imgExpanded: '-right-[0%] -bottom-[0%] h-[40%] lg:h-[44%] blur-[1.8px]',
 } as const;
 
 export type TwTokens = typeof TW;

@@ -84,8 +84,6 @@ const AgreementSection = ({ agreements, onAgreementChange, isSubmitted }: Agreem
     <section className={STYLES.section}>
       <style dangerouslySetInnerHTML={{ __html: scrollbarStyle }} />
       <SectionHeader title="정보 수집" />
-
-      {/* 컨테이너: 내부 카드들의 너비와 정렬을 제어 */}
       <div className={STYLES.container}>
         {agreementKeys.map((key) => {
           const info = AGREEMENT_INFO[key];
@@ -113,7 +111,7 @@ const AgreementSection = ({ agreements, onAgreementChange, isSubmitted }: Agreem
               </div>
               <div className={STYLES.spacerHeader} />
 
-              {/* 2. 본문 (스크롤 기능 유지) */}
+              {/* 2. 본문 */}
               <div className={STYLES.contentWrapper}>
                 <div className={STYLES.scrollArea}>
                   {isPhotoUsage ? (
@@ -122,7 +120,6 @@ const AgreementSection = ({ agreements, onAgreementChange, isSubmitted }: Agreem
                         <div key={i} className={STYLES.bulletItem}>
                           <img src={bulletIcon} alt="bullet" className={STYLES.bulletIcon} />
                           <span className="flex-1">
-                            {/* [DBR]이라는 글자가 있으면 데스크탑에서만 작동하는 br 태그로 교체 */}
                             {line.includes('[DBR]')
                               ? line.split('[DBR]').map((part, index, arr) => (
                                   <Fragment key={index}>

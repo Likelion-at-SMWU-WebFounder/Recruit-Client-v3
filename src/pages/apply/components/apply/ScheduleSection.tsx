@@ -79,7 +79,7 @@ const ScheduleSection = () => {
 
       {/* [Mobile] */}
       <div className={TW.mobileGrid}>
-        <div className={cx(TW.lineContainer, 'top-[5.51rem]')}>
+        <div className={cx(TW.lineContainer, 'top-[5.48rem]')}>
           <svg width="100%" height="4" viewBox="0 0 100 4" fill="none" preserveAspectRatio="none">
             <path
               d="M0 2H100"
@@ -111,7 +111,7 @@ const ScheduleSection = () => {
 
       {/* [Tablet & Desktop] */}
       <div className={TW.desktopRow}>
-        <div className={cx(TW.lineContainer, 'top-[6.88rem] lg:top-[7.5rem]')}>
+        <div className={cx(TW.lineContainer, 'top-[6.87rem] lg:top-[7.5rem]')}>
           <svg width="100%" height="4" viewBox="0 0 100 4" fill="none" preserveAspectRatio="none">
             <path
               d="M0 2H100"
