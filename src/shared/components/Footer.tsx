@@ -44,7 +44,7 @@ const Footer = ({ mode = 'light', bgColor, ...props }: FooterProps) => {
 
   // 반응형 저작권 표시 텍스트 사이즈
   const copyrightClasses =
-    'text-center text-gray font-normal leading-[150%] text-[0.75rem] md:text-[0.875rem] lg:text-[1rem]';
+    'whitespace-pre-line text-center text-gray font-normal leading-[150%] text-[0.75rem] md:text-[0.875rem] lg:text-[1rem]';
 
   return (
     <div
@@ -65,7 +65,10 @@ const Footer = ({ mode = 'light', bgColor, ...props }: FooterProps) => {
         </button>
       </div>
       {/* Copyright */}
-      <div className={copyrightClasses}>{FooterConstants.COPYRIGHT}</div>
+      <div className={copyrightClasses}>
+        <span className="block md:hidden">{FooterConstants.COPYRIGHT_MOBILE}</span>
+        <span className="hidden md:block">{FooterConstants.COPYRIGHT}</span>
+      </div>
     </div>
   );
 };
