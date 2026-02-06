@@ -109,7 +109,7 @@ const TW = {
   backItemTitleEvent: 'font-medium text-[var(--color-white-main)] md:text-[1.25rem] lg:text-[1.75rem] leading-[120%]',
   backDate: 'font-medium text-[var(--color-white-main)]/75 md:text-[1.125rem] lg:text-[1.5rem] leading-[120%]',
   backDetail:
-    'font-medium text-[var(--color-white-opacity75)] md:text-[1.125rem] lg:text-[1.5rem] lg:pl-[3.4rem] md:pl-[2.67rem] leading-[120%]',
+    'font-medium text-[var(--color-white-opacity75)] md:text-[1.125rem] lg:text-[1.5rem] lg:pl-[3.38rem] md:pl-[2.67rem] leading-[120%]',
   backDetailsWrap: 'flex flex-col md:gap-[0.375rem] lg:gap-[0.5rem]',
 
   // back image
