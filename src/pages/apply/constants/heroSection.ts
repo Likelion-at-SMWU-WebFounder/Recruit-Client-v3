@@ -10,10 +10,11 @@ export const RECRUITMENT_PHASES = {
 export type RecruitmentPhase = (typeof RECRUITMENT_PHASES)[keyof typeof RECRUITMENT_PHASES];
 
 export const PHASE_SCHEDULE = {
-  APPLICATION_START: '2026-02-12T09:00:00',
-  APPLICATION_END: '2026-02-18T18:00:00',
-  DOCUMENT_RESULT: '2026-02-22T09:00:00',
-  FINAL_RESULT: '2026-02-28T09:00:00',
+  APPLICATION_START: '2026-02-12T09:00:00+09:00', // 모집 시작
+  APPLICATION_END: '2026-02-18T18:00:00+09:00', // 서류 마감 (Mode 2 종료)
+  DOCUMENT_RESULT: '2026-02-22T09:00:00+09:00', // 서류 발표 (Mode 3 종료)
+  FINAL_RESULT: '2026-02-28T09:00:00+09:00', // 최종 발표 (Mode 4 종료)
+  TERMINATION: '2026-03-04T00:00:00+09:00', // 최종 확인 종료 (Mode 5 종료)
 };
 
 export const HERO_PHASE_CONTENT = {
@@ -21,7 +22,7 @@ export const HERO_PHASE_CONTENT = {
     TITLE: '숙명여대 멋사 13기 모집이 완료되었습니다.',
     DESCRIPTION: '14기 아기사자 모집에 지원해주세요!',
     APPLY_PERIOD: null,
-    BUTTON_TEXT: '14기 모집 알림 받기',
+    BUTTON_TEXT: null,
     PATH: '/apply/notify',
   },
   [RECRUITMENT_PHASES.APPLICATION]: {
@@ -29,7 +30,7 @@ export const HERO_PHASE_CONTENT = {
     DESCRIPTION: '아래의 소개 및 일정을 반드시 읽고 지원서를 작성해주세요.',
     APPLY_PERIOD: '14기 서류 접수 기간: 02.12 09:00 ~ 02.18 18:00',
     BUTTON_TEXT: '지원하러 가기',
-    PATH: '/application',
+    PATH: '/apply/application',
   },
   [RECRUITMENT_PHASES.DOCUMENT_REVIEWING]: {
     TITLE: '숙명여대 멋사 14기 모집 서류 심사가 진행 중입니다.',

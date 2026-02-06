@@ -1,14 +1,14 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { RECRUITMENT_PHASES, HERO_PHASE_CONTENT, type RecruitmentPhase } from '../../constants/heroSection';
+import {
+  RECRUITMENT_PHASES,
+  HERO_PHASE_CONTENT,
+  type RecruitmentPhase,
+  PHASE_SCHEDULE,
+} from '../../constants/heroSection';
 import ReusableBackground from '../background/ReusableBackground';
 import HeroButton from '../button/HeroButton';
 import '../../styles/HomeSection.css';
-
-const CURRENT_MODE = 2;
-
-/* QA용: 배포 전 false로 바꾸거나 코드 제거 */
-const QA_DEBUG_MODE = true;
 
 // 스타일 토큰
 const TW = {
@@ -41,8 +41,68 @@ const TW = {
 const HeroSection = () => {
   const navigate = useNavigate();
 
-  /** QA용 임시 모드 상태 */
-  const [qaMode, setQaMode] = useState<number>(CURRENT_MODE);
+  // 서버 시간과 로컬 시간의 오차 (ms 단위)
+  const [timeOffset, setTimeOffset] = useState<number>(0);
+
+  /* 시기별 모드 계산 로직 */
+  const getModeByDate = useCallback(() => {
+    // 로컬 시각에 오차를 더해 '서버 기준 현재 시각' 생성
+    const now = Date.now() + timeOffset;
+
+    // KST(+09:00) 기준 타임라인 설정
+    const start = Date.parse(PHASE_SCHEDULE.APPLICATION_START);
+    const p3Start = Date.parse(PHASE_SCHEDULE.APPLICATION_END);
+    const p4Start = Date.parse(PHASE_SCHEDULE.DOCUMENT_RESULT);
+    const p5Start = Date.parse(PHASE_SCHEDULE.FINAL_RESULT);
+    const p1Start = Date.parse(PHASE_SCHEDULE.TERMINATION);
+
+    if (now < start) return 1;
+    // 모집 기간 중: 2번 (서류 접수)
+    if (now < p3Start) return 2;
+    // 서류 심사 중: 3번 (심사 중)
+    if (now < p4Start) return 3;
+    // 서류 결과 확인: 4번 (서류 합격 확인)
+    if (now < p5Start) return 4;
+    // 최종 결과 확인: 5번 (최종 합격 확인)
+    if (now < p1Start) return 5;
+    // 모든 일정 종료: 1번 (공고/종료)
+    return 1;
+  }, [timeOffset]);
+
+  const [activeMode, setActiveMode] = useState<number>(() => getModeByDate());
+
+  /* 서버 시간 동기화 (fetch HEAD) */
+  useEffect(() => {
+    const syncTime = async () => {
+      try {
+        // 캐시를 피하기 위해 타임스탬프를 쿼리로 붙이고 HEAD 요청
+        const response = await fetch(`${window.location.origin}?t=${Date.now()}`, {
+          method: 'HEAD',
+          cache: 'no-cache',
+        });
+
+        const serverDateStr = response.headers.get('date');
+        if (serverDateStr) {
+          const serverTime = new Date(serverDateStr).getTime();
+          const localTime = Date.now();
+          // 오차 저장 (서버시간 - 로컬시간)
+          setTimeOffset(serverTime - localTime);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    syncTime();
+  }, []);
+
+  /* 실시간 모드 업데이트 (1초마다) */
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveMode(getModeByDate());
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [getModeByDate]);
 
   const getPhaseByMode = (mode: number): RecruitmentPhase => {
     switch (mode) {
@@ -61,9 +121,6 @@ const HeroSection = () => {
     }
   };
 
-  /* 현재 모드: QA 패널 ON이면 qaMode, 아니면 CURRENT_MODE */
-  const activeMode = QA_DEBUG_MODE ? qaMode : CURRENT_MODE;
-
   const phase = useMemo(() => getPhaseByMode(activeMode), [activeMode]);
   const currentContent = HERO_PHASE_CONTENT[phase];
 
@@ -74,48 +131,20 @@ const HeroSection = () => {
   };
 
   return (
-    <>
-      {QA_DEBUG_MODE && (
-        <div className={TW.qa.panel}>
-          <p className={TW.qa.title}>QA: Hero 임시 모드</p>
+    <ReusableBackground className={TW.bg.wrapperHeight} isAnimated={true}>
+      <div className={TW.layout.outer}>
+        <div className={TW.layout.inner}>
+          <h1 className={TW.typo.title}>{currentContent.TITLE}</h1>
 
-          <div className={TW.qa.grid}>
-            {[1, 2, 3, 4, 5].map((m) => {
-              const isActive = qaMode === m;
-              return (
-                <button
-                  key={m}
-                  type="button"
-                  onClick={() => setQaMode(m)}
-                  className={`${TW.qa.btnBase} ${isActive ? TW.qa.btnActive : TW.qa.btnIdle}`}
-                  aria-pressed={isActive}>
-                  {m}
-                </button>
-              );
-            })}
+          <div className={TW.layout.descGroup}>
+            <p className={TW.typo.desc}>{currentContent.DESCRIPTION}</p>
+            {currentContent.APPLY_PERIOD && <p className={TW.typo.desc}>{currentContent.APPLY_PERIOD}</p>}
           </div>
-
-          <p className={TW.qa.label}>현재 모드: {qaMode}</p>
         </div>
-      )}
 
-      <ReusableBackground className={TW.bg.wrapperHeight} isAnimated={true}>
-        <div className={TW.layout.outer}>
-          <div className={TW.layout.inner}>
-            <h1 className={TW.typo.title}>{currentContent.TITLE}</h1>
-
-            <div className={TW.layout.descGroup}>
-              <p className={TW.typo.desc}>{currentContent.DESCRIPTION}</p>
-              {currentContent.APPLY_PERIOD && <p className={TW.typo.desc}>{currentContent.APPLY_PERIOD}</p>}
-            </div>
-          </div>
-
-          {currentContent.BUTTON_TEXT && (
-            <HeroButton onClick={handleApplyClick}>{currentContent.BUTTON_TEXT}</HeroButton>
-          )}
-        </div>
-      </ReusableBackground>
-    </>
+        {currentContent.BUTTON_TEXT && <HeroButton onClick={handleApplyClick}>{currentContent.BUTTON_TEXT}</HeroButton>}
+      </div>
+    </ReusableBackground>
   );
 };
 

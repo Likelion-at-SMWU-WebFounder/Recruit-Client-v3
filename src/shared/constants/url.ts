@@ -12,7 +12,7 @@ export const ROUTER_URL = {
   RESULT_UNAVAILABLE: '/result-unavailable',
   ACTIVITY: '/activity',
   WEBFOUNDERS: '/webfounders',
-  APPLICATION: '/application',
+  APPLICATION: '/apply/application',
 
   // 추가되는 거 있음 여기에 작성
 };
