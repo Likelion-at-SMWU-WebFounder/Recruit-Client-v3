@@ -62,8 +62,9 @@ const Application = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [programmersFile, setProgrammersFile] = useState<File | undefined>(undefined);
 
-  const handleSubmit = (e?: React.FormEvent) => {
-    e?.preventDefault();
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
 
     const isApplicantValid = Object.values(formData.applicantInfo).every((v) => v.trim() !== '');
     const numberOnlyRegex = /^\d+$/;
@@ -268,7 +269,7 @@ const Application = () => {
 
             {/* 제출 버튼 영역 */}
             <div className={TW.submitWrapper}>
-              <DefaultButton backgroundType="white" isIcon={false} border="solid" onClick={() => handleSubmit()}>
+              <DefaultButton type="submit" backgroundType="white" isIcon={false} border="solid">
                 제출하기
               </DefaultButton>
             </div>
