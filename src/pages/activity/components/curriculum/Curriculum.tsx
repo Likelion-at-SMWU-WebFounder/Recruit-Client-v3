@@ -44,7 +44,7 @@ const CURRICULUM_STYLES = {
   },
   table: {
     base: 'flex flex-col justify-center items-center',
-    desktop: 'lg:pb-[2rem]',
+    desktop: 'lg:pb-[1.4rem]',
     mobile: 'pb-[0.5rem]',
   },
   row: {
@@ -54,19 +54,19 @@ const CURRICULUM_STYLES = {
     mobile: 'w-[20rem] py-[1.12rem]',
   },
   week: {
-    base: 'text-blue whitespace-pre-line',
+    base: 'text-blue whitespace-pre-line text-left',
     desktop: 'lg:bd28 lg:w-[6.9rem]',
     tablet: 'md:bd17 md:w-[4.2rem]',
     mobile: 'bd13 w-[3rem]',
   },
   tool: {
-    base: 'text-navyblack whitespace-pre-line',
-    desktop: 'lg:bd28 lg:mr-0',
-    tablet: 'md:bd17 md:ml-0 md:mr-[-2rem]',
-    mobile: 'bd13 ml-[-2rem] mr-[-2rem]',
+    base: 'text-navyblack whitespace-pre-line text-center',
+    desktop: 'lg:bd28 ',
+    tablet: 'md:bd17 ',
+    mobile: 'bd13 ',
   },
   content: {
-    base: 'text-navyblack whitespace-pre-line',
+    base: 'text-navyblack whitespace-pre-line text-left',
     desktop: 'lg:bd28',
     tablet: 'md:bd17',
     mobile: 'bd13',
