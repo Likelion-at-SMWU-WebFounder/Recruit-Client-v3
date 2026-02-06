@@ -15,12 +15,12 @@ export interface MenuProps {
 const MENU_STYLES = {
   container: {
     base: 'fixed top-0 left-0 w-[100vw] inline-flex justify-between items-center z-[100] backdrop-blur-md shadow-xl shadow-black/10',
-    mobile: 'p-[1.5rem_1rem] pr-[1.5rem] h-[3.5rem]',
+    mobile: 'p-[1.5rem_1rem] pr-[1.5rem] h-[60px]',
     tablet: 'md:p-[0.625rem_4rem] md:h-[4.625rem]',
     desktop: 'lg:p-[0.625rem_4rem] lg:h-[6.0625rem]',
   },
   logo: {
-    base: 'h-[24px]',
+    base: 'h-[40px]',
     tablet: 'md:h-[2.625rem]',
     desktop: 'lg:h-[3.675rem]',
   },
@@ -54,7 +54,10 @@ const MENU_STYLES = {
     base: 'inline-flex h-[3.5rem] w-full justify-end p-[1.2rem_1rem] pr-[1.5rem]',
   },
   hamburgerButton: {
-    base: 'cursor-pointer md:hidden',
+    base: 'cursor-pointer md:hidden w-[40px] h-[40px]',
+  },
+  hamburgerIcon: {
+    base: 'w-full h-full',
   },
 } as const;
 
@@ -158,6 +161,7 @@ const Menu = ({ mode = 'light', ...props }: MenuProps) => {
   const iconContainerClassName = combineStyles(MENU_STYLES.iconContainer);
   const iconItemClassName = `${combineStyles(MENU_STYLES.iconItem)} ${menuModeColor}`;
   const hamburgerButtonClassName = combineStyles(MENU_STYLES.hamburgerButton);
+  const hamburgerIconClassName = `${combineStyles(MENU_STYLES.hamburgerIcon)} ${menuModeColor}`;
 
   return (
     <>
@@ -212,7 +216,7 @@ const Menu = ({ mode = 'light', ...props }: MenuProps) => {
           aria-label="메뉴 서랍 열기"
           aria-expanded={drawerOpen}
           aria-controls="mobile-drawer">
-          <RiMenuLine className={iconItemClassName} />
+          <RiMenuLine className={hamburgerIconClassName} />
         </button>
         {drawerOpen && <MobileDrawer setDrawerOpen={setDrawerOpen} mobileMenuColor={mobileMenuColor} />}
       </div>
