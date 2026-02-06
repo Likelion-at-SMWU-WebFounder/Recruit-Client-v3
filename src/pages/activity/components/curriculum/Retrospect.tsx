@@ -25,9 +25,9 @@ const RETROSPECT_STYLES = {
   },
   retrosepectCardRow: {
     base: 'scrollbar-hidden flex flex-row items-start justify-start overflow-x-scroll',
-    desktop: 'lg:gap-[1.5rem] lg:pr-[1.5rem] lg:pr-[100rem]',
-    tablet: 'md:gap-[1rem] md:pr-[1rem]',
-    mobile: 'gap-[0.5rem] pr-[0.5rem]',
+    desktop: 'lg:gap-[1.5rem] lg:pr-[70rem]',
+    tablet: 'md:gap-[1rem] md:pr-[30em]',
+    mobile: 'gap-[0.5rem] pr-[15rem]',
   },
 } as const;
 
@@ -60,6 +60,34 @@ const Retrospect = ({ selectedPart }: RetrospectProps) => {
     }
   }, [selectedPart]);
 
+  // 드래그로 좌우 스크롤 구현
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollLeft = useRef(0);
+
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!rowRef.current) return;
+    isDragging.current = true;
+    startX.current = e.pageX - rowRef.current.offsetLeft;
+    scrollLeft.current = rowRef.current.scrollLeft;
+  };
+
+  const handleMouseLeave = () => {
+    isDragging.current = false;
+  };
+
+  const handleMouseUp = () => {
+    isDragging.current = false;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging.current || !rowRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - rowRef.current.offsetLeft;
+    const walk = (x - startX.current) * 1.2; // 드래그 감도 조절
+    rowRef.current.scrollLeft = scrollLeft.current - walk;
+  };
+
   return (
     <>
       <div className={retrospectClassName}>
@@ -77,7 +105,13 @@ const Retrospect = ({ selectedPart }: RetrospectProps) => {
         </div>
 
         <div className={retrospectCardContainerClassName}>
-          <div ref={rowRef} className={retrospectCardRowClassName}>
+          <div
+            ref={rowRef}
+            className={retrospectCardRowClassName}
+            onMouseDown={handleMouseDown}
+            onMouseLeave={handleMouseLeave}
+            onMouseUp={handleMouseUp}
+            onMouseMove={handleMouseMove}>
             {CURRICULUM_RETROSPECT[selectedPart].map((retrospect, index) => (
               <div key={index}>
                 <RetrospectCard
