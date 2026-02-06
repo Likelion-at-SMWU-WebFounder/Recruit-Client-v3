@@ -33,8 +33,8 @@ const TW = {
     flex w-full items-center md:rounded-[1rem] rounded-[0.625rem] lg:border-[1.5px] md:border-[1.3px] border-[1px] bg-[var(--color-white-main)]/01 
     px-[0.90625rem] py-[0.8125rem] md:px-[1.5rem] md:py-[1.25rem] lg:px-[1.375rem] lg:py-[1.15625rem]
     text-[var(--color-white-main)] outline-none transition-all
-    text-[0.9375rem] md:text-[1.375rem] lg:text-[1.5rem] font-medium leading-[120%]
-    placeholder:text-[var(--color-white-main)]/55
+    text-[1rem] md:text-[1.375rem] lg:text-[1.5rem] font-medium leading-[120%]
+    placeholder:text-[var(--color-white-main)]/55 tracking-[-0.05rem]
   `,
   inputDefault: 'border-[var(--color-white-main)]/75',
   inputError: 'border-[#FF5757]',
@@ -69,14 +69,13 @@ const ResultCheck = () => {
   };
 
   const handleBlur = () => {
-    // 현재 스크롤 위치를 유지하면서 화면을 다시 그리도록 유도
     setTimeout(() => {
       window.scrollTo({
         top: window.scrollY,
         left: 0,
         behavior: 'smooth',
       });
-    }, 100); // 키패드가 완전히 내려가는 시간을 벌어줍니다.
+    }, 100);
   };
 
   /* 결과 확인 및 페이지 이동 로직 */
