@@ -222,7 +222,7 @@ const Application = () => {
                   isSubmitted={isSubmitted}
                 />
               </div>
-              <div className="flex flex-col gap-[4.125rem] md:gap-[2.5rem] lg:gap-[5.625rem]">
+              <div className="flex flex-col gap-[2.5rem] md:gap-[4.125rem] lg:gap-[5.625rem]">
                 <div ref={partRef}>
                   <PartSelectionSection
                     selectedPart={formData.part}
@@ -236,7 +236,6 @@ const Application = () => {
                 <div ref={questionsRef}>
                   <QuestionSection answers={formData.answers} onAnswerChange={updateAnswer} isSubmitted={isSubmitted} />
                 </div>
-
                 <div ref={interviewRef}>
                   <InterviewScheduleSection
                     selectedSchedule={formData.interviewSchedule}
