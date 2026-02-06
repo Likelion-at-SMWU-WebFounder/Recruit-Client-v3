@@ -125,6 +125,10 @@ const DesktopTabletDoingCard = ({
 
   const handleClick = () => {
     if (isTablet) {
+      // 태블릿에서 처음 클릭 시 hasEverHovered를 true로 설정
+      if (!hasEverHovered) {
+        onCardHover?.(index); // hasEverHovered를 true로 만들기 위해
+      }
       setIsTabletClicked(!isTabletClicked);
     }
   };
