@@ -42,9 +42,6 @@ const TW = {
   // mobile cards (fronts)
   mobileCardBase:
     'relative h-[20.8125rem] w-[22.5625rem] overflow-hidden rounded-[1.25rem] px-[1.69rem] py-[1.94rem] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] cursor-pointer [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform-style:preserve-3d]',
-  // mobileCardLight:
-  //   'bg-[linear-gradient(216deg,rgba(247,250,255,0.10)_7.92%,rgba(255,255,255,0.65)_26.31%,rgba(255,255,255,0.85)_80.33%)]',
-  // mobileCardBlue: 'bg-[linear-gradient(180deg,rgba(66,132,255,0.90)_5.26%,rgba(66,132,255,1)_100%)]',
   mobileCardLight: 'bg-[var(--color-white-main)]',
   mobileCardBlue: 'bg-[var(--color-blue-main)]',
 
@@ -82,30 +79,22 @@ const TW = {
   // front face (light)
   faceBase:
     'absolute inset-0 overflow-hidden rounded-[1.25rem] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] [backface-visibility:hidden]',
-  // frontFace:
-  //   'bg-[linear-gradient(216deg,rgba(247,250,255,0.10)_7.92%,rgba(255,255,255,0.65)_26.31%,rgba(255,255,255,0.85)_80.33%)]',
   frontFace: 'bg-[var(--color-white-main)]',
   frontTitle:
     'absolute top-[2.06rem] left-[2.5rem] text-[1.5rem] font-semibold text-[var(--color-navyblack-main)] lg:top-[4.37rem] lg:left-[5.12rem] lg:text-[2.25rem] leading-[120%] z-10',
   frontImgBase: 'absolute object-contain',
   frontImg0: '-right-[23%] -bottom-[35%] h-[130%] w-auto lg:-right-[23%] lg:-bottom-[60%] lg:h-[170%] scale-[1.7]',
   frontImg1: '-right-[21%] -bottom-[33%] h-[120%] w-auto lg:-right-[21%] lg:-bottom-[55%] lg:h-[160%] scale-[1.3]',
-
-  // back face (blue)
-  // backFace: cx(
-  //   'absolute inset-0 [transform:rotateY(180deg)_translateZ(1px)] overflow-hidden rounded-[1.25rem] px-[2.5rem] py-[2.06rem] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] [backface-visibility:hidden] [-webkit-backface-visibility:hidden] lg:py-[4.38rem] lg:px-[5.13rem]',
-  //   'bg-[linear-gradient(180deg,rgba(66,132,255,0.90)_5.26%,rgba(66,132,255,1)_100%)]'
-  // ),
   backFace: cx(
     'absolute inset-0 [transform:rotateY(180deg)_translateZ(1px)] overflow-hidden rounded-[1.25rem] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] [backface-visibility:hidden] [-webkit-backface-visibility:hidden] lg:py-[4.38rem] lg:px-[5.13rem]',
-    'bg-[var(--color-blue-main)]' // 파란색 배경을 흰색으로 변경
+    'bg-[var(--color-blue-main)]'
   ),
 
-  // <앞면 필터> 카드 전체 크기 (z-1)
+  // <앞면 필터>
   frontFilter:
     'absolute inset-0 z-[1] opacity-80 bg-[linear-gradient(216deg,rgba(247,250,255,0.10)_7.92%,rgba(255,255,255,0.65)_44.13%,#FFF_80.33%)]',
 
-  // <뒷면 필터> 카드 전체 크기로 수정 (z-1)
+  // <뒷면 필터>
   backFilter: 'absolute inset-0 z-[1] opacity-90 bg-[linear-gradient(180deg,rgba(66,132,255,0.30)_5.26%,#4284FF_100%)]',
 
   // back content (white text)
