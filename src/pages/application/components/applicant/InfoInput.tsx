@@ -38,6 +38,7 @@ const STYLES = {
 
 const InfoInput = ({ label, required, placeholder, value, subText, errorMessage, onChange }: InfoInputProps) => {
   const hasError = !!errorMessage;
+  const hasMessage = hasError || !!subText;
 
   return (
     <div className={STYLES.container}>
@@ -56,15 +57,15 @@ const InfoInput = ({ label, required, placeholder, value, subText, errorMessage,
           onChange={(e) => onChange(e.target.value)}
           className={`${STYLES.inputBase} ${hasError ? STYLES.inputError : STYLES.inputNormal}`}
         />
-
-        {/* 하단 헬퍼 텍스트 섹션 */}
-        <div className={STYLES.messageContainer}>
-          {hasError ? (
-            <p className={`${STYLES.messageBase} ${STYLES.messageError}`}>{errorMessage}</p>
-          ) : (
-            subText && <p className={`${STYLES.messageBase} ${STYLES.messageSub}`}>{subText}</p>
-          )}
-        </div>
+        {hasMessage && (
+          <div className={STYLES.messageContainer}>
+            {hasError ? (
+              <p className={`${STYLES.messageBase} ${STYLES.messageError}`}>{errorMessage}</p>
+            ) : (
+              <p className={`${STYLES.messageBase} ${STYLES.messageSub}`}>{subText}</p>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

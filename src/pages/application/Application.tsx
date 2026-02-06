@@ -233,16 +233,18 @@ const Application = () => {
                 />
               </div>
 
-              <div ref={questionsRef}>
-                <QuestionSection answers={formData.answers} onAnswerChange={updateAnswer} isSubmitted={isSubmitted} />
-              </div>
+              <div className="flex flex-col gap-[0.5rem] md:gap-[0.8125rem]">
+                <div ref={questionsRef}>
+                  <QuestionSection answers={formData.answers} onAnswerChange={updateAnswer} isSubmitted={isSubmitted} />
+                </div>
 
-              <div ref={interviewRef}>
-                <InterviewScheduleSection
-                  selectedSchedule={formData.interviewSchedule}
-                  onScheduleChange={updateInterviewSchedule}
-                  isSubmitted={isSubmitted}
-                />
+                <div ref={interviewRef}>
+                  <InterviewScheduleSection
+                    selectedSchedule={formData.interviewSchedule}
+                    onScheduleChange={updateInterviewSchedule}
+                    isSubmitted={isSubmitted}
+                  />
+                </div>
               </div>
 
               <div ref={agreementRef}>
