@@ -135,7 +135,7 @@ export const useApplicationForm = () => {
       setSubmitStatus('loading');
 
       if (isMockMode) {
-        await new Promise((r) => setTimeout(r, 5000));
+        await new Promise((r) => setTimeout(r, 50000));
         setSubmitStatus('success');
         return true;
       }
