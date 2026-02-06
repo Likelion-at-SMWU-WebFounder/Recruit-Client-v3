@@ -36,6 +36,8 @@ export const usePhase = () => {
           const offset = new Date(serverDate).getTime() - Date.now();
           setTimeOffset(offset);
           setCurrentMode(calculateMode(offset));
+        } else {
+          setTimeOffset(0);
         }
       } catch (err) {
         console.error('서버 시간 동기화 실패:', err);
