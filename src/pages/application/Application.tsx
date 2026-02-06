@@ -15,7 +15,7 @@ const TW = {
   /* layout */
   container:
     'flex w-full flex-col items-center overflow-x-hidden bg-[var(--color-white-main)] lg:px-[10.91rem] md:px-[4.44rem] px-[1.53rem]',
-  main: 'w-full lg:px-[10.91rem] px-[1rem]s',
+  main: 'w-full',
 
   /* header section */
   header: `

@@ -12,7 +12,7 @@ interface InterviewScheduleSectionProps {
 // 스타일 토큰 정의
 const STYLES = {
   section:
-    'flex w-full flex-col items-center gap-[1.5rem] md:gap-[2.0625rem] lg:gap-[2.1875rem] px-[1.06rem] md:px-[0rem]',
+    'flex w-full flex-col items-center gap-[1.5rem] md:gap-[2.0625rem] lg:gap-[2.1875rem] px-[1rem] md:px-[0rem]',
 
   // 질문 헤더
   headerContainer:
