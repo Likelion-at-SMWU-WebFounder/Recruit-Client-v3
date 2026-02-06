@@ -176,7 +176,7 @@ export const INTERVIEW_SCHEDULE: InterviewScheduleOption[] = [
 
 export const AGREEMENT_INFO = {
   activityParticipation: {
-    title: '[숙명여대 멋사 필수 참여 행사] \n불참 시 합격이 취소될 수 있으며,\n활동 수료에 제한이 있을 수 있습니다.',
+    title: '[숙명여대 멋사 필수 참여 행사] \n불참 시 합격이 취소될 수 있으며, \n활동 수료에 제한이 있을 수 있습니다.',
     content: `숙명여대 멋사 OT: 03.03(화) 19:00~21:00 (대면 진행, 불참 시 합격 취소)
 멋사 중앙 OT: 03.18(수) ??:00 (온라인 진행, 불참 시 함격 취소)
 중앙 아이디어톤: 6월 중 진행 (수료 요건)
@@ -287,7 +287,7 @@ export const SUBMIT_MODAL = {
 
 export const SUCCESS_MODAL = {
   TITLE: '서류 접수가 완료되었습니다.',
-  DESC_1: '멋쟁이사자처럼 숙명여대 13기 모집에 지원해 주셔서 감사합니다.',
+  DESC_1: '멋쟁이사자처럼 숙명여대 13기 모집에 지원해 \n주셔서 감사합니다.',
   DESC_2_PREFIX: '정상적으로 서류가 접수된 경우, ',
   DESC_2_BLUE: '확인 메일',
   DESC_2_SUFFIX: '을 발송 드릴 예정입니다.',

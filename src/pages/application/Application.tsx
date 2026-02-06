@@ -62,8 +62,9 @@ const Application = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [programmersFile, setProgrammersFile] = useState<File | undefined>(undefined);
 
-  const handleSubmit = (e?: React.FormEvent) => {
-    e?.preventDefault();
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
 
     const isApplicantValid = Object.values(formData.applicantInfo).every((v) => v.trim() !== '');
     const numberOnlyRegex = /^\d+$/;
@@ -233,16 +234,18 @@ const Application = () => {
                 />
               </div>
 
-              <div ref={questionsRef}>
-                <QuestionSection answers={formData.answers} onAnswerChange={updateAnswer} isSubmitted={isSubmitted} />
-              </div>
+              <div className="flex flex-col gap-[0.5rem] md:gap-[0.8125rem]">
+                <div ref={questionsRef}>
+                  <QuestionSection answers={formData.answers} onAnswerChange={updateAnswer} isSubmitted={isSubmitted} />
+                </div>
 
-              <div ref={interviewRef}>
-                <InterviewScheduleSection
-                  selectedSchedule={formData.interviewSchedule}
-                  onScheduleChange={updateInterviewSchedule}
-                  isSubmitted={isSubmitted}
-                />
+                <div ref={interviewRef}>
+                  <InterviewScheduleSection
+                    selectedSchedule={formData.interviewSchedule}
+                    onScheduleChange={updateInterviewSchedule}
+                    isSubmitted={isSubmitted}
+                  />
+                </div>
               </div>
 
               <div ref={agreementRef}>
@@ -266,7 +269,7 @@ const Application = () => {
 
             {/* 제출 버튼 영역 */}
             <div className={TW.submitWrapper}>
-              <DefaultButton backgroundType="white" isIcon={false} border="solid" onClick={() => handleSubmit()}>
+              <DefaultButton type="submit" backgroundType="white" isIcon={false} border="solid">
                 제출하기
               </DefaultButton>
             </div>

@@ -32,7 +32,7 @@ const STYLES = {
   // 텍스트 및 아이콘
   valueText: 'text-[1rem] font-medium md:text-[1.375rem] lg:text-[1.75rem]',
   iconWrapper: 'transition-transform duration-300 flex items-center justify-center',
-  iconSvg: 'w-[0.63263rem] h-[0.24688rem] md:w-[0.95129rem] md:h-[0.37156rem] lg:w-[1.28125rem] lg:h-[0.5rem]',
+  iconSvg: 'w-[0.63268rem] md:w-[0.95129rem] lg:w-[1.28125rem] h-auto',
 
   // 드롭다운 메뉴 (List)
   menuWrapper: `
@@ -45,7 +45,7 @@ const STYLES = {
     'flex h-[3.625rem] cursor-pointer items-center px-[1.5rem] text-[1.125rem] font-medium text-[var(--color-navyblack-main)] transition-colors duration-300 md:text-[1.375rem] lg:h-[4.1875rem] lg:px-[1.375rem] lg:text-[1.75rem] leading-[120%] lg:hover:bg-[rgba(27,38,52,0.05)] active:bg-[rgba(27,38,52,0.1)]',
 
   // 에러 메시지
-  errorContainer: 'mt-[0.75rem] min-h-[1.25rem] md:min-h-[1.5rem]',
+  errorContainer: 'mt-[0.5rem] md:mt-[0.625rem] lg:mt-[0.75rem] min-h-[1.25rem] md:min-h-[1.5rem]',
   errorText:
     'text-[0.8125rem] font-medium tracking-[-0.0325rem] md:text-[1rem] md:tracking-[-0.02rem] lg:text-[1.25rem] lg:tracking-normal leading-[120%] text-[rgba(255,36,36,0.80)]',
 };
@@ -57,18 +57,25 @@ const InfoDropdown = ({ label, required, value, options, errorMessage, onChange 
 
   // 데스크탑 클릭 방어 로직
   const handleTriggerClick = () => {
-    if (window.innerWidth >= 1024) return;
     setIsOpen(!isOpen);
+  };
+
+  const handleMouseEnter = () => {
+    if (window.innerWidth >= 1024) setIsOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    if (window.innerWidth >= 1024) setIsOpen(false);
   };
 
   // 2. 애니메이션 클래스 개선
   const activeClass = isOpen
     ? 'opacity-100 translate-y-0 visible pointer-events-auto max-md:scale-100'
-    : 'opacity-0 -translate-y-4 invisible pointer-events-none max-md:scale-95 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 lg:group-hover:visible lg:group-hover:pointer-events-auto';
-  const arrowRotate = isOpen ? 'rotate-180' : 'rotate-0 lg:group-hover:rotate-180';
+    : 'opacity-0 -translate-y-4 invisible pointer-events-none max-md:scale-95';
+  const arrowRotate = isOpen ? 'rotate-180' : 'rotate-0';
 
   return (
-    <div className={STYLES.container}>
+    <div className={STYLES.container} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       {/* 모바일 오버레이 */}
       {isOpen && <div className="fixed inset-0 z-[100] bg-[#4D4D4E]/65 md:hidden" onClick={() => setIsOpen(false)} />}
 
@@ -116,7 +123,11 @@ const InfoDropdown = ({ label, required, value, options, errorMessage, onChange 
         </div>
 
         {/* 에러 메시지 섹션 */}
-        <div className={STYLES.errorContainer}>{hasError && <p className={STYLES.errorText}>{errorMessage}</p>}</div>
+        {hasError && (
+          <div className={STYLES.errorContainer}>
+            <p className={STYLES.errorText}>{errorMessage}</p>
+          </div>
+        )}
       </div>
     </div>
   );

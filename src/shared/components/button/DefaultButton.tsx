@@ -15,6 +15,7 @@ export interface DefaultButtonProps {
   id?: string;
   /** 버튼 클래스 -> cta-guide: 가이드 버튼 스타일 적용을 위한 클래스 */
   className?: string;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 const DefaultButton = ({
@@ -24,6 +25,7 @@ const DefaultButton = ({
   onClick,
   backgroundType = 'white',
   className,
+  type = 'button',
   ...props
 }: DefaultButtonProps) => {
   // 배경 타입에 따른 기본 스타일
@@ -54,7 +56,7 @@ const DefaultButton = ({
 
   return (
     <button
-      type="button"
+      type={type}
       className={`${baseClasses} ${sizeClassName} ${borderClassName} ${className ?? ''}`}
       onClick={onClick}
       {...props}>

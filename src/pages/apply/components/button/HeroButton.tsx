@@ -18,10 +18,10 @@ const TW = {
     leading-[100%]
     
     /* Mobile (Default) */
-    rounded-[0.625rem] px-[0.75rem] py-[0.5rem] text-[0.875rem]
+    rounded-[0.625rem] px-[0.9rem] py-[0.5rem] text-[0.875rem]
     
     /* Tablet (md) */
-    md:rounded-[1rem] md:px-[1.375rem] md:py-[0.9375rem] md:text-[1.5rem]
+    md:rounded-[1rem] md:px-[1.375rem] md:py-[0.8375rem] md:text-[1.5rem]
     
     /* Desktop (lg) */
     lg:text-[1.75rem] 
