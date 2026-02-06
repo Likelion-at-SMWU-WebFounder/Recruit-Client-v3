@@ -37,11 +37,11 @@ const TW = {
   headingBox: 'mb-[4.5rem] flex flex-col items-center gap-[1rem] md:mb-[6.89rem] lg:mb-[4.19rem]',
 
   // mobile wrapper
-  mobileWrap: 'relative w-[22.5625rem] h-[20.8125rem] md:hidden [perspective:1000px]',
+  mobileWrap: 'relative w-[22.5625rem] h-[20.8125rem] md:hidden [perspective:1000px] [transform-style:preserve-3d]',
 
   // mobile cards (fronts)
   mobileCardBase:
-    'relative h-[20.8125rem] w-[22.5625rem] overflow-hidden rounded-[1.25rem] px-[1.69rem] py-[1.94rem] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] cursor-pointer [backface-visibility:hidden] [-webkit-backface-visibility:hidden]',
+    'relative h-[20.8125rem] w-[22.5625rem] overflow-hidden rounded-[1.25rem] px-[1.69rem] py-[1.94rem] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] cursor-pointer [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform-style:preserve-3d]',
   mobileCardLight:
     'bg-[linear-gradient(216deg,rgba(247,250,255,0.10)_7.92%,rgba(255,255,255,0.65)_26.31%,rgba(255,255,255,0.85)_80.33%)]',
   mobileCardBlue: 'bg-[linear-gradient(180deg,rgba(66,132,255,0.90)_5.26%,rgba(66,132,255,1)_100%)]',
@@ -92,8 +92,8 @@ const TW = {
 
   // back face (blue)
   backFace: cx(
-    'absolute inset-0 [transform:rotateY(180deg)] overflow-hidden rounded-[1.25rem] px-[2.5rem] py-[2.06rem] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] [backface-visibility:hidden] lg:py-[4.38rem] lg:px-[5.13rem]',
-    'bg-[linear-gradient(180deg,rgba(66,132,255,0.90)_5.26%,rgba(66,132,255,1)_100%)]'
+    'absolute inset-0 [transform:rotateY(180deg)_translateZ(1px)] overflow-hidden rounded-[1.25rem] px-[2.5rem] py-[2.06rem] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] [backface-visibility:hidden] [-webkit-backface-visibility:hidden] lg:py-[4.38rem] lg:px-[5.13rem]',
+    'opacity-90 bg-[linear-gradient(180deg,rgba(66,132,255,0.90)_5.26%,rgba(66,132,255,1)_100%)]'
   ),
 
   // back content (white text)
@@ -109,7 +109,7 @@ const TW = {
   backItemTitleEvent: 'font-medium text-[var(--color-white-main)] md:text-[1.25rem] lg:text-[1.75rem] leading-[120%]',
   backDate: 'font-medium text-[var(--color-white-main)]/75 md:text-[1.125rem] lg:text-[1.5rem] leading-[120%]',
   backDetail:
-    'font-medium text-[var(--color-white-opacity75)] md:text-[1.125rem] lg:text-[1.5rem] lg:pl-[3.4rem] md:pl-[2.67rem] leading-[120%]',
+    'font-medium text-[var(--color-white-opacity75)] md:text-[1.125rem] lg:text-[1.5rem] lg:pl-[3.38rem] md:pl-[2.67rem] leading-[120%]',
   backDetailsWrap: 'flex flex-col md:gap-[0.375rem] lg:gap-[0.5rem]',
 
   // back image

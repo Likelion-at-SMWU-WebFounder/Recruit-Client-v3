@@ -31,14 +31,14 @@ const TW = {
   contentBox: 'flex w-full flex-col items-center',
   textBase: `
     text-[var(--color-white-main)] font-medium text-center whitespace-pre-line break-keep
-    text-[0.875rem] leading-[127%] 
+    text-[0.875rem] leading-[150%] 
     md:text-[1.3125rem] md:leading-[170%] 
     lg:text-[1.375rem]
   `,
   highlight: 'text-[#78A7FF] font-bold',
   signature: 'font-bold text-[#78A7FF]',
   link: 'underline underline-offset-4',
-  sectionGap: 'mt-[2.2225rem] md:mt-[2.23125rem] lg:mt-[2.3375rem]',
+  sectionGap: 'mt-[1.3125rem] md:mt-[2.23125rem] lg:mt-[2.3375rem]',
   failGap: 'gap-[1.11125rem] md:gap-[2.23125rem] lg:gap-[2.3375rem]',
   flexColCenter: 'flex flex-col items-center',
 } as const;
@@ -55,19 +55,24 @@ const Result = () => {
     // 스크롤을 최상단으로 이동
     window.scrollTo(0, 0);
 
-    // 모바일 확대 상태 리셋 로직
-    const resetViewport = () => {
-      const viewport = document.querySelector('meta[name="viewport"]');
-      if (viewport) {
-        const originalContent = viewport.getAttribute('content');
-        viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
-        setTimeout(() => {
-          viewport.setAttribute('content', originalContent || 'width=device-width, initial-scale=1.0');
-        }, 300);
-      }
+    const resetViewportForSafari = () => {
+      // 1. 기존 메타 태그 제거
+      const oldMeta = document.querySelector('meta[name="viewport"]');
+      if (oldMeta) oldMeta.remove();
+
+      // 2. 새로운 메타 태그 생성 및 설정
+      const newMeta = document.createElement('meta');
+      newMeta.name = 'viewport';
+      newMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0';
+      document.getElementsByTagName('head')[0].appendChild(newMeta);
+
+      // 3. 잠시 후 표준 상태로 복구 (사용자 줌 허용을 위해)
+      setTimeout(() => {
+        newMeta.content = 'width=device-width, initial-scale=1.0';
+      }, 300);
     };
 
-    resetViewport();
+    resetViewportForSafari();
 
     const handleResize = () => setIsMobile(window.innerWidth <= 393);
     window.addEventListener('resize', handleResize);
