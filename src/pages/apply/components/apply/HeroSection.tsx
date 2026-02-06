@@ -13,7 +13,7 @@ const QA_DEBUG_MODE = true;
 // 스타일 토큰
 const TW = {
   bg: {
-    wrapperHeight: 'h-[53.25rem] md:h-[85.375rem] lg:h-[67.5rem]',
+    wrapperHeight: 'h-[53.25rem] md:h-[85.375rem] lg:h-[67.5rem] px-[1rem]',
   },
   layout: {
     outer: 'flex flex-col items-center gap-[2.1875rem] md:gap-[4.375rem] lg:gap-[4.375rem]',

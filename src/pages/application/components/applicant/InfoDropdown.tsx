@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface InfoDropdownProps {
   label: string;
@@ -39,6 +39,7 @@ const STYLES = {
     absolute z-[110] w-full overflow-hidden rounded-[1rem] border-2 border-[rgba(27,38,52,0.65)] bg-[var(--color-white-main)] shadow-lg transition-all duration-300 ease-in-out
     md:mt-[0.5625rem]
     max-md:fixed max-md:top-1/2 max-md:left-1/2 max-md:-translate-x-1/2 max-md:-translate-y-1/2 max-md:w-[calc(100%-4rem)] max-md:max-w-[20rem]
+    md:before:content-[''] md:before:absolute md:before:top-[-1rem] md:before:left-0 md:before:w-full md:before:h-[1rem]
   `,
 
   optionItem:
@@ -54,19 +55,36 @@ const InfoDropdown = ({ label, required, value, options, errorMessage, onChange 
   const [isOpen, setIsOpen] = useState(false);
   const hasError = !!errorMessage;
   const displayOptions = options;
+  const closeTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // 데스크탑 클릭 방어 로직
   const handleTriggerClick = () => {
+    if (window.innerWidth >= 1024) return;
+
     setIsOpen(!isOpen);
   };
 
   const handleMouseEnter = () => {
-    if (window.innerWidth >= 1024) setIsOpen(true);
+    if (window.innerWidth >= 1024) {
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+      setIsOpen(true);
+    }
   };
 
   const handleMouseLeave = () => {
-    if (window.innerWidth >= 1024) setIsOpen(false);
+    if (window.innerWidth >= 1024) {
+      closeTimerRef.current = setTimeout(() => {
+        setIsOpen(false);
+      }, 150);
+    }
   };
+
+  // 컴포넌트 언마운트 시 타이머 정리
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    };
+  }, []);
 
   // 2. 애니메이션 클래스 개선
   const activeClass = isOpen
@@ -108,7 +126,7 @@ const InfoDropdown = ({ label, required, value, options, errorMessage, onChange 
         </div>
 
         {/* 옵션 리스트 */}
-        <div className={`${STYLES.menuWrapper} ${activeClass}`}>
+        <div className={`${STYLES.menuWrapper} ${activeClass}`} onMouseEnter={handleMouseEnter}>
           {displayOptions.map((opt, index) => (
             <div
               key={opt.value}
