@@ -10,6 +10,7 @@ export const ROUTER_URL = {
   RESULT_DOCUMENT: '/apply/document/result',
   RESULT_FINAL: '/apply/final/result',
   RESULT_UNAVAILABLE: '/result-unavailable',
+  APPLY_UNAVAILABLE: '/apply-unavailable',
   ACTIVITY: '/activity',
   WEBFOUNDERS: '/webfounders',
   APPLICATION: '/apply/application',

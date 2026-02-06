@@ -1,4 +1,8 @@
 export const ERROR_MESSAGES = {
+  APPLY_UNAVAILABLE: {
+    TITLE: '서류 접수 기간이 아닙니다.',
+    APPLICATION_PERIOD: '서류 접수 기간: 26.02.12 09:00 ~ 26.02.18 18:00',
+  },
   RESULT_UNAVAILABLE: {
     TITLE: '결과 조회 기간이 아닙니다.',
     DOCUMENT_PERIOD: '서류 결과 조회 기간: 26.02.22~26.02.27',

@@ -1,11 +1,7 @@
 import { useMemo, useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  RECRUITMENT_PHASES,
-  HERO_PHASE_CONTENT,
-  type RecruitmentPhase,
-  PHASE_SCHEDULE,
-} from '../../constants/heroSection';
+import { RECRUITMENT_PHASES, HERO_PHASE_CONTENT, type RecruitmentPhase } from '../../constants/heroSection';
+import { PHASE_SCHEDULE } from '@/shared/constants/phase';
 import ReusableBackground from '../background/ReusableBackground';
 import HeroButton from '../button/HeroButton';
 import '../../styles/HomeSection.css';
