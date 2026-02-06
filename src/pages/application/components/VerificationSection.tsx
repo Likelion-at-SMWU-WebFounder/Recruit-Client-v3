@@ -26,7 +26,7 @@ const STYLES = {
   // 텍스트 및 라벨 스타일
   labelGroup: 'flex flex-col gap-1 lg:gap-[0.375rem]',
   label:
-    'text-left text-[1.125rem] font-semibold break-keep text-[var(--color-navyblack)] md:text-[1.5rem] lg:text-[2rem]',
+    'text-left text-[1.125rem] font-semibold break-keep text-[var(--color-navyblack)] md:text-[1.5rem] lg:text-[2rem] lg:whitespace-normal whitespace-pre-line',
   requiredStar:
     'ml-[0.39rem] inline-block text-[1.125rem] leading-normal font-bold text-[var(--Color-blue-main,#4284FF)] md:ml-[0.49rem] md:text-[1.3rem] lg:ml-[0.69rem] lg:text-[1.5rem]',
   subDescription:
