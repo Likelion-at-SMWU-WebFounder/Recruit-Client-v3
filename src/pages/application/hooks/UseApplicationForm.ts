@@ -27,7 +27,6 @@ const initialFormData: ApplicationFormData = {
 export const useApplicationForm = () => {
   const [formData, setFormData] = useState<ApplicationFormData>(initialFormData);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'duplicate'>('idle');
-  const [isMockMode, setIsMockMode] = useState(false);
 
   const resetForm = useCallback(() => setFormData(initialFormData), []);
 
@@ -134,12 +133,6 @@ export const useApplicationForm = () => {
       if (submitStatus === 'loading') return false;
       setSubmitStatus('loading');
 
-      if (isMockMode) {
-        await new Promise((r) => setTimeout(r, 50000));
-        setSubmitStatus('success');
-        return true;
-      }
-
       try {
         const request = transformDataForServer();
         if (import.meta.env.DEV) {
@@ -163,12 +156,10 @@ export const useApplicationForm = () => {
         return false;
       }
     },
-    [submitStatus, transformDataForServer, resetForm, isMockMode]
+    [submitStatus, transformDataForServer, resetForm]
   );
 
   return {
-    isMockMode,
-    setIsMockMode,
     formData,
     submitStatus,
     updateApplicantInfo,
