@@ -36,14 +36,14 @@ const SCHEDULE_BOX_STYLE = {
     inactive: 'text-navyblack/30 lg:text-[2.25rem] ',
   },
   imageContainer: {
-    base: 'inline-flex items-center overflow-hidden',
+    base: 'inline-flex items-center overflow-hidden transition-all duration-500 ease-out',
     left: 'justify-end',
     right: 'justify-start',
     desktop: 'lg:flex-row lg:gap-[1.25rem] lg:mt-[1rem]',
     tablet: 'md:flex-row md:gap-[0.67rem] md:mt-[0.5rem]',
     mobile: 'flex-col gap-[0.26rem] mt-[0.2rem]',
-    active: 'visible',
-    inactive: 'hidden',
+    active: 'opacity-100 translate-y-0 max-h-[500px]',
+    inactive: 'opacity-0 translate-y-[20px] max-h-0 pointer-events-none',
   },
   image: {
     desktop: 'lg:w-[18.30919rem] lg:h-[11.92475rem] lg:rounded-[1.05531rem]',
@@ -64,7 +64,11 @@ const ScheduleBox = ({ mode = 'left', title, date, images, active = false }: Sch
 `;
   const dateClassName = `${combineStyles(SCHEDULE_BOX_STYLE.date)}  ${active ? SCHEDULE_BOX_STYLE.date.active : SCHEDULE_BOX_STYLE.date.inactive}`;
   const titleClassName = `${combineStyles(SCHEDULE_BOX_STYLE.title)}  ${active ? SCHEDULE_BOX_STYLE.title.active : SCHEDULE_BOX_STYLE.title.inactive}`;
-  const imageContainerClassName = `${combineStyles(SCHEDULE_BOX_STYLE.imageContainer)} ${mode === 'left' ? SCHEDULE_BOX_STYLE.imageContainer.left : SCHEDULE_BOX_STYLE.imageContainer.right}`;
+  const imageContainerClassName = `
+  ${combineStyles(SCHEDULE_BOX_STYLE.imageContainer)}
+  ${mode === 'left' ? SCHEDULE_BOX_STYLE.imageContainer.left : SCHEDULE_BOX_STYLE.imageContainer.right}
+  ${active ? SCHEDULE_BOX_STYLE.imageContainer.active : SCHEDULE_BOX_STYLE.imageContainer.inactive}
+`;
   const imageClassName = combineStyles(SCHEDULE_BOX_STYLE.image);
 
   return (
@@ -73,13 +77,11 @@ const ScheduleBox = ({ mode = 'left', title, date, images, active = false }: Sch
         <span className={dateClassName}>{date}</span>
         <span className={titleClassName}>{title}</span>
 
-        {active && (
-          <div className={imageContainerClassName}>
-            {images.map((imageURL, index) => (
-              <img key={index} className={imageClassName} src={imageURL} alt={title} />
-            ))}
-          </div>
-        )}
+        <div className={imageContainerClassName}>
+          {images.map((imageURL, index) => (
+            <img key={index} className={imageClassName} src={imageURL} alt={title} />
+          ))}
+        </div>
       </div>
     </div>
   );
