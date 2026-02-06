@@ -93,7 +93,7 @@ const TW = {
   // back face (blue)
   backFace: cx(
     'absolute inset-0 [transform:rotateY(180deg)_translateZ(1px)] overflow-hidden rounded-[1.25rem] px-[2.5rem] py-[2.06rem] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] [backface-visibility:hidden] [-webkit-backface-visibility:hidden] lg:py-[4.38rem] lg:px-[5.13rem]',
-    'bg-[linear-gradient(180deg,rgba(66,132,255,0.90)_5.26%,rgba(66,132,255,1)_100%)]'
+    'opacity-90 bg-[linear-gradient(180deg,rgba(66,132,255,0.90)_5.26%,rgba(66,132,255,1)_100%)]'
   ),
 
   // back content (white text)

@@ -31,14 +31,14 @@ const TW = {
   contentBox: 'flex w-full flex-col items-center',
   textBase: `
     text-[var(--color-white-main)] font-medium text-center whitespace-pre-line break-keep
-    text-[0.875rem] leading-[127%] 
+    text-[0.875rem] leading-[150%] 
     md:text-[1.3125rem] md:leading-[170%] 
     lg:text-[1.375rem]
   `,
   highlight: 'text-[#78A7FF] font-bold',
   signature: 'font-bold text-[#78A7FF]',
   link: 'underline underline-offset-4',
-  sectionGap: 'mt-[2.2225rem] md:mt-[2.23125rem] lg:mt-[2.3375rem]',
+  sectionGap: 'mt-[1.3125rem] md:mt-[2.23125rem] lg:mt-[2.3375rem]',
   failGap: 'gap-[1.11125rem] md:gap-[2.23125rem] lg:gap-[2.3375rem]',
   flexColCenter: 'flex flex-col items-center',
 } as const;
