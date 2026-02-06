@@ -86,12 +86,16 @@ const DesktopTabletDoingCard = ({
   }, []);
 
   // 플립 상태 결정 로직:
-  // 태블릿: 클릭 상태에 따라 결정
+  // 태블릿: 처음에는 첫 번째 카드만 뒷면, 이후에는 클릭 상태에 따라 결정
   // 데스크톱: 기존 호버 로직 사용
   const getFlipState = () => {
     if (isTablet) {
-      // 태블릿에서는 클릭 상태로 결정
-      return isTabletClicked;
+      // 태블릿에서도 처음에는 첫 번째 카드만 뒷면으로 시작
+      if (!hasEverHovered) {
+        return index === 0; // 첫 번째 카드만 뒷면(true)
+      } else {
+        return isTabletClicked; // 클릭 상태로 결정
+      }
     }
 
     // 데스크톱: 기존 로직
@@ -121,6 +125,10 @@ const DesktopTabletDoingCard = ({
 
   const handleClick = () => {
     if (isTablet) {
+      // 태블릿에서 처음 클릭 시 hasEverHovered를 true로 설정
+      if (!hasEverHovered) {
+        onCardHover?.(index); // hasEverHovered를 true로 만들기 위해
+      }
       setIsTabletClicked(!isTabletClicked);
     }
   };
