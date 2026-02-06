@@ -68,6 +68,17 @@ const ResultCheck = () => {
     if (errorType) setErrorType(null);
   };
 
+  const handleBlur = () => {
+    // 현재 스크롤 위치를 유지하면서 화면을 다시 그리도록 유도
+    setTimeout(() => {
+      window.scrollTo({
+        top: window.scrollY,
+        left: 0,
+        behavior: 'smooth',
+      });
+    }, 100); // 키패드가 완전히 내려가는 시간을 벌어줍니다.
+  };
+
   /* 결과 확인 및 페이지 이동 로직 */
   const handleCheck = async () => {
     if (!formData.name || !formData.id || !formData.password) {
@@ -143,6 +154,7 @@ const ResultCheck = () => {
                     <div className={TW.inputContainer}>
                       <input
                         type={isPasswordField ? (showPassword ? 'text' : 'password') : item.type}
+                        onBlur={handleBlur}
                         value={formData[item.id as keyof typeof formData]}
                         placeholder={item.ph}
                         className={cx(

@@ -3,12 +3,14 @@ import { useEffect, useState } from 'react';
 import Layout from '@/shared/components/Layout';
 import ResultBackground from './components/background/ResultBackground';
 import { DOCUMENT_RESULT_TEXT, FINAL_RESULT_TEXT } from './constants/result';
+import { Fragment } from 'react';
 
 // --- 타입 정의 추가 ---
 interface TextSegment {
   text: string;
   textMobile?: string;
   isHighlight: boolean;
+  isTabletOnlyBreak?: boolean;
 }
 
 interface LocationState {
@@ -47,8 +49,26 @@ const Result = () => {
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 393);
 
+  // Result.tsx 내부
+
   useEffect(() => {
+    // 스크롤을 최상단으로 이동
     window.scrollTo(0, 0);
+
+    // 모바일 확대 상태 리셋 로직
+    const resetViewport = () => {
+      const viewport = document.querySelector('meta[name="viewport"]');
+      if (viewport) {
+        const originalContent = viewport.getAttribute('content');
+        viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
+        setTimeout(() => {
+          viewport.setAttribute('content', originalContent || 'width=device-width, initial-scale=1.0');
+        }, 300);
+      }
+    };
+
+    resetViewport();
+
     const handleResize = () => setIsMobile(window.innerWidth <= 393);
     window.addEventListener('resize', handleResize);
 
@@ -56,6 +76,7 @@ const Result = () => {
       const isDocument = pathname.includes('document');
       navigate(isDocument ? '/apply/document' : '/apply/final');
     }
+
     return () => window.removeEventListener('resize', handleResize);
   }, [state, navigate, pathname]);
 
@@ -67,15 +88,34 @@ const Result = () => {
   const trackName = state?.track ? FINAL_RESULT_TEXT.TRACK_NAME[state.track] : '';
 
   const renderSegments = (segments: readonly TextSegment[]) =>
-    segments.map((chunk, i) => (
-      <span key={i} className={chunk.isHighlight ? TW.highlight : ''}>
-        {isMobile && chunk.textMobile ? chunk.textMobile : chunk.text}
-      </span>
-    ));
+    segments.map((chunk, i) => {
+      const content = isMobile && chunk.textMobile ? chunk.textMobile : chunk.text;
+
+      return (
+        <span key={i} className={chunk.isHighlight ? TW.highlight : ''}>
+          {/* \n을 기준으로 나누어 배열로 만든 뒤, 중간에 브레이크 태그 삽입 */}
+          {content.split('\n').map((line, index, array) => (
+            <Fragment key={index}>
+              {line}
+              {/* 마지막 라인이 아닐 때만 br 삽입 */}
+              {index < array.length - 1 && (
+                <br
+                  className={
+                    chunk.isTabletOnlyBreak && !isMobile
+                      ? 'hidden md:block lg:hidden' // 플래그가 있으면 태블릿(md)에서만 노출
+                      : '' // 없으면 기본 줄바꿈 (데스크탑 포함 전 구간)
+                  }
+                />
+              )}
+            </Fragment>
+          ))}
+        </span>
+      );
+    });
 
   return (
     <Layout menuMode="dark" footerMode="light">
-      <ResultBackground paddingClassName="py-[1.63rem] px-[1rem] md:py-[3.69rem] md:px-[1rem] lg:py-[3.75rem] lg:px-[1rem]">
+      <ResultBackground paddingClassName="py-[5.44rem] px-[1rem] md:py-[3.69rem] md:px-[1rem] lg:py-[3.75rem] lg:px-[1rem]">
         <div className={TW.container}>
           <img src={`${MENU_IMAGES_PATH}/smwu_lion_logo_light.svg`} alt="SMWU Logo" className={TW.logo} />
 
