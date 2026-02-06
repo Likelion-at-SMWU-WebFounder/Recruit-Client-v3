@@ -3,10 +3,15 @@ import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { SECTION_TITLES, SECTION_SUB_TITLES, COMPLETION_CONDITIONS } from '../../constants/index';
 import img3dSpring from '../../assets/3d-spring.png';
 import img3dKnot from '../../assets/3d-knot.png';
+import img3dSpringBlue from '../../assets/3d-spring-blue.png';
+import img3dKnotBlue from '../../assets/3d-knot-blue.png';
 import SubTitle from '@/shared/components/SubTitle';
 import '../../styles/completionConditionSection.css';
 
-const CARD_IMAGES = [img3dSpring, img3dKnot] as const;
+const CARD_IMAGES = [
+  { default: img3dSpring, blue: img3dSpringBlue },
+  { default: img3dKnot, blue: img3dKnotBlue },
+] as const;
 
 interface AttendanceItem {
   number: string;
@@ -32,11 +37,11 @@ const TW = {
   headingBox: 'mb-[4.5rem] flex flex-col items-center gap-[1rem] md:mb-[6.89rem] lg:mb-[4.19rem]',
 
   // mobile wrapper
-  mobileWrap: 'relative w-[22.5625rem] h-[20.8125rem] md:hidden',
+  mobileWrap: 'relative w-[22.5625rem] h-[20.8125rem] md:hidden [perspective:1000px]',
 
   // mobile cards (fronts)
   mobileCardBase:
-    'relative h-[20.8125rem] w-[22.5625rem] overflow-hidden rounded-[1.25rem] px-[1.69rem] py-[1.94rem] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] cursor-pointer',
+    'relative h-[20.8125rem] w-[22.5625rem] overflow-hidden rounded-[1.25rem] px-[1.69rem] py-[1.94rem] shadow-[0_0_22.7px_0_rgba(27,38,52,0.13)] cursor-pointer [backface-visibility:hidden] [-webkit-backface-visibility:hidden]',
   mobileCardLight:
     'bg-[linear-gradient(216deg,rgba(247,250,255,0.10)_7.92%,rgba(255,255,255,0.65)_26.31%,rgba(255,255,255,0.85)_80.33%)]',
   mobileCardBlue: 'bg-[linear-gradient(180deg,rgba(66,132,255,0.90)_5.26%,rgba(66,132,255,1)_100%)]',
@@ -104,7 +109,7 @@ const TW = {
   backItemTitleEvent: 'font-medium text-[var(--color-white-main)] md:text-[1.25rem] lg:text-[1.75rem] leading-[120%]',
   backDate: 'font-medium text-[var(--color-white-main)]/75 md:text-[1.125rem] lg:text-[1.5rem] leading-[120%]',
   backDetail:
-    'font-medium text-[var(--color-white-opacity75)] md:text-[1.125rem] lg:text-[1.5rem] lg:pl-[3.625rem] md:pl-[2.875rem] leading-[120%]',
+    'font-medium text-[var(--color-white-opacity75)] md:text-[1.125rem] lg:text-[1.5rem] lg:pl-[3.4rem] md:pl-[2.67rem] leading-[120%]',
   backDetailsWrap: 'flex flex-col md:gap-[0.375rem] lg:gap-[0.5rem]',
 
   // back image
@@ -132,6 +137,7 @@ const CompletionConditionSection = () => {
 
   const renderBackContent = (card: (typeof COMPLETION_CONDITIONS)[0], index: number) => {
     const isAttendance = card.id === 'attendance';
+    const currentImage = CARD_IMAGES[index].blue;
 
     return (
       <>
@@ -168,7 +174,7 @@ const CompletionConditionSection = () => {
           </div>
         )}
 
-        <img src={CARD_IMAGES[index]} alt="" className={cx(TW.backImgBase, index === 0 ? TW.backImg0 : TW.backImg1)} />
+        <img src={currentImage} alt="" className={cx(TW.backImgBase, index === 0 ? TW.backImg0 : TW.backImg1)} />
       </>
     );
   };
@@ -187,10 +193,8 @@ const CompletionConditionSection = () => {
         </div>
 
         {/* mobile carousel */}
-        {/* mobile carousel */}
         <div className={cx(TW.mobileWrap, 'mFlipCard')}>
           <div className={cx('mFlipInner', isMobileFlipped && 'is-flipped')}>
-            {/* FRONT: 기존 mobileCardIndex === 0 카드 그대로 */}
             <div
               className={cx(TW.mobileCardBase, TW.mobileCardLight, 'mFlipFace')}
               onClick={handleMobileFlip}
@@ -204,12 +208,12 @@ const CompletionConditionSection = () => {
                 <div className="flex flex-col gap-[1.5rem]">
                   {(COMPLETION_CONDITIONS[0].items as AttendanceItem[]).map((item) => (
                     <div key={item.number}>
-                      <div className="mb-[0.5rem] flex items-baseline gap-[1rem]">
+                      <div className="mb-[0.5rem] flex items-baseline gap-[0.75rem]">
                         <span className={TW.mobileLightNum}>{item.number}</span>
                         <span className={TW.mobileLightLabel}>{item.title}</span>
                       </div>
 
-                      <div className="flex flex-col gap-[0.25rem] pl-[2.25rem]">
+                      <div className="flex flex-col gap-[0.25rem] pl-[2.1rem]">
                         {item.details.map((detail, idx) => (
                           <p key={idx} className={TW.mobileLightDetail}>
                             {detail}
@@ -221,7 +225,7 @@ const CompletionConditionSection = () => {
                 </div>
               </div>
 
-              <img src={CARD_IMAGES[0]} alt="" className={TW.mobileImgLight} />
+              <img src={CARD_IMAGES[0].default} alt="" className={TW.mobileImgLight} />
 
               <button
                 onClick={(e) => {
@@ -235,8 +239,6 @@ const CompletionConditionSection = () => {
                 </svg>
               </button>
             </div>
-
-            {/* BACK: 기존 mobileCardIndex === 1 카드 그대로 */}
             <div
               className={cx(TW.mobileCardBase, TW.mobileCardBlue, 'mFlipFace', 'mFlipBack')}
               onClick={handleMobileFlip}
@@ -259,7 +261,7 @@ const CompletionConditionSection = () => {
                 </div>
               </div>
 
-              <img src={CARD_IMAGES[1]} alt="" className={TW.mobileImgBlue} />
+              <img src={CARD_IMAGES[1].blue} alt="" className={TW.mobileImgBlue} />
 
               <button
                 onClick={(e) => {
@@ -298,7 +300,7 @@ const CompletionConditionSection = () => {
                   <div className={cx(TW.faceBase, TW.frontFace, 'flipCardFace')}>
                     <h3 className={TW.frontTitle}>{card.title}</h3>
                     <img
-                      src={CARD_IMAGES[index]}
+                      src={CARD_IMAGES[index].default}
                       alt=""
                       className={cx(TW.frontImgBase, index === 0 ? TW.frontImg0 : TW.frontImg1)}
                     />
