@@ -54,10 +54,10 @@ const MENU_STYLES = {
     base: 'w-full flex  items-center justify-end pr-[1.5rem] h-[60px]',
   },
   mobileCloseButton: {
-    base: 'w-[40px] h-[40px] ',
+    base: 'w-[26px] h-[26px] ',
   },
   hamburgerButton: {
-    base: 'cursor-pointer md:hidden w-[40px] h-[40px]',
+    base: 'cursor-pointer md:hidden w-[26px] h-[26px]',
   },
   hamburgerIcon: {
     base: 'w-full h-full',
