@@ -140,7 +140,7 @@ const MobileDrawer = ({ setDrawerOpen, mobileMenuColor }: MobileDrawerProps) => 
               className={({ isActive }) => {
                 return `w-full cursor-pointer text-[1.5rem] ${
                   isActive ? activeOption : `${mobileMenuColor} ${defaultFontWeight}`
-                } ${hoverOption}`;
+                } ${hoverOption} ${item.key === 'apply' ? 'cta-guide' : ''}`; /* cta-guide: GA4 트리거 적용 */
               }}>
               {item.label}
             </NavLink>
@@ -189,7 +189,7 @@ const Menu = ({ mode = 'light', ...props }: MenuProps) => {
                 className={({ isActive }) => {
                   return `${hoverOption} md:text-[1rem] lg:text-[1.25rem] ${
                     isActive ? activeOption : `${menuModeColor} ${defaultFontWeight}`
-                  }`;
+                  } ${item.key === 'apply' ? 'cta-guide' : ''}`; /* cta-guide: GA4 트리거 적용 */
                 }}>
                 {({ isActive }) => (
                   <>
