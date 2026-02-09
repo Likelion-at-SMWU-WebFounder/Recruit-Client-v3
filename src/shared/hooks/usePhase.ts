@@ -33,22 +33,9 @@ export const usePhase = () => {
         const serverDate = response.headers.get('date');
 
         if (serverDate) {
-          const clientNow = new Date();
-          const serverNow = new Date(serverDate);
-
-          console.log('로컬 기준 현재 시각:', clientNow.toString());
-          console.log('서버 기준 현재 시각:', serverNow.toString());
-
-          const offset = serverNow.getTime() - clientNow.getTime();
-          console.log('계산된 오프셋(ms):', offset);
-
-          const modeFromClient = calculateMode(0);
-          const modeFromServer = calculateMode(offset);
-          console.log('로컬 시간 기준 mode:', modeFromClient);
-          console.log('서버 시간 기준 mode:', modeFromServer);
-
+          const offset = new Date(serverDate).getTime() - Date.now();
           setTimeOffset(offset);
-          setCurrentMode(modeFromServer);
+          setCurrentMode(calculateMode(offset));
         } else {
           setTimeOffset(0);
         }
