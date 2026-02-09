@@ -1,8 +1,10 @@
 import { useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { postApplication } from '../apis/recruit';
 import type { ApplicationRequest, TrackType, SchoolStatusType, ProgrammersStatusType } from '../types/api';
 import type { ApplicationFormData, ApplicantInfo, PartType, AgreementKey } from '../types/index';
+import { ROUTER_URL } from '@/shared/constants/url';
 
 const initialFormData: ApplicationFormData = {
   applicantInfo: {
@@ -25,6 +27,7 @@ const initialFormData: ApplicationFormData = {
 };
 
 export const useApplicationForm = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<ApplicationFormData>(initialFormData);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'duplicate'>('idle');
 
@@ -135,28 +138,45 @@ export const useApplicationForm = () => {
 
       try {
         const request = transformDataForServer();
+
+        // 개발 환경에서만 로그 출력
         if (import.meta.env.DEV) {
           console.group('[Application Submit] request payload');
           console.log(request);
-          console.log('[file]', file ? { name: file.name, size: file.size, type: file.type } : 'none');
           console.groupEnd();
         }
+
         await postApplication(request, file);
 
         setSubmitStatus('success');
         resetForm();
         return true;
       } catch (error: unknown) {
-        // 백엔드: 중복이면 409
-        const isDuplicate =
-          axios.isAxiosError(error) && (error.response?.status === 409 || error.response?.data?.code === 409);
-
-        setSubmitStatus(isDuplicate ? 'duplicate' : 'error');
         console.error('제출 실패:', error);
+
+        // 1. Axios 에러인 경우 (서버 응답 에러)
+        if (axios.isAxiosError(error)) {
+          const status = error.response?.status;
+
+          // 400: 기간 종료 또는 잘못된 접근 -> 리다이렉트
+          if (status === 400) {
+            navigate(ROUTER_URL.APPLY_UNAVAILABLE);
+            return false;
+          }
+
+          // 409: 중복 제출 -> 중복 상태값 설정
+          if (status === 409 || error.response?.data?.code === 409) {
+            setSubmitStatus('duplicate');
+            return false;
+          }
+        }
+
+        // 2. 그 외 모든 에러 (네트워크 단절, 코드 에러 등)
+        setSubmitStatus('error');
         return false;
       }
     },
-    [submitStatus, transformDataForServer, resetForm]
+    [submitStatus, transformDataForServer, resetForm, navigate]
   );
 
   return {
