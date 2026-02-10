@@ -176,7 +176,7 @@ const Application = () => {
   }, [formData]);
 
   useEffect(() => {
-    const sendAbandonEvent = (reason: string) => {
+    const sendAbandonEvent = () => {
       if (hasSentAbandonRef.current) return;
 
       if (hasStartedRef.current && submitStatusRef.current !== 'success') {
@@ -186,13 +186,13 @@ const Application = () => {
           page_path: window.location.pathname,
         });
         hasSentAbandonRef.current = true;
-        console.log(`[GTM 이탈 기록] 사유: ${reason}`);
+        //console.log(`[GTM 이탈 기록] 사유: ${reason}`);
       }
     };
 
     const handleExit = (e: Event) => {
       if (document.visibilityState === 'hidden' || e.type === 'pagehide') {
-        sendAbandonEvent(e.type);
+        sendAbandonEvent();
       }
     };
 
@@ -202,7 +202,7 @@ const Application = () => {
     return () => {
       document.removeEventListener('visibilitychange', handleExit);
       window.removeEventListener('pagehide', handleExit);
-      sendAbandonEvent('unmount');
+      sendAbandonEvent();
     };
   }, []);
   // =========================================

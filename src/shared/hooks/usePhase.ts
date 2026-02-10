@@ -37,7 +37,9 @@ export const usePhase = () => {
         setTimeOffset(offset);
         setCurrentMode(calculateMode(localMillis + offset));
       } catch (err) {
-        console.error('서버 시간 동기화 실패:', err);
+        if (import.meta.env.DEV) {
+          console.error('서버 시간 동기화 실패:', err);
+        }
         setTimeOffset(0);
       }
     };

@@ -152,7 +152,9 @@ export const useApplicationForm = () => {
         resetForm();
         return true;
       } catch (error: unknown) {
-        console.error('제출 실패:', error);
+        if (import.meta.env.DEV) {
+          console.error('제출 실패:', error);
+        }
 
         // 1. Axios 에러인 경우 (서버 응답 에러)
         if (axios.isAxiosError(error)) {
