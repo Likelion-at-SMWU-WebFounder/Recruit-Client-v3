@@ -255,6 +255,7 @@ export const APPLICANT_ERRORS = {
 
 export const PART_ERRORS = {
   select: '지원 파트를 선택해주세요.',
+  fileSize: 'zip 파일은 20MB 미만으로 업로드 가능합니다.',
 };
 
 export const QUESTION_ERRORS = {

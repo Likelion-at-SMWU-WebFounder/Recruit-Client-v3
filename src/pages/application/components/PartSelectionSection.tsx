@@ -30,7 +30,9 @@ const STYLES = {
 
   // 파일 업로드 완료 상태
   fileBadge:
-    'flex h-[2.5rem] w-full items-center gap-[0.25rem] md:gap-[0.75rem] md:rounded-[1rem] rounded-[0.625rem] border-2 border-[#F0F5FA] bg-[#F0F5FA] px-[0.72rem] py-[0.38rem] md:px-[0.69rem] md:py-[0.69rem] lg:px-[0.625rem] lg:y-[0.5625rem] shadow-[1px_1px_6.4px_0_rgba(27,38,52,0.10)] md:h-[3.625rem] lg:h-[4.1875rem]',
+    'flex h-[2.5rem] w-full items-center gap-[0.25rem] md:gap-[0.75rem] md:rounded-[1rem] rounded-[0.625rem] border-2 bg-[#F0F5FA] px-[0.72rem] py-[0.38rem] md:px-[0.69rem] md:py-[0.69rem] lg:px-[0.625rem] lg:y-[0.5625rem] shadow-[1px_1px_6.4px_0_rgba(27,38,52,0.10)] md:h-[3.625rem] lg:h-[4.1875rem]',
+  badgeNormal: 'border-[#F0F5FA]',
+  badgeError: 'border-[rgba(255,36,36,0.80)]',
   clipIcon: 'h-[1.375rem] w-[1.375rem] md:h-[1.875rem] md:w-[1.875rem] lg:h-[2.3125rem] lg:w-[2.3125rem]',
   fileName:
     'truncate text-[0.8125rem] font-medium text-[var(--color-navyblack-main)] md:text-[1rem] lg:text-[1.375rem] leading-[120%] md:leading-[140%]',
@@ -39,6 +41,8 @@ const STYLES = {
   deleteBtn: 'flex shrink-0 cursor-pointer items-center justify-center',
   deleteIcon:
     'aspect-square h-[0.6875rem] w-[0.6875rem] md:h-[0.875rem] md:w-[0.875rem] lg:h-[1.0625rem] lg:w-[1.0625rem]',
+  errorText:
+    'text-[0.8125rem] font-medium tracking-[-0.0325rem] md:text-[1rem] md:tracking-[-0.02rem] lg:text-[1.25rem] lg:tracking-normal leading-[120%] text-[rgba(255,36,36,0.80)]',
 
   // 파일 업로드 대기 상태
   uploadBtn:
@@ -47,10 +51,12 @@ const STYLES = {
     'truncate text-[1.125rem] font-bold text-[var(--color-blue-main)] group-hover:text-white md:text-[1.5rem] lg:text-[1.75rem] leading-[120%]',
 };
 
+const MAX_FILE_SIZE = 20 * 1000 * 1000;
+
 // 2. 파일 사이즈 개선 유틸리티
 const formatFileSize = (bytes: number): string => {
   if (bytes === 0) return '0B';
-  const k = 1024;
+  const k = 1000;
   const sizes = ['Bytes', 'KB', 'MB', 'GB'];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
   return i >= 2
@@ -76,27 +82,27 @@ const PartSelectionSection = ({
   isSubmitted,
 }: PartSelectionSectionProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [fileInfo, setFileInfo] = useState<{ name: string; size: string }>({ name: '', size: '' });
+  const [fileInfo, setFileInfo] = useState<{ name: string; size: number }>({ name: '', size: 0 });
 
   const partErrorMessage = isSubmitted && !selectedPart ? PART_ERRORS.select : '';
   const selectedPartLabel = PART_OPTIONS.find((opt) => opt.value === selectedPart)?.label || '';
+
+  const fileErrorMessage = isSubmitted && fileInfo.size >= MAX_FILE_SIZE ? PART_ERRORS.fileSize : '';
+  const hasFileError = !!fileErrorMessage;
 
   const handleUploadClick = () => fileInputRef.current?.click();
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setFileInfo({
-        name: file.name,
-        size: formatFileSize(file.size),
-      });
+      setFileInfo({ name: file.name, size: file.size });
       onProgrammersChange(true);
       onFileChange(file);
     }
   };
 
   const handleDeleteFile = () => {
-    setFileInfo({ name: '', size: '' });
+    setFileInfo({ name: '', size: 0 });
     onProgrammersChange(false);
     onFileChange(undefined);
     if (fileInputRef.current) fileInputRef.current.value = '';
@@ -127,16 +133,14 @@ const PartSelectionSection = ({
               {PROGRAMMERS_INFO.linkText}
             </a>
           </div>
-
           <div className={STYLES.uploadArea}>
             <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" accept=".zip" />
-
             {programmersCompleted ? (
-              <div className={STYLES.fileBadge}>
+              <div className={`${STYLES.fileBadge} ${hasFileError ? STYLES.badgeError : STYLES.badgeNormal}`}>
                 <img src={ClipIcon} alt="clip" className={STYLES.clipIcon} />
                 <div className="flex flex-1 flex-col overflow-hidden leading-[140%]">
                   <span className={STYLES.fileName}>{fileInfo.name}</span>
-                  <span className={STYLES.fileSize}>{fileInfo.size}</span>
+                  <span className={STYLES.fileSize}>{formatFileSize(fileInfo.size)}</span>
                 </div>
                 <button type="button" onClick={handleDeleteFile} className={STYLES.deleteBtn}>
                   <img src={DeleteIcon} alt="delete" className={STYLES.deleteIcon} />
@@ -147,8 +151,11 @@ const PartSelectionSection = ({
                 <span className={STYLES.uploadBtnText}>{PROGRAMMERS_INFO.uploadDefault}</span>
               </button>
             )}
-
-            <p className={STYLES.description}>{PROGRAMMERS_INFO.description}</p>
+            {hasFileError ? (
+              <p className={STYLES.errorText}>{fileErrorMessage}</p>
+            ) : (
+              <p className={STYLES.description}>{PROGRAMMERS_INFO.description}</p>
+            )}
           </div>
         </div>
       </div>

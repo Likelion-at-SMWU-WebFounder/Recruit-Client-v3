@@ -63,6 +63,7 @@ const Application = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [programmersFile, setProgrammersFile] = useState<File | undefined>(undefined);
+  const MAX_FILE_SIZE = 20 * 1000 * 1000;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -75,6 +76,7 @@ const Application = () => {
     const isPhoneValid = /^010-\d{3,4}-\d{4}$/.test(formData.applicantInfo.phone);
     const isEmailValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.applicantInfo.email);
     const isPartValid = !!formData.part;
+    const isFileSizeValid = !programmersFile || programmersFile.size < MAX_FILE_SIZE;
     const isQuestionsValid = QUESTIONS.filter((q) => q.required).every((q) => formData.answers[q.id]?.trim() !== '');
     const isInterviewValid = Object.values(formData.interviewSchedule).some((t) => t.length > 0);
     const isAgreementsValid = Object.values(formData.agreements).every((v) => v === true);
@@ -87,6 +89,7 @@ const Application = () => {
       isPhoneValid &&
       isEmailValid &&
       isPartValid &&
+      isFileSizeValid &&
       isQuestionsValid &&
       isInterviewValid &&
       isAgreementsValid &&
@@ -101,7 +104,7 @@ const Application = () => {
 
       if (!isApplicantValid || !isStudentIdFormatValid || !isSemestersFormatValid || !isPhoneValid || !isEmailValid) {
         errorSectionRef = applicantRef;
-      } else if (!isPartValid) {
+      } else if (!isPartValid || !isFileSizeValid) {
         errorSectionRef = partRef;
       } else if (!isQuestionsValid) {
         errorSectionRef = questionsRef;
