@@ -17,7 +17,7 @@ interface LocationState {
   name: string;
   docs?: 'PASS' | 'REJECT';
   interviewTime?: string;
-  interview?: 'PASS' | 'REJECT';
+  interview?: 'PASS' | 'INTERVIEW_REJECT' | 'DOCS_REJECT';
   track?: 'pm' | 'fe' | 'be';
 }
 
@@ -71,9 +71,12 @@ const Result = () => {
 
   if (!state) return null;
 
-  const isDocument = pathname.includes('document');
-  const resultData = isDocument ? DOCUMENT_RESULT_TEXT : FINAL_RESULT_TEXT;
-  const isPass = isDocument ? state?.docs === 'PASS' : state?.interview === 'PASS';
+  const isDocumentPage = pathname.includes('document');
+  const isDocsReject = state?.docs === 'REJECT' || state?.interview === 'DOCS_REJECT';
+  const isDocsMode = isDocumentPage || isDocsReject;
+
+  const isPass = isDocsMode ? state?.docs === 'PASS' : state?.interview === 'PASS';
+  const resultData = isDocsMode ? DOCUMENT_RESULT_TEXT : FINAL_RESULT_TEXT;
   const trackName = state?.track ? FINAL_RESULT_TEXT.TRACK_NAME[state.track] : '';
 
   const renderSegments = (segments: readonly TextSegment[]) =>
@@ -99,7 +102,6 @@ const Result = () => {
       <ResultBackground paddingClassName="py-[5.44rem] px-[1rem] md:py-[3.69rem] md:px-[1rem] lg:py-[3.75rem] lg:px-[1rem]">
         <div className={TW.container}>
           <img src={`${MENU_IMAGES_PATH}/smwu_lion_logo_light.svg`} alt="SMWU Logo" className={TW.logo} />
-
           <div className={cx(TW.textBase, TW.contentBox)}>
             <div className="flex flex-col">
               <p>{resultData.GREETING}</p>
@@ -113,10 +115,9 @@ const Result = () => {
                     : resultData.FAIL.THANKS}
               </p>
             </div>
-
             {isPass ? (
               <div className={TW.flexColCenter}>
-                {isDocument ? (
+                {isDocsMode ? (
                   <>
                     <p className={TW.sectionGap}>{renderSegments(DOCUMENT_RESULT_TEXT.PASS.DESCRIPTION(state.name))}</p>
                     <div className={cx('flex flex-col', TW.sectionGap)}>
@@ -153,7 +154,7 @@ const Result = () => {
               </div>
             ) : (
               <div className={cx(TW.flexColCenter, TW.sectionGap, TW.failGap)}>
-                {isDocument
+                {isDocsMode
                   ? (isMobile && 'mobileMESSAGE' in DOCUMENT_RESULT_TEXT.FAIL
                       ? (DOCUMENT_RESULT_TEXT.FAIL as { mobileMESSAGE: readonly string[] }).mobileMESSAGE
                       : DOCUMENT_RESULT_TEXT.FAIL.MESSAGE
@@ -163,7 +164,7 @@ const Result = () => {
                     ))}
               </div>
             )}
-            {(!isPass || isDocument) && (
+            {(!isPass || isDocsMode) && (
               <p className={cx(TW.textBase, TW.sectionGap, TW.signature)}>{resultData.SIGNATURE}</p>
             )}
           </div>
