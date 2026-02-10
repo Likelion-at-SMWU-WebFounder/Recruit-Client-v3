@@ -28,6 +28,9 @@ export const usePhase = () => {
 
         // 오차 계산
         const serverMillis = new Date(serverTimeStr).getTime();
+        if (Number.isNaN(serverMillis)) {
+          throw new Error(`Invalid server time: ${serverTimeStr}`);
+        }
         const localMillis = Date.now();
         const offset = serverMillis - localMillis;
 
