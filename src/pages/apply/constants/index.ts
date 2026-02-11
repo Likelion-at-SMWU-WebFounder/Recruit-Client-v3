@@ -110,9 +110,9 @@ export const COMPLETION_CONDITIONS = [
       { number: '02', title: '멋사 중앙 OT', date: '(03.18)' },
       { number: '03', title: '중앙 아이디어톤', date: '(6월 중 진행)' },
       { number: '04', title: '중앙 해커톤', date: '(8월 중순 진행)' },
-      { number: '05', title: '연합 해커톤: 여기톤', date: '(7월 중 진행)' },
-      { number: '06', title: '연합 해커톤: 4호선톤', date: '(11월 중 진행)' },
-      { number: '07', title: '파이널 프로젝트', date: '(11월 중 진행)' },
+      { number: '05', title: '연합 해커톤: 여기톤', date: '(추후 공지 예정)' },
+      { number: '06', title: '연합 해커톤: 4호선톤', date: '(추후 공지 예정)' },
+      { number: '07', title: '파이널 프로젝트', date: '(12월 중 진행)' },
     ],
   },
 ];
