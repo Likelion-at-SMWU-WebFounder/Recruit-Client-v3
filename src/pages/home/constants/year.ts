@@ -12,7 +12,7 @@ export const YEAR_DATA = [
   {
     id: 3,
     content: '여기톤',
-    date: '2026.07',
+    date: '추후 공지 예정',
   },
   {
     id: 4,
@@ -22,7 +22,7 @@ export const YEAR_DATA = [
   {
     id: 5,
     content: '4호선톤',
-    date: '2026.11',
+    date: '추후 공지 예정',
   },
   {
     id: 6,
