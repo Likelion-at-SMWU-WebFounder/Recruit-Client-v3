@@ -11,8 +11,8 @@ export type RecruitmentPhase = (typeof RECRUITMENT_PHASES)[keyof typeof RECRUITM
 
 export const HERO_PHASE_CONTENT = {
   [RECRUITMENT_PHASES.NOTIFICATION]: {
-    TITLE: '숙명여대 멋사 13기 모집이 완료되었습니다.',
-    DESCRIPTION: '14기 아기사자 모집에 지원해주세요!',
+    TITLE: '숙명여대 멋사 14기 모집이 완료되었습니다.',
+    DESCRIPTION: '15기 아기사자 모집에 지원해주세요!',
     APPLY_PERIOD: null,
     BUTTON_TEXT: null,
     PATH: '/apply/notify',
